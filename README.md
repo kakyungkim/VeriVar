@@ -223,4 +223,3 @@ Copyright (c) 2026 [Your Name / GitHub ID].
 
 Please attribute the original work to Ka-Kyung Kim (GitHub: [kakyungkim](https://github.com/kakyungkim)) when using, referencing, or adapting this project.  
 GitHub commit history also serves as a timestamped record of original authorship.
->>>>>>> 0240778 (Initial commit: LLM variant interpretation pipeline)
