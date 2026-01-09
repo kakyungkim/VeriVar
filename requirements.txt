@@ -1,0 +1,7 @@
+# Python 3.12 환경 기준
+langchain==0.2.0
+langchain-core==0.2.11
+langchain-openai==0.1.14
+pydantic==2.9.2
+pandas==2.2.2
+requests>=2.31.0

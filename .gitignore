@@ -1,0 +1,10 @@
+# Colab / Jupyter
+.ipynb_checkpoints/
+
+# Data & outputs
+data/*
+reports/*
+!data/README.md
+
+# Secrets
+.env
