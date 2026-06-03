@@ -1,11 +1,11 @@
 from pydantic import BaseModel, Field
-from typing import List
+from typing import List, Optional
 
 class VariantInterpretation(BaseModel):
     gene: str = ""
     variant: str
     variant_type: str
-    vaf: float = Field(0.0, description="Variant Allele Frequency")
+    vaf: Optional[float] = Field(None, description="Variant Allele Frequency (None if unknown)")
     
     oncogenic_evidence: str
     potential_tier: str
@@ -21,9 +21,10 @@ class SampleInterpretation(BaseModel):
     sample_id: str
     cancer_context: str = ""
     
-    # Omics Context
-    rna_expression_level: str = Field("", description="e.g. 'high', 'low', 'normal'")
-    tme_context: str = Field("", description="Tumor microenvironment context from scRNA-seq")
+    # Omics Context (optional, often absent at the variant level — formalized
+    # into a MultiOmicsContext in Phase 1; kept Optional so unset == None).
+    rna_expression_level: Optional[str] = Field(None, description="e.g. 'high', 'low', 'normal'")
+    tme_context: Optional[str] = Field(None, description="Tumor microenvironment context from scRNA-seq")
     
     variants: List[VariantInterpretation]
     

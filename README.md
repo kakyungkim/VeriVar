@@ -87,15 +87,32 @@ Discordant cases between the two modes are treated as **primary analytical signa
 
 ---
 
-## Candidate Tier Definitions
+## Classification Standards (two axes)
 
-| Candidate Tier | Description | Approximate AMP Tier |
+The pipeline classifies each variant on two complementary international standards
+for **somatic** variants (the ad-hoc `candidate_Tier_*` vocabulary has been
+retired):
+
+**Axis 1 — Oncogenicity** (ClinGen/CGC/VICC 2022, Horak et al.)
+
+| Class | Meaning |
+|---|---|
+| `Oncogenic` / `Likely Oncogenic` | Evidence supports an oncogenic role |
+| `VUS` | Variant of Uncertain Significance |
+| `Likely Benign` / `Benign` | Evidence supports no oncogenic role |
+
+**Axis 2 — Clinical actionability tier** (AMP/ASCO/CAP 2017, Li et al.)
+
+| Tier | Meaning | Level (Tier I/II) |
 |---|---|---|
-| `candidate_Tier_I` | Strong known oncogenic relevance | AMP Tier I / II |
-| `candidate_Tier_II` | Moderate or emerging evidence | AMP Tier III |
-| `uncertain` | Insufficient or unclear evidence | AMP Tier IV |
+| `Tier I` | Strong clinical significance | A–D evidence level |
+| `Tier II` | Potential clinical significance | A–D evidence level |
+| `Tier III` | Unknown clinical significance (VUS) | — |
+| `Tier IV` | Benign / likely benign | — |
 
-> Conceptual mapping only — not guideline-compliant.
+> ACMG/AMP 2015 is the *germline* standard and is intentionally not used; its
+> somatic analogue is the VICC oncogenicity scale above. Tumor-type context
+> matters: the same variant can map to different tiers across cancers.
 
 ---
 
@@ -103,10 +120,13 @@ Discordant cases between the two modes are treated as **primary analytical signa
 
 ### Case: *DDX11L1* variants
 
-- **Rule-based**: `candidate_Tier_II` (gene presence as weak proxy)
-- **LLM-driven**: `uncertain` (recognizes pseudogene, lacks oncogenic evidence)
+- **Rule-based (Mode B)**: `Likely Oncogenic` / `Tier III` (gene presence as a weak proxy)
+- **LLM-driven (Mode A)**: `VUS` / `Tier III` — no supporting evidence is retrieved for this
+  pseudogene, so the model **abstains** from an oncogenic call rather than fabricating one
 
-**Takeaway:** LLM demonstrates biological plausibility reasoning that naive rules cannot capture. Such discordances are flagged for review.
+**Takeaway:** with citation-grounded retrieval, the absence of evidence drives the
+LLM to a VUS call, surfacing a discordance that naive gene-presence rules miss.
+Such discordances are flagged for review.
 
 ---
 

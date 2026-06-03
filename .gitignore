@@ -5,12 +5,38 @@
 data/*
 reports/*
 !data/README.md
+# Keep the small curated public-data cohort snapshots (offline reproducibility)
+!data/cohorts/
+# Keep the small panel-filtered knowledge snapshots (CIViC/DGIdb); large
+# downloads (e.g. AlphaMissense) stay ignored.
+!data/knowledge/
+data/knowledge/*
+!data/knowledge/civic/
+!data/knowledge/dgidb/
+!data/knowledge/provenance.json
 
 # Secrets
 .env
+
+# Agent guidance (local only, not committed)
+CLAUDE.md
+GEMINI.md
+
+# Private experiment logs + raw run outputs (working notes, not for GitHub)
+experiments/
+
+# AI work / process / handoff docs — local only, not public by default
+HANDOFF.md
+TODO.md
+CHANGELOG.md
+notes/
+.claude/
+docs/manuscript/reference_search_prompt.md
+docs/branding/gemini/
 
 # Env & OS
 venv/
 .DS_Store
 __pycache__/
 *.pyc
+data/outputs/verify_report.json

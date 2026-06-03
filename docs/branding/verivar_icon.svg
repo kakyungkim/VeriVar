@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="512" height="512" viewBox="0 0 512 512"
+     role="img" aria-label="VeriVar icon">
+  <!--
+    VeriVar — master colour icon (v3)
+
+    Concept: Two interlocking V-letterforms encode "VeriVar":
+      - A bold dark-navy downward chevron (left, upper) = Verification / precision / certainty
+      - A teal upward caret/delta (right, lower)        = Variant / change / genomic delta
+    Together they form a VV / VA monogram.
+
+    Where the two shapes converge at centre, a faceted hexagonal gem with a
+    </> code symbol anchors the composition — encoding "verified through code".
+
+    Along the upper-left arm of the dark V, a circuit-board pixel strip
+    dissolves upward — alluding to sequencing data and genomic signal.
+
+    Palette (colourblind-safe; no red/green-only distinction):
+      Navy       #1B2E5E  — primary dark form, strong anchor
+      Teal       #2EB8A6  — variant/delta form, main teal
+      Teal light #5ED8CA  — arm highlight / facet accent
+      White      #FFFFFF  — gem highlight, </> symbol
+      Cool grey  #C8D6E0  — gem body mid-tone, pixel strip base
+
+    Grid: 512×512 viewBox. Transparent background (no squircle).
+    Mark fits within ~80% of canvas.
+    Geometry verified at 64px (silhouette: VV with gem blob at junction).
+  -->
+
+  <defs>
+    <!-- Teal gradient for teal caret fill -->
+    <linearGradient id="tealGrad" x1="322" y1="196" x2="314" y2="440"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#3DD6C0"/>
+      <stop offset="100%" stop-color="#1E9485"/>
+    </linearGradient>
+
+    <!-- Gem body gradient: teal top → cool grey bottom -->
+    <linearGradient id="gemGrad" x1="268" y1="318" x2="268" y2="382"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#4ECFC0"/>
+      <stop offset="60%"  stop-color="#2EB8A6"/>
+      <stop offset="100%" stop-color="#8FAEBB"/>
+    </linearGradient>
+
+    <!-- Clip path: dark V shape, used to clip pixel strip to arm -->
+    <clipPath id="darkVClip">
+      <polygon points="56,60 150,60 214,308 268,60 362,60 214,348"/>
+    </clipPath>
+
+    <!-- Clip path: teal caret, for internal facet lines -->
+    <clipPath id="tealVClip">
+      <polygon points="186,444 242,444 322,234 402,444 458,444 322,192"/>
+    </clipPath>
+  </defs>
+
+  <!-- ═══════════════════════════════════════════════════
+       GROUP 1: DARK NAVY V (downward chevron, upper-left)
+       Polygon:
+         (56,60)  outer-top-left of left arm
+         (150,60) inner-top of left arm   [arm width = 94px]
+         (214,308) inner apex (V notch bottom)
+         (268,60) inner-top of right arm
+         (362,60) outer-top of right arm
+         (214,348) outer apex (V tip)
+       ═══════════════════════════════════════════════════ -->
+  <g id="dark-v">
+    <polygon
+      points="56,60 150,60 214,308 268,60 362,60 214,348"
+      fill="#1B2E5E"/>
+
+    <!-- Subtle top-edge highlight (lighter navy strip along the flat top of each arm) -->
+    <!-- Left arm top highlight -->
+    <line x1="58" y1="63" x2="148" y2="63"
+          stroke="#2D4A8A" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+    <!-- Right arm top highlight -->
+    <line x1="270" y1="63" x2="360" y2="63"
+          stroke="#2D4A8A" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Inner right edge of left arm: faint lighter strip to suggest arm faceting -->
+    <line x1="150" y1="62" x2="216" y2="310"
+          stroke="#2A4480" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+    <!-- Inner left edge of right arm -->
+    <line x1="266" y1="62" x2="216" y2="310"
+          stroke="#2A4480" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+
+    <!-- ───────────────────────────────────────────
+         PIXEL STRIP: circuit-board / genomic data feel
+         Clipped to the dark V left arm.
+         3 cols × 5 rows of 10×10 squares, dissolving upward.
+         Follow arm direction: diagonal offset per row.
+         ─────────────────────────────────────────── -->
+    <g id="pixel-strip" clip-path="url(#darkVClip)">
+      <!-- Row 0  y=72  (topmost, most transparent) -->
+      <rect x="73"  y="72" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.18"/>
+      <rect x="91"  y="72" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.14"/>
+      <rect x="109" y="72" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.10"/>
+
+      <!-- Row 1  y=91 -->
+      <rect x="78"  y="91" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.28"/>
+      <rect x="96"  y="91" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.34"/>
+      <rect x="114" y="91" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.22"/>
+
+      <!-- Row 2  y=110 -->
+      <rect x="83"  y="110" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.48"/>
+      <rect x="101" y="110" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.42"/>
+      <rect x="119" y="110" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.36"/>
+
+      <!-- Row 3  y=129 -->
+      <rect x="88"  y="129" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.62"/>
+      <rect x="106" y="129" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.68"/>
+      <rect x="124" y="129" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.55"/>
+
+      <!-- Row 4  y=148  (most opaque, transitions into solid arm) -->
+      <rect x="93"  y="148" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.82"/>
+      <rect x="111" y="148" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.76"/>
+      <rect x="129" y="148" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.70"/>
+    </g>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════
+       GROUP 2: TEAL CARET / DELTA V (upward-pointing, lower-right)
+       Polygon (filled bold upward V / ^ shape):
+         (196,440) outer-bottom-left of left arm
+         (238,440) inner-bottom of left arm   [arm width = 42px at base]
+         (322,238) inner apex (notch top)
+         (406,440) inner-bottom of right arm
+         (448,440) outer-bottom of right arm
+         (322,196) outer apex (top tip)
+       ═══════════════════════════════════════════════════ -->
+  <g id="teal-v">
+    <polygon
+      points="186,444 242,444 322,234 402,444 458,444 322,192"
+      fill="url(#tealGrad)"/>
+
+    <!-- Left arm inner highlight strip -->
+    <line x1="242" y1="442" x2="322" y2="236"
+          stroke="#5ED8CA" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+    <!-- Right arm inner highlight strip -->
+    <line x1="402" y1="442" x2="322" y2="236"
+          stroke="#5ED8CA" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- Apex tip highlight (small bright triangle at the top tip) -->
+    <polygon
+      points="322,196 314,218 330,218"
+      fill="#FFFFFF" opacity="0.30"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════
+       GROUP 3: GEM / CRYSTAL HEXAGON
+       Centre: (268, 350)  Outer r=30  Inner r=18
+       Flat-top hexagon for a "cut gem" look.
+       Outer hex sits at the junction of both V shapes —
+       the precision focal point of the mark.
+
+       Flat-top hexagon vertices at r=30 (angle starts at 0°):
+         (298, 350), (283, 376), (253, 376),
+         (238, 350), (253, 324), (283, 324)
+
+       Inner hex at r=17:
+         (285, 350), (276.5, 364.7), (259.5, 364.7),
+         (251, 350), (259.5, 335.3), (276.5, 335.3)
+       ═══════════════════════════════════════════════════ -->
+  <g id="gem">
+    <!-- Drop shadow / glow beneath gem -->
+    <ellipse cx="268" cy="370" rx="32" ry="8" fill="#0C1F3F" opacity="0.25"/>
+
+    <!-- Outer gem body (flat-top hexagon, r=30) -->
+    <polygon
+      points="298,350 283,376 253,376 238,350 253,324 283,324"
+      fill="url(#gemGrad)"
+      stroke="#1B2E5E" stroke-width="2"/>
+
+    <!-- Top facet highlight (bright upper-left face) -->
+    <polygon
+      points="253,324 283,324 276.5,335.5 259.5,335.5"
+      fill="#FFFFFF" opacity="0.40"/>
+
+    <!-- Left facet (medium brightness) -->
+    <polygon
+      points="238,350 253,324 259.5,335.5 251,350"
+      fill="#FFFFFF" opacity="0.15"/>
+
+    <!-- Right facet edge (dark) -->
+    <polygon
+      points="298,350 283,324 276.5,335.5 285,350"
+      fill="#0C1F3F" opacity="0.20"/>
+
+    <!-- Bottom-left facet (dark) -->
+    <polygon
+      points="238,350 253,376 259.5,364.5 251,350"
+      fill="#0C1F3F" opacity="0.12"/>
+
+    <!-- Inner gem ring (r=17, flat-top) -->
+    <polygon
+      points="285,350 276.5,364.7 259.5,364.7 251,350 259.5,335.3 276.5,335.3"
+      fill="none"
+      stroke="#FFFFFF" stroke-width="1.2" opacity="0.50"/>
+
+    <!-- </> code symbol — centred in gem, white, system monospace -->
+    <!-- Note: font-family="monospace" — this is a common system font; -->
+    <!-- if converting to paths is required, use a build step with Inkscape. -->
+    <text
+      x="268" y="356"
+      font-family="'Courier New', Courier, monospace"
+      font-size="15"
+      font-weight="700"
+      fill="#FFFFFF"
+      text-anchor="middle"
+      dominant-baseline="middle"
+      letter-spacing="-0.5"
+      opacity="0.92">&lt;/&gt;</text>
+  </g>
+
+</svg>

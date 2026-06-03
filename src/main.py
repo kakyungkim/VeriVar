@@ -11,7 +11,7 @@ from src.report.pdf_export import generate_pdf_report
 def main():
     """
     Main entry point for the LLM-Assisted Somatic Variant Interpretation Pipeline.
-    
+
     Orchestrates the complete workflow:
     1. Parses the input VCF file to extract variants.
     2. Applies deterministic rule-based pre-tiering (AMP/ASCO/CAP guidelines).
@@ -21,29 +21,29 @@ def main():
     6. Generates a formatted PDF clinical report.
     """
     load_dotenv(override=True)  # Load environment variables from .env file
-    
-    print("ðŸ§¬ Starting LLM-Assisted Somatic Variant Interpretation Pipeline...")
+
+    print("[*] Starting LLM-Assisted Somatic Variant Interpretation Pipeline...")
 
     vcf_path = Path("data/synthetic_sample.vcf")
     if not vcf_path.exists():
-        print(f"âŒ VCF file not found at {vcf_path}. Please acquire data first.")
+        print(f"[!] VCF file not found at {vcf_path}. Please acquire data first.")
         return
 
     sample_id = vcf_path.stem
 
     # 1. Parsing
-    print("ðŸ”Ž Parsing VCF...")
+    print("[*] Parsing VCF...")
     df_variants = parse_vcf_to_df(vcf_path, variant_type="mixed", vaf_threshold=0.0)
-    print(f"  Found {len(df_variants)} variants.")
+    print(f"    Found {len(df_variants)} variants.")
 
     # 2. Rule-based Pre-tiering (Mode B setup)
-    print("ðŸ“ Applying rule-based guideline tiers...")
+    print("[*] Applying rule-based guideline tiers...")
     df_variants["rule_based_tier"] = df_variants.apply(assign_guideline_tier, axis=1)
 
     cancer_context = "Non-Small Cell Lung Cancer (NSCLC)"
 
     # 3. LLM Mode (Mode A)
-    print("ðŸ¤– Running Mode A (LLM-driven)...")
+    print("[*] Running Mode A (LLM-driven)...")
     llm_result = run_inference(
         df_candidates=df_variants,
         mode="llm",
@@ -52,7 +52,7 @@ def main():
     )
 
     # 4. Rule Mode (Mode B)
-    print("ðŸ“ Running Mode B (Rule-based with LLM explanation)...")
+    print("[*] Running Mode B (Rule-based with LLM explanation)...")
     rule_result = run_inference(
         df_candidates=df_variants,
         mode="rule",
@@ -72,14 +72,14 @@ def main():
     output_dir = Path("data/outputs")
     output_dir.mkdir(parents=True, exist_ok=True)
     out_file = output_dir / f"{sample_id}_interpretation.json"
-    
+
     with open(out_file, "w") as f:
         json.dump(output, f, indent=2)
-        
-    print("ðŸ“„ Generating PDF Report...")
+
+    print("[*] Generating PDF Report...")
     generate_pdf_report(sample_id, output, output_dir)
 
-    print(f"âœ… Pipeline complete. Results saved to {output_dir}")
+    print(f"[+] Pipeline complete. Results saved to {output_dir}")
 
 if __name__ == "__main__":
     main()

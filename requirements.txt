@@ -1,9 +1,28 @@
+# Core
+pydantic>=2.7,<3
+pandas>=2.0
+python-dotenv
+requests>=2.31.0
+
+# LLM / orchestration
+langchain>=0.2,<0.3
+langchain-core>=0.2,<0.3
+langchain-openai>=0.1,<0.2
+openai>=1.30
+
+# Reporting + dashboard
 Jinja2
 xhtml2pdf
-langchain==0.2.0
-langchain-core==0.2.11
-langchain-openai==0.1.14
-pydantic==2.9.2
-pandas
-requests>=2.31.0
-python-dotenv
+streamlit>=1.36
+
+# Hybrid retrieval (Phase 3): dense RAG + structured + GraphRAG
+# torch capped at 2.2.x: no Intel-macOS wheels above it. Consequence: embedding
+# models MUST ship safetensors (transformers blocks .bin under torch<2.6).
+torch==2.2.2
+sentence-transformers==3.0.1   # 5.x has an import-time NameError on py3.11
+chromadb>=0.5                # local vector store
+rank-bm25>=0.2               # sparse retrieval for hybrid fusion
+networkx>=3.1                # knowledge-graph (GraphRAG)
+
+# Testing
+pytest>=8

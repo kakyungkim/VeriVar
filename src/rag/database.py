@@ -9,7 +9,7 @@ class MockRAGDatabase:
     def __init__(self):
         """Initialize the Mock RAG Database connection."""
         self.connected = True
-        print("ðŸ”Œ Mock RAG Database initialized.")
+        print("[*] Mock RAG Database initialized.")
 
     def search_literature(self, gene: str, variant: str, cancer_context: str) -> List[Dict[str, Any]]:
         """

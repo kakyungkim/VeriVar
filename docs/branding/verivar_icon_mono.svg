@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="512" height="512" viewBox="0 0 512 512"
+     role="img" aria-label="VeriVar icon — monochrome">
+  <!--
+    VeriVar — monochrome icon (v3)
+    Uses currentColor throughout so the mark adapts to any ink colour.
+
+    Usage:
+      Light background: color="#1B2E5E"  (or any dark ink)
+      Dark background:  color="#FFFFFF"  (or any light tint)
+      Brand colour:     color="#2EB8A6"
+
+    All structural geometry matches the master colour icon (v3).
+    No external font dependency — the </> symbol is rendered as geometric paths.
+  -->
+
+  <defs>
+    <clipPath id="monoVClip">
+      <polygon points="56,60 150,60 214,308 268,60 362,60 214,348"/>
+    </clipPath>
+  </defs>
+
+  <!-- ── Dark V (solid fill, full opacity) ── -->
+  <polygon
+    points="56,60 150,60 214,308 268,60 362,60 214,348"
+    fill="currentColor"/>
+
+  <!-- ── Pixel strip on upper-left arm of dark V (clipped, varying opacity) ── -->
+  <g clip-path="url(#monoVClip)" fill="currentColor">
+    <rect x="73"  y="72" width="10" height="10" rx="1.5" opacity="0.18"/>
+    <rect x="91"  y="72" width="10" height="10" rx="1.5" opacity="0.13"/>
+    <rect x="109" y="72" width="10" height="10" rx="1.5" opacity="0.09"/>
+
+    <rect x="78"  y="91" width="10" height="10" rx="1.5" opacity="0.30"/>
+    <rect x="96"  y="91" width="10" height="10" rx="1.5" opacity="0.35"/>
+    <rect x="114" y="91" width="10" height="10" rx="1.5" opacity="0.24"/>
+
+    <rect x="83"  y="110" width="10" height="10" rx="1.5" opacity="0.48"/>
+    <rect x="101" y="110" width="10" height="10" rx="1.5" opacity="0.42"/>
+    <rect x="119" y="110" width="10" height="10" rx="1.5" opacity="0.36"/>
+
+    <rect x="88"  y="129" width="10" height="10" rx="1.5" opacity="0.62"/>
+    <rect x="106" y="129" width="10" height="10" rx="1.5" opacity="0.68"/>
+    <rect x="124" y="129" width="10" height="10" rx="1.5" opacity="0.55"/>
+
+    <rect x="93"  y="148" width="10" height="10" rx="1.5" opacity="0.78"/>
+    <rect x="111" y="148" width="10" height="10" rx="1.5" opacity="0.72"/>
+    <rect x="129" y="148" width="10" height="10" rx="1.5" opacity="0.66"/>
+  </g>
+
+  <!-- ── Teal caret (lighter fill = 38% opacity for tonal separation) ── -->
+  <polygon
+    points="186,444 242,444 322,234 402,444 458,444 322,192"
+    fill="currentColor" opacity="0.40"/>
+
+  <!-- Caret inner highlight lines (faint, clipped would be ideal but kept simple) -->
+  <line x1="242" y1="442" x2="322" y2="236"
+        stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.18"/>
+  <line x1="402" y1="442" x2="322" y2="236"
+        stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.18"/>
+
+  <!-- ── Gem hexagon (flat-top, r=30, center 268,350) ── -->
+  <!-- Outer hex body -->
+  <polygon
+    points="298,350 283,376 253,376 238,350 253,324 283,324"
+    fill="currentColor" opacity="0.90"
+    stroke="currentColor" stroke-width="1"/>
+
+  <!-- Top facet (lighter cutout simulation via opacity layer) -->
+  <polygon
+    points="253,324 283,324 276.5,335.5 259.5,335.5"
+    fill="currentColor" opacity="0.22"/>
+
+  <!-- Inner hex ring -->
+  <polygon
+    points="285,350 276.5,364.7 259.5,364.7 251,350 259.5,335.3 276.5,335.3"
+    fill="none"
+    stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- </> symbol rendered as geometric paths (no font dependency) -->
+  <!-- < chevron -->
+  <polyline
+    points="263,343 257,350 263,357"
+    fill="none" stroke="currentColor" stroke-width="2.2"
+    stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+  <!-- / slash -->
+  <line x1="268" y1="358" x2="274" y2="342"
+        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+  <!-- > chevron -->
+  <polyline
+    points="277,343 283,350 277,357"
+    fill="none" stroke="currentColor" stroke-width="2.2"
+    stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+
+</svg>

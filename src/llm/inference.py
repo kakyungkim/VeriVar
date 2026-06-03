@@ -26,7 +26,7 @@ def run_inference(
     """
     # Default to a mock if OPENAI_API_KEY is not set to allow the pipeline to run
     if not os.environ.get("OPENAI_API_KEY"):
-        print("âš ï¸ OPENAI_API_KEY not found. Using mock LLM response.")
+        print("[!] OPENAI_API_KEY not found. Using mock LLM response.")
         return _mock_inference(df_candidates, mode, cancer_context, sample_id)
 
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.1)

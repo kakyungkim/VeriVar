@@ -1,0 +1,106 @@
+{
+  "source": "cBioPortal REST API (https://www.cbioportal.org/api)",
+  "fetched_utc": "2026-05-30T13:18:57Z",
+  "gene_panel": [
+    "TP53",
+    "KRAS",
+    "NRAS",
+    "BRAF",
+    "PIK3CA",
+    "PTEN",
+    "EGFR",
+    "ERBB2",
+    "MET",
+    "ALK",
+    "ROS1",
+    "RET",
+    "AKT1",
+    "ESR1",
+    "GATA3",
+    "CDH1",
+    "MAP3K1",
+    "APC",
+    "SMAD4",
+    "FBXW7",
+    "KIT",
+    "NF1",
+    "CDKN2A",
+    "STK11",
+    "KEAP1",
+    "BRCA1",
+    "BRCA2"
+  ],
+  "samples_per_study": 7,
+  "studies": {
+    "luad_tcga_pan_can_atlas_2018": {
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_samples": 7,
+      "n_mutations": 34,
+      "samples": [
+        "TCGA-05-4244-01",
+        "TCGA-05-4249-01",
+        "TCGA-05-4382-01",
+        "TCGA-05-4432-01",
+        "TCGA-17-Z047-01",
+        "TCGA-38-4627-01",
+        "TCGA-95-7039-01"
+      ]
+    },
+    "brca_tcga_pan_can_atlas_2018": {
+      "cancer_type": "Breast Carcinoma",
+      "n_samples": 7,
+      "n_mutations": 77,
+      "samples": [
+        "TCGA-A1-A0SI-01",
+        "TCGA-A2-A04W-01",
+        "TCGA-AC-A23H-01",
+        "TCGA-AN-A046-01",
+        "TCGA-D8-A27G-01",
+        "TCGA-D8-A27V-01",
+        "TCGA-EW-A2FV-01"
+      ]
+    },
+    "coadread_tcga_pan_can_atlas_2018": {
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_samples": 7,
+      "n_mutations": 151,
+      "samples": [
+        "TCGA-4N-A93T-01",
+        "TCGA-4T-AA8H-01",
+        "TCGA-A6-2686-01",
+        "TCGA-A6-3809-01",
+        "TCGA-AG-A002-01",
+        "TCGA-CA-6717-01",
+        "TCGA-F5-6814-01"
+      ]
+    },
+    "skcm_tcga_pan_can_atlas_2018": {
+      "cancer_type": "Cutaneous Melanoma",
+      "n_samples": 7,
+      "n_mutations": 81,
+      "samples": [
+        "TCGA-3N-A9WB-06",
+        "TCGA-BF-A1PU-01",
+        "TCGA-BF-A1PX-01",
+        "TCGA-BF-A1PZ-01",
+        "TCGA-D3-A2JP-06",
+        "TCGA-D9-A6EC-06",
+        "TCGA-FW-A3R5-06"
+      ]
+    },
+    "paad_tcga_pan_can_atlas_2018": {
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_samples": 7,
+      "n_mutations": 73,
+      "samples": [
+        "TCGA-2J-AAB4-01",
+        "TCGA-2J-AAB6-01",
+        "TCGA-2J-AAB8-01",
+        "TCGA-2J-AABF-01",
+        "TCGA-3A-A9IH-01",
+        "TCGA-FB-A78T-01",
+        "TCGA-IB-7651-01"
+      ]
+    }
+  }
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dual-Mode Somatic Variant Interpretation — Cohort Report</title>
+<style>
+  body { font-family: Helvetica, Arial, sans-serif; color: #1a1a1a; font-size: 11px; margin: 24px; }
+  h1 { font-size: 20px; margin-bottom: 2px; }
+  h2 { font-size: 14px; border-bottom: 2px solid #333; padding-bottom: 3px; margin-top: 22px; }
+  .sub { color: #666; font-size: 10px; }
+  .disclaimer { background: #fff6f6; border: 1px solid #e0b4b4; color: #912d2b;
+                padding: 6px 10px; font-size: 10px; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 10px; }
+  th, td { border: 1px solid #ccc; padding: 4px 6px; text-align: left; vertical-align: top; }
+  th { background: #f0f2f5; }
+  .cards td { border: none; padding: 4px 14px 4px 0; }
+  .metric { font-size: 22px; font-weight: bold; color: #2b5797; }
+  .metric-label { font-size: 9px; color: #666; text-transform: uppercase; }
+  .disc { background: #fff8e1; }
+  .badge { font-size: 9px; padding: 1px 4px; border-radius: 3px; background: #eef; color: #224; }
+  .a { color: #1a7f37; } .b { color: #8250df; }
+  .mono { font-family: monospace; }
+  .ev { color: #444; font-size: 9px; }
+  .cite { color: #2b5797; font-family: monospace; font-size: 9px; }
+  .controls { margin: 10px 0; }
+  #vsearch { padding: 6px 10px; width: 320px; font-size: 12px; border: 1px solid #bbb; border-radius: 4px; }
+  .fbtns { margin-left: 8px; }
+  .fbtn { font-size: 11px; padding: 4px 9px; margin: 0 2px; border: 1px solid #bbb; background: #f7f8fa;
+          border-radius: 4px; cursor: pointer; }
+  .fbtn.active { background: #2b5797; color: #fff; border-color: #2b5797; }
+  #vtable { table-layout: fixed; width: 94%; }
+  #vtable th { cursor: pointer; }
+  #vtable td, #vtable th { word-wrap: break-word; overflow-wrap: break-word; font-size: 8px; }
+  @media print { .controls { display: none; } }
+</style>
+</head>
+<body>
+  <h1>Dual-Mode Somatic Variant Interpretation</h1>
+  <div class="sub">
+    Mode A (LLM, <span class="mono">{{ provenance.model_name or 'n/a' }}</span>) vs Mode B (rule-based) ·
+    {{ provenance.timestamp }} · sources:
+    {% for k, v in provenance.data_sources.items() %}{{ v }}{% if not loop.last %}, {% endif %}{% endfor %}
+  </div>
+  <div class="disclaimer">
+    <strong>Research / education only — NOT for clinical decision-making.</strong>
+    Public TCGA data via cBioPortal. Standards: ClinGen/CGC/VICC oncogenicity + AMP/ASCO/CAP tier.
+  </div>
+
+  <h2>Cohort summary</h2>
+  <table class="cards"><tr>
+    <td><div class="metric">{{ n_total }}</div><div class="metric-label">variants</div></td>
+    <td><div class="metric">{{ (summary.overall.tier_concordance_rate * 100) | round(1) }}%</div>
+        <div class="metric-label">tier concordance</div></td>
+    <td><div class="metric">{{ (summary.overall.oncogenicity_concordance_rate * 100) | round(1) }}%</div>
+        <div class="metric-label">oncogenicity concordance</div></td>
+    <td><div class="metric">{{ n_discordant }}</div><div class="metric-label">discordant</div></td>
+  </tr></table>
+
+  <h2>Discordance by cancer type</h2>
+  <table>
+    <tr><th>Cancer</th><th>n</th><th>Tier discordant</th><th>Oncogenicity discordant</th>
+        <th>Tier concord.</th><th>Onco. concord.</th></tr>
+    {% for cancer, r in summary.by_cancer.items() %}
+    <tr><td>{{ cancer }}</td><td>{{ r.n }}</td><td>{{ r.tier_discordant }}</td>
+        <td>{{ r.oncogenicity_discordant }}</td>
+        <td>{{ (r.tier_concordance_rate * 100) | round(0) }}%</td>
+        <td>{{ (r.oncogenicity_concordance_rate * 100) | round(0) }}%</td></tr>
+    {% endfor %}
+  </table>
+
+  <h2>Discordant variants <span class="sub">(flagged for review — the analytical signal)</span></h2>
+  <table>
+    <tr><th>Variant</th><th>Cancer</th><th>Mode A (LLM)</th><th>Mode B (rule)</th><th>LLM rationale</th></tr>
+    {% for v in discordant %}
+    <tr class="disc">
+      <td class="mono">{{ v.gene }} {{ v.hgvsp }}</td>
+      <td>{{ v.cancer_type }}</td>
+      <td class="a">{{ v.mode_a.oncogenicity }} / {{ v.mode_a.tier }}{% if v.mode_a.abstained %} <span class="badge">abstain</span>{% endif %}</td>
+      <td class="b">{{ v.mode_b.oncogenicity }} / {{ v.mode_b.tier }}</td>
+      <td>{{ v.mode_a.rationale[:240] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>All variants <span class="sub">(<span id="vcount">{{ all_variants|length }}</span> shown — search / sort / filter works in the HTML, not the PDF)</span></h2>
+
+  {% if interactive %}
+  <div class="controls">
+    <input id="vsearch" placeholder="🔍 Search gene / variant / cancer…" autocomplete="off">
+    <span class="fbtns">
+      <button class="fbtn active" data-filter="all">All</button>
+      <button class="fbtn" data-filter="discordant">Discordant ⚡</button>
+      <button class="fbtn" data-filter="civic">CIViC</button>
+      <button class="fbtn" data-filter="drugs">Has drugs</button>
+      <button class="fbtn" data-filter="trials">Has trials</button>
+      <button class="fbtn" data-filter="abstained">LLM abstained</button>
+    </span>
+  </div>
+
+  <table id="vtable">
+    <colgroup>
+      <col style="width:13%"><col style="width:13%"><col style="width:9%"><col style="width:5%">
+      <col style="width:5%"><col style="width:5%"><col style="width:16%"><col style="width:16%"><col style="width:4%">
+    </colgroup>
+    <thead><tr>
+      <th>Variant ▲▼</th><th>Cancer ▲▼</th><th>Evidence ▲▼</th><th>CIViC</th>
+      <th>Drugs ▲▼</th><th>Trials ▲▼</th><th>Mode A (LLM) ▲▼</th><th>Mode B (rule) ▲▼</th><th>⚡</th>
+    </tr></thead>
+    <tbody>
+    {% for v in all_variants %}
+      <tr data-discordant="{{ 1 if v.discordant else 0 }}"
+          data-civic="{{ 1 if v.evidence_tier == 'civic' else 0 }}"
+          data-drugs="{{ 1 if v.n_drugs > 0 else 0 }}"
+          data-trials="{{ 1 if v.n_trials > 0 else 0 }}"
+          data-abstained="{{ 1 if v.mode_a.abstained else 0 }}"
+          class="{{ 'disc' if v.discordant else '' }}"
+          title="A: {{ v.mode_a.rationale[:180] }}">
+        <td class="mono">{{ v.gene }} {{ v.hgvsp }}</td>
+        <td>{{ v.cancer_type }}</td>
+        <td>{{ v.evidence_tier }}</td>
+        <td>{{ '✓' if v.evidence_tier == 'civic' else '' }}</td>
+        <td data-sort="{{ v.n_drugs }}">{{ v.n_drugs }}</td>
+        <td data-sort="{{ v.n_trials }}">{{ v.n_trials }}</td>
+        <td class="a">{{ v.mode_a.oncogenicity }} / {{ v.mode_a.tier }}{% if v.mode_a.abstained %} ⚠{% endif %}</td>
+        <td class="b">{{ v.mode_b.oncogenicity }} / {{ v.mode_b.tier }}</td>
+        <td>{{ '⚡' if v.discordant else '' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <script>
+  (function () {
+    var search = document.getElementById('vsearch');
+    var table = document.getElementById('vtable');
+    if (!table) return;
+    var rows = Array.prototype.slice.call(table.tBodies[0].rows);
+    var active = 'all';
+    function apply() {
+      var q = (search.value || '').toLowerCase();
+      var shown = 0;
+      rows.forEach(function (r) {
+        var textOk = r.textContent.toLowerCase().indexOf(q) !== -1;
+        var fOk = active === 'all' || r.getAttribute('data-' + active) === '1';
+        var vis = textOk && fOk;
+        r.style.display = vis ? '' : 'none';
+        if (vis) shown++;
+      });
+      document.getElementById('vcount').textContent = shown;
+    }
+    search.addEventListener('input', apply);
+    Array.prototype.forEach.call(document.querySelectorAll('.fbtn'), function (b) {
+      b.addEventListener('click', function () {
+        active = b.getAttribute('data-filter');
+        Array.prototype.forEach.call(document.querySelectorAll('.fbtn'), function (x) { x.className = 'fbtn'; });
+        b.className = 'fbtn active';
+        apply();
+      });
+    });
+    Array.prototype.forEach.call(table.tHead.rows[0].cells, function (th, idx) {
+      var dir = 1;
+      th.style.cursor = 'pointer';
+      th.addEventListener('click', function () {
+        dir = -dir;
+        rows.sort(function (a, b) {
+          var x = a.cells[idx].getAttribute('data-sort') || a.cells[idx].textContent.trim();
+          var y = b.cells[idx].getAttribute('data-sort') || b.cells[idx].textContent.trim();
+          var nx = parseFloat(x), ny = parseFloat(y);
+          if (!isNaN(nx) && !isNaN(ny)) return (nx - ny) * dir;
+          return x.localeCompare(y) * dir;
+        });
+        var tb = table.tBodies[0];
+        rows.forEach(function (r) { tb.appendChild(r); });
+      });
+    });
+  })();
+  </script>
+  {% else %}
+  <table>
+    <thead><tr><th>Variant</th><th>Cancer</th><th>Evidence</th>
+      <th>Mode A (LLM)</th><th>Mode B (rule)</th><th>⚡</th></tr></thead>
+    <tbody>
+    {% for v in all_variants %}
+      <tr class="{{ 'disc' if v.discordant else '' }}">
+        <td class="mono">{{ v.gene }} {{ v.hgvsp }}</td>
+        <td>{{ v.cancer_type }}</td>
+        <td>{{ v.evidence_tier }}</td>
+        <td class="a">{{ v.mode_a.oncogenicity }} / {{ v.mode_a.tier }}{% if v.mode_a.abstained %} ⚠{% endif %}</td>
+        <td class="b">{{ v.mode_b.oncogenicity }} / {{ v.mode_b.tier }}</td>
+        <td>{{ '⚡' if v.discordant else '' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</body>
+</html>

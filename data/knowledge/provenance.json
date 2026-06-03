@@ -1,0 +1,8 @@
+{
+  "fetched_utc": "2026-05-30T14:22:00Z",
+  "civic_source": "https://civicdb.org/downloads/nightly/nightly-ClinicalEvidenceSummaries.tsv",
+  "dgidb_source": "https://dgidb.org/api/graphql",
+  "gene_panel_size": 27,
+  "civic_evidence_rows": 1714,
+  "dgidb_interactions": 2608
+}

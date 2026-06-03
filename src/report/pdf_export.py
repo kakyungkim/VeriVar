@@ -55,8 +55,8 @@ def generate_pdf_report(sample_id: str, dual_mode_result: dict, output_dir: Path
         )
         
     if pisa_status.err:
-        print(f"âŒ Error generating PDF: {pisa_status.err}")
+        print(f"[!] Error generating PDF: {pisa_status.err}")
         return html_path
     
-    print(f"ðŸ“„ PDF Report generated: {pdf_path}")
+    print(f"[+] PDF Report generated: {pdf_path}")
     return pdf_path
