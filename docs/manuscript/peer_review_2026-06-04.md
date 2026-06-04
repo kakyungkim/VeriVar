@@ -40,7 +40,7 @@ The core claim — faithfulness/auditability is guaranteed and the result is lea
 | Statistical validity | **4** | Bootstrap CIs + exact McNemar applied wherever an accuracy comparison appears; non-inferiority framing is honest and CIs/p-values are reported in-line, in Table 1, and on the figures. Gaps: no formal non-inferiority margin pre-specified; temporal-sweep rows lack CIs (disclosed); VICC-arm 0.843 reported without a CI in several places. |
 | Reproducibility | **4.5** | Every headline number reconciles with committed JSONs; scripts named per result; offline snapshots; a deterministic anti-fabrication gate. Repo URL is still a placeholder. |
 | Clarity | **3.5** | Generally excellent scientific writing, but the generative-vs-rule-arm interleaving in Results §3.3 and the abstract is a genuine comprehension hazard, and the Discussion is long and partly redundant with Results. |
-| Figures / tables | **4.5** | Clean, legible, CIs and McNemar p shown, no misleading visual gains, no overlap/clipping/tofu detected across fig1–5 + S1–S3. Minor: Fig 5 row labelling and the ClinVar-OOD point in Fig 3b need clarification. |
+| Figures / tables | **4.5** | CIs and McNemar p are shown and the figures do not overstate effects (no misleading visual gains). The substantive issues are attribution and clarity: Fig 5 row labelling and the ClinVar-OOD point in Fig 3b need clarification. |
 
 ---
 
@@ -85,7 +85,7 @@ The core claim — faithfulness/auditability is guaranteed and the result is lea
 - **Fig 3** (OncoVI head-to-head, ROC+OOD, error asymmetry, sensitivity dial): all values match the JSONs. **Clarify in 3b** what "ClinVar OOD operating point AUROC 0.902" means visually — a single marker is plotted but it represents a different dataset's operating point; a reader may misread it as on-curve.
 - **Fig 4** (generative confusion, discordance bars, cross-cancer): recall values (0.79/0.37/0.71) reconcile with `horak_results.json`. Good.
 - **Fig 5** (capability landscape): useful, but the "Ours (VeriVar) … 0.843 / 0.973 / 1.00" row conflates the VICC rule arm's accuracy/specificity with the LLM system's citation accuracy in a single row. Split or annotate which arm each cell comes from. Also confirm the product name "VeriVar" is intended for the public version.
-- **S1–S3**: legible, CIs/p-values shown, no artifacts.
+- **S1–S3**: report CIs/p-values and make no overstated visual claims; no substantive concerns.
 
 ---
 

@@ -42,7 +42,7 @@
 | 통계적 타당성 | **4** | bootstrap CI + exact McNemar가 정확도 비교가 등장하는 모든 곳에 적용됨. non-inferiority 프레이밍이 정직하고 CI/p-값이 본문, Table 1, 그림에 보고됨. 미흡점: 형식적 non-inferiority margin 사전 지정 없음; temporal-sweep 행에 CI 없음(공개됨); VICC-arm 0.843이 여러 곳에서 CI 없이 보고됨. |
 | 재현성 | **4.5** | 모든 헤드라인 수치가 커밋된 JSON과 일치; 결과별 스크립트 명시; 오프라인 스냅샷; 결정론적 anti-fabrication 게이트. repo URL은 아직 placeholder. |
 | 명료성 | **3.5** | 전반적으로 우수한 과학적 글쓰기지만, Results §3.3와 abstract의 generative-vs-rule arm 혼재는 실제 이해 위험 요소이며, Discussion이 길고 Results와 일부 중복된다. |
-| 그림 / 표 | **4.5** | 깔끔하고 가독성 좋음, CI·McNemar p 표기됨, 오해 유발 시각적 우위 없음, fig1–5 + S1–S3에서 겹침/잘림/tofu 미검출. 사소: Fig 5 행 라벨링과 Fig 3b의 ClinVar-OOD 지점에 설명 필요. |
+| 그림 / 표 | **4.5** | CI·McNemar p가 표기되고 그림이 효과를 과장하지 않음(오해 유발 시각적 우위 없음). 실질적 쟁점은 귀속과 명료성: Fig 5 행 라벨링과 Fig 3b의 ClinVar-OOD 지점에 설명 필요. |
 
 ---
 
@@ -87,7 +87,7 @@
 - **Fig 3**(OncoVI head-to-head, ROC+OOD, 오류 비대칭, 민감도 다이얼): 모든 값이 JSON과 일치. **3b에서** "ClinVar OOD 작동점 AUROC 0.902"가 시각적으로 무엇을 뜻하는지 명확히 하라 — 단일 마커가 다른 데이터셋의 작동점을 나타내는데 독자가 곡선 위 점으로 오독할 수 있다.
 - **Fig 4**(generative confusion, discordance 막대, cross-cancer): recall 값(0.79/0.37/0.71)이 `horak_results.json`과 일치. 좋다.
 - **Fig 5**(capability landscape): 유용하나 "Ours (VeriVar) … 0.843 / 0.973 / 1.00" 행이 VICC rule arm의 정확도/특이도와 LLM 시스템의 인용 정확도를 한 행에 섞는다. 각 셀이 어느 arm에서 왔는지 분리하거나 주석하라. 또 제품명 "VeriVar"가 공개본 의도인지 확인하라.
-- **S1–S3**: 가독성 좋음, CI/p-값 표기, 아티팩트 없음.
+- **S1–S3**: CI/p-값을 적절히 보고하고 시각적 과장이 없음; 실질적 우려 없음.
 
 ---
 
