@@ -54,8 +54,7 @@
 - "추가로 인용의 18.9%가 정확한 변이 수준 식별자가 아니라 출처 범주만 지칭… 충실성 게이트가 이를 0%로 줄임" — 좋다. 다만 그 0%가 *게이트-강제*임을 (§3.1뿐 아니라) 여기서도 밝혀, 경험적 주장은 게이트 이전 0/106 out-of-bundle 수치임을 분명히 하라.
 
 ### Background and Significance
-- 강하고 참고문헌이 충실하며, 본 작업을 새 방법이 아니라 알려진 완화책의 응용으로 적절히 자리매김한다. 두 실패 모드(인용 hallucination + parametric leakage) 프레이밍이 명료하고 설계를 잘 동기화한다.
-- Lin et al. [14]의 over-classification 주장과 OncoVI [19]의 80%/88% 수치는 **출처 대조로 검증**되었고 정확히 표현됨.
+- 본 작업을 새 방법이 아니라 알려진 완화책의 응용으로 적절히 자리매김한다. 두 실패 모드(인용 hallucination + parametric leakage) 프레이밍이 명료하고 설계를 잘 동기화한다.
 - 격차 진술("선행 변이-해석 연구 중 leakage-통제 정확도 평가와 leakage-free 충실성 감사를 함께 보고한 사례 없음")은 그럴듯하며 논문의 진짜 기여다. 다만 빠르게 변하는 분야이고 두 동시기(concurrent) 연구([16],[17])가 이미 인용되어 있으니, "To our knowledge" 류 주장에 날짜를 덧붙여 완화하는 것을 고려하라.
 
 ### Methods
@@ -78,8 +77,7 @@
 - 다중 모델 proof-of-concept(§Discussion)는 예비적이라고 적절히 분리되어 있으나 Discussion에서 *새 결과*(평균 일치도 0.929, 44/56 만장일치, 25% abstention)를 도입한다. 이를 단서와 함께 Results로 승격하거나 한 문장의 전향적 서술로 압축하라. Discussion의 새 정량 발견은 심사자가 짚을 구조적 약점이다.
 
 ### References
-- 참고문헌 21개; 가장 위험도 높은 두 개(Lin [14], OncoVI [19])를 출처 기록과 대조해 검증했고 둘 다 정확. "Lin 2025 RAG" 인용 정정에 관한 투명한 주석은 좋은 학술 관행이나 **출판본에서는 제거해야 한다**(독자용이 아니라 내부 provenance 메모). placeholder repo URL과 "[to confirm]" 소속은 게시 전 해결해야 한다.
-- 참고문헌 [18](Ferber)는 권/페이지 누락("Nat Cancer 2025" + DOI만 인용) — 버전 있는 레코드로 해석되는지 확인하라.
+- "Lin 2025 RAG" 인용 정정에 관한 주석은 내부 provenance 메모로 읽히므로 **출판본에서는 제거해야 한다**(독자용 아님). placeholder repo URL과 "[to confirm]" 소속은 게시 전 해결해야 한다.
 
 ### Figures
 - **Fig 1**(시스템 + 충실성 스코어카드): 깔끔. 다만 "VICC arm OncoVI 대비 벤치마크" 주석과 패널 (a)의 0.843이 다시금 rule-arm 정확도를 전체 시스템에 귀속시킬 위험.
@@ -193,6 +191,6 @@ TRIPOD-AI + STARD를 인용하는 짧은 "Reporting" 단락과 흐름도를 추�
 
 ---
 
-*선행연구 검증에 참조한 출처:*
+*심사자가 신규성/자리매김 평가에 참조한 선행연구:*
 - OncoVI (Carta et al., medRxiv 2024) — 93변이 guideline 셋에서 정확도 80% / 민감도 88%: https://www.medrxiv.org/content/10.1101/2024.10.10.24315072v1
 - Lin et al. 2025, npj Precision Oncology 9(1):141 — over-classification 발견: https://www.nature.com/articles/s41698-025-00935-4

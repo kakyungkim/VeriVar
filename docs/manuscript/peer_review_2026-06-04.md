@@ -52,8 +52,7 @@ The core claim — faithfulness/auditability is guaranteed and the result is lea
 - "a further 18.9% of citations named only the source category … which the faithfulness gate reduced to 0%" — good, but state here (not only in §3.1) that the 0% is *gate-enforced*, so the empirical claim is the pre-gate 0/106 out-of-bundle figure.
 
 ### Background and Significance
-- Strong, well-referenced, and appropriately positions the work as application-of-known-mitigations rather than new method. The two-failure-mode framing (hallucinated citations + parametric leakage) is crisp and motivates the design.
-- The Lin et al. [14] over-classification claim and the OncoVI [19] 80%/88% figures are **verified against source** and accurately represented.
+- Appropriately positions the work as an application of known mitigations rather than a new method. The two-failure-mode framing (hallucinated citations + parametric leakage) is crisp and motivates the design.
 - The gap statement ("no prior variant-interpretation study reports a leakage-controlled accuracy evaluation alongside a leakage-free faithfulness audit") is plausible and is the paper's real contribution; consider softening "To our knowledge" claims with a date, since this is a fast-moving area and two concurrent works ([16],[17]) are already cited.
 
 ### Methods
@@ -76,8 +75,7 @@ The core claim — faithfulness/auditability is guaranteed and the result is lea
 - The multi-model proof-of-concept (§Discussion) is appropriately fenced as preliminary, but it introduces *new results* (mean agreement 0.929, 44/56 unanimous, 25% abstention) in the Discussion. Either promote these to Results-with-caveats or compress to a single forward-looking sentence; new quantitative findings in Discussion is a structural weakness reviewers will flag.
 
 ### References
-- 21 references; I verified the two highest-risk ones (Lin [14], OncoVI [19]) against source records and both are accurate. The transparent note about the corrected "Lin 2025 RAG" citation is good scholarly practice but **should be removed from the published version** (it is an internal provenance note, not reader-facing). The placeholder repo URL and "[to confirm]" affiliation must be resolved before posting.
-- Reference [18] (Ferber) lacks volume/page (cited as "Nat Cancer 2025" + DOI only) — confirm it resolves to a versioned record.
+- The transparent note about the corrected "Lin 2025 RAG" citation reads as an internal provenance note and **should be removed from the published version** (not reader-facing). The placeholder repo URL and the "[to confirm]" affiliation must be resolved before posting.
 
 ### Figures
 - **Fig 1** (system + faithfulness scorecard): clean; the "VICC arm benchmarked vs OncoVI" annotation and the 0.843 in panel (a) again risk attributing the rule-arm accuracy to the whole system.
@@ -191,6 +189,6 @@ One governance note for the editor: the manuscript carries an unresolved affilia
 
 ---
 
-*Sources consulted for prior-art verification:*
+*Prior work the reviewer drew on for novelty / positioning assessment:*
 - OncoVI (Carta et al., medRxiv 2024) — 80% accuracy / 88% sensitivity on the 93-variant guideline set: https://www.medrxiv.org/content/10.1101/2024.10.10.24315072v1
 - Lin et al. 2025, npj Precision Oncology 9(1):141 — over-classification finding: https://www.nature.com/articles/s41698-025-00935-4
