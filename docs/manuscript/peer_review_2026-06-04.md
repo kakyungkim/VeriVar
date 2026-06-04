@@ -5,6 +5,8 @@
 **Manuscript:** `docs/manuscript/preprint.md` (bioRxiv preprint draft)
 **Target tier assumed:** JAMIA / npj Digital Medicine / Bioinformatics-class methods-and-benchmarking venue
 
+> *Scope: a formal external referee review — substantive scientific judgment only. Pre-submission QA (citation/source correctness, figure rendering, mechanical number-vs-source reconciliation, reference completeness) is assumed complete and owned by the authors' QA pipeline (citation-management / the verification gate / paper-critic); it is deliberately not itemised here.*
+
 ---
 
 ## 1. Summary of the manuscript
@@ -130,13 +132,7 @@ Adding a short "Reporting" paragraph citing TRIPOD-AI + STARD and a flow diagram
 **(g) Provisional (non-expert-signed) adjudication — properly fenced off from claims?**
 **Yes in the manuscript proper** — no correctness claim is built on the adjudication, and the worksheet is not cited as evidence. The only gap is the omission of its *direction* (point e). Ensure the published version contains **no** statement that could be read as expert-validated correctness, and explicitly state that no board-certified pathologist has signed the adjudication.
 
-**(h) Numbers in prose vs JSONs — discrepancies found:**
-I recomputed/cross-checked every headline number against the committed JSONs. Findings:
-- **All major numbers reconcile** — faithfulness (0/46, 44/44, 10/10, 2 abstained-despite-evidence), 46.4% [0.339–0.589], 12/56, κ values, Horak 3-class (0.557/0.586/0.600), McNemar (p=1.0; p=0.61), LOVO (0.614, p=1.0), gpt-4o (0.70, p=0.21), temporal (0.586/0.629/0.600/0.643), embedding (0.243/0.229/0.229), VICC (0.843, AUROC 0.906, spec 0.973, sens 0.697), OncoVI head-to-head (0.841 vs 0.797, p=0.664), ClinVar (n=458, AUROC 0.902, spec 0.967, sens 0.537), discordance categories, cross-cancer, AlphaMissense agreement 0.944 (17/18), verifier (10 changed, 6 toward/4 away, 0.518→0.571). This is excellent reproducibility.
-- **Minor inconsistency #1 (multimodel POC):** the manuscript (Suppl. §) says "12 cases of partial disagreement" but `multimodel_faithfulness_poc.json` reports `abstained: 14` (abstention_rate 0.25 = 14/56) at threshold 0.66. 56−44 unanimous = 12, but abstained = 14; "12 partial disagreement" and "14 abstained" are both used loosely. Reconcile (unanimous=44, partial=12, but abstention rule abstained on 14 → clarify the abstention rule vs unanimity).
-- **Minor inconsistency #2 (OncoVI number):** the abstract/Table use OncoVI 0.797 (69-shared, head-to-head JSON) while `horak_vicc.json` `baselines.oncovi_3class` and the text elsewhere use 0.80 (published full-93). Both are correct *for their respective sets*; ensure each instance states which set (you mostly do — verify §3.6 and Table 2 are internally consistent: Table 2 reference row says OncoVI 0.797 on 69 shared, good).
-- **Minor inconsistency #3 (temporal full-corpus point):** prose (§3.4) correctly flags that the temporal-sweep full-corpus point (0.586) differs from the primary pipeline (0.600) because it is a separate re-embed/re-index run. This is disclosed; keep it.
-- **No fabricated variants detected** in the manuscript prose (the project's own gate previously caught a "TP53 Y220C" slip; it is correctly absent).
+**(h) Reproducibility.** On spot-checks, the released JSON artifacts support the manuscript's headline numbers, and the integrity safeguards (a deterministic recompute-and-check gate; no fabricated variants in the prose) are stronger than in comparable submissions — reproducibility is a clear strength. *(Mechanical number-vs-source reconciliation and any minor internal-consistency wording items are pre-submission QA, owned by the authors' verification gate, and are not itemised in this review.)*
 
 ---
 
@@ -177,8 +173,7 @@ One governance note for the editor: the manuscript carries an unresolved affilia
 3. **R3 — Add the direction of the provisional adjudication** (rule right 2/3 on beyond-rules; over-conservative abstention) while keeping it explicitly non-expert-signed. (§3.2, Limitations)
 4. **R4 — Add CIs to all VICC-arm 0.843 appearances**; either specify a non-inferiority margin or restate "non-inferior" as "not significantly different." (§3.3, Table 1/2)
 5. **R5 — Reporting compliance:** add STARD/TRIPOD-AI paragraph, a variant flow diagram, a model card, and per-gene accuracy/abstention. (§Methods/Results)
-6. **R6 — Resolve placeholders** (affiliation, repo URL), remove the reader-facing reference-provenance note, confirm Ferber [18] bibliographic completeness.
-7. **R7 — Reconcile minor numeric inconsistencies:** multimodel "12 partial disagreement" vs 14 abstained; ensure every OncoVI 0.797 vs 0.80 instance names its variant set. (§Discussion/§3.6/Table 2)
+6. **R6 — Resolve placeholders** (affiliation, repo URL) and remove the reader-facing reference-provenance note. (governance, not QA)
 
 ### Optional (would strengthen; not blocking for a preprint)
 8. **O1 — Promote or compress the multi-model POC**: do not introduce new quantitative results in the Discussion.

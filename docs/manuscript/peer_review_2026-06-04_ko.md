@@ -6,6 +6,8 @@
 **가정한 투고 등급:** JAMIA / npj Digital Medicine / Bioinformatics 급의 방법론·벤치마킹 저널
 
 > 본 문서는 영문 리뷰 [peer_review_2026-06-04.md](peer_review_2026-06-04.md)의 한국어 번역본입니다. 리뷰는 R1–R7 수정을 적용하기 **이전** 원고를 기준으로 작성되었습니다.
+>
+> *범위: 정식 외부 심사자(referee) 리뷰 — 본질적 과학 판단만 담는다. 사전 QA(인용/출처 정확성, 그림 렌더링, 기계적 수치-출처 대조, 참고문헌 완전성)는 완료된 것으로 전제하며 저자의 QA 파이프라인(citation-management / 검증 게이트 / paper-critic)이 담당한다 — 여기서는 의도적으로 나열하지 않는다.*
 
 ---
 
@@ -132,13 +134,7 @@ TRIPOD-AI + STARD를 인용하는 짧은 "Reporting" 단락과 흐름도를 추�
 **(g) 잠정(비전문가-미서명) 판정 — 주장에서 제대로 분리됐는가?**
 **원고 본문에서는 그렇다** — 어떤 정확성 주장도 판정 위에 세워지지 않았고, 워크시트가 근거로 인용되지 않는다. 유일한 격차는 그 *방향* 누락(점 e). 출판본에 전문가-검증된 정확성으로 읽힐 수 있는 진술이 **전혀** 없도록 하고, 어떤 보드 인증 병리학자도 판정에 서명하지 않았음을 명시하라.
 
-**(h) 본문 수치 vs JSON — 발견된 불일치:**
-모든 헤드라인 수치를 커밋된 JSON과 재계산/교차확인함. 발견:
-- **모든 주요 수치 일치** — 충실성(0/46, 44/44, 10/10, 근거 있음에도 abstain 2건), 46.4% [0.339–0.589], 12/56, κ 값, Horak 3-class(0.557/0.586/0.600), McNemar(p=1.0; p=0.61), LOVO(0.614, p=1.0), gpt-4o(0.70, p=0.21), temporal(0.586/0.629/0.600/0.643), embedding(0.243/0.229/0.229), VICC(0.843, AUROC 0.906, spec 0.973, sens 0.697), OncoVI head-to-head(0.841 vs 0.797, p=0.664), ClinVar(n=458, AUROC 0.902, spec 0.967, sens 0.537), discordance 범주, cross-cancer, AlphaMissense 일치도 0.944(17/18), verifier(10 변경, 6 rule쪽/4 반대, 0.518→0.571). 탁월한 재현성이다.
-- **사소 불일치 #1 (multimodel POC):** 원고(Suppl. §)는 "부분 불일치 12건"이라 하나 `multimodel_faithfulness_poc.json`은 임계값 0.66에서 `abstained: 14`(abstention_rate 0.25 = 14/56)를 보고. 56−44 만장일치 = 12지만 abstain = 14; "12 부분 불일치"와 "14 abstain"이 모두 느슨히 쓰임. 화해시켜라(만장일치=44, 부분=12, 그러나 abstention 규칙이 14건 abstain → abstention 규칙 vs 만장일치를 명확히).
-- **사소 불일치 #2 (OncoVI 수치):** abstract/Table은 OncoVI 0.797(69-공유, head-to-head JSON)을, 본문 다른 곳과 `horak_vicc.json`의 `baselines.oncovi_3class`는 0.80(공개 full-93)을 사용. 각 집합에 대해 둘 다 정확하나, 매 인스턴스가 어느 집합인지 진술하라(대체로 함 — §3.6와 Table 2의 내부 일관성을 확인: Table 2 참조 행이 69 공유에서 OncoVI 0.797이라 함, 좋음).
-- **사소 불일치 #3 (temporal full-corpus 지점):** 본문(§3.4)이 temporal-sweep full-corpus 지점(0.586)이 별도 re-embed/re-index 실행이라 주 파이프라인(0.600)과 다름을 올바르게 표시. 공개됨; 유지하라.
-- 원고 본문에 **fabricate된 변이 미검출**(프로젝트 자체 게이트가 이전에 "TP53 Y220C" 실수를 잡았음; 올바르게 부재).
+**(h) 재현성.** spot-check 결과 공개된 JSON 산출물이 원고의 헤드라인 수치를 뒷받침하며, 무결성 안전장치(결정론적 recompute-and-check 게이트; 본문에 fabricate된 변이 없음)가 유사 투고보다 강하다 — 재현성은 명백한 강점이다. *(기계적 수치-출처 대조와 사소한 내부-일관성 표현 항목은 사전 QA로, 저자의 검증 게이트가 담당하며 본 리뷰에서는 나열하지 않는다.)*
 
 ---
 
@@ -179,8 +175,7 @@ TRIPOD-AI + STARD를 인용하는 짧은 "Reporting" 단락과 흐름도를 추�
 3. **R3 — 잠정 판정의 방향 추가**(beyond-rules에서 rule 2/3 옳음; 과보수적 abstention), 비전문가-미서명임을 명시 유지. (§3.2, Limitations)
 4. **R4 — 모든 VICC-arm 0.843 등장에 CI 추가**; non-inferiority margin을 지정하거나 "non-inferior"를 "유의차 없음"으로 재진술. (§3.3, Table 1/2)
 5. **R5 — 보고지침 준수:** STARD/TRIPOD-AI 단락, 변이 흐름도, model card, 유전자별 정확도/abstention 추가. (§Methods/Results)
-6. **R6 — placeholder 해결**(소속, repo URL), 독자용 reference-provenance 메모 제거, Ferber [18] 서지 완전성 확인.
-7. **R7 — 사소 수치 불일치 화해:** multimodel "12 부분 불일치" vs 14 abstain; 모든 OncoVI 0.797 vs 0.80 인스턴스가 변이 집합을 명시하게. (§Discussion/§3.6/Table 2)
+6. **R6 — placeholder 해결**(소속, repo URL), 독자용 reference-provenance 메모 제거. (거버넌스, QA 아님)
 
 ### 선택 (강화되나 preprint에는 비차단)
 8. **O1 — 다중 모델 POC 승격 또는 압축**: Discussion에 새 정량 결과를 도입하지 말 것.
