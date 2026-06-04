@@ -27,7 +27,7 @@
 
 2. **가장 의사결정-결정적인 단 하나의 이슈: 서로 다른 두 정확도 영역(generative ≈0.60 non-inferior vs VICC rule 0.843 "SOTA-급")이 halo effect를 유발하는 방식으로 뒤섞여 있다.** 독자가 abstract를 훑으면 "LLM 시스템이 0.843에 도달하고 OncoVI를 따라잡는다"고 받아들이게 된다. 사실이 아니다 — 그건 rule arm이며, 그 arm은 명시적으로 *LLM이 아니고* *신규성을 주장하지도 않는다*. 분리가 서술되어 있긴 하나 abstract, Discussion, Figure 5(“Ours (VeriVar) 0.843”을 한 행으로 나열하며 어느 arm이 낸 수치인지 흐림)에서 충분히 강하게 강제되지 않았다. 이를 빈틈없게 만들어야 한다(Major 2 참조).
 
-3. **잠정적(provisional)이고 비전문가-미서명(non-expert-signed) 판정(adjudication)이 가장 강한 행동적 주장의 해석에 새어든다.** 보조 자료(`STUDY_SUMMARY.md` §5, HANDOFF.md)는 AI-보조 판정이 "beyond-rules" 사례에서 rule이 2/3 옳았음을 발견했고 이것이 VUS-과잉해소(over-resolution) 한계를 *강화*함을 칭찬받을 만큼 명시한다. 원고는 "행동적 변화이지 정확성은 아님"이라는 단서를 유지하지만, 그 잠정적 발견의 *방향* — 검토된 사례들에서 over-call 억제가 부분적으로 과보수적(over-conservative) abstention이라는 점 — 은 전달하지 않는다. 이는 공정성(fairness) 문제다(Major 3 참조).
+3. **잠정적(provisional)이고 비전문가-미서명(non-expert-signed) 판정(adjudication)이 가장 강한 행동적 주장의 해석에 새어든다.** 저자들 자신의 잠정 판정(원고의 잠정-판정 논의가 바탕으로 삼는 워크시트)은 AI-보조 판정이 "beyond-rules" 사례에서 rule이 2/3 옳았음을 발견했고 이것이 VUS-과잉해소(over-resolution) 한계를 *강화*함을 칭찬받을 만큼 명시한다. 원고는 "행동적 변화이지 정확성은 아님"이라는 단서를 유지하지만, 그 잠정적 발견의 *방향* — 검토된 사례들에서 over-call 억제가 부분적으로 과보수적(over-conservative) abstention이라는 점 — 은 전달하지 않는다. 이는 공정성(fairness) 문제다(Major 3 참조).
 
 핵심 주장 — 충실성/감사가능성이 보장되며 결과가 leakage에 견고하다 — 은 수정을 **견뎌낼 것**이며, 나는 그러리라 본다. 수정은 새 실험이 아니라 귀속(attribution)의 정밀성과 정의적 경계의 인정에 관한 것이다. 따라서 reject가 아니라 major revision이다.
 
@@ -126,7 +126,7 @@ TRIPOD-AI + STARD를 인용하는 짧은 "Reporting" 단락과 흐름도를 추�
 **대체로 그렇지만, 가장 약한 프레이밍 지점(Major 2).** 수치는 정확하다: `horak_vicc.json`은 0.843(5-class 0.643, AUROC 0.906, spec 0.973, sens 0.697); `oncovi_headtohead.json`은 69 공유에서 ours 0.841 vs OncoVI 0.797(McNemar p=0.664, 12 vs 9 only-correct), spec 0.972 vs 0.806. 오류-비대칭 논증(정직한 abstention 9건 vs 확신 over-call 9건, 대칭 카운트지만 비대칭 임상 위험)은 정당하고 잘 제시됐다. 위험은 순전히 *귀속*에 있다: 이 arm은 결정론적 rule 엔진이며 명시적으로 *LLM이 아니고 신규성도 주장 안 함*(OncoVI가 이미 기준을 근거에 매핑함을 인정). 어떤 독자도 0.843을 "LLM 시스템"에 귀속시킬 수 없게 하라. 또한 "OncoVI 대등"은 비유의적 McNemar(p=0.66)에 근거 — 즉 *구별 불가* — 이를 "더 높은 특이도에서 통계적으로 구별 불가한 정확도"로 진술하고, OncoVI가 자기 *홈셋*(Horak-70)에서 채점됨(어느 쪽도 유리하게 하지 않으나 공개해야 함; 당신은 future-work 절에서 함 — 앞으로 끌어오라)을 명시하라.
 
 **(e) 12/56 over-call→VUS 재분류 — "행동적 변화이지 검증된 정확성 아님" 단서가 일관되게 적용되는가?**
-**단서는 일관되게 존재하나, 잠정적 *방향*이 누락됨(Major 3).** 12개 변이가 `ablation_report.json`과 정확히 일치. "21.4%는 행동적 변화를 측정하지 정확성이 아님" 단서가 abstract, §3.2, Discussion에 등장. 그러나 보조 자료(`STUDY_SUMMARY.md` §5, HANDOFF.md)는 검토된 3개 "beyond-rules" 사례에서 **rule이 2/3 옳았다**는 잠정 AI-보조 판정(PTEN R130* 및 PIK3CA R88Q: LLM이 과잉 abstain; ESR1 E247K는 LLM 우세)을 기록하며, 이는 명시적으로 *VUS-과잉해소 한계를 강화*한다. 프로젝트 자체의 잠정 검토가 over-call-억제의 정확성에 불리한 쪽으로 기우는데, "판정 대기" 뒤에 숨어선 안 된다. 검토된 사례들의 예비(비전문가-미서명) 검토가 여러 재분류가 과보수적 abstention임을 시사하며 이는 문서화된 VUS-과잉해소 약점과 일치함을 진술하라. 이는 논문의 정직성을 약화가 아니라 강화한다.
+**단서는 일관되게 존재하나, 잠정적 *방향*이 누락됨(Major 3).** 12개 변이가 `ablation_report.json`과 정확히 일치. "21.4%는 행동적 변화를 측정하지 정확성이 아님" 단서가 abstract, §3.2, Discussion에 등장. 그러나 저자들 자신의 잠정 판정 기록(원고의 잠정-판정 논의의 바탕 워크시트)은 검토된 3개 "beyond-rules" 사례에서 **rule이 2/3 옳았다**는 잠정 AI-보조 판정(PTEN R130* 및 PIK3CA R88Q: LLM이 과잉 abstain; ESR1 E247K는 LLM 우세)을 기록하며, 이는 명시적으로 *VUS-과잉해소 한계를 강화*한다. 프로젝트 자체의 잠정 검토가 over-call-억제의 정확성에 불리한 쪽으로 기우는데, "판정 대기" 뒤에 숨어선 안 된다. 검토된 사례들의 예비(비전문가-미서명) 검토가 여러 재분류가 과보수적 abstention임을 시사하며 이는 문서화된 VUS-과잉해소 약점과 일치함을 진술하라. 이는 논문의 정직성을 약화가 아니라 강화한다.
 
 **(f) gpt-4o-mini를 주 모델로 — 충분히 정당화됐는가?**
 **그렇다**, preprint로서: 비용(코호트 규모 dual-mode + ablation), 보수적 능력 하한, 결론을 바꾸지 않는 gpt-4o 재현(0.70 vs 0.60, p=0.21). 상위 저널은 여전히 multi-family 스윕(Llama/Mixtral)을 요청할 것이며, 당신은 이를 적절히 미룬다.
