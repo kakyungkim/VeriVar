@@ -5,7 +5,7 @@
 **원고:** `docs/manuscript/preprint.md` (bioRxiv preprint 초안)
 **가정한 투고 등급:** JAMIA / npj Digital Medicine / Bioinformatics 급의 방법론·벤치마킹 저널
 
-> 본 문서는 영문 리뷰 [peer_review_2026-06-04.md](peer_review_2026-06-04.md)의 한국어 번역본입니다. 리뷰는 R1–R7 수정을 적용하기 **이전** 원고를 기준으로 작성되었습니다.
+> 본 문서는 영문 리뷰 [peer_review_2026-06-04.md](peer_review_2026-06-04.md)의 한국어 번역본입니다. 리뷰는 필수 수정을 원고에 반영하기 **이전** 원고를 기준으로 작성되었습니다.
 >
 > *범위: 정식 외부 심사자(referee) 리뷰 — 본질적 과학 판단만 담는다. 사전 QA(인용/출처 정확성, 그림 렌더링, 기계적 수치-출처 대조, 참고문헌 완전성)는 완료된 것으로 전제하며 저자의 QA 파이프라인(citation-management / 검증 게이트 / paper-critic)이 담당한다 — 여기서는 의도적으로 나열하지 않는다.*
 
