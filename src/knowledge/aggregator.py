@@ -1,7 +1,7 @@
 """EvidenceAggregator — merge all knowledge sources into one EvidenceBundle.
 
-This is the structured arm of the hybrid retrieval layer and the direct
-replacement for the old fabricating MockRAGDatabase. If every source returns
+This is the structured arm of the hybrid retrieval layer: every item carries a
+citable identifier, with no fabricated evidence. If every source returns
 nothing for a variant (e.g. a pseudogene), the bundle is empty and
 ``has_evidence`` is False — which the classifier reads as a signal to abstain
 (VUS) rather than inventing oncogenic support.

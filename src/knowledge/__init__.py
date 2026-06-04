@@ -1,4 +1,4 @@
-"""Structured knowledge layer (replaces the fabricating MockRAGDatabase).
+"""Structured knowledge layer (citation-grounded; replaced an earlier mock RAG).
 
 Adapters answer (gene, protein_change, cancer_type) with citable Evidence and
 drugs/trials; the aggregator merges them into one EvidenceBundle per variant.
