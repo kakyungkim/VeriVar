@@ -68,6 +68,7 @@
 | **peer-review / scholar-evaluation** | 형식 리뷰/정량 평가 | 체크리스트·루브릭 |
 | **research-lookup** | 최신 정보 조회 | 근거 검색 |
 | **project-handoff-checkpoint** | 상태 보존 | HANDOFF/TODO 갱신 |
+| **slide-deck-render** | `.md` 덱 → 클릭형 슬라이드 | Marp 헤더 + 자체완결 HTML(브라우저서 화살표/클릭) |
 
 > Agent는 "가서 X 해라", Skill은 "X는 이렇게 하는 거다". 에이전트가 작업하면서 스킬을 자동으로 끌어 쓴다.
 
