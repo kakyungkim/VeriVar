@@ -1,3 +1,16 @@
+---
+marp: true
+paginate: true
+theme: default
+style: |
+  section { font-size: 23px; line-height: 1.35; }
+  h1 { font-size: 1.7em; }
+  h2 { font-size: 1.25em; }
+  table { font-size: 0.78em; }
+  pre { font-size: 0.72em; }
+  blockquote { font-size: 0.9em; }
+---
+
 <!--
 스터디 발표 자료 — "하네스 엔지니어링: 논문 작성을 위한 Agent / Skill 운영"
 슬라이드 구분자: 한 줄에 '---' 만 (Marp / reveal.js / Slidev 어디서나 렌더 가능)
