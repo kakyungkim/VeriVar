@@ -50,6 +50,8 @@
 | **presenter** | 프로젝트 | 원고 → 슬라이드 덱·발표노트(청중별) | 발표 자료 필요 시 |
 
 > **오케스트레이터 주의:** 서브에이전트는 다른 서브에이전트를 못 띄운다(중첩 불가). 그래서 `paper-orchestrator`는 *실행자가 아니라 계획자*다 — 계획을 내면 **메인 세션 또는 Workflow 도구**가 그 계획대로 에이전트를 띄워 실행한다.
+>
+> **실행기 = dynamic workflow:** 그 "Workflow 도구"가 바로 Claude Code의 **dynamic workflow**(공식 first-party 기능)다 — 에이전트를 대규모로 병렬 실행하고, `/workflows`로 각 에이전트가 *지금 뭘 하는지*(phase·tool call·토큰·경과)를 보며 **일시정지·스킵·재시도**할 수 있다. 즉 **`paper-orchestrator`(계획) ↔ dynamic workflow(실행+관측)** 가 짝이다. 멀티에이전트의 블랙박스 불안을 관측성으로 해소하되, 토큰을 많이 쓰므로 *진짜 병렬·다단계*일 때만 명시적 opt-in으로.
 
 ### Skill (절차·규율)
 
