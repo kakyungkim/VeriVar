@@ -141,6 +141,24 @@ reviewer (외부 referee 리뷰, 선택) ──▶ 추가 수정
 
 ---
 
+## 5b. 이 프로젝트에서 실제로 이렇게 운영했다 (타임라인)
+
+추상틀이 아니라 *실제로 돌린 순서*. 이 절만 읽어도 운영 흐름이 잡힌다.
+
+1. **실험·평가** — `variant-analysis`가 파이프라인 + 평가 수트(faithfulness, ablation, Horak 외부 벤치마크, leakage 통제 4종, bootstrap·McNemar 통계)를 실행 → 결과 JSON 산출.
+2. **초안 + 그림** — `manuscript-writer`가 `STUDY_SUMMARY`/JSON에서 프리프린트(EN)와 그림 세트를 생성(숫자는 JSON에서, 그림은 데이터에서).
+3. **선행연구·인용** — `literature-scout`가 참고문헌 15건을 검증·교정(예: 검증 불가했던 "Lin 2025 RAG" 인용을 실제 문헌으로 정정).
+4. **내부 적대적 검토** — `paper-critic`를 **2회**(프로즈 + 그림 레이아웃 QA) → 과대주장·사족·그림 결함 수정.
+5. **잠정 판정** — `variant-adjudicator`가 beyond-rules/discordant 사례를 잠정 판정(비전문가 서명, 사람 확인 전제).
+6. **결정론적 게이트** — `scripts/verify_manuscript`로 헤드라인 수치·DOI를 재계산·대조(16/16 통과).
+7. **외부 리뷰(2단계)** — `reviewer` 1차 → **Major revision**. `manuscript-writer`가 R1–R6 반영. `reviewer` 2차(calibrated) → **Minor revision**. 도중에 일반 에이전트로 **실제 오픈 피어리뷰**(eLife/OpenReview/F1000)를 수집해 `reviewer`의 출력 형식을 보정(§5의 벤치마킹).
+8. **메모리 적립** — 각 단계의 교훈을 memory/skill/agent에 등록(완료 과대주장 금지 · 내부 PM문서≠보조자료 · reviewer-calibration 등) → 다음 세션이 같은 실수를 반복하지 않음.
+9. **(예정)** `presenter`로 발표자료, `paper-orchestrator`로 다단계 작업의 실행계획.
+
+> 즉 *생성→검증→리뷰→학습*이 한 바퀴 돌고, 매 바퀴마다 도구가 똑똑해진다.
+
+---
+
 ## 6. 운영 원칙 (체크리스트)
 
 - **검증 게이트**: 모든 헤드라인 수치는 결정론적 스크립트(`verify_manuscript`)로 재계산·대조. 사람·LLM 기억을 믿지 않는다.
