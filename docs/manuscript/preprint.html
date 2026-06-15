@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Citation-grounded retrieval for faithful LLM somatic variant interpretation</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="citation-grounded-retrieval-for-faithful-llm-somatic-variant-interpretation">Citation-grounded retrieval for faithful LLM somatic variant interpretation</h1>
+<p><strong>Author:</strong> Ka-Kyung Kim</p>
+<p><strong>Affiliation:</strong> [to confirm]</p>
+<p><strong>Correspondence:</strong> kakyung.kim@gmail.com</p>
+<hr />
+<h2 id="abstract">Abstract</h2>
+<p><strong>Objective.</strong> Somatic variant interpretation feeds patient-facing oncology reports, where each oncogenicity and AMP/ASCO/CAP tier call directs or withholds targeted therapy; a large language model (LLM) that fabricates a supporting citation or confidently over-calls a variant is therefore clinically unusable, regardless of whether the call happens to be right. A usable decision-support draft must instead be auditable line by line and must abstain rather than fabricate. LLMs, however, show exactly the opposite two failure modes that bar such use: they fabricate supporting citations, and their judgements can come from parametric memory of well-known variants rather than from auditable evidence. We asked whether retrieval grounding can make LLM interpretation faithful and auditable, and whether any accuracy effect is genuine or a leakage artifact.</p>
+<p><strong>Materials and Methods.</strong> We built a dual-mode somatic variant interpreter that classifies variants on two international standards — ClinGen/CGC/VICC oncogenicity and AMP/ASCO/CAP clinical tier — using hybrid citation-grounded retrieval (structured knowledge bases, dense retrieval over CIViC evidence statements, and a knowledge graph) under a faithfulness contract requiring every assertion to cite a retrieved identifier and to abstain (assign a variant of uncertain significance, VUS) when no variant-specific evidence exists. A <strong>Generative mode</strong> (the LLM assigns the label) was compared with a <strong>Deterministic mode</strong> (a direction-aware rule assigns the label and the LLM only explains it) and with a no-retrieval baseline. Evaluation used a 56-variant five-cancer TCGA cohort and an external, balanced 70-variant expert-classified gold standard (Horak et al. 2022), with leakage-free faithfulness metrics, leakage controls (temporal holdout, leave-own-evidence-out, second model, embedding ablation), bootstrap confidence intervals, and exact McNemar tests.</p>
+<p><strong>Results.</strong> The empirical faithfulness finding is the <em>pre-gate</em> retrieval behaviour: with a populated evidence bundle the LLM emitted 106 citations across 56 variants, <strong>0 of which were absent from the bundle</strong> (no fabricated evidence), whereas the otherwise identical no-retrieval arm fabricated citations on 26 of 56 variants (0.464, 95% CI 0.339–0.589, a confidence interval that excludes zero). The honest measured residual is citation imprecision: 20 of the 106 retrieval-arm citations (18.9%) named only the source category rather than the exact variant-level identifier (imprecision, not fabrication — no item was absent from the bundle). The faithfulness gate then <em>enforces</em> the contract end-to-end, so the post-gate scorecard — hallucination 0, citation grounding 1.0, directional faithfulness 1.0, abstention recall 1.0 — reports the <strong>guarantees the contract enforces by construction, not measured emergent outcomes</strong>. Retrieval reclassified 12 of 56 confidently over-called variants (21.4%) to evidence-grounded VUS (a behavioural change, not verified correctness). The two interpretation arms have distinct accuracy profiles. For the <strong>generative</strong> arm, three-class accuracy was not significantly different from either baseline (0.600 with retrieval, 0.586 without, 0.557 for the simplified rule; McNemar p = 1.0 and 0.61, overlapping CIs), so faithfulness, not accuracy, is its contribution. Separately, <strong>VeriVar’s rule arm — a citable VICC point-based implementation, a deterministic rule engine, not the LLM, and not claimed as a novel classifier</strong> — reached three-class accuracy 0.843 (95% CI 0.757–0.929) on Horak-70 (specificity 0.973, AUROC 0.906) and, head-to-head against the open-source ClinGen/CGC/VICC guideline engine OncoVI on 69 shared variants, was statistically indistinguishable in accuracy (0.841, 95% CI 0.754–0.928 vs 0.797, 95% CI 0.696–0.884; McNemar p = 0.66) at markedly higher specificity (0.972 vs 0.806), trading 9 of OncoVI’s confident over-calls for honest abstentions; both head-to-head values are on the 69 shared variants (OncoVI’s published full-93-set accuracy is 0.80). Temporal-holdout, leave-own-evidence-out, second-model, and embedding controls left generative-arm accuracy statistically unchanged, showing that the faithfulness behaviour and the <em>absence</em> of a generative accuracy effect are not artifacts of retrieval-corpus leakage; these controls do not, however, govern the model’s own parametric channel, which remains uncontrolled and is quantified only by the no-retrieval floor.</p>
+<p><strong>Discussion.</strong> Retrieval grounding makes the generative interpreter faithful and auditable and suppresses confident parametric over-calling, though at this scale it does not raise that arm’s accuracy; the separate deterministic VICC rule arm, by contrast, reaches accuracy indistinguishable from the open state-of-the-art engine at substantially higher specificity within the same auditable framework.</p>
+<p><strong>Conclusion.</strong> Faithfulness and auditability — prerequisites for trustworthy clinical decision support — can be guaranteed by construction; establishing an accuracy benefit would require a larger, powered, leakage-controlled benchmark with expert adjudication, whose design we specify. We measure citation faithfulness, auditability, and classification accuracy only; clinical utility is motivated, not measured (no patient outcomes, no prospective use), and the system is for research and education, not clinical care.</p>
+<p><strong>Keywords:</strong> somatic variant interpretation; large language models; retrieval-augmented generation; faithfulness; auditability; clinical decision support; precision oncology.</p>
+<hr />
+<h2 id="background-and-significance">Background and Significance</h2>
+<p>Somatic variant interpretation — judging whether a tumour mutation is oncogenic and clinically actionable — is a rate-limiting step in precision oncology. In a molecular tumour board, a pathologist drafts an oncogenicity call and an AMP/ASCO/CAP clinical tier for each variant, and each such classification directs or withholds targeted therapy and trial enrolment. The draft is consequential precisely at the level of its individual assertions: a hallucinated rationale — a plausible but non-existent citation under a confident call — invites a clinician to act on evidence that does not exist, and a silent over-call of a benign variant can prompt inappropriate targeted therapy, so every assertion that enters the clinical report must be traceable to a primary source for audit, liability, and regulatory review. The task is also a workforce bottleneck: expert curation does not scale to the variant volume of routine tumour sequencing, and rare or under-curated variants — precisely those where help is most needed — are the slowest and least certain to adjudicate. An automated assistant could therefore have direct clinical value, but only if its draft can be trusted line by line: it must be auditable, and it must declare uncertainty rather than fabricate it away.</p>
+<p>Two community standards structure the task. The ClinGen/CGC/VICC framework defines <strong>oncogenicity</strong> on a five-label point-based system (Oncogenic, Likely Oncogenic, VUS, Likely Benign, Benign) [1], and the AMP/ASCO/CAP framework defines <strong>clinical tier</strong> (Tier I–IV with evidence levels A–D) [2]. Applying either standard means synthesising heterogeneous evidence — curated clinical assertions, drug–gene interactions, computational pathogenicity predictions, and trial status — into a defensible, citable judgement.</p>
+<p>A mature ecosystem already operationalises these standards. Expert-curated knowledge bases such as OncoKB [3], COSMIC [4], and the crowdsourced CIViC [5] supply variant- and gene-level clinical assertions, while rule- or model-based platforms such as CancerVar [6], the Cancer Genome Interpreter [7], and the Personal Cancer Genome Reporter [8] map alterations onto tiers and oncogenicity calls. These systems are accurate and auditable but rely on hand-built rule engines and pre-computed lookups; they neither read free-text evidence on demand nor produce natural-language justifications, and their coverage of rare or under-curated variants is bounded by their databases. We treat this work as prior art our system must remain compatible with — our Deterministic mode is a deliberately simplified, direction-aware re-implementation in the same tradition — not as a baseline we claim to beat. Orthogonally, computational variant-effect predictors such as AlphaMissense [9], the protein-language model ESM1b [10], and the evolutionary model EVE [11] supply genome-scale pathogenicity priors; we use AlphaMissense as one evidence arm but treat such scores as gene-agnostic priors that cannot, alone, establish clinical actionability.</p>
+<p>LLMs are attractive for this synthesis because they read free text fluently and emit structured prose. Two failure modes, however, make naïve use unsafe in any auditable clinical setting. First, <strong>hallucinated citations</strong>: asked to justify a classification, an LLM readily emits plausible but non-existent PMIDs or database identifiers. In a clinical report, a fabricated reference is a patient-safety and medico-legal hazard, because the assertion it appears to support cannot be checked. Second, <strong>parametric leakage</strong>: because famous driver variants (for example BRAF V600E or KRAS G12D) are heavily represented in pretraining data, an LLM may reproduce the textbook answer from memory rather than from the evidence supplied. This both inflates apparent accuracy on well-known variants and yields confident over-calls on superficially similar but functionally benign ones — an over-call that, in practice, could prompt inappropriate targeted therapy.</p>
+<p>Retrieval-augmented generation (RAG) is the natural mitigation: ground the model on retrieved evidence and require it to cite that evidence. Both failure modes are documented outside genomics. The ALCE benchmark [12] formalised automatic evaluation of citation precision and recall and showed that even strong LLMs frequently fail to support their claims, and the MedRAG/MIRAGE study [13] established retrieval as a partial mitigation of hallucination and stale knowledge in medical question answering. Within clinical genomics, recent work has begun to apply LLMs and retrieval to variant interpretation: Lin et al. [14] benchmarked GPT-4o, Llama 3.1, and Qwen 2.5 on cancer-variant classification and reported a systematic tendency to over-classify variants toward higher evidence levels — the same parametric over-calling we observe — while noting that retrieval and prompt engineering helped; Lu and Cosgun [15] integrated roughly 190 million variant annotations into GPT-4o by RAG and fine-tuning and reported high field-level annotation accuracy. These studies emphasise accuracy against expert labels but leave two questions under-examined. First, <strong>is the system actually faithful</strong> — does it cite only retrieved evidence and abstain honestly when evidence is absent — and can faithfulness be measured without an external answer key, as general-domain attribution benchmarks [12] do but the genomics RAG work [14,15] does not? Second, <strong>is any apparent accuracy benefit real or a leakage artifact</strong> — does the system succeed by retrieving recent, answer-stating evidence (corpus leakage) or by parametric recall (model leakage) rather than by evidence-grounded reasoning? To our knowledge, no prior variant-interpretation study reports a leakage-controlled (temporal-holdout and leave-own-evidence-out) accuracy evaluation alongside a leakage-free faithfulness audit. That is the gap this work targets.</p>
+<h2 id="objective">Objective</h2>
+<p>We address this gap with an applied system and, more centrally, a rigorous evaluation built around faithfulness and leakage rather than headline accuracy. We make three claims, stated with deliberate statistical discipline. First, the system is <strong>faithful by construction and empirically</strong> — zero citation fabrication with complete grounding and abstention, a property the otherwise identical no-retrieval LLM lacks, with a large and statistically robust gap. Second, retrieval <strong>suppresses confident parametric over-calling</strong>, reclassifying several over-called variants to VUS by reading variant-specific evidence (whether each reclassification is correct awaits expert adjudication). Third, the generative arm’s accuracy on a balanced expert gold standard is <strong>not significantly different (absence of evidence of a difference at n = 70, not evidence of equivalence)</strong> from both a no-retrieval LLM and a simplified rule, with no claim of a generative accuracy gain (the n = 70 differences are not significant; we report this as overlapping CIs and non-significant McNemar tests rather than a formal non-inferiority test, as no non-inferiority margin was pre-specified); separately, a citable VICC point-based rule arm — a deterministic rule engine, not the LLM — reaches accuracy indistinguishable from the open state-of-the-art at higher specificity within the same auditable framework, showing the approach need not trade accuracy for faithfulness. We then subject this behaviour to several leakage controls to show it is robust rather than an artifact of one configuration. The contribution is applied and evaluative — a faithful-by-construction system plus a leakage-aware faithfulness/accuracy evaluation — not a new modelling method or an accuracy advance over established interpretation platforms.</p>
+<hr />
+<h2 id="materials-and-methods">Materials and Methods</h2>
+<p>Figure 1 summarises the system, which we refer to as VeriVar: a hybrid retrieval layer assembles a citable evidence bundle that feeds two interpretation modes under a faithfulness contract, and the resulting interpretations are surfaced through a decision-support interface.</p>
+<figure>
+<img src="figures/fig1.png" alt="System overview: dual-mode somatic variant interpretation with citation-grounded retrieval" /><figcaption aria-hidden="true">System overview: dual-mode somatic variant interpretation with citation-grounded retrieval</figcaption>
+</figure>
+<p><strong>Figure 1. System overview and citation grounding.</strong> (a) Each variant passes through a hybrid, citation-grounded retrieval layer (structured, dense, and graph arms) into an evidence bundle in which every item carries a citable identifier; a faithfulness contract requires every assertion to cite only retrieved identifiers and to abstain (assign VUS) when no variant-specific evidence exists. Three interpretation arms follow: a <strong>Generative mode</strong> (the LLM assigns labels with self-consistency voting and an agentic verifier), a <strong>Deterministic mode</strong> (a direction-aware rule assigns the label, the LLM writes only the rationale), and <strong>VeriVar’s rule arm</strong> (a citable VICC point-based implementation; the 3-class accuracy 0.843 shown on this arm is the deterministic rule, benchmarked against OncoVI, not the LLM; §3.3, Figure 3a). (b) The three retrieval arms, each citation-bearing. (c) Contract guarantees (enforced by construction) on the 56-variant cohort: hallucination 0, grounding 1.0, directional faithfulness 1.0, abstention recall 1.0. The 1.0 values are guarantees the gate enforces, not measured emergent outcomes; the measured, falsifiable finding is the 0.00 hallucination bar (46.4% without retrieval, panel 2a).</p>
+<h3 id="classification-standards">Classification standards</h3>
+<p>Variants were classified on two axes, each enforced as a controlled enumeration. <strong>Oncogenicity</strong> followed the ClinGen/CGC/VICC 2022 point-based standard with five labels (Oncogenic, Likely Oncogenic, VUS, Likely Benign, Benign). <strong>Clinical tier</strong> followed the AMP/ASCO/CAP 2017 standard (Tier I–IV, with evidence levels A–D for Tiers I and II). The ACMG/AMP 2015 germline framework was intentionally not used, as the task is somatic. Unifying both vocabularies as enums let the Generative and Deterministic modes be compared on identical label spaces.</p>
+<h3 id="datasets">Datasets</h3>
+<p><strong>Cohort (input variants).</strong> Patient variants were drawn from the cBioPortal REST API (TCGA PanCancer Atlas, public) across five cancer types chosen for narrative contrast — lung adenocarcinoma, breast, colorectal, cutaneous melanoma, and pancreatic — at seven samples each (35 samples). Selection was restricted to a 27-gene driver panel and was deterministic, guaranteeing showcase variants such as BRAF V600E appearing in both melanoma and colorectal samples for a context-dependence analysis. After de-duplication by (gene, protein change, cancer) and tiered selection, 56 variant×context units were classified, out of 398 unique candidates.</p>
+<p><strong>Knowledge sources (evidence layer).</strong> Offline snapshots were assembled from CIViC (1,714 panel evidence rows; CC0), DGIdb (2,608 gene–drug interactions over 27 genes), AlphaMissense via Ensembl VEP REST (computational pathogenicity for 352 missense SNVs, mapped to VICC computational codes), and ClinicalTrials.gov v2 (37 trials). CIViC evidence statements were embedded into a persistent dense index.</p>
+<p><strong>External benchmark (ground truth).</strong> The external gold standard was Supplemental Table 3 of Horak et al. (2022), the ClinGen/CGC/VICC oncogenicity standardisation paper: 70 expert-classified somatic variants across nine genes (FLT3, BRAF, IDH1, KRAS, PIK3CA, PTEN, RB1, EZH2, TP53). The label distribution is balanced (VUS 30, Likely Oncogenic 19, Oncogenic 14, Benign 5, Likely Benign 2), making it a discriminating benchmark, unlike CIViC clinical assertions, which are heavily skewed toward a single class. Horak labels were not redistributed; only derived metrics are reported.</p>
+<h3 id="hybrid-citation-grounded-retrieval">Hybrid, citation-grounded retrieval</h3>
+<p>For each variant, an evidence bundle was assembled from three arms, every item carrying a citable identifier. The <strong>structured</strong> arm performed exact gene-plus-protein-change lookup in CIViC, gene-level drug lookup in DGIdb, and AlphaMissense lookup by genomic coordinate (yielding a VICC computational code). The <strong>dense</strong> arm used domain embeddings (NeuML/PubMedBERT by default; OpenAI text-embedding-3-small as an ablation) over CIViC statements, fused BM25 and Chroma retrieval by Reciprocal Rank Fusion, and attached only same-variant hits to guard against same-gene topic drift. The <strong>graph</strong> arm used a networkx knowledge graph (gene, variant, disease, drug, trial) to surface related variants via shared drugs. A <strong>faithfulness contract</strong> governed the output: a classification could cite only retrieved identifiers, and the system was required to abstain (assign VUS) when no variant-specific evidence existed; gene-level druggability did not count as variant-specific evidence.</p>
+<h3 id="dual-mode-classification-generative-and-deterministic-modes">Dual-mode classification: Generative and Deterministic modes</h3>
+<p>The two modes embody a deliberate trade-off between flexibility and reproducibility, and the system runs both on every variant. The <strong>Generative mode</strong> lets the LLM itself decide the labels: because a language model can read and weigh free-text evidence that no fixed rule enumerates, this mode suits exploratory interpretation and rare or under-curated variants, at the cost of run-to-run variability and a tendency to over-call. The <strong>Deterministic mode</strong> instead fixes the label with a transparent, direction-aware rule and demotes the LLM to writing only the human-readable rationale; this buys reproducibility and auditability — identical output on every run, in the tradition of curated rule engines — while still gaining fluent natural-language justification, and it never lets the model’s parametric priors override the evidence. Running both on the same variants is itself informative: where the flexible reader and the fixed rule disagree localises genuine interpretive uncertainty (Section 3.5), so discordance is treated as a signal rather than a defect.</p>
+<p><strong>Generative mode.</strong> The LLM (gpt-4o-mini) assigned the oncogenicity and tier labels itself, constrained to the enum vocabulary and grounded on the evidence bundle. It was enhanced with self-consistency voting (n = 3; agreement mapped to a confidence score) and an agentic verifier — an adversarial second pass that downgrades over-claims and is skipped on abstentions. <strong>Deterministic mode.</strong> A direction-aware rule assigned the labels from CIViC significance and direction, so that “Unaltered Function” or “Does Not Support” evidence counts against oncogenicity and only Sensitivity/Response evidence confers actionability; here the LLM wrote only the natural-language rationale. A <strong>no-retrieval baseline</strong> ran the Generative prompt with the evidence bundle removed, isolating parametric behaviour.</p>
+<p>We used <strong>gpt-4o-mini</strong> as the primary model deliberately: the contribution is the retrieval-and-faithfulness architecture rather than any single model, and an inexpensive model both makes the cohort-scale dual-mode runs and ablations affordable and sets a conservative capability floor — properties demonstrated on a weak model are more likely to hold on a stronger one. <strong>Temperature 0</strong> was used for determinism and reproducibility, with <strong>0.4 only on the self-consistency voting passes</strong> to induce the answer diversity that voting requires. To confirm the findings are not an artifact of model size, we replicated the external benchmark on the stronger <strong>gpt-4o</strong> (Section 3.4, Table 1); we did not exhaustively sweep other proprietary or open models, which we note as a limitation.</p>
+<h3 id="evaluation-and-statistics">Evaluation and statistics</h3>
+<p>Three classes of evaluation were run. <strong>Leakage-free faithfulness metrics</strong> required no external truth: hallucinated-citation rate (fraction of variants whose emitted citations are absent from the retrieved bundle), citation grounding, directional faithfulness (whether the assigned label respects the direction of the cited evidence), abstention recall (fraction of no-evidence variants correctly abstained), and inter-mode Cohen’s κ. An <strong>ablation</strong> compared the Deterministic mode, the no-retrieval LLM, and the Generative mode with retrieval. The <strong>external benchmark</strong> computed five-class and collapsed three-class accuracy and κ against the Horak gold standard. Leakage controls comprised a <strong>temporal split</strong> (restricting the retrieval corpus to literature published before a cutoff year), a <strong>leave-own-evidence-out (LOVO)</strong> ablation (removing each variant’s own curated CIViC evidence before retrieval), a <strong>second-model</strong> replication (gpt-4o), and an <strong>embedding ablation</strong> (PubMedBERT versus MiniLM versus OpenAI, scored by recall@5 of the held-out own-evidence). Eight additional cohort analyses (cross-cancer consistency, sensitivity/resistance, dense recall-lift, AlphaMissense–LLM agreement, calibration, discordance concentration, hotspot-versus-rare, and verifier net-effect) characterised behaviour.</p>
+<p>Uncertainty was quantified by nonparametric bootstrap 95% confidence intervals on accuracy and concordance, and paired methods were compared by the exact McNemar test on per-variant correctness; all reported p-values are two-sided. The implementation comprised the pipeline and 99 unit tests, and the system runs offline from committed snapshots for reproducibility.</p>
+<h3 id="reporting">Reporting</h3>
+<p>We report this study against two complementary instruments. Because the system is a prediction model, we follow <strong>TRIPOD-AI</strong> (transparent reporting of AI prediction models) for model specification, sample-size justification, and subgroup reporting; because the external evaluations (Horak-70 and the ClinVar holdout) are accuracy studies against an expert reference standard, we additionally apply a <strong>STARD</strong> diagnostic-accuracy lens for the participant/variant flow, reference-standard specification, and handling of indeterminate results. Indeterminate outputs (VUS/abstentions) are treated as a reported class rather than excluded — a STARD “intermediate result” handling decision that is clinically appropriate for an abstention-first design. The primary study is single-run and not powered for an accuracy claim; this sample-size limitation is stated up front (see Discussion, “Toward a powered accuracy evaluation”) in line with TRIPOD-AI’s expectation that it be declared rather than implied.</p>
+<p><strong>Variant flow (STARD).</strong> The cohort flow was: 398 unique candidate variants drawn from the cBioPortal TCGA PanCancer Atlas across the 27-gene driver panel and five cancer types → after de-duplication by (gene, protein change, cancer) and tiered selection (capping AlphaMissense-only and no-evidence variants per cancer for cost control), 56 variant×context units classified in dual mode. The external accuracy benchmark used all 70 expert-classified variants from Horak et al. 2022 Supplemental Table 3 (the Horak-70 gold standard); the head-to-head against OncoVI (Carta et al. [19], an open-source implementation of the full ClinGen/CGC/VICC oncogenicity guideline that publishes per-variant predictions, used here as the strongest open deterministic comparator for this task) was restricted to the 69 variants shared with OncoVI’s published predictions; the independent generalisation set comprised 458 ClinVar somatic-oncogenicity records. No variant with a coordinate and retrievable status was excluded from the external sets after entry; the Horak label distribution was not redistributed.</p>
+<p><strong>CancerVar predictions (cross-axis comparator).</strong> CancerVar AMP/ASCO/CAP tier predictions were obtained from the official CancerVar web server (cancervar.wglab.org; endpoint <code>results_new.php</code>) for all 70 Horak variants, queried by GRCh38 position (chr/pos/ref/alt, build hg38_update, the same b38 coordinates as the Horak gold) with <code>cancer_types = All_types</code>; tiers were parsed verbatim from the returned result pages (clinical-significance field <code>Tier_X</code> with the criteria point total), so no tier was computed or assigned by our pipeline (fetched 2026-06-14 UTC; raw per-variant HTML responses are archived under <code>data/benchmark/cancervar/raw/</code> and the parsed predictions in <code>cancervar_predictions.json</code> for provenance). Because CancerVar reports clinical-actionability tiers rather than VICC oncogenicity, we mapped Tier_I/II→Oncogenic, Tier_III→VUS, and Tier_IV→Benign solely to score it on the VICC oncogenicity gold; this mapping is a reporting convenience for a cross-axis comparison (§3.6) and favours neither tool.</p>
+<p><strong>Model card (TRIPOD-AI).</strong> The classification model and its evaluation configuration are summarised in Table M1.</p>
+<p><strong>Table M1. Model card.</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Primary model</td>
+<td>gpt-4o-mini (OpenAI), via <code>langchain-openai</code> structured output</td>
+</tr>
+<tr class="even">
+<td>Replication model</td>
+<td>gpt-4o (Section 3.4 leakage control)</td>
+</tr>
+<tr class="odd">
+<td>Multi-model POC raters</td>
+<td>Llama 3.1 8B, Qwen 2.5 3B, Llama 3.2 3B (Ollama, offline)</td>
+</tr>
+<tr class="even">
+<td>Temperature</td>
+<td>0 for classification (determinism); 0.4 only on self-consistency voting passes</td>
+</tr>
+<tr class="odd">
+<td>Self-consistency voting</td>
+<td>n = 3 (agreement mapped to a confidence score)</td>
+</tr>
+<tr class="even">
+<td>Agentic verifier</td>
+<td>adversarial second pass; on/off ablated; skipped on abstentions</td>
+</tr>
+<tr class="odd">
+<td>Output space</td>
+<td>enforced enums — VICC oncogenicity (5 labels) and AMP/ASCO/CAP tier (I–IV)</td>
+</tr>
+<tr class="even">
+<td>Knowledge snapshots</td>
+<td>CIViC (1,714 rows, CC0); DGIdb (2,608 interactions); AlphaMissense (352 missense SNVs); ClinicalTrials.gov v2 (37 trials); offline, committed</td>
+</tr>
+<tr class="odd">
+<td>Embedding (dense arm)</td>
+<td>NeuML/PubMedBERT (default); OpenAI text-embedding-3-small (ablation)</td>
+</tr>
+<tr class="even">
+<td>Reproducibility</td>
+<td>runs offline from committed snapshots; bootstrap seed fixed (0); 99 unit tests</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>per-gene accuracy and abstention breakdown</strong> (Supplementary Table S1) surfaces the thin-coverage subgroups (notably EZH2 and PTEN) so that the rare-variant weakness is auditable.</p>
+<h3 id="decision-support-interface">Decision-support interface</h3>
+<p>To make the faithful interpretations usable at the point of decision, the system exposes a browser dashboard. A cohort explorer filters variants by evidence status, drug or trial availability, and inter-mode discordance, and exports the filtered set. A per-variant view shows the Generative and Deterministic calls side by side, with each cited item rendered as a clickable link to its primary source — CIViC evidence items, ClinicalTrials.gov records, and external knowledge bases (OncoKB, ClinVar, cBioPortal, COSMIC, DGIdb). A grounded question-answering chat extends the faithfulness contract to free-text interaction: it answers a question about the selected variant only from that variant’s retrieved evidence bundle and abstains (“I cannot answer from the available evidence”) when the bundle does not cover the question, treating gene-level druggability as insufficient (Supplementary Figure S3). Beyond the committed cohort, the dashboard also accepts a user-supplied VCF: variants are annotated through the Ensembl VEP REST API (genome build auto-detected, GRCh37 or GRCh38) and passed through the same dual-mode interpretation and faithfulness contract, with the annotated calls exportable as a VEP-annotation table, a combined interpretation table, or an annotated VCF. The interface is a research and educational demonstrator, not a validated clinical tool.</p>
+<hr />
+<h2 id="results">Results</h2>
+<h3 id="faithfulness-leakage-free-the-headline-result">Faithfulness (leakage-free) — the headline result</h3>
+<p>We distinguish two things the faithfulness contract delivers: an <strong>empirical, falsifiable</strong> property of the retrieval arm that the gate did not impose, and a set of <strong>gate-enforced guarantees</strong> that hold by construction. We lead with the empirical result. With a populated evidence bundle, gpt-4o-mini emitted 106 citations across the 56-variant cohort, of which <strong>0 were absent from the evidence bundle</strong> — that is, the retrieval arm fabricated no evidence even before the gate ran (contrast the no-retrieval arm’s 46.4% fabrication rate, §3.2). The honest measured residual is citation <em>imprecision</em>: 20 of the 106 citations (18.9%) named only the source-category (“AlphaMissense”) rather than the specific variant-level identifier. This is the most informative faithfulness number we have, because it is the one behaviour the model got partly wrong and the gate then corrected: no item was missing from the bundle (so not fabrication), but the emitted token was less precise than the retrieved identifier.</p>
+<p>Given that pre-gate behaviour, the post-gate scorecard (Figure 1c) reports the guarantees the contract <strong>enforces by construction</strong>, not emergent properties the model discovered: the faithfulness gate enforces exact-identifier matching and forced abstention, so across the cohort the hallucinated-citation rate is 0.0 (0 of 46 variants that emitted citations), citation grounding is 1.0 (44/44), directional faithfulness is 1.0 (44/44; no assigned label contradicted the direction of its cited evidence), and abstention recall is 1.0 (10/10 no-evidence variants correctly abstained to VUS). A system that refuses to emit any non-retrieved identifier will score 0 fabrication and 1.0 grounding <em>by definition</em>; these numbers are therefore a statement about what the contract guarantees, and the 18.9% source-category imprecision above (reduced to 0% by the gate’s exact-identifier matching) is the corresponding measured residual. Two further evidence-bearing variants were also conservatively abstained, a conservatism we connect to the VUS over-resolution discussed in the Discussion. The grounding and directional denominators are 44 rather than 46 because, of the 46 variants emitting citations, 2 emitted only non-citable tokens with no resolvable retrieved identifier to check. In the Deterministic mode, citation faithfulness is 0% by construction: no LLM call is made for the classification, and all citable codes reference the open evidence source that fired them.</p>
+<p>Inter-mode agreement between the Generative and Deterministic modes was substantial on oncogenicity (Cohen’s κ = 0.713) and moderate on tier (κ = 0.417), consistent with the two modes differing mainly at tier boundaries rather than on the oncogenic/benign axis.</p>
+<h3 id="ablation-faithfulness-is-enforced-not-emergent">Ablation — faithfulness is enforced, not emergent</h3>
+<p>Removing retrieval did not merely degrade faithfulness; it eliminated it (Figure 2). The otherwise identical no-retrieval LLM fabricated citations on 26 of 56 variants (46.4%, 95% CI 33.9–58.9%) — emitting placeholder or invented identifiers such as fabricated PMIDs (“PMID: 12345678”) and ungrounded database tokens — whereas the retrieval system fabricated none (0%). Because the 95% CI for the no-retrieval fabrication rate excludes zero, this faithfulness gap is statistically robust, and it is the study’s strongest quantitative finding.</p>
+<p>Retrieval also suppressed confident parametric over-calling. In total, 12 of the 56 variants (21.4%) were called oncogenic or likely oncogenic by the no-retrieval model but reclassified to VUS by the retrieval system after reading variant-specific evidence. For example, EGFR E114K moved from Likely Oncogenic/Tier II without retrieval to VUS/Tier IV with it; PTEN R130* from Oncogenic/Tier I to VUS/Tier III; and TP53 P152L from Likely Oncogenic/Tier II to VUS/Tier IV. Many of the twelve are truncating, frameshift, or splice-site variants (for example APC R1450<em>, CDKN2A R58</em>, BRCA2 N1784Kfs<em>3) on which the parametric model defaulted to a confident driver call but the retrieval system, finding no variant-specific clinical evidence, abstained. We stress that 21.4% measures behavioural change, not correctness: a retrieval-grounded VUS is not guaranteed to be right for every one of the twelve, since some truncating variants in tumour-suppressor genes may be genuinely oncogenic. Whether each reclassification is an appropriate correction of over-calling or an over-conservative downgrade therefore awaits expert adjudication (see Discussion). The auditable property we claim is only that an over-confident parametric call is replaced by an evidence-grounded abstention. A </em>provisional<em>, evidence-grounded review (AI-assisted, and explicitly <strong>not signed by a board-certified molecular pathologist</strong>) of the three “beyond-rules” discordances — the subset where the rule calls a driver and the LLM abstains — found the rule to be the more defensible call on 2 of 3: PTEN R130</em> (a truncating variant the LLM over-abstained, where the VICC null criterion OVS1 would apply) and PIK3CA R88Q (an experimentally activating variant for which the retrieval snapshot held only predictive, not oncogenicity, evidence), while ESR1 E247K — a computational-prior-only over-call — favoured the LLM’s abstention. The direction of this provisional finding therefore suggests that several of the 12 over-call→VUS reclassifications are over-conservative abstentions rather than corrections, consistent with the VUS over-resolution weakness documented below; it is offered to orient a future expert panel, not as adjudicated correctness. Tier-level agreement between the no-retrieval and retrieval arms was correspondingly low (Cohen’s κ = 0.18), confirming that the two arms behave materially differently. In summary, retrieval eliminates citation hallucination and suppresses confident parametric over-calling; both are faithfulness and safety properties, not accuracy claims.</p>
+<figure>
+<img src="figures/fig2.png" alt="Faithfulness is enforced, not emergent" /><figcaption aria-hidden="true">Faithfulness is enforced, not emergent</figcaption>
+</figure>
+<p><strong>Figure 2. Faithfulness is enforced, not emergent (cohort, n = 56).</strong> (a) The no-retrieval LLM fabricated citations on 46.4% of variants (95% CI excludes zero) versus 0% with retrieval. (b) Of 56 candidate variants, 12 confident parametric over-calls were reclassified to evidence-grounded VUS by reading variant-specific evidence (correctness pending adjudication). (c) Contract guarantees (enforced) — citation grounding, directional faithfulness, and abstention recall — all 1.0. The 1.0 values are guarantees the gate enforces, not measured emergent outcomes; the measured, falsifiable finding is the panel-(a) contrast between the 46.4% pre-gate out-of-bundle/fabrication rate without retrieval and 0.00 with retrieval.</p>
+<h3 id="accuracy-on-the-external-gold-standard">Accuracy on the external gold standard</h3>
+<p>Consistent with the faithfulness-first framing, the generative arm’s result is reported first as a deliberately bounded, not-significantly-different claim; a separate <strong>deterministic</strong> VICC rule engine — <em>not the LLM</em> — then demonstrates that the same auditable framework need not trade accuracy for faithfulness.</p>
+<p><strong>Generative arm (the system whose contribution is faithfulness).</strong> On the balanced 70-variant expert gold standard, three-class accuracies were 0.557 for the Deterministic mode (95% CI 0.443–0.671), 0.586 for the no-retrieval LLM (0.471–0.700), and 0.600 for the Generative mode with retrieval (0.486–0.714); Figure 4a reports the corresponding confusion structure. The confidence intervals overlap heavily and the pairwise differences are not significant: the exact McNemar test gives p = 1.0 for retrieval versus no-retrieval (15 variants favouring retrieval, 14 favouring no-retrieval, of 29 discordant pairs) and p = 0.61 for retrieval versus rule (9 versus 6 of 15 discordant). For the generative arm we therefore claim only that its accuracy is <em>not significantly different</em> from the baselines (absence of evidence of a difference at n = 70, not evidence of equivalence), with no accuracy gain — its contribution is faithfulness. The retrieval arm did have the highest point estimate and the strongest oncogenic-class recall (0.79), but the hardest class for every method was VUS (recall 0.37), which the LLM tended to over-resolve toward an oncogenicity call. The seven oncogenic variants misclassified as VUS were thin-coverage rare variants — predominantly PTEN and EZH2 (5 of 7: PTEN R130Q, T131I, H123R, P204A and EZH2 R684C), plus BRAF G469A and EZH2 V626M (the latter with zero retrieved evidence) — carrying a mean of only 1.0 evidence item, versus 2.2 across all 70. Their misses therefore reflect evidence sparsity rather than reasoning failure, and they strengthen the abstention-is-correct narrative: with almost no variant-specific evidence the system honestly defaulted to VUS rather than guessing. Five-class accuracy was modest for all methods (0.357–0.457), consistent with the intrinsic difficulty of the five-class VICC task at this scale.</p>
+<p><strong>VeriVar’s rule arm (a citable VICC point-based implementation) — a deterministic rule engine, not the LLM, and not claimed as a novel classifier.</strong> Separately from the generative pipeline, this citable, open-data ClinGen/CGC/VICC point-based classifier (<code>src/classify/vicc_rules.py</code>) was evaluated against the Horak-70 gold standard. This arm fires deterministic guideline criteria over open evidence sources; it is included to show the auditable framework can be accuracy-competitive, and its 0.843 must not be attributed to the LLM system. OncoVI already maps each VICC criterion to its evidence source, so we do not claim a citable rule engine as itself novel. The classifier fires named criteria (OVS1, OS1–OS3, OM1–OM4, OP1–OP4, SBS1–SBS2, SBP1, SBVS1) over open evidence sources — cancerhotspots.org, exact-variant CIViC evidence (crediting only the queried substitution, not a neighbouring same-residue variant), UniProt functional domains, gnomAD population frequency via Ensembl VEP, MaveDB deep-mutational scanning, and AlphaMissense — emitting every fired criterion as a citable record (VICC code, points, supporting statement, data source). All cutoffs were anchored to assay-internal controls, not to the Horak labels.</p>
+<p>On Horak-70, the citable rule arm reached three-class accuracy <strong>0.843</strong> (95% bootstrap CI 0.757–0.929; specificity 0.973, sensitivity 0.697, AUROC 0.906; Figure 3), compared to 0.557 (CI 0.443–0.671) for the paper’s simplified Deterministic rule and 0.600 (CI 0.486–0.714) for the Generative mode; the rule-arm CI is wide at n = 70 and overlaps the OncoVI interval (below), so 0.843 is a point estimate with substantial uncertainty, not a precise figure. The incremental trajectory from 0.814 to 0.843 followed two precision improvements: (i) exact-variant CIViC matching — crediting only the queried substitution rather than any same-residue variant — raised specificity to 0.973 by eliminating neighbour-inheritance over-calls (e.g. PIK3CA H1047Q no longer inheriting H1047R credit); (ii) a lone-SBS2 guard — a single benign functional line without populational support is too weak for Likely Benign, keeping the classification at VUS — closed a further false-call gap. The remaining ten misses are honest VUS abstentions on EZH2, RB1, and FLT3 variants for which MaveDB hosts no deep-mutational-scanning data and cancerhotspots shows no statistical recurrence; this is an open-data gap, not a tunable parameter.</p>
+<p><strong>Head-to-head against OncoVI.</strong> OncoVI (Carta et al. [19]) is an open-source implementation of the full ClinGen/CGC/VICC oncogenicity guideline that publishes its per-variant predictions. We chose it as the comparator here because it is the strongest open, published deterministic engine for this exact VICC oncogenicity task, and because those released per-variant predictions are what make a paired, variant-matched (McNemar) head-to-head against VeriVar’s rule arm possible. We matched OncoVI’s own published per-variant predictions (<code>SOP_table_union_OncoVI_prediction.xlsx</code>) to the Horak gold by gene and protein change, scoring both engines on the <strong>69 shared variants</strong> (<code>scripts/run_oncovi_headtohead.py</code>; Figure 3a,c). Our engine reached accuracy 0.841 (95% CI 0.754–0.928) / specificity 0.972 / sensitivity 0.697; OncoVI reached 0.797 (95% CI 0.696–0.884) / 0.806 / 0.909, on the <strong>69 shared variants</strong> (OncoVI’s published full-93-variant accuracy is 0.80, a different set). Our engine’s accuracy is <strong>statistically indistinguishable from OncoVI’s</strong> (paired exact McNemar p = 0.66; 12 variants our-engine-only-correct versus 9 OncoVI-only-correct; overlapping CIs) while achieving <strong>markedly higher specificity (0.972 vs 0.806)</strong> and a categorically safer error profile. The error counts themselves are asymmetric: our engine made 9 errors among the 21 disagreements, every one an honest abstention on a true-oncogenic variant (Oncogenic→VUS), whereas OncoVI made 12 errors, of which 9 were confident over-calls on gold-VUS variants — 6 called Oncogenic (KRAS S65I, PIK3CA H1065Y/E418K, RB1 S567L, EZH2 S695L/Y731H) and 3 called Benign — plus 3 miss-type errors. Our engine made no over-call at all. The errors are not clinically equivalent: a false “oncogenic” judgement can prompt inappropriate targeted therapy, whereas an honest VUS abstention is a declared uncertainty. At statistically indistinguishable accuracy against the strongest open engine, an abstention-first engine that almost never false-calls oncogenic is the safer instrument — though “safer” here is conditioned on over-treatment being costlier than under-detection in a draft-and-review workflow, which is plausible but not universal: each abstained true-oncogenic variant is a patient who may miss an available targeted therapy. We note this comparison scores OncoVI on Horak-70, OncoVI’s own home set, so it favours neither engine but should be read as a head-to-head on identical variants rather than an independent benchmark.</p>
+<p><strong>CancerVar (cross-axis comparison — read as an error-profile contrast, not an accuracy benchmark).</strong> A critical caveat governs this comparison and must precede any number: CancerVar (Li et al. [6]) emits AMP/ASCO/CAP clinical-<em>actionability</em> tiers (Tier I–IV), not VICC <em>oncogenicity</em> labels. To score its predictions against our VICC oncogenicity gold at all, we mapped tiers (Tier_I/II→Oncogenic, Tier_III→VUS, Tier_IV→Benign); this is a cross-axis exercise — CancerVar is being asked an actionability question and graded on an oncogenicity key — so a direct accuracy comparison is not apples-to-apples and we do not present it as one (<code>scripts/run_cancervar_headtohead.py</code>, <code>cancervar_headtohead.json</code>). The defensible signal is not an accuracy verdict but the <em>error profile</em> on the 70 shared variants. CancerVar never emitted a Tier_IV (benign) call on this set — its three-class predictions were 54 Oncogenic and 16 VUS, no Benign — so against the oncogenicity gold its oncogenic <em>sensitivity</em> was 1.0 (95% CI 1.0–1.0) but its oncogenic <em>specificity</em> was 0.432 (95% CI 0.278–0.600), versus our rule arm’s 0.973 (95% CI 0.914–1.0). The error decomposition is correspondingly one-sided: our rule arm made 10 misses and a single over-call, whereas CancerVar made 21 over-calls (gold-VUS or gold-Benign variants raised to a Tier I/II actionable call) and zero misses. This asymmetry is by design, not deficiency: CancerVar is an actionability classifier built to avoid missing a potentially actionable variant, so a high-sensitivity / low-specificity profile under an oncogenicity re-grading is the expected behaviour of a tool optimised for a different question. Read only as such, the comparison reinforces the same point as the OncoVI head-to-head — the rule arm’s conservative, high-specificity, over-call-averse error profile now stands against two published tools, OncoVI on the native VICC axis and CancerVar on the actionability axis with the stated mapping caveat — without claiming any oncogenicity-accuracy superiority. The 3-class accuracy figures that result from the tier mapping (0.843 ours, 95% CI 0.757–0.929, vs 0.614, 95% CI 0.500–0.729; paired exact McNemar p = 0.011) are reported for completeness only and are an artifact of the cross-axis mismatch, not a measure of which tool better answers its own question.</p>
+<p><strong>Independent generalisation (oncogenic detection).</strong> On an approximately balanced ClinVar somatic-oncogenicity holdout (n = 458; 155 Oncogenic / 180 Benign / 123 Uncertain, independent of Horak; Figure 3b), the engine reproduced its Horak discrimination: oncogenic-versus-rest AUROC 0.902 (Horak AUROC 0.906), specificity 0.967, sensitivity 0.537. We report this as validation of <strong>oncogenic detection specifically, not full three-class classification</strong>: like any VICC engine, calling Benign requires population-frequency evidence (SBVS1/SBS1), so a rare benign missense correctly abstains to VUS rather than Benign — on this set the engine predicts no Benign label (three-class benign recall 0, balanced three-class accuracy 0.505), and the 0.902 AUROC must be read as oncogenic-versus-rest discrimination, not balanced three-class skill. Equal out-of-distribution AUROC confirms that threshold-free oncogenic ranking generalises; the lower operating-point sensitivity reflects 34 of 57 missed oncogenic variants stalling within two points of the oncogenic threshold, with 93.9% of true positives carrying a strong citable code — the engine asserts “oncogenic” only when auditable strong evidence fires.</p>
+<p><strong>Sensitivity dial.</strong> Two levers — residue-level hotspot credit (OM3, the faithful Horak definition) and OS1 from ClinVar oncogenicity labels — dial sensitivity from 0.697 to 0.758 while maintaining accuracy 0.843 and specificity 0.919 (Figure 3d, Table 2). We report the full dial rather than the most favourable operating point; closing the remaining gap to OncoVI’s 0.909 oncogenic recall (on the 69 shared variants) would require OncoKB-licensed curation not available as open data. The conservative default is the principled headline: at equal three-class accuracy, an abstention-first engine with 9 honest VUS calls is safer than one with 9 over-calls.</p>
+<figure>
+<img src="figures/fig3.png" alt="Citable VICC rule arm: head-to-head, ROC with out-of-distribution overlay, error asymmetry, sensitivity dial" /><figcaption aria-hidden="true">Citable VICC rule arm: head-to-head, ROC with out-of-distribution overlay, error asymmetry, sensitivity dial</figcaption>
+</figure>
+<p><strong>Figure 3. VeriVar’s rule arm (a citable VICC point-based implementation).</strong> (a) Head-to-head versus OncoVI on 69 shared variants: accuracy parity (0.841 vs 0.797, McNemar p = 0.66) at markedly higher specificity (0.972 vs 0.806). (b) Oncogenic-versus-rest ROC on Horak-70 (AUROC 0.906) with the class-balanced ClinVar out-of-distribution operating point (AUROC 0.902); the marked point is the conservative default (specificity 0.973). (c) Error-type asymmetry among the 21 OncoVI disagreements: VeriVar’s rule arm makes 9 errors, all honest VUS abstentions on true-oncogenic variants and no over-call, versus OncoVI’s 12 errors of which 9 are confident over-calls on gold-VUS (6 →Oncogenic, 3 →Benign) plus 3 miss-type errors — asymmetric in both count and clinical risk (counts read from <code>oncovi_headtohead.json</code>). (d) Sensitivity dial across four operating points (0.697 to 0.758), holding three-class accuracy at 0.843.</p>
+<p><strong>Table 2. Sensitivity dial — citable VICC rule arm vs OncoVI (Horak-70 or 69 shared variants, three-class).</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Operating point</th>
+<th>acc 3-class</th>
+<th>sensitivity</th>
+<th>specificity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Conservative (default)</td>
+<td>0.843 [0.757–0.929]</td>
+<td>0.697</td>
+<td>0.973</td>
+</tr>
+<tr class="even">
+<td>2. + residue-level OM3</td>
+<td>0.843</td>
+<td>0.727</td>
+<td>0.946</td>
+</tr>
+<tr class="odd">
+<td>3. + OS1 from ClinVar</td>
+<td>0.829</td>
+<td>0.727</td>
+<td>0.919</td>
+</tr>
+<tr class="even">
+<td>4. + both (most aggressive)</td>
+<td><strong>0.843</strong></td>
+<td><strong>0.758</strong></td>
+<td>0.919</td>
+</tr>
+<tr class="odd">
+<td><em>OncoVI (reference, 69 shared)</em></td>
+<td><em>0.797 [0.696–0.884]</em></td>
+<td><em>0.909</em></td>
+<td><em>0.806</em></td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="figures/fig4.png" alt="Three-class classification accuracy and dual-mode discordance" /><figcaption aria-hidden="true">Three-class classification accuracy and dual-mode discordance</figcaption>
+</figure>
+<p><strong>Figure 4. Three-class classification and dual-mode discordance.</strong> (a) Horak three-class confusion for the generative arm (accuracy 0.600, oncogenic recall 0.79; VUS the hardest class; not significantly different from either baseline, McNemar p = 1.0 versus no-retrieval, 0.61 versus rule). (b) Generative–Deterministic discordances by type (31 total; 26 one-step, 5 gross). (c) Cross-cancer consistency: oncogenicity stable across all four multi-cancer variants; only KRAS G12V’s tier shifts with context (Tier I to II).</p>
+<h3 id="leakage-controls-and-robustness">Leakage controls and robustness</h3>
+<p>Because any apparent retrieval benefit could in principle reflect leakage — the corpus containing recent answer-stating evidence, or the model recalling famous variants — we ran several controls (Supplementary Figure S1 and Table 1).</p>
+<p><strong>Temporal corpus holdout.</strong> Restricting the retrieval corpus to literature published before successive cutoffs did not degrade three-class accuracy: the full corpus (988 evidence items) gave 0.586; pre-2018 (885 items) 0.629; pre-2015 (666 items) 0.600; and pre-2012 (459 items, fewer than half, a decade before the 2022 gold standard) gave 0.643. The temporal sweep is a separate run that re-embeds and re-indexes the time-filtered corpus, so its full-corpus point (0.586) differs marginally from the primary pipeline’s retrieval accuracy (0.600); the two are not the same run, and both lie well within the ±0.11-wide full-corpus confidence interval. All these point estimates sit within that interval, so the small upward drift is not significant and is not claimed as an improvement; the correct reading is that performance does not depend on retrieving recent answer-stating evidence — the corpus-leakage channel is not driving results. The no-retrieval parametric floor (0.586) is plotted alongside as a reference.</p>
+<p><strong>Leave-own-evidence-out (LOVO).</strong> Removing each variant’s own curated CIViC evidence before retrieval — the strongest corpus-leakage control — left three-class accuracy statistically unchanged (0.614 versus 0.600 full; McNemar p = 1.0). Performance does not depend on retrieving the variant’s own answer-evidence.</p>
+<p><strong>Stronger-model replication.</strong> Replicating with gpt-4o raised the point estimates (three-class accuracy 0.70 [95% CI 0.60–0.80], κ 0.51, versus gpt-4o-mini 0.60/0.33), but the difference was not significant (McNemar p = 0.21, n = 70). Notably, gpt-4o reached the same oncogenic recall as the primary configuration (0.79); its higher point accuracy came entirely from the VUS/benign axis (more correct VUS and benign calls), so the shared 0.79 recall is not a source of any gpt-4o advantage. The findings are thus not an artifact of the smaller model and do not worsen with a stronger one — not that gpt-4o is better.</p>
+<p><strong>Embedding ablation.</strong> Recall@5 of the held-out own-evidence was similar across embedders (PubMedBERT 0.243, MiniLM 0.229, OpenAI 0.229), so the embedding model is not a sensitive factor — at most a small domain-model edge.</p>
+<p>These controls quantify the corpus-leakage channel and show it is not driving results. They do not control the LLM’s own parametric leakage, which remains uncontrolled and is quantified only by the no-retrieval floor. The temporal sweep, leave-own-evidence-out, embedding ablation, and stronger-model replication are shown together in Supplementary Figure S1.</p>
+<h3 id="dual-mode-discordance-as-an-analytical-signal">Dual-mode discordance as an analytical signal</h3>
+<p>Across the 56-variant cohort, oncogenicity concordance between the Generative and Deterministic modes was 0.786 (95% CI 0.679–0.893) and tier concordance 0.571 (0.446–0.696), with 31 discordant cases. The disagreement was overwhelmingly fine-grained: 26 of 31 discordances were adjacent (one step), and only 5 were gross (Figure 4b). By type, 17 were tier-boundary disagreements, 6 oncogenic-confidence (Oncogenic versus Likely Oncogenic), 3 “beyond-rules” corrections (the rule over-calls a driver while the LLM reads the evidence to a non-driver: PIK3CA R88Q, PTEN R130*, ESR1 E247K), 2 benign-label, 2 verifier downgrades, and 1 LLM over-call. Discordance concentrated in TP53 (all seven TP53 variants discordant) and was a property of tier boundaries rather than of rare variants (hotspot discordance 0.54 versus non-hotspot 0.56).</p>
+<p>A representative context-dependence case illustrates why this signal is interpretable. KRAS G12V received a stable oncogenicity call across cancers but a context-dependent tier — Tier I in colorectal adenocarcinoma versus Tier II in pancreatic adenocarcinoma — reflecting genuine differences in the strength of clinical actionability evidence between tumour types, exactly the distinction a flat rule misses (Figure 4c). Across all four multi-cancer variants, oncogenicity was stable while only KRAS G12V’s tier varied. Supporting analyses found AlphaMissense–LLM oncogenicity agreement of 0.944 (17/18), a dense-arm recall-lift that recovered CIViC evidence exact matching missed (decisive for PIK3CA H1047R), and a net-positive verifier (it changed 10 tiers, 6 toward and 4 away from the rule, raising tier concordance from 0.518 to 0.571), with voting confidence behaving as a calibrated signal once the verifier-cap confound was removed.</p>
+<p>The discordance breakdown and the cross-cancer consistency case are shown in Figure 4b,c.</p>
+<h3 id="table-1.-accuracy-and-leakage-control-summary-horak-gold-standard-n-70-three-class.">Table 1. Accuracy and leakage-control summary (Horak gold standard, n = 70, three-class).</h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Configuration</th>
+<th>3-class accuracy</th>
+<th>κ (3-class)</th>
+<th>Oncogenic recall</th>
+<th>Test vs LLM+RAG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Citable VICC rule arm (open data; <em>deterministic, not the LLM</em>)</td>
+<td>0.843 [0.757–0.929] [Horak-70]</td>
+<td>—</td>
+<td>0.697</td>
+<td>vs OncoVI: McNemar p = 0.66 (n = 69)</td>
+</tr>
+<tr class="even">
+<td>Deterministic (simplified rule)</td>
+<td>0.557 [0.443–0.671]</td>
+<td>0.274</td>
+<td>—</td>
+<td>McNemar p = 0.61</td>
+</tr>
+<tr class="odd">
+<td>Generative, no-retrieval (parametric floor)</td>
+<td>0.586 [0.471–0.700]</td>
+<td>0.254</td>
+<td>—</td>
+<td>McNemar p = 1.0</td>
+</tr>
+<tr class="even">
+<td><strong>Generative + retrieval (primary, gpt-4o-mini)</strong></td>
+<td><strong>0.600 [0.486–0.714]</strong></td>
+<td><strong>0.332</strong></td>
+<td><strong>0.79</strong></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Generative + retrieval, corpus &lt; 2012 (temporal sweep)</td>
+<td>0.643 †</td>
+<td>0.413</td>
+<td>0.85</td>
+<td>within CI</td>
+</tr>
+<tr class="even">
+<td>Generative + retrieval, LOVO (own evidence removed)</td>
+<td>0.614 [0.500–0.729]</td>
+<td>0.366</td>
+<td>0.82</td>
+<td>McNemar p = 1.0</td>
+</tr>
+<tr class="odd">
+<td>Generative + retrieval, gpt-4o</td>
+<td>0.700 [0.600–0.800]</td>
+<td>0.506</td>
+<td>0.79</td>
+<td>McNemar p = 0.21</td>
+</tr>
+</tbody>
+</table>
+<p>All differences from the primary configuration are non-significant; intervals are nonparametric bootstrap 95% CIs (the LOVO and gpt-4o CIs were recomputed from per-variant three-class correctness with the same bootstrap as the primary rows). No configuration establishes an accuracy improvement. † The temporal-sweep rows are descriptive single runs in which the retrieval <em>corpus</em>, not the test set, varies; no bootstrap CI or McNemar test is computed for them, and the full temporal sweep is reported above and in Supplementary Figure S1.</p>
+<hr />
+<h2 id="discussion">Discussion</h2>
+<h3 id="principal-findings-and-clinical-implications">Principal findings and clinical implications</h3>
+<p>This study makes one robust claim and two carefully bounded ones. The robust claim is faithfulness: with retrieval, the system fabricated no citations and grounded, directionally respected, and abstained on every checkable case, whereas an otherwise identical no-retrieval LLM fabricated citations on 46.4% of variants. For clinical decision support this matters more than a marginal accuracy gain. In a molecular tumour board, the unit of trust is the individual assertion and its source: a classification a clinician can audit line by line is usable even when uncertain, whereas a confident classification supported by an invented PMID is unusable regardless of whether it happens to be right. The faithfulness contract converts this requirement into a guarantee — the system cites only retrieved identifiers and abstains when evidence is absent — making its outputs auditable by construction rather than by inspection after the fact. The two bounded claims follow the same safety logic. First, retrieval reclassified 21.4% of confidently over-called variants to evidence-grounded VUS, replacing an unaccountable driver call with an honest abstention. Second, accuracy must be read per arm rather than as a single verdict: the generative arm’s accuracy is not significantly different from either baseline (faithfulness, not accuracy, is its contribution), whereas the separate deterministic VICC rule arm — <em>not the LLM</em> — reaches 0.843 (CI 0.757–0.929) and is statistically indistinguishable from the strongest open engine, OncoVI, at substantially higher specificity (0.973 vs 0.806) and a safer error profile. The clinical reading is that grounding buys auditability and a reduction in confident over-calling without degrading accuracy in the generative arm, while the rule arm shows the same auditable framework can also reach accuracy comparable to the open state-of-the-art — a favourable trade for a setting where an unaccountable error is worse than an acknowledged uncertainty. This is where faithfulness connects to clinical purpose: an auditable draft whose every assertion is traceable to a primary source, and which abstains when evidence is absent rather than inventing it, is precisely the artifact a human expert can verify line by line and then safely act on — faithfulness is the mechanism, and a trustworthy, expert-verifiable decision-support draft is the purpose it serves. We are careful, however, to keep that purpose as motivation rather than result: this study measures citation faithfulness, auditability, and classification accuracy, not clinical utility — there are no patient outcomes, no diagnostic or treatment endpoints, and no prospective deployment here, and the system is for research and education only. This “safer” reading is conditioned on over-treatment being costlier than under-detection in a draft-and-review workflow, which is plausible but not universal: each abstained true-oncogenic variant is a patient who may miss an available targeted therapy, so the abstention-first stance is a deliberate operating choice rather than a universal optimum.</p>
+<h3 id="comparison-with-prior-work">Comparison with prior work</h3>
+<p>The concept of retrieval faithfulness is not ours: ALCE [12] formalised automatic citation precision and recall, RAGAS and the medical citation line of MedCite [20] automated faithfulness and verifiable-citation scoring, and deterministic guardrails with abstention are established in general clinical retrieval-augmented generation. Our contribution is the application and the guarantee, on three counts. First, we report faithfulness — hallucinated-citation rate, citation grounding, a <em>directional</em> faithfulness metric, and abstention recall — as a primary axis evaluated <em>alongside</em> accuracy for the two standardised classification tasks that drive oncology reports (ClinGen/CGC/VICC oncogenicity and AMP/ASCO/CAP tier), a subfield whose established tools [6,7,8,19] report accuracy or concordance and never hallucination or abstention. Second, we make faithfulness a worst-case guarantee <em>by construction</em> — zero out-of-bundle citations and forced abstention on absent or contradictory evidence — rather than the measured-and-mitigated property prior frameworks provide. Third, we show this behaviour is not a leakage artifact through temporal-holdout and leave-own-evidence-out controls that no prior LLM-for-variants study reports. We explicitly do not claim a citable rule engine as itself novel — OncoVI [19] already maps each VICC criterion to its evidence source — only the faithfulness reporting and the by-construction guarantee layered on the two-mode design.</p>
+<p>Relative to the established rule-based ecosystem [6,7,8], the distinguishing contribution is on-demand, evidence-grounded, natural-language justification with honest abstention, not improved tier accuracy; our Deterministic mode is a simplified member of that ecosystem rather than a competitor. Relative to recent LLM-for-variants work [14,15], the distinguishing contributions are the leakage-free faithfulness audit — in the spirit of ALCE [12] but on database identifiers rather than passages — and the leakage controls. Our observation that the no-retrieval model over-calls variants toward higher confidence independently reproduces the over-classification tendency reported by Lin et al. [14], and shows that retrieval grounding suppresses it.</p>
+<p>Two concurrent works are the closest neighbours and warrant explicit differentiation. CIViC-Fact [16] builds a CIViC-derived benchmark linking cancer-variant claims to sentence-level supporting or refuting evidence and fine-tunes a verifier for fact-checking; our task is different — generative two-axis classification (VICC oncogenicity and AMP/ASCO/CAP tier) under a citation-grounding contract, evaluated with leakage controls — but its faithfulness-for-variants framing is adjacent, and evaluating our system on it is a natural extension. Precision Grounding [17] likewise grounds a variant LLM in curated databases to cut hallucination, but targets free-text summarisation rather than standardised classification. Among rule-based comparators, OncoVI [19] — the open-source full ClinGen/CGC/VICC implementation used as our head-to-head comparator above (§3.3) — reaches 80% on the 93-variant guideline gold set, a stronger deterministic baseline than our deliberately simplified rule mode, and the obvious target for extending the head-to-head in a future benchmark. Relative to autonomous clinical agents such as Ferber et al. [18], which reach high decision accuracy but cite guidelines correctly only 75.5% of the time, our contribution is precisely the faithfulness guarantee rather than agentic breadth. Our attribution metric follows the medical citation-evaluation line of MedCite [20], and our leakage controls are motivated by the benchmark-contamination literature [21]. Figure 5 places these approaches as a capability landscape — citation grounding, honest abstention, auditable criteria, whether faithfulness is reported, whether the evaluation is leakage-controlled, and the measured accuracy / specificity / citation accuracy — making explicit that only this work reports faithfulness alongside a leakage-controlled evaluation, while remaining accuracy-competitive.</p>
+<figure>
+<img src="figures/fig5.png" alt="Capability landscape of variant-interpretation approaches" /><figcaption aria-hidden="true">Capability landscape of variant-interpretation approaches</figcaption>
+</figure>
+<p><strong>Figure 5. Capability landscape.</strong> Rows are approaches (this work, OncoVI, CancerVar, OncoKB, CIViC-Fact, an autonomous clinical agent, a raw no-retrieval LLM); columns are capabilities. Only this work reports faithfulness AND a leakage-controlled evaluation (shaded columns). Most numeric cells are measured — three-class accuracy and specificity (each taken from its own source study), the human-judged citation-accuracy score in the comparator row (OncoVI/Ferber et al. [18] 0.755), and the raw-LLM citation-accuracy 0.536, which is this work’s own no-retrieval arm (1 − 0.464 fabrication rate, §3.2, <code>stats_report.json</code>). The specificity column reports oncogenic-versus-rest specificity. <em>The <strong>CancerVar</strong> row (marked <code>*</code>) is deliberately left without a three-class-accuracy cell: CancerVar emits AMP/ASCO/CAP actionability tiers, not VICC oncogenicity, so its accuracy under the tier→oncogenicity mapping (§3.6) would be a cross-axis artifact rather than a comparable accuracy; only its measured oncogenic-versus-rest specificity (0.432, re-graded on the VICC gold) is shown, to make the over-call-prone error profile visible without implying an oncogenicity-accuracy comparison.</em> The other exception is the <strong>citation-accuracy cell for this work, marked <code>1.00 (enforced)</code> (dashed teal): it is a by-construction contract guarantee imposed by the faithfulness gate, not a measured precision, and is therefore not comparable to the human-judged citation-accuracy scores in the other rows.</strong> Checks/crosses mark capability presence. Positions are not a head-to-head on identical inputs.</p>
+<h3 id="from-faithful-classifications-to-a-decision-support-interface">From faithful classifications to a decision-support interface</h3>
+<p>Faithfulness is most useful when it reaches the person making the decision. The dashboard operationalises the contract at the point of use (Supplementary Figure S3): every interpretation is shown beside its primary sources as clickable links, so a user can verify each assertion in a single step, and the grounded chat refuses to answer beyond the retrieved evidence rather than improvising. Two real cases illustrate the contrast. For <strong>BRAF V600E in cutaneous melanoma</strong>, both modes return Oncogenic / Tier I and each claim links to its CIViC source (EID1398, EID1409, the BRIM-3 vemurafenib evidence); asked whether the variant is actionable, the chat answers from that bundle with the identifiers attached. For the truncating variant <strong>APC R1450*</strong> in colorectal adenocarcinoma, for which no variant-specific evidence is retrieved, both modes report VUS and the chat answers “I cannot answer from the available evidence” rather than over-calling a driver — the same grounded-versus-abstain behaviour quantified in Sections 3.1–3.2, now visible at the point of use. In a molecular tumour board, this is the behaviour that separates a usable assistant from a hazardous one: an auditable, source-linked answer, or an explicit acknowledgement that the evidence is insufficient, supports the human decision instead of substituting an unaccountable judgement for it. We stress that the interface is a demonstrator for research and education; it is not validated for clinical deployment, and any clinical use would require the prospective evaluation outlined below.</p>
+<p>The dashboard view is shown in Supplementary Figure S3.</p>
+<h3 id="toward-a-powered-accuracy-evaluation">Toward a powered accuracy evaluation</h3>
+<p>We did not claim an accuracy advantage because, at n = 70, none of the observed differences (retrieval versus no-retrieval, +0.014; versus rule, +0.043) is statistically significant. Establishing such a claim is a question of study design, not rewording, and would require the following, which we specify so that it can be executed directly. (i) <strong>A pre-specified effect of interest and a power analysis.</strong> For a paired McNemar comparison with a discordant-pair fraction near 0.4, detecting an absolute three-class accuracy gain of about 0.05 at 80% power needs on the order of several hundred variants, and a 0.03 gain roughly a thousand; the target n should be fixed from this calculation rather than from data availability. (ii) <strong>A larger, class-balanced, leakage-controlled benchmark.</strong> Assemble at least several hundred expert-classified somatic variants stratified across genes and all five VICC classes, drawn from sources independent of the retrieval corpus and post-dating the model’s training cutoff, so that corpus and parametric leakage are neutralised in the same design rather than in separate controls. (iii) <strong>Ordinal, per-class endpoints.</strong> Report per-class precision, recall, and F1 with full confusion matrices, and adopt macro-F1 and quadratic-weighted κ as primary endpoints, which suit the ordinal five-class task better than flat accuracy. (iv) <strong>Variance characterisation.</strong> Run at least five seeds and temperature settings and voting sizes n ∈ {1, 3, 5}, reporting mean ± SD; the present single-run estimates cannot support a significance claim in either direction. (v) <strong>A pre-registered analysis.</strong> Pre-register a non-inferiority margin and, only if it is exceeded, a superiority test, with multiplicity control across the two classification axes. (vi) <strong>Expert adjudication.</strong> Convert the 21.4% over-call suppression and the beyond-rules corrections from behavioural signals into correctness claims by having a blinded panel of board-certified molecular pathologists label each VUS reclassification as an appropriate correction or an over-conservative downgrade. Only with these elements in place would a defensible accuracy claim — and, separately, a validated clinical-utility claim — be warranted.</p>
+<p>Concretely, three additions would deliver this richer, leakage-controlled evaluation. First, <strong>extend the Horak-70 / OncoVI head-to-head</strong> from 69 shared variants (completed in Section 3.6: statistically indistinguishable accuracy at p = 0.66, higher specificity 0.972 vs 0.806) to the full 93-variant ClinGen/CGC/VICC guideline set, and add a second independent benchmarker — the evaluation in Section 3.6 is already a head-to-head on identical variants, but on Horak-70 (OncoVI’s home set); an independent benchmark would be the stronger test. Second, <strong>add a clean temporal holdout</strong> from ClinVar’s somatic-oncogenicity submissions (opened 2024), which post-date most pretraining corpora and carry native VICC labels, neutralising the corpus and parametric leakage channels in one design. Third, <strong>cross-evaluate faithfulness</strong> on the CIViC-Fact benchmark [16] (CC0, committable) to test whether our citation grounding transfers to an independent attribution task. An orthogonal functional check — correlating oncogenicity calls with deep-mutational-scanning fitness scores from MaveDB and ProteinGym — would add construct validity without requiring further expert labels. The evaluation should also span <strong>multiple model families</strong> — including open-weights models such as Llama 3.1 and Mixtral alongside the proprietary GPT series, as in prior LLM-for-variants benchmarks [14] — to establish that the faithfulness architecture and its accuracy behaviour generalise beyond one vendor rather than reflecting a single model’s idiosyncrasies; cross-model agreement could additionally serve as a calibrated confidence and abstention signal. These are scoped as future work; none is run here.</p>
+<p>Beyond evaluation, these elements point to a concrete method that advances on autonomous clinical agents precisely where they are weakest. Such agents drive tool use with a single strong model; as Ferber et al. [18] report, open-weights models (Llama-3 70B, Mixtral) are unreliable in that driver role and their citation accuracy is human-judged at 75.5%. A faithfulness-first alternative inverts this design. Rather than letting open models <em>drive</em> retrieval, several models — gpt-4o-mini and gpt-4o alongside open-weights Llama 3.1 and Mixtral — are run as independent <em>raters over a single fixed retrieved evidence set</em>, where tool-calling reliability is irrelevant, and cross-model agreement on both the call and the cited evidence identifiers becomes a calibrated confidence that routes disagreement to abstention. Coupling this with a claim-level attribution check — verifying by entailment that each asserted claim is supported by its cited passage — replaces a single human-judged citation score with an automatic, reproducible citation-faithfulness metric; a risk–coverage curve under the temporal and leave-own-evidence-out holdouts then quantifies the safety gained per unit of abstention. This package reuses the exact open models that fail as agent drivers, but repurposes them as a faithfulness signal, and is runnable offline.</p>
+<p>A preliminary proof-of-concept supports this framing. Running three open-weights models — Llama 3.1 8B, Qwen 2.5 3B, and Llama 3.2 3B — as independent raters over the same 56-variant cohort evidence bundles (no NLI gate; <code>scripts/run_multimodel_faithfulness.py</code>) yielded mean cross-model agreement 0.929, with 44 of 56 variants (78.6%) unanimous across all three models, the remaining 12 showing partial disagreement, and zero variants in complete disagreement (Supplementary Figure S2). These two counts (44 unanimous, 12 partial) describe agreement; the abstention count is separate. Applying the ensemble abstention rule — abstain when the cross-model agreement score falls below 0.66 — abstained on 14 of 56 variants (a 25.0% abstention rate), which is not identical to the 12 partial-disagreement cases because the threshold abstains on the most divided variants rather than on every variant with any disagreement. The abstained variants concentrated on borderline cases (ALK missense, PTEN truncating) where abstention is independently appropriate, and the 25.0% ensemble abstention rate is comparable to gpt-4o-mini’s 32.1% VUS rate on the same cohort. These numbers establish that small open models, repurposed as raters over a fixed evidence bundle, produce consistent calls on well-evidenced variants and meaningful calibrated uncertainty on genuinely ambiguous ones — exactly the signal needed to convert cross-model disagreement into a reliable abstention trigger. The full multi-model faithfulness evaluation (larger rater models, NLI attribution gate, and risk–coverage curve on a gold-labelled holdout) is deferred to future work as the models required exceed the capacity of the development environment.</p>
+<h3 id="limitations">Limitations</h3>
+<p>Several limitations bound the present claims. For the generative arm, absolute accuracy is modest — five-class accuracy 0.36–0.46 and three-class near 0.60 — reflecting the intrinsic difficulty of the five-class VICC task at this scale, and that arm’s contribution is faithfulness rather than accuracy (the citable rule arm carries the accuracy result, at 0.843 three-class). VUS calibration is a genuine weakness: the LLM over-resolves uncertain variants toward an oncogenicity call (VUS recall 0.37). Rare-variant coverage is thin: the oncogenic-to-VUS misses are variants with few evidence items, so the honest-abstention behaviour correctly fires but at the cost of recall, motivating broader evidence sources and stronger weighting of foundation-model priors. LLM parametric leakage is not controlled by any of our experiments; the temporal and LOVO controls govern only the retrieval-corpus channel, and the no-retrieval floor is the sole quantification of the parametric channel. The study is single-sample, at the gene/protein-change level, with a 70-variant external set and a single primary model (gpt-4o-mini); the gpt-4o replication mitigates but does not remove single-model dependence. The Deterministic baseline is simplified — direction-aware, and therefore not a strawman, but not guideline-certified. The CancerVar comparison (§3.6) is cross-axis — CancerVar outputs AMP/ASCO/CAP actionability tiers that we re-graded onto the VICC oncogenicity gold — so it should be read as an error-profile contrast (specificity and over-call asymmetry), not as an oncogenicity-accuracy benchmark, and the resulting accuracy gap is largely an artifact of that mismatch. A third tool, the Cancer Genome Interpreter (CGI), was also considered as a near-axis (driver/oncogenicity) comparator, but obtaining its per-variant predictions requires a registration-gated authentication token that was not available within this study’s scope, so CGI was deferred; extending the head-to-head to CGI is left as future work. Finally, cohort selection caps AlphaMissense-only and no-evidence variants per cancer, so 56 of 398 unique variants were classified for cost control. These constraints, with the non-significant generative-arm accuracy comparisons, are why we frame the generative arm as faithful and not significantly different (absence of evidence of a difference at n = 70, not evidence of equivalence), rather than more accurate, while presenting the citable rule arm as the accuracy-competitive, higher-specificity member of the same auditable framework.</p>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>We present a faithful-by-construction somatic variant interpreter and a leakage-aware evaluation showing that citation-grounded retrieval guarantees auditability and suppresses confident parametric over-calling while leaving the generative arm’s classification accuracy not significantly different from the baselines at the current scale. For clinical decision support, faithfulness and auditability are not secondary to accuracy but prerequisites for it to be trusted: a system that may be uncertain but is never unaccountable is safer in a molecular tumour board than one that is occasionally right for reasons no one can check. The route to an accuracy claim is a larger, powered, leakage-controlled benchmark with expert adjudication, whose design we have specified, and which is the natural next step toward prospective clinical validation. All code and data snapshots are released for reproduction.</p>
+<hr />
+<h2 id="supplementary-figures">Supplementary Figures</h2>
+<figure>
+<img src="figures/figS1_robustness.png" alt="Leakage controls and robustness" /><figcaption aria-hidden="true">Leakage controls and robustness</figcaption>
+</figure>
+<p><strong>Supplementary Figure S1. Leakage controls and robustness (Horak gold, n = 70).</strong> (a) Temporal corpus holdout: three-class accuracy under successively older retrieval corpora versus the no-retrieval parametric floor; restricting to pre-2012 literature does not degrade accuracy. Note: the temporal-sweep full-corpus value (0.586) is a separate run that re-embeds and re-indexes the time-filtered corpus, so it is not the same run as — and should not be read against — Table 1’s primary retrieval accuracy (0.600); both lie well within the primary configuration’s 95% CI. (b) Leave-own-evidence-out: removing each variant’s own curated CIViC evidence leaves accuracy unchanged (0.614 vs 0.600; McNemar p = 1.0). (c) Embedding ablation: own-evidence recall@5 is similar across embedders. (d) Stronger-model replication: gpt-4o versus the primary gpt-4o-mini (0.70 vs 0.60; McNemar p = 0.21, not significant). Differences are within noise — leakage-controlled robustness, not an accuracy gain.</p>
+<figure>
+<img src="figures/figS2_multimodel.png" alt="Multi-model faithfulness ensemble proof-of-concept" /><figcaption aria-hidden="true">Multi-model faithfulness ensemble proof-of-concept</figcaption>
+</figure>
+<p><strong>Supplementary Figure S2. Multi-model faithfulness ensemble (proof-of-concept).</strong> Three open-weights models (Llama 3.1 8B, Qwen 2.5 3B, Llama 3.2 3B) run as independent raters over the same 56-variant evidence bundles. (a) Cross-model agreement distribution (mean 0.929). (b) Summary: 44/56 unanimous and 12 partial-disagreement (agreement counts), zero complete disagreements; the separate ensemble abstention rule (agreement &lt; 0.66) abstained on 14/56 (25%). (c) Per-model oncogenicity-call distribution versus the ensemble. Preliminary; the full evaluation (NLI attribution gate, larger raters, risk–coverage) is future work.</p>
+<figure>
+<img src="figures/F6_dashboard.png" alt="Decision-support dashboard rendered from real cohort data" /><figcaption aria-hidden="true">Decision-support dashboard rendered from real cohort data</figcaption>
+</figure>
+<p><strong>Supplementary Figure S3. The VeriVar decision-support dashboard (representative variant-detail view, rendered from real cohort data).</strong> For BRAF V600E in cutaneous melanoma the Generative and Deterministic modes agree (Oncogenic, Tier I), the citable VICC rule arm scores it Oncogenic from public records, and every statement links to its CIViC source (e.g. EID1398, EID1409); the faithfulness-gate audit shows citations validated with none fabricated, and the grounded chat answers only from the retrieved bundle. For the truncating variant APC R1450* (no variant-specific evidence) all arms report VUS and the gate enforces abstention (“I cannot answer from the available evidence”) rather than over-calling a driver. Evidence identifiers and external-database links (OncoKB, ClinVar, cBioPortal, COSMIC, DGIdb, ClinicalTrials.gov) are clickable in the live application.</p>
+<h3 id="supplementary-table-s1.-per-gene-accuracy-and-abstention-horak-gold-standard-n-70-three-class.">Supplementary Table S1. Per-gene accuracy and abstention (Horak gold standard, n = 70, three-class).</h3>
+<p>Computed from <code>horak_results.json</code> (generative arm) and <code>horak_vicc.json</code> (citable VICC rule arm). The generative arm’s misses and high VUS-abstention rates concentrate in the thin-coverage genes EZH2 and PTEN, making the rare-variant weakness auditable; the deterministic VICC rule arm carries the accuracy result. The six PTEN generative misses (0.00 accuracy, n = 6; VUS rate 0.67) are not random error but the over-abstention pattern: thin-coverage variants the generative arm defaults to VUS rather than calling, the same VUS-over-resolution weakness discussed in the Limitations — the citable rule arm recovers four of them (0.67).</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Gene</th>
+<th>n</th>
+<th>Generative-arm 3-class accuracy</th>
+<th>Generative-arm VUS rate</th>
+<th>VICC rule-arm 3-class accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BRAF</td>
+<td>7</td>
+<td>0.43</td>
+<td>0.14</td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<td>EZH2</td>
+<td>12</td>
+<td>0.58</td>
+<td>0.42</td>
+<td>0.67</td>
+</tr>
+<tr class="odd">
+<td>FLT3</td>
+<td>9</td>
+<td>0.67</td>
+<td>0.00</td>
+<td>0.67</td>
+</tr>
+<tr class="even">
+<td>IDH1</td>
+<td>8</td>
+<td>0.88</td>
+<td>0.25</td>
+<td>1.00</td>
+</tr>
+<tr class="odd">
+<td>KRAS</td>
+<td>4</td>
+<td>1.00</td>
+<td>0.50</td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<td>PIK3CA</td>
+<td>9</td>
+<td>0.44</td>
+<td>0.22</td>
+<td>1.00</td>
+</tr>
+<tr class="odd">
+<td>PTEN</td>
+<td>6</td>
+<td>0.00</td>
+<td>0.67</td>
+<td>0.67</td>
+</tr>
+<tr class="even">
+<td>RB1</td>
+<td>6</td>
+<td>0.67</td>
+<td>0.50</td>
+<td>0.83</td>
+</tr>
+<tr class="odd">
+<td>TP53</td>
+<td>9</td>
+<td>0.78</td>
+<td>0.11</td>
+<td>0.89</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-and-code-availability">Data and Code Availability</h2>
+<p>All source code, reproduction scripts, committed data snapshots, and figure-generation code are available at the project repository ([repository URL — to be released on posting]); every result, figure, and table is reproducible from the committed data using the scripts there. The system runs offline from committed snapshots, with network access confined to the data-fetch scripts. Large or licence-restricted artifacts — the persistent Chroma dense index, the full AlphaMissense TSV (CC BY-NC-SA), and the Horak supplementary table — are not committed and are reproduced via the repository scripts; Horak expert labels are not redistributed. Secrets are referenced by environment-variable name only (<code>OPENAI_API_KEY</code>); no keys, proprietary logic, or patient data are included. Licensing is respected throughout: CIViC is CC0, ClinicalTrials.gov and ClinVar are public, the TCGA open-access tier is cited, AlphaMissense is CC BY-NC-SA (not committed), and Horak labels are not redistributed.</p>
+<p><em>Disclaimer: this system is for research and educational use only and is not validated for clinical decision-making; all inputs derive from public TCGA cohorts and knowledge bases.</em></p>
+<hr />
+<h2 id="references">References</h2>
+<ol type="1">
+<li><p>Horak P, Griffith M, Danos AM, et al. Standards for the classification of pathogenicity of somatic variants in cancer (oncogenicity): Joint recommendations of Clinical Genome Resource (ClinGen), Cancer Genomics Consortium (CGC), and Variant Interpretation for Cancer Consortium (VICC). <em>Genet Med</em> 2022;24(5):986–998. doi:10.1016/j.gim.2022.01.001</p></li>
+<li><p>Li MM, Datto M, Duncavage EJ, et al. Standards and Guidelines for the Interpretation and Reporting of Sequence Variants in Cancer: A Joint Consensus Recommendation of the Association for Molecular Pathology, American Society of Clinical Oncology, and College of American Pathologists. <em>J Mol Diagn</em> 2017;19(1):4–23. doi:10.1016/j.jmoldx.2016.10.002</p></li>
+<li><p>Chakravarty D, Gao J, Phillips S, et al. OncoKB: A Precision Oncology Knowledge Base. <em>JCO Precis Oncol</em> 2017;1:1–16. doi:10.1200/PO.17.00011</p></li>
+<li><p>Tate JG, Bamford S, Jubb HC, et al. COSMIC: the Catalogue Of Somatic Mutations In Cancer. <em>Nucleic Acids Res</em> 2019;47(D1):D941–D947. doi:10.1093/nar/gky1015</p></li>
+<li><p>Griffith M, Spies NC, Krysiak K, et al. CIViC is a community knowledgebase for expert crowdsourcing the clinical interpretation of variants in cancer. <em>Nat Genet</em> 2017;49(2):170–174. doi:10.1038/ng.3774</p></li>
+<li><p>Li Q, Ren Z, Cao K, Li MM, Wang K, Zhou Y. CancerVar: An artificial intelligence–empowered platform for clinical interpretation of somatic mutations in cancer. <em>Sci Adv</em> 2022;8(18):eabj1624. doi:10.1126/sciadv.abj1624</p></li>
+<li><p>Tamborero D, Rubio-Perez C, Deu-Pons J, et al. Cancer Genome Interpreter annotates the biological and clinical relevance of tumor alterations. <em>Genome Med</em> 2018;10(1):25. doi:10.1186/s13073-018-0531-8</p></li>
+<li><p>Nakken S, Fournous G, Vodák D, et al. Personal Cancer Genome Reporter: variant interpretation report for precision oncology. <em>Bioinformatics</em> 2018;34(10):1778–1780. doi:10.1093/bioinformatics/btx817</p></li>
+<li><p>Cheng J, Novati G, Pan J, et al. Accurate proteome-wide missense variant effect prediction with AlphaMissense. <em>Science</em> 2023;381(6664):eadg7492. doi:10.1126/science.adg7492</p></li>
+<li><p>Brandes N, Goldman G, Wang CH, et al. Genome-wide prediction of disease variant effects with a deep protein language model. <em>Nat Genet</em> 2023;55(9):1512–1522. doi:10.1038/s41588-023-01465-0</p></li>
+<li><p>Frazer J, Notin P, Dias M, et al. Disease variant prediction with deep generative models of evolutionary data. <em>Nature</em> 2021;599(7883):91–95. doi:10.1038/s41586-021-04043-8</p></li>
+<li><p>Gao T, Yen H, Yu J, et al. Enabling Large Language Models to Generate Text with Citations. <em>Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)</em> 2023:6465–6488. doi:10.18653/v1/2023.emnlp-main.398</p></li>
+<li><p>Xiong G, Jin Q, Lu Z, et al. Benchmarking Retrieval-Augmented Generation for Medicine. <em>Findings of the Association for Computational Linguistics: ACL 2024</em> 2024:6233–6251. doi:10.18653/v1/2024.findings-acl.372</p></li>
+<li><p>Lin K-H, Kao T-H, Wang L-C, et al. Benchmarking large language models GPT-4o, Llama 3.1, and Qwen 2.5 for cancer genetic variant classification. <em>npj Precis Oncol</em> 2025;9(1):141. doi:10.1038/s41698-025-00935-4</p></li>
+<li><p>Lu S, Cosgun E. Boosting GPT models for genomics analysis: generating trusted genetic variant annotations and interpretations through RAG and Fine-tuning. <em>Bioinform Adv</em> 2025;5(1):vbaf019. doi:10.1093/bioadv/vbaf019</p></li>
+<li><p>Reisle C, Grisdale CJ, Krysiak K, et al. Evaluating Language Models for Biomedical Fact-Checking: A Benchmark Dataset for Cancer Variant Interpretation Verification (CIViC-Fact). <em>bioRxiv</em> 2025;2025.09.10.675443. doi:10.1101/2025.09.10.675443</p></li>
+<li><p>Du X, Nagy A, Oates MF, et al. Precision Grounding: Augmenting Large Language Models with Evidence-Based Databases for Trustworthy Genetic Variant Summarization. <em>medRxiv</em> 2025;2025.06.09.25329279. doi:10.1101/2025.06.09.25329279</p></li>
+<li><p>Ferber D, et al. Development and validation of an autonomous artificial intelligence agent for clinical decision-making in oncology. <em>Nat Cancer</em> 2025;6(8):1337-1349. doi:10.1038/s43018-025-00991-6</p></li>
+<li><p>Carta MG, Tögel L, Hölsken A, et al. Oncogenicity Variant Interpreter (OncoVI): oncogenicity guidelines implementation to support somatic variants interpretation in precision oncology. <em>medRxiv</em> 2024;2024.10.10.24315072. doi:10.1101/2024.10.10.24315072</p></li>
+<li><p>Wang X, Tan M, Jin Q, et al. MedCite: Can Language Models Generate Verifiable Text for Medicine? <em>Findings of the Association for Computational Linguistics: ACL 2025</em> 2025:18891–18913.</p></li>
+<li><p>Xu C, Guan S, Greene D, et al. Benchmark Data Contamination of Large Language Models: A Survey. <em>arXiv</em> 2024;arXiv:2406.04244.</p></li>
+</ol>
+<h3 id="bibtex">BibTeX</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Horak2022</span>, <span class="st">title</span>={Standards for the classification of pathogenicity of somatic variants in cancer (oncogenicity): Joint recommendations of Clinical Genome Resource (ClinGen), Cancer Genomics Consortium (CGC), and Variant Interpretation for Cancer Consortium (VICC)}, <span class="st">author</span>={Horak, Peter and Griffith, Malachi and Danos, Arpad M. and Pitel, Beth A. and Madhavan, Subha and Liu, Xuelu and Chow, Cynthia and Williams, Heather and Carmody, Leigh and Barrow-Laing, Lisa and Rieke, Damian and Kreutzfeldt, Simon and Stenzinger, Albrecht and Tamborero, David and Benary, Manuela and Rajagopal, Padma Sheila and Ida, Cristiane M. and Lesmana, Harry and Satgunaseelan, Laveniya and Merker, Jason D. and Tolstorukov, Michael Y. and Campregher, Paulo Vidal and Warner, Jeremy L. and Rao, Shruti and Natesan, Maya and Shen, Haolin and Venstrom, Jeffrey and Roy, Somak and Tao, Kayoko and Kanagal-Shamanna, Rashmi and Xu, Xinjie and Ritter, Deborah I. and Pagel, Kym and Krysiak, Kilannin and Dubuc, Adrian and Akkari, Yassmine M. and Li, Xuan Shirley and Lee, Jennifer and King, Ian and Raca, Gordana and Wagner, Alex H. and Li, Marylin M. and Plon, Sharon E. and Kulkarni, Shashikant and Griffith, Obi L. and Chakravarty, Debyani and Sonkin, Dmitriy}, <span class="st">journal</span>={Genetics in Medicine}, <span class="st">volume</span>={24}, <span class="st">number</span>={5}, <span class="st">pages</span>={986--998}, <span class="st">year</span>={2022}, <span class="st">doi</span>={10.1016/j.gim.2022.01.001} }</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Li2017</span>, <span class="st">title</span>={Standards and Guidelines for the Interpretation and Reporting of Sequence Variants in Cancer: A Joint Consensus Recommendation of the Association for Molecular Pathology, American Society of Clinical Oncology, and College of American Pathologists}, <span class="st">author</span>={Li, Marilyn M. and Datto, Michael and Duncavage, Eric J. and Kulkarni, Shashikant and Lindeman, Neal I. and Roy, Somak and Tsimberidou, Apostolia M. and Vnencak-Jones, Cindy L. and Wolff, Daynna J. and Younes, Anas and Nikiforova, Marina N.}, <span class="st">journal</span>={The Journal of Molecular Diagnostics}, <span class="st">volume</span>={19}, <span class="st">number</span>={1}, <span class="st">pages</span>={4--23}, <span class="st">year</span>={2017}, <span class="st">doi</span>={10.1016/j.jmoldx.2016.10.002} }</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Chakravarty2017</span>, <span class="st">title</span>={OncoKB: A Precision Oncology Knowledge Base}, <span class="st">author</span>={Chakravarty, Debyani and Gao, Jianjiong and Phillips, Sarah and Kundra, Ritika and Zhang, Hongxin and Wang, Jiaojiao and others}, <span class="st">journal</span>={JCO Precision Oncology}, <span class="st">volume</span>={1}, <span class="st">pages</span>={1--16}, <span class="st">year</span>={2017}, <span class="st">doi</span>={10.1200/PO.17.00011} }</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Tate2019</span>, <span class="st">title</span>={COSMIC: the Catalogue Of Somatic Mutations In Cancer}, <span class="st">author</span>={Tate, John G. and Bamford, Sally and Jubb, Harry C. and Sondka, Zbyslaw and Beare, David M. and Bindal, Nidhi and others}, <span class="st">journal</span>={Nucleic Acids Research}, <span class="st">volume</span>={47}, <span class="st">number</span>={D1}, <span class="st">pages</span>={D941--D947}, <span class="st">year</span>={2019}, <span class="st">doi</span>={10.1093/nar/gky1015} }</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Griffith2017</span>, <span class="st">title</span>={CIViC is a community knowledgebase for expert crowdsourcing the clinical interpretation of variants in cancer}, <span class="st">author</span>={Griffith, Malachi and Spies, Nicholas C. and Krysiak, Kilannin and McMichael, Joshua F. and Coffman, Adam C. and Danos, Arpad M. and others}, <span class="st">journal</span>={Nature Genetics}, <span class="st">volume</span>={49}, <span class="st">number</span>={2}, <span class="st">pages</span>={170--174}, <span class="st">year</span>={2017}, <span class="st">doi</span>={10.1038/ng.3774} }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Li2022CancerVar</span>, <span class="st">title</span>={CancerVar: An artificial intelligence--empowered platform for clinical interpretation of somatic mutations in cancer}, <span class="st">author</span>={Li, Quan and Ren, Zilin and Cao, Kajia and Li, Marilyn M. and Wang, Kai and Zhou, Yunyun}, <span class="st">journal</span>={Science Advances}, <span class="st">volume</span>={8}, <span class="st">number</span>={18}, <span class="st">pages</span>={eabj1624}, <span class="st">year</span>={2022}, <span class="st">doi</span>={10.1126/sciadv.abj1624} }</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Tamborero2018</span>, <span class="st">title</span>={Cancer Genome Interpreter annotates the biological and clinical relevance of tumor alterations}, <span class="st">author</span>={Tamborero, David and Rubio-Perez, Carlota and Deu-Pons, Jordi and Schroeder, Michael P. and Vivancos, Ana and Rovira, Ana and Tusquets, Ignasi and Albanell, Joan and Rodon, Jordi and Tabernero, Josep and de Torres, Carmen and Dienstmann, Rodrigo and Gonzalez-Perez, Abel and Lopez-Bigas, Nuria}, <span class="st">journal</span>={Genome Medicine}, <span class="st">volume</span>={10}, <span class="st">number</span>={1}, <span class="st">pages</span>={25}, <span class="st">year</span>={2018}, <span class="st">doi</span>={10.1186/s13073-018-0531-8} }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Nakken2018</span>, <span class="st">title</span>={Personal Cancer Genome Reporter: variant interpretation report for precision oncology}, <span class="st">author</span>={Nakken, Sigve and Fournous, Ghislain and Vod{<span class="ch">\&#39;</span>a}k, Daniel and Aasheim, Lars Birger and Myklebost, Ola and Hovig, Eivind}, <span class="st">journal</span>={Bioinformatics}, <span class="st">volume</span>={34}, <span class="st">number</span>={10}, <span class="st">pages</span>={1778--1780}, <span class="st">year</span>={2018}, <span class="st">doi</span>={10.1093/bioinformatics/btx817} }</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Cheng2023</span>, <span class="st">title</span>={Accurate proteome-wide missense variant effect prediction with AlphaMissense}, <span class="st">author</span>={Cheng, Jun and Novati, Guido and Pan, Joshua and Bycroft, Clare and {<span class="ch">\v</span>{Z}}emgulyt{<span class="ch">\.</span>e}, Akvil{<span class="ch">\.</span>e} and Applebaum, Taylor and Pritzel, Alexander and Wong, Lai Hong and Zielinski, Michal and Sargeant, Tobias and Schneider, Rosalia G. and Senior, Andrew W. and Jumper, John and Hassabis, Demis and Kohli, Pushmeet and Avsec, {<span class="ch">\v</span>{Z}}iga}, <span class="st">journal</span>={Science}, <span class="st">volume</span>={381}, <span class="st">number</span>={6664}, <span class="st">pages</span>={eadg7492}, <span class="st">year</span>={2023}, <span class="st">doi</span>={10.1126/science.adg7492} }</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Brandes2023</span>, <span class="st">title</span>={Genome-wide prediction of disease variant effects with a deep protein language model}, <span class="st">author</span>={Brandes, Nadav and Goldman, Grant and Wang, Charlotte H. and Ye, Chun Jimmie and Ntranos, Vasilis}, <span class="st">journal</span>={Nature Genetics}, <span class="st">volume</span>={55}, <span class="st">number</span>={9}, <span class="st">pages</span>={1512--1522}, <span class="st">year</span>={2023}, <span class="st">doi</span>={10.1038/s41588-023-01465-0} }</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Frazer2021</span>, <span class="st">title</span>={Disease variant prediction with deep generative models of evolutionary data}, <span class="st">author</span>={Frazer, Jonathan and Notin, Pascal and Dias, Mafalda and Gomez, Aidan and Min, Joseph K. and Brock, Kelly and Gal, Yarin and Marks, Debora S.}, <span class="st">journal</span>={Nature}, <span class="st">volume</span>={599}, <span class="st">number</span>={7883}, <span class="st">pages</span>={91--95}, <span class="st">year</span>={2021}, <span class="st">doi</span>={10.1038/s41586-021-04043-8} }</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="va">@inproceedings</span>{<span class="ot">Gao2023</span>, <span class="st">title</span>={Enabling Large Language Models to Generate Text with Citations}, <span class="st">author</span>={Gao, Tianyu and Yen, Howard and Yu, Jiatong and Chen, Danqi}, <span class="st">booktitle</span>={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing}, <span class="st">pages</span>={6465--6488}, <span class="st">year</span>={2023}, <span class="st">doi</span>={10.18653/v1/2023.emnlp-main.398} }</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="va">@inproceedings</span>{<span class="ot">Xiong2024</span>, <span class="st">title</span>={Benchmarking Retrieval-Augmented Generation for Medicine}, <span class="st">author</span>={Xiong, Guangzhi and Jin, Qiao and Lu, Zhiyong and Zhang, Aidong}, <span class="st">booktitle</span>={Findings of the Association for Computational Linguistics: ACL 2024}, <span class="st">pages</span>={6233--6251}, <span class="st">year</span>={2024}, <span class="st">doi</span>={10.18653/v1/2024.findings-acl.372} }</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Lin2025</span>, <span class="st">title</span>={Benchmarking large language models GPT-4o, Llama 3.1, and Qwen 2.5 for cancer genetic variant classification}, <span class="st">author</span>={Lin, Kuan-Hsun and Kao, Tzu-Hang and Wang, Lei-Chi and Kuo, Chen-Tsung and Chen, Paul Chih-Hsueh and Chu, Yuan-Chia and Yeh, Yi-Chen}, <span class="st">journal</span>={npj Precision Oncology}, <span class="st">volume</span>={9}, <span class="st">number</span>={1}, <span class="st">pages</span>={141}, <span class="st">year</span>={2025}, <span class="st">doi</span>={10.1038/s41698-025-00935-4} }</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">Lu2025</span>, <span class="st">title</span>={Boosting GPT models for genomics analysis: generating trusted genetic variant annotations and interpretations through RAG and Fine-tuning}, <span class="st">author</span>={Lu, Shuangjia and Cosgun, Erdal}, <span class="st">journal</span>={Bioinformatics Advances}, <span class="st">volume</span>={5}, <span class="st">number</span>={1}, <span class="st">pages</span>={vbaf019}, <span class="st">year</span>={2025}, <span class="st">doi</span>={10.1093/bioadv/vbaf019} }</span></code></pre></div>
+</body>
+</html>

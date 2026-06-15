@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<!-- Representative dashboard view rendered from committed real data
-     (data/outputs/cohort_interpretation.json): BRAF V600E (grounded) and
-     APC R1450* (honest abstention). Screenshot -> F6_dashboard.png. -->
+<!-- VeriVar — representative dashboard view rendered from committed real data
+     (data/outputs/cohort_interpretation.json): BRAF V600E (grounded, 3 arms:
+     generative LLM, deterministic rule, VICC point-based oncogenicity) and
+     APC R1450* (honest abstention). Faithfulness-gate audit badges show
+     citation validation + enforced abstention. Screenshot -> F6_dashboard.png. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -14,7 +16,10 @@
   html,body{margin:0;padding:0;background:var(--bg);
     font-family:Helvetica,Arial,"Helvetica Neue",sans-serif;color:var(--ink);}
   .app{width:1160px;margin:0 auto;padding:26px 30px 34px;}
-  h1{font-size:24px;margin:0 0 2px;font-weight:700;}
+  h1{font-size:26px;margin:0 0 2px;font-weight:700;display:flex;align-items:center;gap:10px;}
+  h1 svg{width:34px;height:34px;display:block;}
+  .wordmark{font-weight:800;letter-spacing:-.01em;}
+  .wordmark .veri{color:#1B2E5E;} .wordmark .var{color:#2EB8A6;}
   .sub{color:var(--muted);font-size:13px;margin-bottom:16px;}
   .tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:20px;}
   .tab{padding:8px 2px;font-size:14px;color:var(--muted);}
@@ -56,12 +61,90 @@
   .rule{height:1px;background:var(--line);margin:26px 0;border:0;}
   .seclabel{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
     color:var(--muted);margin:0 0 6px;}
+  /* VICC point-based oncogenicity arm */
+  .card.vicc{flex:1;}
+  .mhdr.vicc{color:var(--verm);}
+  .crit{font-size:12.5px;line-height:1.55;margin-top:8px;}
+  .crit .row{display:flex;gap:8px;align-items:baseline;margin-bottom:4px;}
+  .crit .code{font-family:'Courier New',monospace;font-weight:700;font-size:11.5px;
+    background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--ink);
+    flex:0 0 auto;}
+  .crit .pts{font-weight:700;color:var(--green);flex:0 0 auto;}
+  .crit .pts.neg{color:var(--verm);}
+  .crit .desc{color:#2a333d;}
+  .crit .src{color:var(--muted);font-size:11px;}
+  .crit .total{margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);
+    font-size:12.5px;font-weight:700;}
+  .crit .total .arrow{color:var(--muted);font-weight:400;}
+  /* faithfulness-gate audit badges */
+  .gate{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .gatebadge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;
+    border-radius:11px;padding:3px 11px;}
+  .gatebadge.ok{background:#e7f7f1;border:1px solid #b6e6d4;color:#0a7a57;}
+  .gatebadge.abst{background:#fdeee7;border:1px solid #f6d3c1;color:#a8420c;}
+  .gatebadge .tick{font-size:12px;}
 </style>
 </head>
 <body>
 <div class="app">
-  <h1>🧬 Dual-Mode Somatic Variant Interpretation</h1>
-  <div class="sub">Model: gpt-4o-mini · citation-grounded retrieval · research/education only — not for clinical use</div>
+  <h1>
+    <svg viewBox="0 0 512 512" role="img" aria-label="VeriVar icon" xmlns="http://www.w3.org/2000/svg">
+      <!-- VeriVar master colour icon (v3) — embedded from docs/branding/verivar_icon.svg
+           so this figure matches the logo applied in the live dashboard. -->
+      <defs>
+        <linearGradient id="tealGrad" x1="322" y1="196" x2="314" y2="440" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#3DD6C0"/><stop offset="100%" stop-color="#1E9485"/>
+        </linearGradient>
+        <linearGradient id="gemGrad" x1="268" y1="318" x2="268" y2="382" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#4ECFC0"/><stop offset="60%" stop-color="#2EB8A6"/><stop offset="100%" stop-color="#8FAEBB"/>
+        </linearGradient>
+        <clipPath id="darkVClip"><polygon points="56,60 150,60 214,308 268,60 362,60 214,348"/></clipPath>
+      </defs>
+      <g id="dark-v">
+        <polygon points="56,60 150,60 214,308 268,60 362,60 214,348" fill="#1B2E5E"/>
+        <line x1="58" y1="63" x2="148" y2="63" stroke="#2D4A8A" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+        <line x1="270" y1="63" x2="360" y2="63" stroke="#2D4A8A" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+        <line x1="150" y1="62" x2="216" y2="310" stroke="#2A4480" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+        <line x1="266" y1="62" x2="216" y2="310" stroke="#2A4480" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+        <g clip-path="url(#darkVClip)">
+          <rect x="73" y="72" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.18"/>
+          <rect x="91" y="72" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.14"/>
+          <rect x="109" y="72" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.10"/>
+          <rect x="78" y="91" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.28"/>
+          <rect x="96" y="91" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.34"/>
+          <rect x="114" y="91" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.22"/>
+          <rect x="83" y="110" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.48"/>
+          <rect x="101" y="110" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.42"/>
+          <rect x="119" y="110" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.36"/>
+          <rect x="88" y="129" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.62"/>
+          <rect x="106" y="129" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.68"/>
+          <rect x="124" y="129" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.55"/>
+          <rect x="93" y="148" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.82"/>
+          <rect x="111" y="148" width="10" height="10" rx="1.5" fill="#C8D6E0" opacity="0.76"/>
+          <rect x="129" y="148" width="10" height="10" rx="1.5" fill="#5ED8CA" opacity="0.70"/>
+        </g>
+      </g>
+      <g id="teal-v">
+        <polygon points="186,444 242,444 322,234 402,444 458,444 322,192" fill="url(#tealGrad)"/>
+        <line x1="242" y1="442" x2="322" y2="236" stroke="#5ED8CA" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+        <line x1="402" y1="442" x2="322" y2="236" stroke="#5ED8CA" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+        <polygon points="322,196 314,218 330,218" fill="#FFFFFF" opacity="0.30"/>
+      </g>
+      <g id="gem">
+        <ellipse cx="268" cy="370" rx="32" ry="8" fill="#0C1F3F" opacity="0.25"/>
+        <polygon points="298,350 283,376 253,376 238,350 253,324 283,324" fill="url(#gemGrad)" stroke="#1B2E5E" stroke-width="2"/>
+        <polygon points="253,324 283,324 276.5,335.5 259.5,335.5" fill="#FFFFFF" opacity="0.40"/>
+        <polygon points="238,350 253,324 259.5,335.5 251,350" fill="#FFFFFF" opacity="0.15"/>
+        <polygon points="298,350 283,324 276.5,335.5 285,350" fill="#0C1F3F" opacity="0.20"/>
+        <polygon points="238,350 253,376 259.5,364.5 251,350" fill="#0C1F3F" opacity="0.12"/>
+        <polygon points="285,350 276.5,364.7 259.5,364.7 251,350 259.5,335.3 276.5,335.3" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity="0.50"/>
+        <text x="268" y="356" font-family="'Courier New', Courier, monospace" font-size="15" font-weight="700"
+              fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle" letter-spacing="-0.5" opacity="0.92">&lt;/&gt;</text>
+      </g>
+    </svg>
+    <span class="wordmark"><span class="veri">Veri</span><span class="var">Var</span></span>
+  </h1>
+  <div class="sub">Faithful, citation-grounded somatic variant interpretation · Model: gpt-4o-mini · research/education only — not for clinical use</div>
   <div class="tabs">
     <div class="tab">Overview</div>
     <div class="tab">Variant explorer</div>
@@ -95,6 +178,28 @@
         combinations further enhance efficacy (<a href="#">CIViC:EID6178</a>, <a href="#">CIViC:EID6938</a>).</div>
       <div class="cites">cites: 4 retrieved identifiers</div>
     </div>
+    <div class="card vicc">
+      <div class="mhdr vicc">VICC oncogenicity · point-based</div>
+      <span class="pill onc">Oncogenic</span><span class="tier">13 points · ≥10 threshold</span>
+      <div class="crit">
+        <div class="row"><span class="code">OVS1</span><span class="pts">+8</span>
+          <span class="desc">activating hotspot in known oncogene
+          <span class="src">(cancerhotspots, COSMIC)</span></span></div>
+        <div class="row"><span class="code">OS3</span><span class="pts">+4</span>
+          <span class="desc">well-established recurrent hotspot residue
+          <span class="src">(cancerhotspots ≥50 samples)</span></span></div>
+        <div class="row"><span class="code">OP1</span><span class="pts">+1</span>
+          <span class="desc">AlphaMissense predicts pathogenic
+          <span class="src">(score 0.99)</span></span></div>
+        <div class="total">Σ = 13 → Oncogenic <span class="arrow">(auditable per-criterion arm)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate">
+    <span class="gatebadge ok"><span class="tick">✓</span>citations validated · 0 fabricated</span>
+    <span class="gatebadge ok"><span class="tick">✓</span>2/2 assertions grounded in retrieved bundle</span>
+    <span class="gatebadge ok"><span class="tick">✓</span>VICC criteria sourced to public records</span>
   </div>
 
   <div class="sect">
@@ -145,6 +250,22 @@
         druggability does not confer actionability. Rule abstains to VUS.</div>
       <div class="cites">cites: none</div>
     </div>
+    <div class="card vicc">
+      <div class="mhdr vicc">VICC oncogenicity · point-based</div>
+      <span class="pill vus">No call</span><span class="tier">no scored criteria</span>
+      <div class="crit">
+        <div class="row"><span class="code">SBVS1/OVS1</span><span class="pts neg">n/a</span>
+          <span class="desc">no variant-specific population, hotspot, or
+          functional record fired</span></div>
+        <div class="total">Σ = 0 → insufficient evidence
+          <span class="arrow">(gate enforces abstention)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate">
+    <span class="gatebadge ok"><span class="tick">✓</span>citations validated · 0 fabricated</span>
+    <span class="gatebadge abst"><span class="tick">⛔</span>gate: no variant-specific evidence → abstained</span>
   </div>
 
   <div class="chat">

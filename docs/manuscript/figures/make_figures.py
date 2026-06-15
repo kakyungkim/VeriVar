@@ -59,7 +59,7 @@ plt.rcParams.update({
 })
 
 # --- shared visual grammar (same colour = same method in EVERY figure) ---
-NAVY = "#1B3A5B"      # "Ours" / VeriVar primary
+NAVY = "#1B3A5B"      # VeriVar primary
 TEAL = "#2A9D8F"      # contract / operating-point / faithful accent
 VERM = "#D55E00"      # OncoVI / no-retrieval (Okabe-Ito vermillion)
 SKY = "#56B4E9"       # OncoKB / comparator
@@ -74,7 +74,7 @@ MUT = "#5f6368"
 T_NAVY, T_GREEN, T_AMBER, T_PUR = "#dbe6f0", "#d6efe5", "#fbe7c6", "#ecdce8"
 
 METHOD = {
-    "Ours": dict(color=NAVY, hatch=None),
+    "VeriVar": dict(color=NAVY, hatch=None),
     "OncoVI": dict(color=VERM, hatch="///"),
     "OncoKB": dict(color=SKY, hatch=".."),
     "raw-LLM": dict(color=GREY, hatch="xx"),
@@ -169,7 +169,7 @@ def fig1():
     _box(axS, 0.35, 0.165, 0.30, 0.115,
          "Deterministic\nrule assigns label;\nLLM writes rationale", T_PUR, PURPLE, fs=6.4)
     _box(axS, 0.69, 0.165, 0.30, 0.115,
-         "VICC point rule\n(deterministic, not LLM)\n3-class acc 0.843", T_GREEN, TEAL, fs=6.2, fw="bold")
+         "VeriVar (rule arm)\nVICC point-based; not LLM\n3-class acc 0.843", T_GREEN, TEAL, fs=6.0, fw="bold")
     for cx, sx in [(0.52, 0.16), (0.69, 0.50), (0.84, 0.84)]:
         _arrow(axS, cx, 0.345, sx, 0.282)
     _arrow(axS, 0.16, 0.165, 0.42, 0.120)
@@ -178,8 +178,6 @@ def fig1():
     _box(axS, 0.12, 0.020, 0.76, 0.090,
          "Three-class call\nVICC oncogenicity + AMP/ASCO/CAP tier", GREY_F, GREY_E,
          fs=6.6, fw="bold")
-    axS.text(0.985, 0.90, "0.843 is the deterministic VICC rule arm\n(benchmarked vs OncoVI), not the LLM",
-             fontsize=5.6, color=VERM, ha="right", va="center", style="italic", linespacing=1.1)
     plabel(axS, "a", x=0.0, y=0.99)
 
     # --- 1b retrieval-arm summary ---
@@ -225,10 +223,17 @@ def fig1():
                  va="center", ha="right" if val > 0.5 else "left", fontsize=6,
                  fontweight="bold", color="white" if val > 0.5 else col, zorder=3)
         axB.text(1.03, y, frac, va="center", ha="left", fontsize=5.6, color=MUT)
+    # flag the empirical, falsifiable result (0.00 hallucination) vs enforced 1.0 rows
+    y_hall = ys[0]
+    axB.annotate("measured (cf. Fig 2a)",
+                 xy=(0.06, y_hall), xytext=(0.30, y_hall - 0.02),
+                 fontsize=5.0, color=VERM, va="center", ha="left", linespacing=1.05,
+                 arrowprops=dict(arrowstyle="-|>", color=VERM, lw=0.6))
     axB.set_yticks(ys); axB.set_yticklabels([r[0] for r in rows], fontsize=6.8)
     axB.set_xlim(0, 1.0); axB.set_xticks([0, 0.5, 1.0]); axB.set_xlabel("rate", fontsize=6.5)
     axB.tick_params(axis="y", length=0)
-    axB.set_title("Citation faithfulness (cohort, n=56)", fontsize=7.0, loc="left", pad=4)
+    axB.set_title("Contract guarantees (enforced by construction, n=56)",
+                  fontsize=7.0, loc="left", pad=4)
     plabel(axB, "c", x=-0.14, y=1.10)
     save(fig, "fig1")
 
@@ -296,7 +301,7 @@ def fig2():
     axC.set_xticks(xs); axC.set_xticklabels([b[0] for b in beh], fontsize=6)
     axC.set_ylim(0, 1.08); axC.set_yticks([0, 0.5, 1.0])
     axC.set_ylabel("rate", fontsize=6.4); ygrid(axC)
-    axC.set_title("Contract behaviours", fontsize=6.8); plabel(axC, "c")
+    axC.set_title("Contract guarantees (enforced)", fontsize=6.8); plabel(axC, "c")
     save(fig, "fig2")
 
 
@@ -321,7 +326,7 @@ def fig3():
     x = np.arange(len(mets)); w = 0.36
     ov = [hh["ours"][k] for _, k in mets]
     on = [hh["oncovi"][k] for _, k in mets]
-    axA.bar(x - w / 2, ov, w, color=NAVY, edgecolor="white", linewidth=0.5, label="Ours (VICC)")
+    axA.bar(x - w / 2, ov, w, color=NAVY, edgecolor="white", linewidth=0.5, label="VeriVar (rule arm)")
     axA.bar(x + w / 2, on, w, color=VERM, hatch="///", edgecolor="white", linewidth=0.5,
             label="OncoVI")
     for xi, v in zip(x - w / 2, ov):
@@ -370,18 +375,65 @@ def fig3():
     axB.legend(loc="lower right", framealpha=0, fontsize=5.2, handlelength=1.4)
     axB.set_title("Discrimination + out-of-distribution", fontsize=6.6); plabel(axB, "b")
 
-    # 3c error-type asymmetry (dumbbell-ish diverging)
-    axC.barh(1, -9, color=GREEN, height=0.5, edgecolor="white", linewidth=0.5)
-    axC.barh(0, 9, color=VERM, hatch="///", height=0.5, edgecolor="white", linewidth=0.5)
+    # 3c error-type asymmetry — read every count from the head-to-head JSON, not hardcoded.
+    # Ours errors: all honest ONC->VUS abstentions. OncoVI errors: confident over-calls on
+    # gold-VUS (->Onc and ->Benign) plus miss-type errors. Bars are intentionally ASYMMETRIC
+    # to match oncovi_headtohead.json (ours 9 errors vs OncoVI 12; over-calls the dominant mode).
+    def _c3(l):
+        if l in {"Oncogenic", "Likely Oncogenic"}:
+            return "ONC"
+        if l in {"Benign", "Likely Benign"}:
+            return "BEN"
+        return "VUS"
+    from collections import Counter
+    ov_err, ours_err = Counter(), Counter()
+    for d in hh["disagreements"]:
+        g, ov, ou = _c3(d["gold"]), _c3(d["oncovi"]), _c3(d["ours"])
+        if ov != g:
+            ov_err[(g, ov)] += 1
+        if ou != g:
+            ours_err[(g, ou)] += 1
+    ov_overcall_onc = ov_err[("VUS", "ONC")]            # confident VUS -> Oncogenic
+    ov_overcall_ben = ov_err[("VUS", "BEN")]            # confident VUS -> Benign
+    ours_abst = ours_err[("ONC", "VUS")]               # honest abstentions on true-oncogenic
+    ours_total = sum(ours_err.values())
+    ov_total = sum(ov_err.values())
+    ov_overcall = ov_overcall_onc + ov_overcall_ben     # all confident over-calls on gold-VUS
+    ov_other = ov_total - ov_overcall                   # remaining (miss-type) errors, so bar sums to ov_total
+    # Ours (top row, left = honest abstentions, green); OncoVI (bottom row, right = errors)
+    axC.barh(1, -ours_abst, color=GREEN, height=0.5, edgecolor="white", linewidth=0.5)
+    axC.barh(0, ov_overcall_onc, color=VERM, hatch="///", height=0.5,
+             edgecolor="white", linewidth=0.5)
+    axC.barh(0, ov_overcall_ben, left=ov_overcall_onc, color=AMBER, hatch="xx", height=0.5,
+             edgecolor="white", linewidth=0.5)
+    axC.barh(0, ov_other, left=ov_overcall, color=GREY, height=0.5,
+             edgecolor="white", linewidth=0.5)
     axC.axvline(0, color=INK, lw=0.6)
-    axC.text(-9 - 0.4, 1, "9", ha="right", va="center", fontsize=7, fontweight="bold", color=GREEN)
-    axC.text(9 + 0.4, 0, "9", ha="left", va="center", fontsize=7, fontweight="bold", color=VERM)
+    axC.text(-ours_abst - 0.4, 1, str(ours_abst), ha="right", va="center",
+             fontsize=7, fontweight="bold", color=GREEN)
+    axC.text(ov_overcall_onc / 2, 0, str(ov_overcall_onc), ha="center", va="center",
+             fontsize=6, fontweight="bold", color="white")
+    axC.text(ov_overcall_onc + ov_overcall_ben / 2, 0, str(ov_overcall_ben), ha="center",
+             va="center", fontsize=5.5, fontweight="bold", color=INK)
+    axC.text(ov_total + 0.4, 0, str(ov_total), ha="left", va="center",
+             fontsize=7, fontweight="bold", color=VERM)
+    axC.text(ov_overcall + ov_other / 2, 0, str(ov_other), ha="center",
+             va="center", fontsize=5.5, fontweight="bold", color="white")
+    # mini legend for OncoVI error composition
+    axC.text(0.2, -0.66, "VUS>Onc", fontsize=6.0, color=VERM, ha="left")
+    axC.text(4.7, -0.66, "VUS>Ben", fontsize=6.0, color=AMBER, ha="left")
+    axC.text(9.2, -0.66, "other miss", fontsize=6.0, color=MUT, ha="left")
     axC.set_yticks([1, 0])
-    axC.set_yticklabels(["Ours:\nhonest VUS", "OncoVI:\nover-calls"], fontsize=5.8)
-    axC.set_xlim(-12, 12); axC.set_xticks([-9, 0, 9]); axC.set_xticklabels(["9", "0", "9"], fontsize=6)
-    axC.set_xlabel("disagreements among 21 (symmetric counts)", fontsize=5.8)
+    axC.set_yticklabels([f"VeriVar:\n{ours_total} honest\nVUS abst.",
+                         f"OncoVI:\n{ov_total} errors\n({ov_overcall} over-calls)"],
+                        fontsize=5.4)
+    axC.set_xlim(-13, 13)
+    axC.set_xticks([-ours_abst, 0, ov_total])
+    axC.set_xticklabels([str(ours_abst), "0", str(ov_total)], fontsize=6)
+    axC.set_xlabel(f"errors among 21 disagreements (VeriVar {ours_total} vs OncoVI {ov_total})",
+                   fontsize=5.5)
     axC.spines["left"].set_visible(False); axC.tick_params(axis="y", length=0)
-    axC.set_title("Same accuracy, safer errors", fontsize=6.6); plabel(axC, "c", x=-0.20)
+    axC.set_title("Same accuracy, safer & fewer errors", fontsize=6.4); plabel(axC, "c", x=-0.22)
 
     # 3d sensitivity dial
     keys = list(dial.keys())
@@ -413,7 +465,7 @@ def fig4():
 
     fig = plt.figure(figsize=(W2, 4.6))
     gs = fig.add_gridspec(2, 2, width_ratios=[1.0, 1.22], height_ratios=[1.0, 0.62],
-                          wspace=0.48, hspace=0.60, left=0.115, right=0.975,
+                          wspace=0.48, hspace=0.42, left=0.115, right=0.975,
                           top=0.92, bottom=0.07)
     axM = fig.add_subplot(gs[0, 0])
     axD = fig.add_subplot(gs[0, 1])
@@ -479,9 +531,8 @@ def fig4():
               "Cutaneous Melanoma": "Melanoma", "Lung Adenocarcinoma": "Lung",
               "Breast Invasive Carcinoma": "Breast"}
     axK.axis("off"); axK.set_xlim(0, 1); axK.set_ylim(0, 1)
-    axK.text(0.0, 0.99, "Cross-cancer consistency — oncogenicity stable across all four multi-cancer "
-             "variants; only KRAS G12V's tier shifts with context (I to II)",
-             fontsize=6.0, fontweight="bold", ha="left", va="top")
+    axK.text(0.0, 0.99, "Cross-cancer consistency",
+             fontsize=7.0, fontweight="bold", ha="left", va="top")
     axK.text(0.0, 0.77, "variant", fontsize=5.4, color=MUT, ha="left", va="center")
     axK.text(0.27, 0.77, "context A — call", fontsize=5.4, color=MUT, ha="left", va="center")
     axK.text(0.63, 0.77, "context B — call", fontsize=5.4, color=MUT, ha="left", va="center")
@@ -506,17 +557,21 @@ def fig4():
 # FIG 5 — Positioning (quantitative capability matrix)
 # ===========================================================================
 def fig5():
-    fig, ax = plt.subplots(figsize=(W2, 3.6))
-    fig.subplots_adjust(left=0.225, right=0.99, top=0.70, bottom=0.14)
-    methods = ["Ours (VeriVar)", "OncoVI", "OncoKB / CancerVar", "CIViC-Fact (verifier)",
+    fig, ax = plt.subplots(figsize=(W2, 3.0))
+    fig.subplots_adjust(left=0.225, right=0.99, top=0.84, bottom=0.04)
+    methods = ["VeriVar", "OncoVI", "CancerVar*", "OncoKB", "CIViC-Fact (verifier)",
                "Autonomous agent (Ferber)", "raw LLM (no retrieval)"]
     cols = ["citation\ngrounded", "honest\nabstention", "auditable\ncriteria",
             "faithfulness\nreported", "leakage-\ncontrolled eval", "3-class acc\n(rule arm)",
-            "specificity\n(rule arm)", "citation\naccuracy"]
+            "specificity\n(onc-vs-rest)", "citation\naccuracy"]
     # c=check, x=cross, na=dash, ('v',value)
+    # CancerVar row: actionability tier tool (cross-axis); NO oncogenicity-accuracy
+    # cell (its 0.614 is a cross-axis artifact, deliberately left "na"). The onc-vs-rest
+    # specificity 0.432 is its measured behaviour re-graded on the VICC gold (§3.6).
     grid = [
-        ["c", "c", "c", "c", "c", ("v", 0.843), ("v", 0.973), ("v", 1.00)],
+        ["c", "c", "c", "c", "c", ("v", 0.843), ("v", 0.973), ("e", 1.00)],
         ["x", "x", "c", "x", "x", ("v", 0.797), ("v", 0.806), "na"],
+        ["x", "x", "c", "x", "x", "na", ("v", 0.432), "na"],
         ["x", "x", "c", "x", "x", "na", "na", "na"],
         ["c", "x", "c", "x", "x", "na", "na", "na"],
         ["x", "x", "x", "x", "x", "na", "na", ("v", 0.755)],
@@ -539,6 +594,15 @@ def fig5():
                 ax.text(cx, cyc, r"$\times$", ha="center", va="center", fontsize=8, color=VERM)
             elif cell == "na":
                 ax.text(cx, cyc, "–", ha="center", va="center", fontsize=7, color=GREY)
+            elif cell[0] == "e":
+                # by-construction contract guarantee (NOT a measured/comparable score)
+                ax.add_patch(Rectangle((j + 0.07, yy + 0.07), 0.86, 0.86, facecolor=TEAL,
+                             alpha=0.12, edgecolor=TEAL, linewidth=0.5,
+                             linestyle=(0, (2, 1.5))))
+                ax.text(cx, cyc + 0.18, "1.00", ha="center", va="center",
+                        fontsize=5.7, fontweight="bold", color=INK)
+                ax.text(cx, cyc - 0.20, "enforced", ha="center", va="center",
+                        fontsize=4.4, fontstyle="italic", color=MUT)
             else:
                 v = cell[1]
                 ax.add_patch(Rectangle((j + 0.07, yy + 0.07), 0.86, 0.86, facecolor=NAVY,
@@ -554,13 +618,7 @@ def fig5():
         ax.add_patch(Rectangle((j, 0), 1, nR, facecolor=TEAL, alpha=0.05, edgecolor="none", zorder=0))
     ax.set_xlim(-0.02, nC); ax.set_ylim(0, nR + 0.5)
     ax.axis("off")
-    ax.text(-0.08, -0.55, "For this work, the 3-class acc (0.843) and specificity (0.973) cells are the "
-            "deterministic VICC rule arm, not the LLM; the citation-accuracy cell (1.00) is the "
-            "citation-grounded system. Each numeric cell is from its own source study.",
-            ha="left", va="top", fontsize=4.9, color=MUT, style="italic", linespacing=1.15)
-    ax.set_title("Capability landscape — only this work reports faithfulness AND a leakage-controlled "
-                 "evaluation (shaded);\nnumeric cells are measured, each from its own source study "
-                 "(see note on arm attribution below)", fontsize=5.8, loc="left", pad=8)
+    ax.set_title("Capability landscape", fontsize=7.5, loc="left", pad=6)
     save(fig, "fig5")
 
 
