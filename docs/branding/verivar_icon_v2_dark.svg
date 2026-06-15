@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="VeriVar icon (dark)">
+  <title>VeriVar — verified variant monogram (dark theme)</title>
+  <!-- Dark theme: teal V for dark/navy backgrounds. Same geometry as the
+       light master. Checkmark + node accents in lighter teal/white so they
+       stay legible on a dark fill. -->
+
+  <!-- ===== V monogram (teal) ===== -->
+  <g fill="none" stroke="#2A9D8F" stroke-width="98" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 256 320 L 512 770 L 724 268" />
+  </g>
+
+  <!-- ===== Checkmark flick (light teal accent) ===== -->
+  <g fill="none" stroke="#7FD4C8" stroke-width="90" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 724 268 L 850 318" />
+  </g>
+
+  <!-- ===== Central variant node + connector ticks ===== -->
+  <g stroke="#7FD4C8" stroke-width="34" stroke-linecap="round">
+    <line x1="392" y1="470" x2="430" y2="470" />
+    <line x1="594" y1="470" x2="632" y2="470" />
+    <line x1="512" y1="576" x2="512" y2="616" />
+  </g>
+  <circle cx="512" cy="470" r="58" fill="#2A9D8F" />
+  <circle cx="512" cy="470" r="30" fill="#E8F6F3" />
+</svg>

@@ -1,9 +1,11 @@
-# 🧬 LLM-Assisted Somatic Variant Interpretation Pipeline
+# 🧬 VeriVar — LLM-Assisted Somatic Variant Interpretation Pipeline
 
 **Citation-grounded retrieval for faithful, auditable LLM somatic variant interpretation — dual-mode (LLM + rule), two-axis (oncogenicity + clinical tier).**
 
 > ⚠️ **Research, education, and demonstration only. NOT for clinical diagnostics or treatment decisions.**
 > Built and evaluated entirely on **public** data and knowledge bases.
+>
+> *VeriVar* evolved from the project formerly named **LLM_Variant_Pipeline**, where the work began; it was renamed as the system matured.
 
 ---
 
@@ -22,7 +24,7 @@ This project asks a focused question: **can retrieval grounding make LLM variant
 
 ## What the pipeline does
 
-For each variant, the system assembles a **citable evidence bundle** via hybrid retrieval, then classifies the variant on **two international standards** under a **faithfulness contract**, running multiple interpretation arms on every variant for comparison.
+For each variant, the system — **VeriVar** — assembles a **citable evidence bundle** via hybrid retrieval, then classifies the variant on **two international standards** under a **faithfulness contract**, running multiple interpretation arms on every variant for comparison. It is positioned as **clinical decision-support**: faithfulness is the *mechanism* and a trustworthy, auditable, expert-verifiable draft is the *purpose*; clinical utility is **motivated, not measured** (no patient outcomes — research-only).
 
 ### Two-axis classification
 
@@ -37,7 +39,7 @@ For each variant, the system assembles a **citable evidence bundle** via hybrid 
 
 - **Generative mode (Mode A)** — the LLM assigns the labels itself, grounded on the evidence bundle, with self-consistency voting (n = 3) and an agentic adversarial verifier. For exploratory interpretation and rare/under-curated variants.
 - **Deterministic mode (Mode B)** — a transparent, direction-aware rule fixes the label; the LLM writes only the human-readable rationale. For reproducibility and review safety (identical output every run).
-- **Citable VICC point-based rule arm** — a deliberately simplified, direction-aware re-implementation in the tradition of curated rule engines, used as a strong honest baseline.
+- **VeriVar (rule arm) — a citable VICC point-based implementation** — a deterministic, direction-aware engine in the tradition of curated rule engines, used as a strong honest baseline (not claimed as a novel classifier).
 - **No-retrieval baseline** — the generative prompt with the evidence bundle removed, isolating parametric behaviour.
 
 **Discordance between arms is treated as a primary analytical signal**, not a failure — it localises genuine interpretive uncertainty.
@@ -81,7 +83,7 @@ Evaluated with leakage-free faithfulness metrics, an external gold standard, boo
 
 - **Faithfulness (the headline, statistically robust):** with retrieval, citation fabrication **0%** vs **46.4%** (95% CI 33.9–58.9) without; citation grounding **1.0**, directional faithfulness **1.0**, abstention recall **1.0**.
 - **Suppressed parametric over-calling:** retrieval reclassified **12 of 56** confidently over-called variants (21.4%) to evidence-grounded VUS (behavioural change; per-variant correctness awaits expert adjudication).
-- **Accuracy — honest and disciplined:** the **generative arm** is *non-inferior* to both baselines on Horak-70 (3-class 0.600 with retrieval vs 0.586 without vs 0.557 rule; McNemar p = 1.0 / 0.61) — so **faithfulness, not accuracy, is its contribution.** The **citable VICC rule arm** reaches 3-class accuracy **0.843** (specificity 0.973, AUROC 0.906) and matches the strongest open engine (OncoVI) head-to-head at markedly higher specificity, trading confident over-calls for honest abstentions.
+- **Accuracy — honest and disciplined:** the **generative arm** is *non-inferior* to both baselines on Horak-70 (3-class 0.600 with retrieval vs 0.586 without vs 0.557 rule; McNemar p = 1.0 / 0.61) — so **faithfulness, not accuracy, is its contribution.** **VeriVar's rule arm** (the citable VICC point-based implementation) reaches 3-class accuracy **0.843** (specificity 0.973, AUROC 0.906) and matches the strongest open engine **OncoVI** head-to-head (native VICC-oncogenicity axis; 0.841 vs 0.797, McNemar p = 0.66) at markedly higher specificity, trading confident over-calls for honest abstentions. Against a second tool, **CancerVar**, the comparison is **cross-axis** — CancerVar emits AMP/ASCO/CAP *actionability* tiers, not VICC oncogenicity, so it is read only as an **error-profile contrast** (high specificity / over-call asymmetry: 21 over-calls / 0 misses on the shared variants), **not** an accuracy win.
 - **Leakage controls all pass:** temporal holdout, leave-own-evidence-out (LOVO), second model (gpt-4o), and embedding ablation leave generative-arm accuracy statistically unchanged — the behaviour is not a retrieval-corpus or single-model artifact.
 
 > Accuracy differences at n = 70 are **not** significant — no accuracy-superiority claim is made for the generative arm. See `data/outputs/stats_report.json`.
@@ -174,7 +176,8 @@ pytest                                             # test suite
 - **RAG for variant annotation** — Lu & Cosgun (2025, *Bioinform Adv*) integrated ~190M variant annotations into GPT-4o via RAG/fine-tuning, reporting high field-level annotation accuracy.
 - **LLM over-classification** — Lin et al. (2025, *npj Precis Oncol*) benchmarked GPT-4o/Llama 3.1/Qwen 2.5 and reported systematic over-classification toward higher evidence levels (the same parametric over-calling observed here).
 - **Citation faithfulness & medical RAG** — ALCE (Gao et al.) formalised citation precision/recall evaluation; MedRAG/MIRAGE (Xiong et al.) established retrieval as a partial hallucination mitigation in medical QA.
-- **Established interpretation platforms** — OncoKB, CIViC, COSMIC, CancerVar, Cancer Genome Interpreter, PCGR, OncoVI — treated here as prior art the system must remain compatible with, not baselines it claims to beat.
+- **Established interpretation platforms** — OncoKB, CIViC, COSMIC, PCGR — treated here as prior art the system must remain compatible with, not baselines it claims to beat.
+- **Reported head-to-head comparators (rule arm only, no oncogenicity-accuracy-superiority claim):** **OncoVI** (native VICC-oncogenicity axis — accuracy parity at higher specificity) and **CancerVar** (AMP/ASCO/CAP actionability axis — a **cross-axis** comparison read strictly as an error-profile contrast, not an accuracy benchmark). **Cancer Genome Interpreter (CGI)** was considered as a near-axis comparator but **deferred** — its per-variant predictions require a registration-gated token unavailable in scope; extending the head-to-head to CGI is future work.
 
 Full references are in the manuscript (`docs/manuscript/preprint.md`).
 

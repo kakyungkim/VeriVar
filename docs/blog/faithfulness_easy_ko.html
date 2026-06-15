@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>정답보다 정직 — LLM 암 변이 해석</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+    :root{
+      --fg:#1f2328; --muted:#57606a; --bg:#ffffff; --soft:#f6f8fa;
+      --border:#d0d7de; --accent:#0b5fff; --accent-soft:#e8f0ff;
+      --green:#1a7f37; --green-soft:#e6f4ea; --red:#cf222e; --red-soft:#ffebe9;
+    }
+    *{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{
+      margin:0; color:var(--fg); background:var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",
+        "Noto Sans KR","Malgun Gothic",Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      font-size:17px; line-height:1.75;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .wrap{max-width:760px; margin:0 auto; padding:64px 24px 96px}
+    h1{font-size:2.1rem; line-height:1.3; letter-spacing:-.01em; margin:0 0 .6em; font-weight:800}
+    h2{font-size:1.45rem; margin:2.4em 0 .7em; padding-top:.3em; font-weight:750;
+       letter-spacing:-.01em; border-top:1px solid var(--border)}
+    h2:first-of-type{border-top:0}
+    h3{font-size:1.15rem; margin:1.8em 0 .5em; font-weight:700; color:var(--fg)}
+    p{margin:0 0 1.1em}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    strong{font-weight:700}
+    code{background:var(--soft); border:1px solid var(--border); border-radius:6px;
+      padding:.12em .4em; font-size:.86em;
+      font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace}
+    hr{border:0; border-top:1px solid var(--border); margin:3em 0}
+    blockquote{
+      margin:1.6em 0; padding:1em 1.3em; background:var(--soft);
+      border-left:4px solid var(--accent); border-radius:0 8px 8px 0; color:var(--fg);
+    }
+    blockquote p{margin:.3em 0}
+    blockquote strong{color:var(--accent)}
+    table{border-collapse:collapse; width:100%; margin:1.6em 0; font-size:.95rem;
+      border:1px solid var(--border); border-radius:10px; overflow:hidden}
+    thead{background:var(--soft)}
+    th,td{padding:.7em 1em; text-align:left; border-bottom:1px solid var(--border);
+      vertical-align:top}
+    th{font-weight:700}
+    tr:last-child td{border-bottom:0}
+    tbody tr:nth-child(even){background:#fbfcfd}
+    ol,ul{margin:0 0 1.2em; padding-left:1.4em}
+    li{margin:.4em 0}
+    li::marker{color:var(--muted)}
+    .meta{color:var(--muted); font-size:.92rem; margin-top:-.4em}
+    em{color:var(--fg)}
+    /* numeric tables: emphasize result cells */
+    td strong{color:var(--green)}
+    @media (max-width:600px){
+      body{font-size:16px}
+      .wrap{padding:40px 18px 72px}
+      h1{font-size:1.7rem}
+    }
+    @media print{
+      body{font-size:12pt}
+      h2{border-top:1px solid #ccc}
+      .wrap{max-width:none; padding:0}
+    }
+  </style>
+</head>
+<body>
+<h1 id="정답보다-정직--llm이-암-변이를-해석할-때-진짜-중요한-것">"정답보다 정직" — LLM이 암 변이를 해석할 때 진짜 중요한 것</h1>
+<blockquote>
+<p>블로그 초안 (쉬운 설명용). 기술 상세는 <a href="../faithfulness.md"><code>docs/faithfulness.md</code></a>, 정확도 작업은 <a href="../vicc_rule_arm.md"><code>docs/vicc_rule_arm.md</code></a> 참고.</p>
+</blockquote>
+<h2 id="들어가며-똑똑한데-못-믿는-의대생">들어가며: 똑똑한데 못 믿는 의대생</h2>
+<p>암 환자의 유전자 변이 하나를 두고, 잘 훈련된 의대생(=LLM)에게 묻습니다. "이 변이, 암을 일으키나요?"</p>
+<p>의대생이 자신 있게 답합니다. <strong>"네, 오cogenic입니다. <em>Smith 2019, PMID 12345678</em> 논문에 나와요."</strong></p>
+<p>그럴듯하죠. 그런데 그 논문 번호를 찾아보면 — <strong>존재하지 않습니다.</strong> 지어낸 겁니다.</p>
+<p>이게 LLM을 임상에 쓸 때 가장 무서운 실패입니다. <strong>틀린 게 문제가 아니라, 틀렸는데 그럴듯한 근거까지 지어내서 사람이 속는 것</strong>이 문제예요. 그래서 우리 연구는 "얼마나 정확한가(accuracy)"만큼이나 — 어쩌면 그보다 더 — <strong>"얼마나 정직한가(faithfulness)"</strong> 를 핵심으로 봅니다.</p>
+<h2 id="정확도--정직함-둘은-따로-논다">정확도 ≠ 정직함 (둘은 따로 논다)</h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>묻는 것</th>
+<th>시험 비유</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>정확도 (accuracy)</strong></td>
+<td>답이 <em>맞았나?</em></td>
+<td>정답을 맞혔나</td>
+</tr>
+<tr class="even">
+<td><strong>충실성 (faithfulness)</strong></td>
+<td><em>근거대로</em> 답했나, 안 지어냈나?</td>
+<td>답안의 각주가 진짜인가, 결론과 같은 방향인가</td>
+</tr>
+<tr class="odd">
+<td><strong>감사가능성 (auditability)</strong></td>
+<td>사람이 <em>왜 그렇게 판단했는지 한 줄씩 추적</em>할 수 있나?</td>
+<td>채점자가 각주 출처를 직접 열어볼 수 있나</td>
+</tr>
+</tbody>
+</table>
+<p>핵심은 이 둘이 <strong>독립</strong>이라는 겁니다.</p>
+<ul>
+<li>🟥 <strong>맞았지만 불충실</strong> = "정답인데 출처를 지어냄" → 임상에선 <strong>더 위험</strong>(우연히 맞은 것일 뿐, 다음엔 틀리고도 우길 것)</li>
+<li>🟩 <strong>틀렸지만 충실</strong> = "근거가 없어서 '불확실(VUS)'로 정직하게 기권" → <strong>안전한 실패</strong></li>
+</ul>
+<p>분자종양위원회(MTB)에서 의사가 LLM의 판단에 <em>서명</em>하려면, 한 줄 한 줄 근거를 열어보고 반박할 수 있어야 합니다. 그러니 감사가능성은 <em>있으면 좋은 것</em>이 아니라 <strong>배포의 전제조건</strong>이에요.</p>
+<h2 id="정직함을-4개-숫자로-측정하기">정직함을 4개 숫자로 측정하기</h2>
+<p>우리는 "정직함"을 막연한 느낌이 아니라 <strong>외부 정답 없이도 계산되는 4개 지표</strong>로 잽니다(그래서 정답 유출 걱정도 없음).</p>
+<ol type="1">
+<li><strong>환각률</strong> — 검색된 적 없는 근거를 인용한 비율. → <strong>0이어야</strong> 정상 (안 지어냄)</li>
+<li><strong>근거제시율</strong> — 근거가 있을 때 실제로 ≥1개 인용한 비율. → <strong>1이어야</strong> 정상</li>
+<li><strong>방향충실성</strong> — 인용한 근거가 결론과 <em>같은 방향</em>인가. ("암 유발"이라며 <em>양성</em> 근거만 댄 모순을 잡음)</li>
+<li><strong>기권 정확도</strong> — 근거가 전혀 없을 때 정직하게 'VUS(불확실)'로 기권한 비율. (헛된 자신감을 잡음)</li>
+</ol>
+<p>이 4개가 학계에서 말하는 <strong>groundedness(근거성) · attribution(출처귀속) · faithfulness(충실성)</strong> 세 측면을 모두 덮습니다.</p>
+<h2 id="우리가-한-일-정직하길-바라는-게-아니라-정직하도록-강제한다">우리가 한 일: "정직하길 <em>바라는</em>" 게 아니라 "정직하도록 <em>강제한다</em>"</h2>
+<p>프롬프트로 "검색된 근거만 인용해"라고 부탁할 수도 있습니다. 줄긴 줄어요. 하지만 <strong>0이 되진 않습니다.</strong> LLM은 또 지어내요.</p>
+<p>그래서 우리는 LLM 뒤에 <strong>결정론적 검문소(gate)</strong> 를 세웠습니다. LLM이 뭐라고 하든, 최종 출력 전에 4개 관문을 통과시켜 강제로 고칩니다:</p>
+<ol type="1">
+<li><strong>출처 검증</strong> — 검색 번들에 없는 인용은 즉시 삭제 → 환각 <strong>구조적으로 0</strong></li>
+<li><strong>기권 강제</strong> — 근거가 하나도 없으면 무조건 'VUS'</li>
+<li><strong>방향 일치</strong> — 인용이 결론과 반대면 기권시킴</li>
+<li><strong>근거 강제</strong> — 근거가 있는데 하나도 인용 안 했으면 기권시킴</li>
+</ol>
+<p>그리고 <strong>어떤 관문이 작동했는지 기록(audit trail)</strong> 을 남깁니다. 즉, 고친 과정 자체도 추적 가능해요.</p>
+<h3 id="실제로-효과가-있나-숫자로">실제로 효과가 있나? (숫자로)</h3>
+<p>진짜로 환각하는 LLM처럼 일부러 오류를 주입한 뒤 검문소를 통과시켜 봤습니다:</p>
+<table>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>검문소 전 (망가진 모델)</th>
+<th>검문소 후</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>환각률</td>
+<td>0.45</td>
+<td><strong>0.0</strong></td>
+</tr>
+<tr class="even">
+<td>방향충실성</td>
+<td>0.48</td>
+<td><strong>1.0</strong></td>
+</tr>
+<tr class="odd">
+<td>기권 정확도</td>
+<td>0.40</td>
+<td><strong>1.0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>56개 중 44개가 자동 교정됐습니다. 핵심 메시지: <strong>위에 어떤 엉터리 모델이 와도, 출고되는 결과의 정직성 지표는 이상값으로 복귀한다.</strong> 이게 "구조적으로 정직(faithful by construction)"의 진짜 의미예요.</p>
+<h2 id="규칙-엔진-쪽도-똑같이-정직">규칙 엔진 쪽도 똑같이 정직</h2>
+<p>LLM만의 얘기가 아닙니다. 우리의 결정론적 규칙 엔진은 <em>모든 판정 기준</em>이 인용 가능한 출처(cancerhotspots, UniProt, gnomAD, MaveDB, CIViC)를 답니다. 독립 ClinVar 셋에서 <strong>암 유발 호출의 93.9%가 강한 인용 가능 증거를 동반</strong>했고, 나머지는 기권했습니다. 특이도 0.967 — <strong>거의 절대 허세를 안 부립니다.</strong></p>
+<h2 id="그래서-이게-새로운-주장이야">그래서, 이게 새로운 주장이야?</h2>
+<p>솔직하게: <strong>"충실성"이라는 개념 자체는 우리가 발명한 게 아닙니다.</strong> NLP에서 이미 뜨거운 분야예요(RAGAS, ALCE, MedCite 등). 발명했다고 우기면 리뷰어가 바로 알아봅니다.</p>
+<p>대신 정당하게 주장할 수 있는 건 <strong>개념이 아니라 <em>적용과 보장</em></strong> 입니다:</p>
+<ol type="1">
+<li>체세포 변이 oncogenicity/tier 해석에서 충실성을 <strong>정확도와 동급의 1순위 지표로 보고한 첫 사례</strong> (이 분야는 정확도만 봄)</li>
+<li><strong>측정이 아니라 구조적 보장</strong> (검문소 = 최악조건 0% 환각)</li>
+<li><strong>누출 통제</strong>(시간 분할·자기근거 제외)까지 갖춘 평가</li>
+</ol>
+<p>가장 강한 대비 사례: 최신 자율 종양학 AI 에이전트(Ferber et al., Nature Cancer 2025)는 결론 정확도 91%인데 <strong>가이드라인 인용 정확도는 75.5%</strong> — 즉 인용 4개 중 1개를 못 믿습니다. 임상 리포트엔 치명적이죠. <strong>우리가 메우려는 게 정확히 이 틈입니다.</strong></p>
+<h2 id="한-줄-요약">한 줄 요약</h2>
+<blockquote>
+<p><strong>"불확실할 순 있어도, 책임질 수 없는 말은 절대 하지 않는다."</strong> 임상에서는, 가끔 맞지만 아무도 검증 못 하는 시스템보다, 정직하게 기권할 줄 아는 시스템이 더 안전합니다.</p>
+</blockquote>
+<hr />
+<p><em>이 글은 연구 과정의 개념 정리이자 블로그 초안입니다. 실험 재현·코드는 저장소의 <code>docs/faithfulness.md</code>, <code>docs/vicc_rule_arm.md</code>, <code>scripts/run_faithfulness_ablation.py</code>를 보세요.</em></p>
+</body>
+</html>

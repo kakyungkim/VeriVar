@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="VeriVar app icon (dark)">
+  <title>VeriVar app icon — teal V on navy squircle</title>
+  <rect x="32" y="32" width="960" height="960" rx="216" ry="216" fill="#1B3A5B"/>
+  <g transform="translate(512 540) scale(0.86) translate(-553 -519)">
+    <g fill="none" stroke="#2A9D8F" stroke-width="98" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 256 320 L 512 770 L 724 268" />
+    </g>
+    <g fill="none" stroke="#7FD4C8" stroke-width="90" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 724 268 L 850 318" />
+    </g>
+    <g stroke="#7FD4C8" stroke-width="34" stroke-linecap="round">
+      <line x1="392" y1="470" x2="430" y2="470" />
+      <line x1="594" y1="470" x2="632" y2="470" />
+      <line x1="512" y1="576" x2="512" y2="616" />
+    </g>
+    <circle cx="512" cy="470" r="58" fill="#2A9D8F" />
+    <circle cx="512" cy="470" r="30" fill="#E8F6F3" />
+  </g>
+</svg>

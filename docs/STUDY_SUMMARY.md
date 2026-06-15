@@ -11,6 +11,15 @@ One-line contribution:
 > foundation-model evidence), evaluated for **faithfulness** and against an
 > **external, temporally leakage-controlled** gold standard.
 
+> **(2026-06-14) Naming + framing:** the system is named **VeriVar**; its deterministic
+> rule arm is "VeriVar (rule arm) — a citable VICC point-based implementation" (VICC =
+> the external ClinGen/CGC/VICC guideline, never the system name). The manuscript is
+> framed around **clinical decision-support** (framing only — claims unchanged):
+> faithfulness is the *mechanism*, a trustworthy, auditable, expert-verifiable draft is
+> the *purpose*; clinical utility is explicitly **"motivated, not measured"** (no patient
+> outcomes; research-only). Technical headline unchanged: **faithfulness/auditability +
+> NON-inferior accuracy (never superiority).**
+
 ---
 
 ## 1. Datasets
@@ -96,7 +105,7 @@ Per variant, an evidence bundle is assembled from three arms, each item carrying
   recall-lift, AlphaMissense↔LLM, calibration, discordance concentration, hotspot-vs-rare,
   verifier net-effect).
 - Config: gpt-4o-mini, temperature 0 (0.4 for voting); torch 2.2.2 / sentence-transformers
-  3.0.1 (Intel-mac safetensors constraint). 90 unit tests.
+  3.0.1 (Intel-mac safetensors constraint). 105 unit tests.
 
 ---
 
@@ -176,6 +185,36 @@ Per variant, an evidence bundle is assembled from three arms, each item carrying
   — embedder choice is not a sensitive factor (small domain-model edge).
 - Files: `data/benchmark/horak_{gpt4o,lovo}.json`, `embed_ablation.json`.
 
+### 3.8 Rule-arm head-to-head vs published tools (2026-06-14) — VeriVar (rule arm)
+VeriVar's rule arm — the citable VICC point-based implementation (`src/classify/vicc_rules.py`),
+a deterministic engine, **not** the LLM and **not** claimed as a novel classifier — reaches
+**3-class accuracy 0.843** (95% CI 0.757–0.929) on Horak-70 (specificity 0.973, AUROC 0.906).
+It is now compared head-to-head against **two published tools**:
+- **OncoVI** (native VICC-oncogenicity axis; Carta et al. [19]) — on 69 shared variants the
+  rule arm is **statistically indistinguishable in accuracy** (0.841 [0.754–0.928] vs OncoVI
+  0.797 [0.696–0.884]; paired McNemar p = 0.66) at **markedly higher specificity** (0.972 vs
+  0.806). Error profile is asymmetric: rule arm's 9 errors are all honest VUS abstentions on
+  true-oncogenic variants (no over-call); OncoVI's 12 include 9 confident over-calls.
+  `scripts/run_oncovi_headtohead.py`, `oncovi_headtohead.json`.
+- **CancerVar** (AMP/ASCO/CAP **actionability** axis; Li et al. [6]) — **CROSS-AXIS**: CancerVar
+  emits actionability tiers, not VICC oncogenicity, so tiers were mapped (Tier I/II→Oncogenic,
+  III→VUS, IV→Benign) **only** to score it on the oncogenicity gold. Read strictly as an
+  **error-profile contrast, NOT an accuracy benchmark**: on the 70 shared variants CancerVar made
+  **21 over-calls / 0 misses** (oncogenic sensitivity 1.0, specificity **0.432**) vs the rule
+  arm's specificity 0.973 — the expected high-sensitivity/low-specificity profile of an
+  actionability tool re-graded on an oncogenicity key. Any 3-class accuracy from the mapping is a
+  cross-axis artifact, reported for completeness only. Real web-server predictions with archived
+  provenance: `data/benchmark/cancervar/` (`cancervar_predictions.json` + `raw/`),
+  `scripts/run_cancervar_headtohead.py`, `cancervar_headtohead.json`. **The cross-axis caveat must
+  travel with every CancerVar mention.**
+- **CGI (Cancer Genome Interpreter)** — considered as a near-axis comparator but **DEFERRED**:
+  its per-variant API is registration-token-gated (unavailable in scope). Noted in Limitations
+  (§5) + `data/benchmark/cgi/FEASIBILITY_BLOCKED.json`; future work.
+
+The combined message (no oncogenicity-accuracy-superiority claim): the rule arm's conservative,
+high-specificity, over-call-averse error profile now stands against **two** published tools —
+OncoVI on the native VICC axis and CancerVar on the actionability axis (with the cross-axis caveat).
+
 ## 4. Claim stack (manuscript) — statistically disciplined
 1. **Faithful by construction & empirically (significant)**: 0% citation hallucination,
    100% grounding/directional-faithfulness/abstention. The gap vs no-RAG is robust:
@@ -201,6 +240,13 @@ Per variant, an evidence bundle is assembled from three arms, each item carrying
   quantified by the no-RAG floor.
 - Single-sample, gene/protein-change level, n=70 external set, single LLM (gpt-4o-mini).
 - The rule baseline is simplified (though direction-aware, not a strawman).
+- **(2026-06-14) Comparator caveats:** the CancerVar head-to-head (§3.8) is **cross-axis**
+  (actionability tiers re-graded onto the VICC oncogenicity gold) → read as an error-profile
+  contrast (specificity / over-call asymmetry), not an oncogenicity-accuracy benchmark; the
+  resulting accuracy gap is largely a mapping artifact. **CGI** (Cancer Genome Interpreter) was
+  considered as a near-axis comparator but **deferred** — its per-variant predictions require a
+  registration-gated authentication token unavailable in scope (`data/benchmark/cgi/FEASIBILITY_BLOCKED.json`);
+  extending the head-to-head to CGI is future work.
 - **Provisional expert-adjudication (AI-assisted, NOT yet expert-signed — see
   `notes/expert_adjudication_worksheet.md`):** on the 3 beyond-rules discordances, evidence review
   suggests **rule right 2/3, LLM/RAG right 1/3** — PTEN R130* (melanoma; rule correct: truncating LoF

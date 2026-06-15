@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="VeriVar icon">
+  <title>VeriVar — verified variant monogram</title>
+  <!--
+    Concept: a bold "V" monogram (Veri + Var). The right arm rises past the
+    apex and flicks up-right into a CHECKMARK (verification / faithful, never
+    fabricated). A central NODE with short connector ticks sits in the valley
+    of the V = a single genomic variant / "verified data point".
+    Palette: deep navy #1B3A5B (V) + teal #2A9D8F (node + checkmark accent).
+    Light master: navy V on transparent background. Grid: 1024, mark ~70%.
+  -->
+
+  <!-- ===== V monogram (single bold stroke, navy) ===== -->
+  <!-- left arm starts a touch lower; right arm rises higher (apex), echoing
+       the reference where the right stroke leads into the checkmark. -->
+  <g fill="none" stroke="#1B3A5B" stroke-width="98" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 256 320 L 512 770 L 724 268" />
+  </g>
+
+  <!-- ===== Checkmark integrated into the upper-right stroke (teal) ===== -->
+  <!-- the right arm IS the long leg of the check; a short teal tick kicks
+       up-and-right from the apex to complete the checkmark = "verified". -->
+  <g fill="none" stroke="#2A9D8F" stroke-width="90" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 724 268 L 850 318" />
+  </g>
+
+  <!-- ===== Central variant node + connector ticks (teal) ===== -->
+  <g stroke="#2A9D8F" stroke-width="34" stroke-linecap="round">
+    <!-- short ticks radiating from the node toward the V strokes -->
+    <line x1="392" y1="470" x2="430" y2="470" />
+    <line x1="594" y1="470" x2="632" y2="470" />
+    <line x1="512" y1="576" x2="512" y2="616" />
+  </g>
+  <!-- node ring + core -->
+  <circle cx="512" cy="470" r="58" fill="#1B3A5B" />
+  <circle cx="512" cy="470" r="30" fill="#2A9D8F" />
+</svg>

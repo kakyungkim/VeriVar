@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="VeriVar icon (monochrome)">
+  <title>VeriVar — verified variant monogram (monochrome)</title>
+  <!-- Single-colour version: uses currentColor so it inherits text colour;
+       defaults to deep navy. The node core is knocked out (white-on-fill via
+       fill="none" ring) so the mark still reads in one ink. Same geometry as
+       the light master. -->
+  <g fill="none" stroke="currentColor" color="#1B3A5B"
+     stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- V monogram + checkmark flick, all one weight/colour -->
+    <path d="M 256 320 L 512 770 L 724 268 L 850 318" stroke-width="98" />
+
+    <!-- connector ticks -->
+    <g stroke-width="34">
+      <path d="M 392 470 L 430 470" />
+      <path d="M 594 470 L 632 470" />
+      <path d="M 512 576 L 512 616" />
+    </g>
+
+    <!-- node: a stroked ring (open centre) so it reads in a single ink -->
+    <circle cx="512" cy="470" r="46" stroke-width="32" />
+  </g>
+</svg>
