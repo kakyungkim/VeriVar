@@ -39,14 +39,39 @@ def _retry(fn, attempts: int = 2):
     raise last
 
 
-def _dense_orchestrator(agg, kg):
-    """Hybrid retriever with the persistent dense index (structured + dense + graph)."""
+def build_retriever(agg=None, kg=None, am_online: bool = False):
+    """Build the full HybridEvidenceRetriever (structured + dense + graph).
+
+    This is the SAME retriever the cohort pipeline uses, so callers (the cohort
+    loop here and the bring-your-own-VCF path in :mod:`src.interpret`) attach the
+    identical rich evidence — full CIViC statements and the clinical trials that
+    ride on the NCT ids carried by retrieved CIViC evidence.
+
+    ``agg``/``kg`` default to the committed offline aggregator and the CIViC
+    knowledge graph. Loading the persistent dense index
+    (``data/knowledge/chroma_index``) + the sentence-transformer embedder is the
+    first-call cost; cache the returned object (e.g. ``st.cache_resource``).
+
+    ``am_online`` (only used when ``agg`` is not supplied) builds the default
+    aggregator with a LIVE AlphaMissense annotator (Ensembl VEP REST) while
+    keeping CIViC/DGIdb/trials offline — for the online VCF-upload path so
+    GRCh38 missense variants get AlphaMissense scores the committed
+    GRCh37-keyed cache cannot supply. The cohort pipeline leaves this ``False``.
+    """
     from src.retrieval import build_civic_corpus, HybridRetriever, SentenceTransformerEmbedder
     from src.retrieval.orchestrator import HybridEvidenceRetriever
+    agg = agg or build_aggregator(offline=True, am_online=am_online)
+    kg = kg if kg is not None else KnowledgeGraph.from_civic()
     docs = build_civic_corpus()
     dense = HybridRetriever(docs, embedder=SentenceTransformerEmbedder(),
                             persist_path="data/knowledge/chroma_index")
     return HybridEvidenceRetriever(agg, dense=dense, graph=kg)
+
+
+# Backwards-compatible alias (kept for the cohort run() call below).
+def _dense_orchestrator(agg, kg):
+    """Hybrid retriever with the persistent dense index (structured + dense + graph)."""
+    return build_retriever(agg=agg, kg=kg)
 
 
 def run(limit: Optional[int] = None, timestamp: str = "",

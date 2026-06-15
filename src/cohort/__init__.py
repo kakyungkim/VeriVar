@@ -6,6 +6,11 @@ from src.cohort.loader import (
     load_cohort,
     variants_by_sample,
 )
+from src.cohort.vcf_loader import (
+    detect_assembly,
+    parse_vcf,
+    annotate_variants,
+)
 
 __all__ = [
     "is_candidate",
@@ -13,4 +18,7 @@ __all__ = [
     "load_snapshot",
     "load_cohort",
     "variants_by_sample",
+    "detect_assembly",
+    "parse_vcf",
+    "annotate_variants",
 ]

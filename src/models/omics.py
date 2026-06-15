@@ -27,6 +27,12 @@ class Variant(BaseModel):
     variant_type: str = "SNV"
     sample_id: Optional[str] = None
     cancer_type: Optional[str] = None
+    assembly: str = "GRCh37"  # genome build of (chrom, pos, ref, alt); default
+    # keeps the cohort/loader path (TCGA via cBioPortal, GRCh37) unchanged.
+    vep: Optional[Dict[str, Any]] = None  # parsed Ensembl-VEP annotation dict for
+    # BYO-VCF variants (consequence/impact/transcript_id/hgvsc/protein_position/
+    # amino_acids/rsid/cosmic/gnomad_af/sift/polyphen). None for cohort variants
+    # and any caller that doesn't populate it — keeps existing callers unchanged.
 
     @property
     def key(self) -> str:
