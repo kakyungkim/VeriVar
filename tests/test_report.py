@@ -42,7 +42,7 @@ def test_generate_report_writes_html(tmp_path):
     html = (tmp_path / "r.html")
     assert html.exists()
     text = html.read_text()
-    assert "Dual-Mode" in text and "BRAF p.V600E" in text and "KRAS p.G12C" in text
+    assert "VeriVar" in text and "BRAF p.V600E" in text and "KRAS p.G12C" in text
     # interactive controls (search/sort/filter) are present in the HTML artifact
     assert "vsearch" in text and "fbtn" in text and "addEventListener" in text
     # per-row filter attributes for the JS filters

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Dual-Mode Somatic Variant Interpretation — Cohort Report</title>
+<title>VeriVar — Somatic Variant Interpretation Cohort Report</title>
 <style>
   body { font-family: Helvetica, Arial, sans-serif; color: #1a1a1a; font-size: 11px; margin: 24px; }
   h1 { font-size: 20px; margin-bottom: 2px; }
@@ -35,8 +35,9 @@
 </style>
 </head>
 <body>
-  <h1>Dual-Mode Somatic Variant Interpretation</h1>
+  <h1>VeriVar — Somatic Variant Interpretation</h1>
   <div class="sub">
+    Faithful, citation-grounded somatic variant interpretation ·
     Mode A (LLM, <span class="mono">{{ provenance.model_name or 'n/a' }}</span>) vs Mode B (rule-based) ·
     {{ provenance.timestamp }} · sources:
     {% for k, v in provenance.data_sources.items() %}{{ v }}{% if not loop.last %}, {% endif %}{% endfor %}
