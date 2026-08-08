@@ -1,0 +1,221 @@
+{
+  "genes": {
+    "AKT1": {
+      "alias_symbol": [
+        "RAC",
+        "PKB",
+        "PRKBA",
+        "AKT",
+        "RAC-alpha"
+      ],
+      "entrez_id": "207",
+      "hgnc_id": "HGNC:391",
+      "name": "AKT serine/threonine kinase 1",
+      "prev_symbol": [],
+      "symbol": "AKT1"
+    },
+    "ALK": {
+      "alias_symbol": [
+        "CD246",
+        "ALK1"
+      ],
+      "entrez_id": "238",
+      "hgnc_id": "HGNC:427",
+      "name": "ALK receptor tyrosine kinase",
+      "prev_symbol": [],
+      "symbol": "ALK"
+    },
+    "APC": {
+      "alias_symbol": [
+        "DP2",
+        "DP3",
+        "DP2.5",
+        "PPP1R46"
+      ],
+      "entrez_id": "324",
+      "hgnc_id": "HGNC:583",
+      "name": "APC regulator of Wnt signaling pathway",
+      "prev_symbol": [],
+      "symbol": "APC"
+    },
+    "BRAF": {
+      "alias_symbol": [
+        "BRAF1",
+        "BRAF-1"
+      ],
+      "entrez_id": "673",
+      "hgnc_id": "HGNC:1097",
+      "name": "B-Raf proto-oncogene, serine/threonine kinase",
+      "prev_symbol": [],
+      "symbol": "BRAF"
+    },
+    "BRCA2": {
+      "alias_symbol": [
+        "FAD",
+        "FAD1",
+        "BRCC2",
+        "XRCC11"
+      ],
+      "entrez_id": "675",
+      "hgnc_id": "HGNC:1101",
+      "name": "BRCA2 DNA repair associated",
+      "prev_symbol": [
+        "FANCD1",
+        "FACD",
+        "FANCD"
+      ],
+      "symbol": "BRCA2"
+    },
+    "CDKN2A": {
+      "alias_symbol": [
+        "CDK4I",
+        "p16",
+        "INK4a",
+        "MTS1",
+        "CMM2",
+        "ARF",
+        "p19",
+        "p14",
+        "INK4",
+        "p16INK4a",
+        "p19Arf",
+        "p14ARF",
+        "P16-INK4A",
+        "CAI2"
+      ],
+      "entrez_id": "1029",
+      "hgnc_id": "HGNC:1787",
+      "name": "cyclin dependent kinase inhibitor 2A",
+      "prev_symbol": [
+        "CDKN2",
+        "MLM"
+      ],
+      "symbol": "CDKN2A"
+    },
+    "EGFR": {
+      "alias_symbol": [
+        "ERBB1",
+        "ERRP"
+      ],
+      "entrez_id": "1956",
+      "hgnc_id": "HGNC:3236",
+      "name": "epidermal growth factor receptor",
+      "prev_symbol": [
+        "ERBB"
+      ],
+      "symbol": "EGFR"
+    },
+    "ERBB2": {
+      "alias_symbol": [
+        "NEU",
+        "HER-2",
+        "CD340",
+        "HER2",
+        "c-ERB2",
+        "c-ERB-2",
+        "MLN-19",
+        "p185(erbB2)"
+      ],
+      "entrez_id": "2064",
+      "hgnc_id": "HGNC:3430",
+      "name": "erb-b2 receptor tyrosine kinase 2",
+      "prev_symbol": [
+        "NGL"
+      ],
+      "symbol": "ERBB2"
+    },
+    "ESR1": {
+      "alias_symbol": [
+        "ER",
+        "NR3A1",
+        "Era",
+        "ER-alpha"
+      ],
+      "entrez_id": "2099",
+      "hgnc_id": "HGNC:3467",
+      "name": "estrogen receptor 1",
+      "prev_symbol": [
+        "ESR"
+      ],
+      "symbol": "ESR1"
+    },
+    "KRAS": {
+      "alias_symbol": [
+        "KRAS1",
+        "K-Ras4B"
+      ],
+      "entrez_id": "3845",
+      "hgnc_id": "HGNC:6407",
+      "name": "KRas proto-oncogene, GTPase",
+      "prev_symbol": [
+        "KRAS2"
+      ],
+      "symbol": "KRAS"
+    },
+    "NRAS": {
+      "alias_symbol": [
+        "N-ras"
+      ],
+      "entrez_id": "4893",
+      "hgnc_id": "HGNC:7989",
+      "name": "NRAS proto-oncogene, GTPase",
+      "prev_symbol": [],
+      "symbol": "NRAS"
+    },
+    "PIK3CA": {
+      "alias_symbol": [
+        "PI3K"
+      ],
+      "entrez_id": "5290",
+      "hgnc_id": "HGNC:8975",
+      "name": "phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit alpha",
+      "prev_symbol": [],
+      "symbol": "PIK3CA"
+    },
+    "PTEN": {
+      "alias_symbol": [
+        "MMAC1",
+        "TEP1",
+        "PTEN1"
+      ],
+      "entrez_id": "5728",
+      "hgnc_id": "HGNC:9588",
+      "name": "phosphatase and tensin homolog",
+      "prev_symbol": [
+        "BZS",
+        "MHAM"
+      ],
+      "symbol": "PTEN"
+    },
+    "ROS1": {
+      "alias_symbol": [
+        "MCF3",
+        "ROS",
+        "c-ros-1"
+      ],
+      "entrez_id": "6098",
+      "hgnc_id": "HGNC:10261",
+      "name": "ROS proto-oncogene 1, receptor tyrosine kinase",
+      "prev_symbol": [],
+      "symbol": "ROS1"
+    },
+    "TP53": {
+      "alias_symbol": [
+        "p53",
+        "LFS1"
+      ],
+      "entrez_id": "7157",
+      "hgnc_id": "HGNC:11998",
+      "name": "tumor protein p53",
+      "prev_symbol": [],
+      "symbol": "TP53"
+    }
+  },
+  "provenance": {
+    "fetched_utc": "2026-08-07T16:04:15Z",
+    "fields": "alias_symbol (current alternatives) + prev_symbol (withdrawn previous symbols)",
+    "missing": [],
+    "n_genes": 15,
+    "source": "HGNC REST (rest.genenames.org/fetch/symbol/{symbol})"
+  }
+}

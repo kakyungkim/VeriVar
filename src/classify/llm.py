@@ -22,6 +22,15 @@ from src.retrieval.graph import GraphContext
 
 MODEL = "gpt-4o-mini"
 
+#: Per-request wall-clock limit and retry budget for every OpenAI call.
+#: Without them the SDK waits on a socket that a laptop sleep can leave
+#: half-open, and a long batch run (ablations, cohort sweeps) blocks forever
+#: instead of failing and retrying. Both are deliberately generous: a
+#: structured-output call on this model returns in a few seconds, so a request
+#: still running at the limit is stuck rather than slow.
+REQUEST_TIMEOUT = 90.0
+MAX_RETRIES = 5
+
 
 class LLMClassification(BaseModel):
     """Structured-output schema the LLM must fill (Mode A)."""
@@ -97,6 +106,41 @@ _VOCAB = (
     "Tier I/II also take a Level A-D.\n"
 )
 
+# --------------------------------------------------------------------------- #
+# System prompts as named constants.
+#
+# These are the text that fixes the model's behaviour, so they are part of the
+# run configuration that has to be recorded, not incidental strings inside a
+# method. Keeping them at module level lets ``src.provenance`` hash them and
+# pin the exact prompt version to every output (see docs/regulatory/).
+# --------------------------------------------------------------------------- #
+SYSTEM_CLASSIFY = (
+    "You are an expert molecular pathologist classifying a somatic variant on two axes.\n"
+    + _VOCAB +
+    "Rules: Use ONLY the provided evidence. Cite the evidence ids you used in `citations`. "
+    "If there is NO variant-specific evidence, set abstained=true, oncogenicity=VUS, tier=Tier III, "
+    "and do not invent therapeutic claims. Tier I requires strong same-tumor-type clinical evidence."
+)
+
+SYSTEM_PARAMETRIC = (
+    "You are an expert molecular pathologist. Classify the somatic variant on two axes using your "
+    "own knowledge (NO evidence is provided).\n" + _VOCAB +
+    "Give your best assessment of oncogenicity and AMP/ASCO/CAP tier for this variant in this cancer."
+)
+
+SYSTEM_EXPLAIN_RULE = (
+    "You are an expert molecular pathologist. A deterministic rule engine has ALREADY assigned the "
+    "classification below; it is authoritative and you must NOT change it. Write a 2-3 sentence clinical "
+    "explanation grounded in the provided evidence, citing evidence ids. Cite ONLY provided ids."
+)
+
+SYSTEM_QA = (
+    "You are a precision-oncology assistant answering a question about a somatic variant. "
+    "Use ONLY the evidence provided below and cite evidence ids in brackets. If the evidence "
+    "does not address the question, reply that you cannot answer from the available evidence — "
+    "do NOT speculate or use outside knowledge."
+)
+
 
 class LLMClassifier:
     def __init__(self, model: str = MODEL):
@@ -105,7 +149,8 @@ class LLMClassifier:
 
     def _client(self, temperature: float):
         from langchain_openai import ChatOpenAI
-        return ChatOpenAI(model=self.model, temperature=temperature)
+        return ChatOpenAI(model=self.model, temperature=temperature,
+                          timeout=REQUEST_TIMEOUT, max_retries=MAX_RETRIES)
 
     @staticmethod
     def available() -> bool:
@@ -114,13 +159,7 @@ class LLMClassifier:
     def classify(self, variant: Variant, bundle: EvidenceBundle,
                  graph: Optional[GraphContext] = None, temperature: float = 0.0) -> ClassificationResult:
         """Mode A — LLM assigns both axes from evidence, grounded + abstaining."""
-        system = (
-            "You are an expert molecular pathologist classifying a somatic variant on two axes.\n"
-            + _VOCAB +
-            "Rules: Use ONLY the provided evidence. Cite the evidence ids you used in `citations`. "
-            "If there is NO variant-specific evidence, set abstained=true, oncogenicity=VUS, tier=Tier III, "
-            "and do not invent therapeutic claims. Tier I requires strong same-tumor-type clinical evidence."
-        )
+        system = SYSTEM_CLASSIFY
         human = format_evidence(variant, bundle, graph)
         llm = self._client(temperature).with_structured_output(LLMClassification)
         out: LLMClassification = llm.invoke([("system", system), ("human", human)])
@@ -132,11 +171,7 @@ class LLMClassifier:
         No evidence is provided, so the model cannot ground citations — this is
         what isolates the contribution (and faithfulness cost) of the RAG layer.
         """
-        system = (
-            "You are an expert molecular pathologist. Classify the somatic variant on two axes using your "
-            "own knowledge (NO evidence is provided).\n" + _VOCAB +
-            "Give your best assessment of oncogenicity and AMP/ASCO/CAP tier for this variant in this cancer."
-        )
+        system = SYSTEM_PARAMETRIC
         human = (f"Variant: {variant.gene} {variant.hgvsp}\n"
                  f"Cancer context: {variant.cancer_type or 'unspecified'}")
         llm = self._client(temperature).with_structured_output(LLMClassification)
@@ -159,11 +194,7 @@ class LLMClassifier:
                      rule_result: ClassificationResult, graph: Optional[GraphContext] = None,
                      temperature: float = 0.0) -> ClassificationResult:
         """Mode B — tier/oncogenicity fixed by rules; LLM writes the explanation."""
-        system = (
-            "You are an expert molecular pathologist. A deterministic rule engine has ALREADY assigned the "
-            "classification below; it is authoritative and you must NOT change it. Write a 2-3 sentence clinical "
-            "explanation grounded in the provided evidence, citing evidence ids. Cite ONLY provided ids."
-        )
+        system = SYSTEM_EXPLAIN_RULE
         fixed = (f"FIXED CLASSIFICATION: oncogenicity={rule_result.oncogenicity.value}, "
                  f"tier={rule_result.tier.value}"
                  + (f" ({rule_result.tier_level.value})" if rule_result.tier_level else ""))
@@ -193,12 +224,7 @@ class LLMClassifier:
         speculating) when the evidence does not address the question — the same
         abstention contract the classifier follows.
         """
-        system = (
-            "You are a precision-oncology assistant answering a question about a somatic variant. "
-            "Use ONLY the evidence provided below and cite evidence ids in brackets. If the evidence "
-            "does not address the question, reply that you cannot answer from the available evidence — "
-            "do NOT speculate or use outside knowledge."
-        )
+        system = SYSTEM_QA
         human = f"Question: {question}\n\n" + format_evidence(variant, bundle, graph)
         msg = self._client(temperature).invoke([("system", system), ("human", human)])
         return msg.content if hasattr(msg, "content") else str(msg)

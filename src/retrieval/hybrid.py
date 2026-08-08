@@ -38,8 +38,34 @@ class HybridRetriever:
         self.docs = docs
         self.by_id = {d.id: d for d in docs}
         self.embedder = embedder or HashingEmbedder()
+        self._persist_path = persist_path
         self._build_sparse()
         self._build_dense(collection_name, persist_path)
+
+    def fingerprint(self) -> dict:
+        """Identify the dense index for the run record.
+
+        Names the embedder and pins the corpus, so that a provenance record can
+        distinguish "same model, different index" from "same index, different
+        model" — either of which moves retrieval results.
+
+        ``embedder_loaded`` matters because :class:`SentenceTransformerEmbedder`
+        resolves its name only when the model is actually loaded, and a warm
+        persistent Chroma collection never triggers that load. When it is False,
+        ``embedder`` is the configured name rather than a confirmed-loaded one.
+        """
+        import hashlib
+
+        doc_ids = sorted(d.id for d in self.docs)
+        digest = hashlib.sha256("\x1f".join(doc_ids).encode("utf-8")).hexdigest()[:16]
+        return {
+            "embedder": getattr(self.embedder, "model_name", type(self.embedder).__name__),
+            "embedder_class": type(self.embedder).__name__,
+            "embedder_loaded": getattr(self.embedder, "_model", None) is not None,
+            "n_docs": len(self.docs),
+            "corpus_digest": digest,
+            "persist_path": self._persist_path,
+        }
 
     def _build_sparse(self):
         from rank_bm25 import BM25Okapi

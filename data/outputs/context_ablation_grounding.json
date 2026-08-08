@@ -1,0 +1,51 @@
+{
+  "arms_total": {
+    "n_citations": 228,
+    "n_outside_bundle": 0
+  },
+  "baseline_self_check": {
+    "n_drifted": 0,
+    "n_reproduced": 56,
+    "trustworthy": true
+  },
+  "baseline_total": {
+    "n_citations": 96,
+    "n_outside_bundle": 0
+  },
+  "by_arm": {
+    "alias": {
+      "n_citations": 45,
+      "n_classifications": 56,
+      "n_outside_bundle": 0
+    },
+    "baseline": {
+      "n_citations": 96,
+      "n_classifications": 56,
+      "n_outside_bundle": 0
+    },
+    "case_lower": {
+      "n_citations": 93,
+      "n_classifications": 56,
+      "n_outside_bundle": 0
+    },
+    "legacy_stop": {
+      "n_citations": 0,
+      "n_classifications": 7,
+      "n_outside_bundle": 0
+    },
+    "three_letter": {
+      "n_citations": 45,
+      "n_classifications": 52,
+      "n_outside_bundle": 0
+    },
+    "transcript_shift": {
+      "n_citations": 45,
+      "n_classifications": 56,
+      "n_outside_bundle": 0
+    }
+  },
+  "method": "retrieval re-run only; labels and citations read from the ablation output, evidence identifiers recomputed",
+  "n_variants_not_found_in_cohort": 0,
+  "source": "data/outputs/context_ablation.json",
+  "violations": []
+}

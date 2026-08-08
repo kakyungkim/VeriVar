@@ -56,15 +56,52 @@ class VariantInterpretation(BaseModel):
 
 
 class Provenance(BaseModel):
-    """Run metadata for reproducibility/auditability (recorded on every output)."""
+    """Run configuration recorded on every output, for reproducibility and audit.
+
+    Beyond the model name and timestamp, this pins the parts of the
+    configuration that silently determine behaviour: the system prompts (by
+    digest), the sampling parameters, the version of the faithfulness contract,
+    and the code revision. A run whose prompts or guardrails differ is a
+    different run, and the golden-set regression check
+    (``scripts/run_golden_regression.py``) uses these fields to say *why* an
+    output moved. See :mod:`src.provenance`.
+    """
     model_config = {"protected_namespaces": ()}  # allow 'model_name' field
 
-    mode_used: str = Field("live", description="'live' or 'mock' (no API key)")
+    mode_used: str = Field("live", description="'live' or 'offline' (no API key)")
     model_name: Optional[str] = None
-    embedding_model: Optional[str] = None
+    embedding_model: Optional[str] = Field(
+        None, description="Dense-arm embedder name; None when the dense arm is off",
+    )
+    retrieval_index: dict = Field(
+        default_factory=dict,
+        description="Dense-index identity: embedder, corpus size, corpus digest, dense_k",
+    )
     data_sources: dict = Field(default_factory=dict, description="source -> version/date")
     timestamp: Optional[str] = None
     seed: Optional[int] = None
+    n_variants: Optional[int] = None
+    techniques: List[str] = Field(
+        default_factory=list,
+        description="Enabled techniques, e.g. dense-RAG / self-consistency(n=3) / agentic-verifier",
+    )
+    # --- configuration that fixes model behaviour ------------------------- #
+    temperatures: dict = Field(
+        default_factory=dict, description="call type -> sampling temperature used",
+    )
+    n_votes: Optional[int] = Field(None, description="self-consistency sample count, when voting")
+    prompt_hash: Optional[str] = Field(
+        None, description="Digest over the whole system-prompt set",
+    )
+    prompt_hashes: dict = Field(
+        default_factory=dict, description="prompt name -> individual digest",
+    )
+    guardrail_version: Optional[str] = Field(
+        None, description="Version of the faithfulness/abstention contract in force",
+    )
+    code_revision: Optional[str] = Field(
+        None, description="Short git commit of the tree that produced this run ('-dirty' if modified)",
+    )
 
 
 class SampleInterpretation(BaseModel):

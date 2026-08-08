@@ -36,6 +36,14 @@ class HybridEvidenceRetriever:
         self.graph = graph
         self.dense_k = dense_k
 
+    def index_fingerprint(self) -> Optional[dict]:
+        """Dense-index identity for the run record; None when the dense arm is off."""
+        if self.dense is None:
+            return None
+        fp = self.dense.fingerprint()
+        fp["dense_k"] = self.dense_k
+        return fp
+
     def retrieve(self, variant: Variant) -> RetrievedEvidence:
         bundle = self.aggregator.for_variant_obj(variant)
         have = {e.id for e in bundle.evidences}

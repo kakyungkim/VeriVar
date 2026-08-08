@@ -15,6 +15,25 @@ data/knowledge/*
 !data/knowledge/dgidb/
 !data/knowledge/panel/
 !data/knowledge/provenance.json
+# HGNC gene-symbol alias table (small, public) — the input-context ablation
+# reads it, so it ships with the repo to keep that ablation offline-reproducible.
+!data/knowledge/gene_aliases.json
+# Golden-set regression snapshot — the change-control check compares against it,
+# so it has to be in the repo for anyone to re-run that check.
+!data/golden/
+# ...but not the previous-snapshot backup the rebuild writes beside it.
+data/golden/*.bak
+# Input-context ablation report. The per-variant checkpoint beside it is a
+# resume artifact for interrupted runs, not a result, and stays ignored.
+!data/outputs/
+data/outputs/*
+!data/outputs/context_ablation.json
+# Same reason for these two: the manuscript gate recomputes its numbers from
+# them, so without them in the repo those numbers cannot be checked. The saved
+# golden-set runs beside them are diagnostic snapshots, not results, and stay
+# ignored.
+!data/outputs/context_ablation_grounding.json
+!data/outputs/baseline_repeatability.json
 
 # Secrets
 .env
@@ -41,3 +60,10 @@ venv/
 __pycache__/
 *.pyc
 data/outputs/verify_report.json
+
+# 규제 원문 자료(공공문서·논문 PDF) — 로컬 보관, 정리 노트(README.md)만 커밋
+docs/regulatory/*.pdf
+docs/regulatory/*.hwpx
+docs/regulatory/*.txt
+docs/regulatory/*.html
+docs/regulatory/*.png

@@ -12,8 +12,23 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 from src.models import AMPTier, ClassificationResult, EvidenceBundle, Variant
-from src.classify.llm import format_evidence
+from src.classify.llm import MAX_RETRIES, REQUEST_TIMEOUT, format_evidence
 from src.retrieval.graph import GraphContext
+
+
+#: Verifier system prompt, kept at module level so it is hashed into the run
+#: provenance alongside the classifier prompts (see :mod:`src.provenance`).
+SYSTEM_VERIFY = (
+    "You are a careful molecular pathology reviewer. A classification was produced for the variant "
+    "below. Using ONLY the provided evidence, decide whether it is SUPPORTED. Default to SUPPORTED; "
+    "only refute a CLEAR mismatch.\n"
+    "- Actionability (Tier I/II) is supported if there is drug-sensitivity evidence (direction "
+    "Supports, significance Sensitivity/Response) for this variant OR for a hotspot/variant group "
+    "that includes it. Gene-level druggability ALONE (no sensitivity evidence at all) is NOT enough.\n"
+    "- 'Oncogenic'/'Likely Oncogenic' is supported by functional/clinical evidence; it is NOT "
+    "supported when the only evidence is 'Unaltered Function' or 'Does Not Support'.\n"
+    "If unsupported, give the corrected tier."
+)
 
 
 class VerifierVerdict(BaseModel):
@@ -47,20 +62,12 @@ class Verifier:
     def verify(self, variant: Variant, bundle: EvidenceBundle, result: ClassificationResult,
                graph: Optional[GraphContext] = None, temperature: float = 0.0) -> VerifierVerdict:
         from langchain_openai import ChatOpenAI
-        system = (
-            "You are a careful molecular pathology reviewer. A classification was produced for the variant "
-            "below. Using ONLY the provided evidence, decide whether it is SUPPORTED. Default to SUPPORTED; "
-            "only refute a CLEAR mismatch.\n"
-            "- Actionability (Tier I/II) is supported if there is drug-sensitivity evidence (direction "
-            "Supports, significance Sensitivity/Response) for this variant OR for a hotspot/variant group "
-            "that includes it. Gene-level druggability ALONE (no sensitivity evidence at all) is NOT enough.\n"
-            "- 'Oncogenic'/'Likely Oncogenic' is supported by functional/clinical evidence; it is NOT "
-            "supported when the only evidence is 'Unaltered Function' or 'Does Not Support'.\n"
-            "If unsupported, give the corrected tier."
-        )
+        system = SYSTEM_VERIFY
         claim = (f"CLASSIFICATION TO REVIEW: oncogenicity={result.oncogenicity.value}, "
                  f"tier={result.tier.value}"
                  + (f" ({result.tier_level.value})" if result.tier_level else ""))
         human = claim + "\n\n" + format_evidence(variant, bundle, graph)
-        llm = ChatOpenAI(model=self.model, temperature=temperature).with_structured_output(VerifierVerdict)
+        llm = ChatOpenAI(model=self.model, temperature=temperature,
+                         timeout=REQUEST_TIMEOUT,
+                         max_retries=MAX_RETRIES).with_structured_output(VerifierVerdict)
         return llm.invoke([("system", system), ("human", human)])

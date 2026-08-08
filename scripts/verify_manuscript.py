@@ -311,6 +311,124 @@ def check_variants(rep: Report) -> None:
 TAGS = ["[UNVERIFIED]", "[CHECK]", "[TODO", "???", "FIXME", "XXX-"]
 
 
+def check_context_ablation(rep: Report, docs: dict[str, str]) -> None:
+    """Input-context ablation: harness sanity + the prose matching the report.
+
+    The negative control carries the weight here. Every other arm is expected to
+    destroy the curated evidence, so a run in which *everything* collapses looks
+    identical to a run in which the harness is simply broken. The control is what
+    separates those two, and it must show perfect invariance.
+    """
+    path = OUT / "context_ablation.json"
+    if not path.exists():
+        rep.add("context ablation (not run; skipped)", True, f"no {path.name}")
+        return
+    both = docs["preprint"] + "\n" + docs["summary"]
+    s = load(path)["summary"]
+
+    # Retrieval under the control must be bit-identical: that is deterministic
+    # code, and any movement means the harness is broken. Its *label* flips are
+    # a different matter — the model is not perfectly reproducible even at
+    # temperature 0 — so they are the nondeterminism floor, not a failure, and
+    # the prose has to state that floor for the other arms to be readable.
+    ctrl = s["arms"].get("case_lower", {})
+    rep.add(
+        "context ablation: negative control retrieval is bit-identical",
+        ctrl.get("n_clinical_collapsed") == 0 and ctrl.get("mean_clinical_jaccard") == 1.0,
+        f"control: collapsed={ctrl.get('n_clinical_collapsed')}, J={ctrl.get('mean_clinical_jaccard')}",
+    )
+    floor = ctrl.get("oncogenicity_flips", 0)
+    rep.add(
+        "context ablation: control nondeterminism floor is stated in prose",
+        appears(f"{floor} of {ctrl.get('n_applicable')}", both) or appears(f"{floor}/{ctrl.get('n_applicable')}", both),
+        f"control label flips at temperature 0 = {floor}/{ctrl.get('n_applicable')}",
+    )
+
+    sw = s["alias_sweep"]
+    rep.add(
+        "alias-sweep counts appear in prose",
+        appears(str(sw["n_symbol_tests"]), both)
+        and appears(str(sw["n_clinical_evidence_collapsed"]), both),
+        f"{sw['n_clinical_evidence_collapsed']}/{sw['n_symbol_tests']} symbol tests lost "
+        f"all curated evidence",
+    )
+
+    # Report the alias arm on its own, not a sum over arms: the same variants
+    # recur in every arm, so a cross-arm total triple-counts them and would put
+    # an inflated number in front of the reader.
+    al = s["arms"].get("alias", {})
+    drivers = al.get("driver_calls_after_clinical_loss", 0)
+    safe = al.get("safe_downgrades_after_clinical_loss", 0)
+    collapsed = al.get("n_clinical_collapsed", 0)
+    # Both halves of the outcome must appear as an explicit "N of M", so the
+    # prose cannot state the reassuring number and quietly drop the other.
+    rep.add(
+        "post-evidence-loss outcome (alias arm) is stated as N of M in prose",
+        (appears(f"{drivers} of {collapsed}", both) or appears(f"{drivers}/{collapsed}", both))
+        and appears(str(safe), both),
+        f"alias arm: {drivers} driver call(s) and {safe} safe downgrade(s) "
+        f"among {collapsed} variants that lost all curated evidence",
+    )
+
+    # The ablation output records citations but not the identifiers that were
+    # available to the model, so the "no citation fell outside its bundle" claim
+    # is not recomputable from it. scripts/check_ablation_citation_grounding.py
+    # rebuilds the bundles (retrieval only, no model calls) and writes the
+    # counts here; without that file the claim stands unverified and the gate
+    # says so rather than passing quietly.
+    gpath = OUT / "context_ablation_grounding.json"
+    if not gpath.exists():
+        rep.add(
+            "context ablation: citation grounding recomputed",
+            False,
+            f"missing {gpath.name}; run scripts.check_ablation_citation_grounding",
+        )
+        return
+    g = load(gpath)
+    self_check = g["baseline_self_check"]
+    # If the baseline identifiers no longer reproduce, retrieval has moved since
+    # the run and every arm number below is measuring a different system.
+    rep.add(
+        "context ablation: retrieval reproduces baseline identifiers",
+        self_check["trustworthy"],
+        f"{self_check['n_reproduced']} reproduced, {self_check['n_drifted']} drifted",
+    )
+    arms = g["arms_total"]
+    rep.add(
+        "context ablation: no arm citation outside its retrieved bundle",
+        arms["n_outside_bundle"] == 0,
+        f"{arms['n_outside_bundle']} of {arms['n_citations']} outside bundle",
+    )
+    rep.add(
+        "context ablation: citation-grounding count stated in prose",
+        appears(f"{arms['n_outside_bundle']} of {arms['n_citations']}", both),
+        f"prose should state '{arms['n_outside_bundle']} of {arms['n_citations']}'",
+    )
+
+    # The nondeterminism floor the ablation is read against. It has to come from
+    # the fixed-prompt replicate run, not from the lower-case-symbol control:
+    # that arm changes the prompt too, so its flips confound sampling noise with
+    # case sensitivity and cannot set a floor on their own.
+    rpath = OUT / "baseline_repeatability.json"
+    if not rpath.exists():
+        rep.add(
+            "nondeterminism floor measured with a fixed prompt",
+            False,
+            f"missing {rpath.name}; run scripts.run_baseline_repeatability",
+        )
+        return
+    pw = load(rpath)["summary"]["pairwise"]
+    pct = {f: f"{r * 100:.1f}%" for f, r in pw["rate_by_field"].items()}
+    pct["any"] = f"{pw['rate_any_field'] * 100:.1f}%"
+    missing = [f"{f}={v}" for f, v in pct.items() if not appears(v, both)]
+    rep.add(
+        "nondeterminism floor rates stated in prose",
+        not missing,
+        f"over {pw['n_pairs']} replicate pairs: " + ", ".join(f"{f}={v}" for f, v in pct.items())
+        + (f"; missing from prose: {', '.join(missing)}" if missing else ""),
+    )
+
+
 def check_tags(rep: Report, docs: dict[str, str]) -> None:
     hits = []
     for name in ("preprint", "summary"):
@@ -370,6 +488,7 @@ def main() -> int:
     else:
         check_numbers(rep, docs)
         check_variants(rep)
+        check_context_ablation(rep, docs)
         check_tags(rep, docs)
         check_dois(rep, docs, args.online)
 

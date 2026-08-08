@@ -1,0 +1,860 @@
+{
+  "entries": {
+    "ALK|P.G1121D|breast carcinoma": {
+      "cancer_type": "Breast Carcinoma",
+      "gene": "ALK",
+      "hgvsp": "p.G1121D",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:2:29445471C>T"
+        ],
+        "oncogenicity": "Likely Oncogenic",
+        "tier": "Tier II",
+        "tier_level": "Level B"
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:2:29445471C>T"
+        ],
+        "oncogenicity": "Likely Oncogenic",
+        "tier": "Tier III",
+        "tier_level": null
+      },
+      "n_evidence": 1,
+      "observed": {
+        "citations_seen_but_not_pinned": [],
+        "label_spread": {
+          "abstained": [
+            "False"
+          ],
+          "oncogenicity": [
+            "Likely Oncogenic"
+          ],
+          "tier": [
+            "Tier II"
+          ],
+          "tier_level": [
+            "Level B"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "APC|P.R1450*|colorectal adenocarcinoma": {
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "gene": "APC",
+      "hgvsp": "p.R1450*",
+      "mode_a": {
+        "abstained": true,
+        "citations": [],
+        "oncogenicity": "VUS",
+        "tier": "Tier III",
+        "tier_level": null
+      },
+      "mode_b": {
+        "abstained": true,
+        "citations": [],
+        "oncogenicity": "VUS",
+        "tier": "Tier III",
+        "tier_level": null
+      },
+      "n_evidence": 0,
+      "observed": {
+        "citations_seen_but_not_pinned": [],
+        "label_spread": {
+          "abstained": [
+            "True"
+          ],
+          "oncogenicity": [
+            "VUS"
+          ],
+          "tier": [
+            "Tier III"
+          ],
+          "tier_level": [
+            "None"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "BRAF|P.V600E|colorectal adenocarcinoma": {
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "gene": "BRAF",
+      "hgvsp": "p.V600E",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "CIViC:EID9851"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level A"
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:7:140453136A>T",
+          "CIViC:EID1005",
+          "CIViC:EID102",
+          "CIViC:EID103",
+          "CIViC:EID104",
+          "CIViC:EID105",
+          "CIViC:EID106",
+          "CIViC:EID107",
+          "CIViC:EID1127",
+          "CIViC:EID1141",
+          "CIViC:EID11672",
+          "CIViC:EID11770",
+          "CIViC:EID12161",
+          "CIViC:EID12162",
+          "CIViC:EID126",
+          "CIViC:EID1398",
+          "CIViC:EID1405",
+          "CIViC:EID1406",
+          "CIViC:EID1408",
+          "CIViC:EID1409",
+          "CIViC:EID1410",
+          "CIViC:EID1413",
+          "CIViC:EID1414",
+          "CIViC:EID1421",
+          "CIViC:EID1428",
+          "CIViC:EID1430",
+          "CIViC:EID1552",
+          "CIViC:EID1579",
+          "CIViC:EID1589",
+          "CIViC:EID1591",
+          "CIViC:EID1698",
+          "CIViC:EID1699",
+          "CIViC:EID1749",
+          "CIViC:EID1902",
+          "CIViC:EID1940",
+          "CIViC:EID2115",
+          "CIViC:EID2116",
+          "CIViC:EID2117",
+          "CIViC:EID2118",
+          "CIViC:EID2121",
+          "CIViC:EID2135",
+          "CIViC:EID2137",
+          "CIViC:EID2362",
+          "CIViC:EID2503",
+          "CIViC:EID3017",
+          "CIViC:EID3739",
+          "CIViC:EID3750",
+          "CIViC:EID3755",
+          "CIViC:EID3757",
+          "CIViC:EID3758",
+          "CIViC:EID3777",
+          "CIViC:EID3787",
+          "CIViC:EID3827",
+          "CIViC:EID463",
+          "CIViC:EID5902",
+          "CIViC:EID5903",
+          "CIViC:EID5904",
+          "CIViC:EID5906",
+          "CIViC:EID5958",
+          "CIViC:EID5959",
+          "CIViC:EID5960",
+          "CIViC:EID5961",
+          "CIViC:EID5962",
+          "CIViC:EID6045",
+          "CIViC:EID6123",
+          "CIViC:EID6124",
+          "CIViC:EID6178",
+          "CIViC:EID656",
+          "CIViC:EID6938",
+          "CIViC:EID6940",
+          "CIViC:EID6975",
+          "CIViC:EID7156",
+          "CIViC:EID7157",
+          "CIViC:EID7191",
+          "CIViC:EID7260",
+          "CIViC:EID7264",
+          "CIViC:EID757",
+          "CIViC:EID7583",
+          "CIViC:EID7612",
+          "CIViC:EID79",
+          "CIViC:EID80",
+          "CIViC:EID816",
+          "CIViC:EID82",
+          "CIViC:EID8506",
+          "CIViC:EID8507",
+          "CIViC:EID86",
+          "CIViC:EID89",
+          "CIViC:EID9018",
+          "CIViC:EID9170",
+          "CIViC:EID95",
+          "CIViC:EID96",
+          "CIViC:EID97",
+          "CIViC:EID98",
+          "CIViC:EID9851",
+          "CIViC:EID99",
+          "CIViC:EID994"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level A"
+      },
+      "n_evidence": 96,
+      "observed": {
+        "citations_seen_but_not_pinned": [
+          "CIViC:EID1408",
+          "CIViC:EID6123",
+          "CIViC:EID7612"
+        ],
+        "label_spread": {
+          "abstained": [
+            "False"
+          ],
+          "oncogenicity": [
+            "Oncogenic"
+          ],
+          "tier": [
+            "Tier I"
+          ],
+          "tier_level": [
+            "Level A"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "BRAF|P.V600E|cutaneous melanoma": {
+      "cancer_type": "Cutaneous Melanoma",
+      "gene": "BRAF",
+      "hgvsp": "p.V600E",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "CIViC:EID1398",
+          "CIViC:EID1409"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level A"
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:7:140453136A>T",
+          "CIViC:EID1005",
+          "CIViC:EID102",
+          "CIViC:EID103",
+          "CIViC:EID104",
+          "CIViC:EID105",
+          "CIViC:EID106",
+          "CIViC:EID107",
+          "CIViC:EID1127",
+          "CIViC:EID1141",
+          "CIViC:EID11672",
+          "CIViC:EID11770",
+          "CIViC:EID12161",
+          "CIViC:EID12162",
+          "CIViC:EID126",
+          "CIViC:EID1398",
+          "CIViC:EID1405",
+          "CIViC:EID1406",
+          "CIViC:EID1408",
+          "CIViC:EID1409",
+          "CIViC:EID1410",
+          "CIViC:EID1413",
+          "CIViC:EID1414",
+          "CIViC:EID1421",
+          "CIViC:EID1428",
+          "CIViC:EID1430",
+          "CIViC:EID1552",
+          "CIViC:EID1579",
+          "CIViC:EID1589",
+          "CIViC:EID1591",
+          "CIViC:EID1698",
+          "CIViC:EID1699",
+          "CIViC:EID1749",
+          "CIViC:EID1902",
+          "CIViC:EID1940",
+          "CIViC:EID2115",
+          "CIViC:EID2116",
+          "CIViC:EID2117",
+          "CIViC:EID2118",
+          "CIViC:EID2121",
+          "CIViC:EID2135",
+          "CIViC:EID2137",
+          "CIViC:EID2362",
+          "CIViC:EID2503",
+          "CIViC:EID3017",
+          "CIViC:EID3739",
+          "CIViC:EID3750",
+          "CIViC:EID3755",
+          "CIViC:EID3757",
+          "CIViC:EID3758",
+          "CIViC:EID3777",
+          "CIViC:EID3787",
+          "CIViC:EID3827",
+          "CIViC:EID463",
+          "CIViC:EID5902",
+          "CIViC:EID5903",
+          "CIViC:EID5904",
+          "CIViC:EID5906",
+          "CIViC:EID5958",
+          "CIViC:EID5959",
+          "CIViC:EID5960",
+          "CIViC:EID5961",
+          "CIViC:EID5962",
+          "CIViC:EID6045",
+          "CIViC:EID6123",
+          "CIViC:EID6124",
+          "CIViC:EID6178",
+          "CIViC:EID656",
+          "CIViC:EID6938",
+          "CIViC:EID6940",
+          "CIViC:EID6975",
+          "CIViC:EID7156",
+          "CIViC:EID7157",
+          "CIViC:EID7191",
+          "CIViC:EID7260",
+          "CIViC:EID7264",
+          "CIViC:EID73",
+          "CIViC:EID757",
+          "CIViC:EID7583",
+          "CIViC:EID7612",
+          "CIViC:EID79",
+          "CIViC:EID80",
+          "CIViC:EID816",
+          "CIViC:EID82",
+          "CIViC:EID8506",
+          "CIViC:EID8507",
+          "CIViC:EID86",
+          "CIViC:EID89",
+          "CIViC:EID9018",
+          "CIViC:EID9170",
+          "CIViC:EID95",
+          "CIViC:EID96",
+          "CIViC:EID97",
+          "CIViC:EID98",
+          "CIViC:EID9851",
+          "CIViC:EID99",
+          "CIViC:EID994"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level A"
+      },
+      "n_evidence": 97,
+      "observed": {
+        "citations_seen_but_not_pinned": [],
+        "label_spread": {
+          "abstained": [
+            "False"
+          ],
+          "oncogenicity": [
+            "Oncogenic"
+          ],
+          "tier": [
+            "Tier I"
+          ],
+          "tier_level": [
+            "Level A"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "EGFR|P.L858R|lung adenocarcinoma (nsclc)": {
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "gene": "EGFR",
+      "hgvsp": "p.L858R",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "CIViC:EID879"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level A"
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:7:55259515T>G",
+          "CIViC:EID1665",
+          "CIViC:EID229",
+          "CIViC:EID2621",
+          "CIViC:EID2624",
+          "CIViC:EID2626",
+          "CIViC:EID2627",
+          "CIViC:EID2628",
+          "CIViC:EID2629",
+          "CIViC:EID2631",
+          "CIViC:EID2632",
+          "CIViC:EID2634",
+          "CIViC:EID275",
+          "CIViC:EID276",
+          "CIViC:EID2994",
+          "CIViC:EID2997",
+          "CIViC:EID347",
+          "CIViC:EID3811",
+          "CIViC:EID4265",
+          "CIViC:EID4284",
+          "CIViC:EID4285",
+          "CIViC:EID4286",
+          "CIViC:EID4287",
+          "CIViC:EID4288",
+          "CIViC:EID4290",
+          "CIViC:EID4291",
+          "CIViC:EID4292",
+          "CIViC:EID4293",
+          "CIViC:EID4294",
+          "CIViC:EID4295",
+          "CIViC:EID4860",
+          "CIViC:EID5922",
+          "CIViC:EID6183",
+          "CIViC:EID879",
+          "CIViC:EID883",
+          "CIViC:EID885",
+          "CIViC:EID968",
+          "CIViC:EID982"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level A"
+      },
+      "n_evidence": 38,
+      "observed": {
+        "citations_seen_but_not_pinned": [
+          "CIViC:EID2621",
+          "CIViC:EID2994",
+          "CIViC:EID2997",
+          "CIViC:EID883",
+          "CIViC:EID885"
+        ],
+        "label_spread": {
+          "abstained": [
+            "False"
+          ],
+          "oncogenicity": [
+            "Oncogenic"
+          ],
+          "tier": [
+            "Tier I"
+          ],
+          "tier_level": [
+            "Level A"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "ESR1|P.E247K|colorectal adenocarcinoma": {
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "gene": "ESR1",
+      "hgvsp": "p.E247K",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:6:152201885G>A"
+        ],
+        "oncogenicity": "VUS",
+        "tier": "Tier III",
+        "tier_level": null
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:6:152201885G>A"
+        ],
+        "oncogenicity": "Likely Oncogenic",
+        "tier": "Tier III",
+        "tier_level": null
+      },
+      "n_evidence": 1,
+      "observed": {
+        "citations_seen_but_not_pinned": [],
+        "label_spread": {
+          "abstained": [
+            "False",
+            "True"
+          ],
+          "oncogenicity": [
+            "VUS"
+          ],
+          "tier": [
+            "Tier III"
+          ],
+          "tier_level": [
+            "None"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "KRAS|P.G12V|colorectal adenocarcinoma": {
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "gene": "KRAS",
+      "hgvsp": "p.G12V",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:12:25398284C>A",
+          "CIViC:EID136",
+          "CIViC:EID2219",
+          "CIViC:EID2232"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level B"
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:12:25398284C>A",
+          "CIViC:EID1143",
+          "CIViC:EID136",
+          "CIViC:EID1715",
+          "CIViC:EID2001",
+          "CIViC:EID2219",
+          "CIViC:EID2232",
+          "CIViC:EID2268",
+          "CIViC:EID3824",
+          "CIViC:EID3924",
+          "CIViC:EID6323",
+          "CIViC:EID795",
+          "CIViC:EID987"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level B"
+      },
+      "n_evidence": 13,
+      "observed": {
+        "citations_seen_but_not_pinned": [],
+        "label_spread": {
+          "abstained": [
+            "False"
+          ],
+          "oncogenicity": [
+            "Oncogenic"
+          ],
+          "tier": [
+            "Tier I"
+          ],
+          "tier_level": [
+            "Level B"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "KRAS|P.G12V|pancreatic adenocarcinoma": {
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "gene": "KRAS",
+      "hgvsp": "p.G12V",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:12:25398284C>A",
+          "CIViC:EID136",
+          "CIViC:EID2219"
+        ],
+        "oncogenicity": "Likely Oncogenic",
+        "tier": "Tier II",
+        "tier_level": "Level B"
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:12:25398284C>A",
+          "CIViC:EID1143",
+          "CIViC:EID136",
+          "CIViC:EID1715",
+          "CIViC:EID2001",
+          "CIViC:EID2219",
+          "CIViC:EID2232",
+          "CIViC:EID2268",
+          "CIViC:EID3824",
+          "CIViC:EID3924",
+          "CIViC:EID6323",
+          "CIViC:EID795",
+          "CIViC:EID987"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier II",
+        "tier_level": "Level C"
+      },
+      "n_evidence": 13,
+      "observed": {
+        "citations_seen_but_not_pinned": [
+          "CIViC:EID3924",
+          "CIViC:EID987"
+        ],
+        "label_spread": {
+          "abstained": [
+            "False"
+          ],
+          "oncogenicity": [
+            "Likely Oncogenic"
+          ],
+          "tier": [
+            "Tier II"
+          ],
+          "tier_level": [
+            "Level B"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "PIK3CA|P.H1047R|breast carcinoma": {
+      "cancer_type": "Breast Carcinoma",
+      "gene": "PIK3CA",
+      "hgvsp": "p.H1047R",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "CIViC:EID1505",
+          "CIViC:EID2097",
+          "CIViC:EID2100"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level B"
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:3:178952085A>G",
+          "CIViC:EID1361",
+          "CIViC:EID1362",
+          "CIViC:EID1363",
+          "CIViC:EID1401",
+          "CIViC:EID1447",
+          "CIViC:EID1465",
+          "CIViC:EID1505",
+          "CIViC:EID1506",
+          "CIViC:EID1623",
+          "CIViC:EID1625",
+          "CIViC:EID2096",
+          "CIViC:EID2097",
+          "CIViC:EID2100",
+          "CIViC:EID2102",
+          "CIViC:EID2103",
+          "CIViC:EID258",
+          "CIViC:EID3047",
+          "CIViC:EID314",
+          "CIViC:EID3733",
+          "CIViC:EID3841",
+          "CIViC:EID388",
+          "CIViC:EID6202",
+          "CIViC:EID6203",
+          "CIViC:EID6204",
+          "CIViC:EID6206",
+          "CIViC:EID8364",
+          "CIViC:EID8548"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier II",
+        "tier_level": "Level C"
+      },
+      "n_evidence": 28,
+      "observed": {
+        "citations_seen_but_not_pinned": [
+          "CIViC:EID1506"
+        ],
+        "label_spread": {
+          "abstained": [
+            "False"
+          ],
+          "oncogenicity": [
+            "Oncogenic"
+          ],
+          "tier": [
+            "Tier I"
+          ],
+          "tier_level": [
+            "Level B"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "PIK3CA|P.R88Q|colorectal adenocarcinoma": {
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "gene": "PIK3CA",
+      "hgvsp": "p.R88Q",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:3:178916876G>A",
+          "CIViC:EID12034",
+          "CIViC:EID3832"
+        ],
+        "oncogenicity": "VUS",
+        "tier": "Tier III",
+        "tier_level": null
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:3:178916876G>A",
+          "CIViC:EID12034",
+          "CIViC:EID3832"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier II",
+        "tier_level": "Level C"
+      },
+      "n_evidence": 3,
+      "observed": {
+        "citations_seen_but_not_pinned": [],
+        "label_spread": {
+          "abstained": [
+            "False",
+            "True"
+          ],
+          "oncogenicity": [
+            "VUS"
+          ],
+          "tier": [
+            "Tier III"
+          ],
+          "tier_level": [
+            "None"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "PTEN|P.R130*|cutaneous melanoma": {
+      "cancer_type": "Cutaneous Melanoma",
+      "gene": "PTEN",
+      "hgvsp": "p.R130*",
+      "mode_a": {
+        "abstained": true,
+        "citations": [
+          "CIViC:EID1627"
+        ],
+        "oncogenicity": "VUS",
+        "tier": "Tier III",
+        "tier_level": null
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "CIViC:EID1627"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier II",
+        "tier_level": "Level D"
+      },
+      "n_evidence": 1,
+      "observed": {
+        "citations_seen_but_not_pinned": [],
+        "label_spread": {
+          "abstained": [
+            "True"
+          ],
+          "oncogenicity": [
+            "VUS"
+          ],
+          "tier": [
+            "Tier III"
+          ],
+          "tier_level": [
+            "None"
+          ]
+        },
+        "n_draws": 7
+      }
+    },
+    "TP53|P.R175H|breast carcinoma": {
+      "cancer_type": "Breast Carcinoma",
+      "gene": "TP53",
+      "hgvsp": "p.R175H",
+      "mode_a": {
+        "abstained": false,
+        "citations": [
+          "CIViC:EID389"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier I",
+        "tier_level": "Level B"
+      },
+      "mode_b": {
+        "abstained": false,
+        "citations": [
+          "AlphaMissense:17:7578406C>T",
+          "CIViC:EID10074",
+          "CIViC:EID10527",
+          "CIViC:EID2310",
+          "CIViC:EID319",
+          "CIViC:EID389",
+          "CIViC:EID4880"
+        ],
+        "oncogenicity": "Oncogenic",
+        "tier": "Tier II",
+        "tier_level": "Level C"
+      },
+      "n_evidence": 7,
+      "observed": {
+        "citations_seen_but_not_pinned": [
+          "AlphaMissense:17:7578406C>T",
+          "CIViC:EID319",
+          "CIViC:EID4880"
+        ],
+        "label_spread": {
+          "abstained": [
+            "False"
+          ],
+          "oncogenicity": [
+            "Oncogenic"
+          ],
+          "tier": [
+            "Tier I"
+          ],
+          "tier_level": [
+            "Level B"
+          ]
+        },
+        "n_draws": 7
+      }
+    }
+  },
+  "missing_from_cohort": [],
+  "provenance": {
+    "code_revision": "4d5639c-dirty",
+    "data_sources": {
+      "civic": "CIViC nightly (committed snapshot)",
+      "cohort": "cBioPortal TCGA PanCancer Atlas (committed snapshot)"
+    },
+    "embedding_model": null,
+    "guardrail_version": "1.0",
+    "mode_used": "live",
+    "model_name": "gpt-4o-mini",
+    "n_variants": 12,
+    "n_votes": null,
+    "prompt_hash": "1b07ee2e1985b014",
+    "prompt_hashes": {
+      "classify": "e84ccef38d148f9f",
+      "explain_rule": "cd508d6b7a9dc830",
+      "parametric": "1bab210e213ba146",
+      "qa": "173e73690a9d5a2e",
+      "verify": "cdf9fb497d3113a6"
+    },
+    "retrieval_index": {},
+    "seed": null,
+    "techniques": [
+      "dense-RAG",
+      "single-pass",
+      "temperature=0"
+    ],
+    "temperatures": {
+      "classify": 0.0,
+      "explain_rule": 0.0,
+      "parametric": 0.0,
+      "qa": 0.0,
+      "self_consistency": 0.4,
+      "verify": 0.0
+    },
+    "timestamp": ""
+  }
+}

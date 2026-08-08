@@ -24,6 +24,7 @@ from src.classify.llm import LLMClassifier
 from src.classify.verify import Verifier, apply_verdict
 from src.retrieval.graph import KnowledgeGraph
 from src.compare.dualmode import compare, discordance_summary
+from src.provenance import build_provenance
 
 OUT_DIR = Path("data/outputs")
 ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
@@ -136,19 +137,22 @@ def run(limit: Optional[int] = None, timestamp: str = "",
             print(f"    {i}/{len(selected)} done")
 
     summary = discordance_summary(comparisons)
-    output = {
-        "provenance": {
-            "mode_used": "live" if live else "offline",
-            "model_name": llm.model if live else None,
-            "data_sources": {
-                "cohort": "cBioPortal REST (TCGA PanCancer Atlas)",
-                "civic": "CIViC nightly", "dgidb": "DGIdb",
-                "alphamissense": "Ensembl VEP REST", "trials": "ClinicalTrials.gov v2",
-            },
-            "timestamp": timestamp,
-            "n_variants": len(selected),
-            "techniques": techniques or ["single-pass"],
+    provenance = build_provenance(
+        live=live,
+        model_name=llm.model if live else None,
+        data_sources={
+            "cohort": "cBioPortal REST (TCGA PanCancer Atlas)",
+            "civic": "CIViC nightly", "dgidb": "DGIdb",
+            "alphamissense": "Ensembl VEP REST", "trials": "ClinicalTrials.gov v2",
         },
+        timestamp=timestamp,
+        n_variants=len(selected),
+        techniques=techniques or ["single-pass"],
+        n_votes=n_votes if vote else None,
+        retrieval_index=orchestrator.index_fingerprint() if orchestrator is not None else None,
+    )
+    output = {
+        "provenance": provenance.model_dump(mode="json"),
         "discordance_summary": summary,
         "variants": rows,
     }

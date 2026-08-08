@@ -13,8 +13,8 @@ Main figures
   fig4  Classification & dual-mode discordance      (confusion + discordance bars + KRAS ledger)
   fig5  Positioning                                 (quantitative capability matrix)
 Supplementary
-  figS1 temporal holdout · figS2 embedding ablation · figS3 LOVO · figS4 multi-model PoC
-  (figS6 dashboard screenshot is built by make_dashboard_figure.sh)
+  figS1 leakage controls & robustness · figS2 multi-model PoC · figS4 input-context ablation
+  (figS3, the dashboard screenshot, is built by make_dashboard_figure.sh)
 
 Style: Helvetica/Arial, Okabe-Ito + navy/teal brand (colourblind-safe, redundant hatch),
 Nature widths (single 89 mm, double 183 mm), 600-dpi PNG + vector PDF (pdf.fonttype 42),
@@ -697,7 +697,7 @@ def figS1_robustness():
     axD.set_xticks(xs); axD.set_xticklabels(["gpt-4o-mini\n(primary)", "gpt-4o"], fontsize=5.6)
     axD.set_ylim(0, 1.0); axD.set_ylabel("3-class accuracy", fontsize=6); ygrid(axD)
     axD.text(0.5, 0.92, "McNemar p = 0.21", transform=axD.transAxes, ha="center", fontsize=5.4, color=MUT)
-    axD.set_title("Stronger-model replication (gpt-4o)", fontsize=6.6); plabel(axD, "d")
+    axD.set_title("Model-substitution equivalence (gpt-4o)", fontsize=6.6); plabel(axD, "d")
     save(fig, "figS1_robustness")
 
 
@@ -752,8 +752,96 @@ def figS2_multimodel():
     save(fig, "figS2_multimodel")
 
 
+def figS4_context_ablation():
+    """Input-context ablation: what survives when the variant is written differently."""
+    rep = load(os.path.join(OUT, "context_ablation.json"))
+    s = rep["summary"]
+
+    # Arms in narrative order: the negative control first, then the three that
+    # must be invariant, then the one that must NOT be silently accepted.
+    order = [("case_lower", "lower-case\nsymbol\n(control)"),
+             ("alias", "HGNC alias\nsymbol"),
+             ("three_letter", "3-letter\nHGVS"),
+             ("legacy_stop", "legacy stop\n(* as X)"),
+             ("transcript_shift", "shifted\nresidue no.")]
+    arms = [(k, lab) for k, lab in order if s["arms"].get(k, {}).get("n_applicable")]
+
+    fig = plt.figure(figsize=(W2, 2.6))
+    gs = fig.add_gridspec(1, 3, wspace=0.42, left=0.075, right=0.985, top=0.80, bottom=0.30,
+                          width_ratios=[1.15, 0.85, 1.15])
+
+    # (a) curated clinical evidence retained, per arm
+    axA = fig.add_subplot(gs[0, 0])
+    xs = np.arange(len(arms))
+    vals = [s["arms"][k]["mean_clinical_jaccard"] or 0.0 for k, _ in arms]
+    cols = [TEAL if k == "case_lower" else (AMBER if k == "transcript_shift" else VERM)
+            for k, _ in arms]
+    axA.bar(xs, vals, color=cols, width=0.62, edgecolor="white", linewidth=0.4, zorder=3)
+    for x, v in zip(xs, vals):
+        axA.text(x, v + 0.03, f"{v:.2f}", ha="center", fontsize=5.6, color=INK)
+    axA.set_xticks(xs); axA.set_xticklabels([lab for _, lab in arms], fontsize=5.0)
+    axA.set_ylim(0, 1.12); axA.set_ylabel("clinical-evidence overlap\n(Jaccard vs baseline)", fontsize=6)
+    ygrid(axA)
+    axA.set_title("Curated evidence retained", fontsize=6.6); plabel(axA, "a")
+
+    # (b) which source survives — text-keyed vs coordinate-keyed
+    axB = fig.add_subplot(gs[0, 1])
+    base_civic = sum(v["baseline"]["n_clinical_evidence"] for v in rep["variants"])
+    base_am = sum(v["baseline"]["n_evidence"] - v["baseline"]["n_clinical_evidence"]
+                  for v in rep["variants"])
+    al = [v["arms"]["alias"] for v in rep["variants"] if v["arms"].get("alias", {}).get("applicable")]
+    pert_civic = sum(a["n_clinical_evidence"] for a in al)
+    pert_am = sum(a["n_evidence"] - a["n_clinical_evidence"] for a in al)
+    w = 0.34
+    axB.bar([0 - w / 2, 1 - w / 2], [base_civic, base_am], width=w, color=NAVY,
+            edgecolor="white", linewidth=0.4, label="baseline", zorder=3)
+    axB.bar([0 + w / 2, 1 + w / 2], [pert_civic, pert_am], width=w, color=VERM,
+            edgecolor="white", linewidth=0.4, label="alias symbol", zorder=3)
+    for x, v in [(0 - w / 2, base_civic), (1 - w / 2, base_am),
+                 (0 + w / 2, pert_civic), (1 + w / 2, pert_am)]:
+        axB.text(x, v + max(base_civic, base_am) * 0.02, str(v), ha="center", fontsize=5.4, color=INK)
+    axB.set_xticks([0, 1])
+    axB.set_xticklabels(["CIViC\n(text-keyed)", "AlphaMissense\n(coordinate-keyed)"], fontsize=5.2)
+    axB.set_ylabel("evidence items (cohort total)", fontsize=6)
+    axB.legend(fontsize=5.2, framealpha=0, loc="upper right")
+    ygrid(axB)
+    axB.set_title("Which source survives", fontsize=6.6); plabel(axB, "b")
+
+    # (c) what the system did once the curated evidence was gone
+    axC = fig.add_subplot(gs[0, 2])
+    lost_arms = [(k, lab) for k, lab in arms if s["arms"][k].get("n_clinical_collapsed")]
+    xs = np.arange(len(lost_arms))
+    safe = np.array([s["arms"][k].get("safe_downgrades_after_clinical_loss", 0) for k, _ in lost_arms], float)
+    drv = np.array([s["arms"][k].get("driver_calls_after_clinical_loss", 0) for k, _ in lost_arms], float)
+    axC.bar(xs, safe, color=GREEN, width=0.62, edgecolor="white", linewidth=0.4,
+            label="abstained / non-driver (safe)", zorder=3)
+    axC.bar(xs, drv, bottom=safe, color=VERM, width=0.62, edgecolor="white", linewidth=0.4,
+            hatch="///", label="still called a driver", zorder=3)
+    for x, (sv, dv) in enumerate(zip(safe, drv)):
+        if sv:
+            axC.text(x, sv / 2, f"{int(sv)}", ha="center", va="center", fontsize=5.6, color="white")
+        if dv:
+            axC.text(x, sv + dv / 2, f"{int(dv)}", ha="center", va="center", fontsize=5.6, color="white")
+    axC.set_xticks(xs); axC.set_xticklabels([lab for _, lab in lost_arms], fontsize=5.0)
+    axC.set_ylabel("variants losing all curated evidence", fontsize=6)
+    # Headroom for an in-axes legend: anchoring it above the axes collided with
+    # the panel title.
+    axC.set_ylim(0, max((safe + drv).max(), 1) * 1.55)
+    axC.legend(fontsize=5.0, framealpha=0, loc="upper center", ncol=1, handlelength=1.4)
+    ygrid(axC)
+    axC.set_title("Behaviour after evidence loss", fontsize=6.6); plabel(axC, "c")
+
+    save(fig, "figS4_context_ablation")
+
+
 if __name__ == "__main__":
     fig1(); fig2(); fig3(); fig4(); fig5()
     figS1_robustness(); figS2_multimodel()
-    print("Main figs (fig1-5) + Supp (figS1 robustness, figS2 multimodel) written to", HERE)
+    if os.path.exists(os.path.join(OUT, "context_ablation.json")):
+        figS4_context_ablation()
+        print("Main figs (fig1-5) + Supp (figS1 robustness, figS2 multimodel, "
+              "figS4 context ablation) written to", HERE)
+    else:
+        print("Main figs (fig1-5) + Supp (figS1 robustness, figS2 multimodel) written to", HERE)
+        print("[!] skipped figS4: run `python -m scripts.run_context_ablation` first")
     print("Supp dashboard: F6_dashboard.png via ./make_dashboard_figure.sh")
