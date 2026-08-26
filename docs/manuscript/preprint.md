@@ -2,7 +2,7 @@
 
 **Author:** Ka-Kyung Kim
 
-**Affiliation:** [to confirm]
+**Affiliation:** Independent Researcher, Seoul, Republic of Korea
 
 **Correspondence:** kakyung.kim@gmail.com
 

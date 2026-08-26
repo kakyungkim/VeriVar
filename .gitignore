@@ -67,3 +67,8 @@ docs/regulatory/*.hwpx
 docs/regulatory/*.txt
 docs/regulatory/*.html
 docs/regulatory/*.png
+
+# Pre-publication hygiene (2026-08-27): local-only materials, not for the public repo
+docs/company_review_packet_ko.md
+docs/company-agent-templates/
+ppt/
