@@ -203,4 +203,3 @@ data/benchmark/vicc_configs/*/vicc_roc.png
 # poster build products and third-party event logos
 docs/poster/*/out/
 docs/poster/*/assets/
-!docs/poster/*/assets/verivar_icon.svg

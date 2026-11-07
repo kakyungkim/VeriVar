@@ -108,12 +108,20 @@ def test_no_retired_numbers(text: str) -> None:
     assert not hits, "retired values on the poster: " + "; ".join(hits)
 
 
+#: Event logos downloaded from the summit site for the printed poster. They are not
+#: redistributed (see docs/poster/kbiox2026/README.md), so a fresh clone lacks them.
+THIRD_PARTY_ASSETS = ("assets/",)
+
+
 def test_referenced_assets_exist(html: str) -> None:
-    missing = [
-        src for src in re.findall(r'(?:src|href)="([^"]+)"', html)
-        if not src.startswith(("http:", "https:", "#", "data:")) and not (POSTER / src).exists()
-    ]
+    refs = [src for src in re.findall(r'(?:src|href)="([^"]+)"', html)
+            if not src.startswith(("http:", "https:", "#", "data:"))]
+    shipped = [r for r in refs if not r.startswith(THIRD_PARTY_ASSETS)]
+    missing = [r for r in shipped if not (POSTER / r).exists()]
     assert not missing, f"poster references files that do not exist: {missing}"
+    # every file the repository is expected to ship must be tracked-path material
+    assert all(not r.startswith("assets/verivar") for r in refs), \
+        "the VeriVar mark must come from docs/branding, which is tracked"
 
 
 def test_research_only_disclaimer_present(text: str) -> None:

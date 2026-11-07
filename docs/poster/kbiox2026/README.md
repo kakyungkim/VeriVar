@@ -19,7 +19,7 @@ which is how content overflow is caught.
 | `poster.html`, `poster.css` | the poster itself; `--page-w` / `--page-h` in the CSS retarget the sheet |
 | `make_poster_figures.py` | the five charts, generated from the committed result JSONs |
 | `figures/` | generated SVGs and the repository QR code |
-| `assets/` | event logos (downloaded from the event site, not committed) and the VeriVar mark |
+| `assets/` | event logos, downloaded from the event site and not committed; the VeriVar mark is read from `docs/branding/` |
 | `NUMBERS.md` | every printed number with the file and field it comes from |
 | `application_form.md` | what to paste into the event's poster-application form |
 | `out/` | the built PDF, JPG and proof PNG (not committed) |
