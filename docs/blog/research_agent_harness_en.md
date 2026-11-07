@@ -1,4 +1,4 @@
-<!-- DRAFT — HOLD. Publish only after company/IP review + the paper goes public; then move to the blog repo _posts/en/. Do NOT push now. date/permalink finalized at publish time. -->
+<!-- DRAFT — HOLD. Publish only after the preprint is posted and the numbers are updated; then move to the blog repo _posts/en/. Do NOT push now. date/permalink finalized at publish time. -->
 ---
 layout: single
 title: "I Had Twelve Agents and No Team — Rebuilding a Research AI Harness"

@@ -1,4 +1,4 @@
-<!-- DRAFT — 발행 보류. 회사/IP 검토 통과 + 논문 공개 후, 블로그 repo _posts/kr/ 로 이동해 발행. 지금은 push 금지. date/permalink는 발행 시 확정. -->
+<!-- DRAFT — 발행 보류. 프리프린트 게시와 수치 갱신 후, 블로그 repo _posts/kr/ 로 이동해 발행. 지금은 push 금지. date/permalink는 발행 시 확정. -->
 ---
 layout: single
 title: "에이전트는 12명인데, 팀이 없었다 — 연구용 AI 하네스를 다시 세운 기록"

@@ -72,7 +72,7 @@ research-methodologist / literature-scout / novelty-strategist   (기획·근거
 ```
 
 - `∥`/`║` = 병렬 가능, `└─▶` = 산출물 전달.
-- **검증 게이트**(`scripts.verify_manuscript`)와 **공개 게이트**(회사/IP 검토)는 PI가 통과시킨다.
+- **검증 게이트**(`scripts.verify_manuscript`)와 **공개 게이트**(공개 전 사람 승인)는 PI가 통과시킨다.
 
 ---
 

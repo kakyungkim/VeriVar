@@ -1,6 +1,6 @@
 > **Draft, not current (2026-09-24 note).** Numbers in this draft predate the September 2026 corrections (SOP-strict rule arm, rebuilt ClinVar holdout, revised faithfulness framing) and the 2026-09-27 citation-taxonomy endpoint (with retrieval, 0 of 86 identifier citations outside the bundle; without retrieval, a fabricated or misattributed identifier on 19 of 56 variants, 0.339). Do not publish before updating against the current preprint.
 
-<!-- DRAFT — HOLD. Publish only after company/IP review + the paper goes public; then move to the blog repo _posts/en/. Do NOT push now. date/permalink finalized at publish time. -->
+<!-- DRAFT — HOLD. Publish only after the preprint is posted and the numbers are updated; then move to the blog repo _posts/en/. Do NOT push now. date/permalink finalized at publish time. -->
 ---
 layout: single
 title: "Honest Beats Correct — What Actually Matters When an LLM Reads a Cancer Variant"
