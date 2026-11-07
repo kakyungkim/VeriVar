@@ -1,0 +1,3477 @@
+{
+  "purpose": "Type II attribution audit: does each in-bundle cited item entail the claim that cites it? Zero LLM API calls.",
+  "provenance": {
+    "models": [
+      {
+        "role": "primary",
+        "id": "MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli",
+        "revision": "b3546ea6b0346eb6f8d5d68b13c7dc6d0376b3d7"
+      },
+      {
+        "role": "sensitivity",
+        "id": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+        "revision": "6f5cf0a2b59cabb106aca4c287eed12e357e90eb"
+      }
+    ],
+    "decision_rule": {
+      "entail_threshold": 0.5,
+      "contradict_threshold": 0.5,
+      "rule": "supported if max P(entail)>=0.5, else contradicted if max P(contradict)>=0.5, else neutral; max over premise chunks x candidate claim sentences; fixed a priori",
+      "chunk_words": 200,
+      "max_length_tokens": 512
+    },
+    "premise_primary": "header+statement (item's own gene/variant/disease/type/direction/significance fields + statement)",
+    "label_only_templates": {
+      "Oncogenic|Likely Oncogenic": "{gene} {protein} is an oncogenic mutation.",
+      "Benign|Likely Benign": "{gene} {protein} is not an oncogenic mutation.",
+      "VUS": "not testable (no template)"
+    },
+    "bootstrap": {
+      "n_boot": 5000,
+      "seed": 0,
+      "method": "percentile; iid over citations (src.eval.stats.bootstrap_ci) + variant-clustered"
+    },
+    "inputs": {
+      "data/outputs/cohort_interpretation.json": "79b9f5eae88bad8b01c1429bd95497d6cd275eda83366438eef91ad3e02377b0",
+      "data/outputs/multimodel_faithfulness_gpt4o.json": "2c435580fb069b732b6de93897b259dba5c2bb924b403c89fc08187cce6c2783"
+    },
+    "llm_api_calls": 0
+  },
+  "arms": {
+    "pipeline_rationale_arm": {
+      "n_citations_total": 90,
+      "n_not_testable": 0,
+      "aggregate": {
+        "n_citations": 90,
+        "n_variants": 46,
+        "counts": {
+          "neutral": 43,
+          "supported": 40,
+          "contradicted": 7
+        },
+        "citation_level": {
+          "supported": {
+            "iid": {
+              "point": 0.444,
+              "lo": 0.344,
+              "hi": 0.544,
+              "n": 90
+            },
+            "variant_clustered": {
+              "point": 0.444,
+              "lo": 0.348,
+              "hi": 0.543,
+              "n": 90,
+              "n_clusters": 46
+            }
+          },
+          "neutral": {
+            "iid": {
+              "point": 0.478,
+              "lo": 0.378,
+              "hi": 0.578,
+              "n": 90
+            },
+            "variant_clustered": {
+              "point": 0.478,
+              "lo": 0.382,
+              "hi": 0.577,
+              "n": 90,
+              "n_clusters": 46
+            }
+          },
+          "contradicted": {
+            "iid": {
+              "point": 0.078,
+              "lo": 0.033,
+              "hi": 0.133,
+              "n": 90
+            },
+            "variant_clustered": {
+              "point": 0.078,
+              "lo": 0.033,
+              "hi": 0.124,
+              "n": 90,
+              "n_clusters": 46
+            }
+          }
+        },
+        "variant_level": {
+          "n": 46,
+          "counts": {
+            "unsupported": 15,
+            "partially": 17,
+            "fully": 14
+          },
+          "fully": {
+            "point": 0.304,
+            "lo": 0.174,
+            "hi": 0.435,
+            "n": 46
+          },
+          "partially": {
+            "point": 0.37,
+            "lo": 0.239,
+            "hi": 0.522,
+            "n": 46
+          },
+          "unsupported": {
+            "point": 0.326,
+            "lo": 0.196,
+            "hi": 0.457,
+            "n": 46
+          },
+          "any_contradicted": {
+            "point": 0.152,
+            "lo": 0.065,
+            "hi": 0.261,
+            "n": 46
+          }
+        }
+      },
+      "by_alignment": {
+        "inline": {
+          "n_citations": 37,
+          "n_variants": 18,
+          "counts": {
+            "supported": 18,
+            "neutral": 18,
+            "contradicted": 1
+          },
+          "citation_level": {
+            "supported": {
+              "iid": {
+                "point": 0.486,
+                "lo": 0.324,
+                "hi": 0.649,
+                "n": 37
+              },
+              "variant_clustered": {
+                "point": 0.486,
+                "lo": 0.359,
+                "hi": 0.629,
+                "n": 37,
+                "n_clusters": 18
+              }
+            },
+            "neutral": {
+              "iid": {
+                "point": 0.486,
+                "lo": 0.324,
+                "hi": 0.649,
+                "n": 37
+              },
+              "variant_clustered": {
+                "point": 0.486,
+                "lo": 0.344,
+                "hi": 0.618,
+                "n": 37,
+                "n_clusters": 18
+              }
+            },
+            "contradicted": {
+              "iid": {
+                "point": 0.027,
+                "lo": 0.0,
+                "hi": 0.081,
+                "n": 37
+              },
+              "variant_clustered": {
+                "point": 0.027,
+                "lo": 0.0,
+                "hi": 0.083,
+                "n": 37,
+                "n_clusters": 18
+              }
+            }
+          },
+          "variant_level": {
+            "n": 18,
+            "counts": {
+              "fully": 5,
+              "partially": 10,
+              "unsupported": 3
+            },
+            "fully": {
+              "point": 0.278,
+              "lo": 0.111,
+              "hi": 0.5,
+              "n": 18
+            },
+            "partially": {
+              "point": 0.556,
+              "lo": 0.333,
+              "hi": 0.778,
+              "n": 18
+            },
+            "unsupported": {
+              "point": 0.167,
+              "lo": 0.0,
+              "hi": 0.333,
+              "n": 18
+            },
+            "any_contradicted": {
+              "point": 0.056,
+              "lo": 0.0,
+              "hi": 0.167,
+              "n": 18
+            }
+          }
+        },
+        "max_over_rationale": {
+          "n_citations": 53,
+          "n_variants": 30,
+          "counts": {
+            "neutral": 25,
+            "supported": 22,
+            "contradicted": 6
+          },
+          "citation_level": {
+            "supported": {
+              "iid": {
+                "point": 0.415,
+                "lo": 0.283,
+                "hi": 0.547,
+                "n": 53
+              },
+              "variant_clustered": {
+                "point": 0.415,
+                "lo": 0.283,
+                "hi": 0.548,
+                "n": 53,
+                "n_clusters": 30
+              }
+            },
+            "neutral": {
+              "iid": {
+                "point": 0.472,
+                "lo": 0.34,
+                "hi": 0.604,
+                "n": 53
+              },
+              "variant_clustered": {
+                "point": 0.472,
+                "lo": 0.339,
+                "hi": 0.614,
+                "n": 53,
+                "n_clusters": 30
+              }
+            },
+            "contradicted": {
+              "iid": {
+                "point": 0.113,
+                "lo": 0.038,
+                "hi": 0.208,
+                "n": 53
+              },
+              "variant_clustered": {
+                "point": 0.113,
+                "lo": 0.043,
+                "hi": 0.179,
+                "n": 53,
+                "n_clusters": 30
+              }
+            }
+          },
+          "variant_level": {
+            "n": 30,
+            "counts": {
+              "unsupported": 14,
+              "partially": 7,
+              "fully": 9
+            },
+            "fully": {
+              "point": 0.3,
+              "lo": 0.133,
+              "hi": 0.467,
+              "n": 30
+            },
+            "partially": {
+              "point": 0.233,
+              "lo": 0.1,
+              "hi": 0.4,
+              "n": 30
+            },
+            "unsupported": {
+              "point": 0.467,
+              "lo": 0.3,
+              "hi": 0.633,
+              "n": 30
+            },
+            "any_contradicted": {
+              "point": 0.2,
+              "lo": 0.067,
+              "hi": 0.367,
+              "n": 30
+            }
+          }
+        }
+      },
+      "by_source": {
+        "AlphaMissense": {
+          "n_citations": 36,
+          "n_variants": 36,
+          "counts": {
+            "neutral": 21,
+            "contradicted": 1,
+            "supported": 14
+          },
+          "citation_level": {
+            "supported": {
+              "iid": {
+                "point": 0.389,
+                "lo": 0.222,
+                "hi": 0.556,
+                "n": 36
+              },
+              "variant_clustered": {
+                "point": 0.389,
+                "lo": 0.222,
+                "hi": 0.556,
+                "n": 36,
+                "n_clusters": 36
+              }
+            },
+            "neutral": {
+              "iid": {
+                "point": 0.583,
+                "lo": 0.417,
+                "hi": 0.75,
+                "n": 36
+              },
+              "variant_clustered": {
+                "point": 0.583,
+                "lo": 0.417,
+                "hi": 0.75,
+                "n": 36,
+                "n_clusters": 36
+              }
+            },
+            "contradicted": {
+              "iid": {
+                "point": 0.028,
+                "lo": 0.0,
+                "hi": 0.083,
+                "n": 36
+              },
+              "variant_clustered": {
+                "point": 0.028,
+                "lo": 0.0,
+                "hi": 0.083,
+                "n": 36,
+                "n_clusters": 36
+              }
+            }
+          },
+          "variant_level": {
+            "n": 36,
+            "counts": {
+              "unsupported": 22,
+              "fully": 14
+            },
+            "fully": {
+              "point": 0.389,
+              "lo": 0.222,
+              "hi": 0.556,
+              "n": 36
+            },
+            "partially": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.0,
+              "n": 36
+            },
+            "unsupported": {
+              "point": 0.611,
+              "lo": 0.444,
+              "hi": 0.778,
+              "n": 36
+            },
+            "any_contradicted": {
+              "point": 0.028,
+              "lo": 0.0,
+              "hi": 0.083,
+              "n": 36
+            }
+          }
+        },
+        "CIViC": {
+          "n_citations": 54,
+          "n_variants": 26,
+          "counts": {
+            "neutral": 22,
+            "supported": 26,
+            "contradicted": 6
+          },
+          "citation_level": {
+            "supported": {
+              "iid": {
+                "point": 0.481,
+                "lo": 0.352,
+                "hi": 0.611,
+                "n": 54
+              },
+              "variant_clustered": {
+                "point": 0.481,
+                "lo": 0.357,
+                "hi": 0.614,
+                "n": 54,
+                "n_clusters": 26
+              }
+            },
+            "neutral": {
+              "iid": {
+                "point": 0.407,
+                "lo": 0.278,
+                "hi": 0.537,
+                "n": 54
+              },
+              "variant_clustered": {
+                "point": 0.407,
+                "lo": 0.273,
+                "hi": 0.542,
+                "n": 54,
+                "n_clusters": 26
+              }
+            },
+            "contradicted": {
+              "iid": {
+                "point": 0.111,
+                "lo": 0.037,
+                "hi": 0.204,
+                "n": 54
+              },
+              "variant_clustered": {
+                "point": 0.111,
+                "lo": 0.041,
+                "hi": 0.182,
+                "n": 54,
+                "n_clusters": 26
+              }
+            }
+          },
+          "variant_level": {
+            "n": 26,
+            "counts": {
+              "unsupported": 7,
+              "partially": 11,
+              "fully": 8
+            },
+            "fully": {
+              "point": 0.308,
+              "lo": 0.154,
+              "hi": 0.5,
+              "n": 26
+            },
+            "partially": {
+              "point": 0.423,
+              "lo": 0.231,
+              "hi": 0.615,
+              "n": 26
+            },
+            "unsupported": {
+              "point": 0.269,
+              "lo": 0.115,
+              "hi": 0.462,
+              "n": 26
+            },
+            "any_contradicted": {
+              "point": 0.231,
+              "lo": 0.077,
+              "hi": 0.385,
+              "n": 26
+            }
+          }
+        }
+      },
+      "hand_inspection_sample": [
+        {
+          "variant_id": "KRAS p.G12V | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2219",
+          "premise_chunk": "CIViC evidence for KRAS p.G12V in Colorectal Cancer (Predictive; Supports; Resistance). This was a retrospective study of 691 cetuximab treated patients with metastatic colorectal cancer. Of those, 39 patients harbored KRAS G12V, were BRAF, NRAS and PIK3CA wt, and had individual response data. Three patients had partial response, 16 had stable disease, and 20 progressed. Treatments included cetuximab + irinotecan (n=30), cetuximab + FOLFIRI (n=2), cetuximab monotherapy (n=2), cetuximab + oxaliplatin + 5FU (n=2), cetuximab + 5FU (n=1), cetuximab + irinotecan + oxaliplatin + 5FU + bevacizumab (n=1), and cetuximab+irinotecan+oxaliplatin+5FU (n=1). Median PFS was 12 weeks (1-37 weeks), median OS was 32 weeks (4-77 weeks), and median number of previous chemotherapy lines was 2 (0-5). Median age was 63 years old (34-76), and there were 21 males and 18 females. Authors concluded that KRAS mutation was strongly associated with poor response to cetuximab and suggested that mutation status of KRAS is the most informative compared to BRAF, NRAS, and PIK3CA exon 20 for predicting cetuximab response.",
+          "hypothesis": "The KRAS p.G12V variant is associated with resistance to cetuximab and panitumumab in colorectal cancer, as demonstrated in multiple studies, including a retrospective analysis of 691 patients where those with KRAS G12V had poor response to treatment.",
+          "p_entail": 0.9154,
+          "p_contradict": 0.002,
+          "label": "supported"
+        },
+        {
+          "variant_id": "ALK p.R291C | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "AlphaMissense:2:29917797G>A",
+          "premise_chunk": "AlphaMissense evidence for ALK p.R291C. AlphaMissense predicts ALK p.R291C as ambiguous (pathogenicity=0.361); computational evidence (ambiguous).",
+          "hypothesis": "The variant ALK p.R291C is classified as VUS with ambiguous computational evidence and lacks definitive drug-sensitivity evidence, which does not support an oncogenic classification.",
+          "p_entail": 0.0021,
+          "p_contradict": 0.002,
+          "label": "neutral"
+        },
+        {
+          "variant_id": "BRAF p.V600E | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID6123",
+          "premise_chunk": "CIViC evidence for BRAF p.V600E in Colorectal Cancer (Predictive; Supports; Sensitivity/Response). In this trial, 142 patients with metastatic, BRAF V600E mutant colorectal cancer were randomized to receive either BRAF inhibitor dabrafenib (D) + EGFR inhibitor panitumumab (P); or a triple therapy of D + P and MEK inhibition with trametinib (T) or T + P. Confirmed response rates for D+P (n=20), D+T+P (n=91), and T+P (n=31) were 10%, 21%, and 0%, respectively.",
+          "hypothesis": "The BRAF p.V600E mutation has been shown to be associated with resistance to standard therapies in colorectal cancer, and clinical trials have demonstrated that combination therapies targeting BRAF and EGFR can lead to significant clinical responses in patients with this mutation.",
+          "p_entail": 0.2384,
+          "p_contradict": 0.9658,
+          "label": "contradicted"
+        },
+        {
+          "variant_id": "KRAS p.G12D | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2236",
+          "premise_chunk": "CIViC evidence for KRAS p.G12D in Colorectal Cancer (Predictive; Supports; Resistance). In a retrospective study of 427 metastatic colorectal patients, KRAS mutations were observed in 43% of the tumor samples. Patients with mutations in codon 12 or 13 of KRAS were associated with reduced response to panitumumab compared to wildtype KRAS (HR:0.99, 95% CI:0.73-1.36 vs. HR:0.45, 95% CI:0.34-0.59; P<0.0001). Additionally, patients with KRAS mutations showed no significant improvement between treatment with panitumumab and best supportive care alone (PFS: 7.4 wk vs 7.3 wk).",
+          "hypothesis": "Additionally, the variant's presence has been linked to resistance to anti-EGFR therapies, reinforcing its role in tumorigenesis.",
+          "p_entail": 0.9952,
+          "p_contradict": 0.0009,
+          "label": "supported"
+        },
+        {
+          "variant_id": "TP53 p.R273L | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:17:7577120C>A",
+          "premise_chunk": "AlphaMissense evidence for TP53 p.R273L. AlphaMissense predicts TP53 p.R273L as pathogenic (pathogenicity=0.995); computational evidence (OP1).",
+          "hypothesis": "Additionally, AlphaMissense predicts this variant as pathogenic with a high score of 0.995, supporting its likely oncogenic classification.",
+          "p_entail": 0.0025,
+          "p_contradict": 0.0008,
+          "label": "neutral"
+        },
+        {
+          "variant_id": "KRAS p.G12D | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1311",
+          "premise_chunk": "CIViC evidence for KRAS p.G12D in Malignant Exocrine Pancreas Neoplasm (Prognostic; Supports; Poor Outcome). In 171 patients with tumors of the exocrine pancreas, a KRAS G12D mutation (N=60) was associated with shorter overall survival than being wild-type for KRAS (N=21; Hazard Ratio: 95% CI between 1.14 and 2.67). Additionally, KRAS mutations combined with CDKN2A alterations (N=26) showed an even worse OS than those wild-type for both (N=17; HR: 95%CI 1.33-7.10).",
+          "hypothesis": "The KRAS p.G12D mutation has been shown to be an independent predictor of poorer prognosis in pancreatic adenocarcinoma, with evidence from a multivariate analysis of 219 patients indicating a significant association with shorter overall survival.",
+          "p_entail": 0.0393,
+          "p_contradict": 0.7742,
+          "label": "contradicted"
+        },
+        {
+          "variant_id": "ERBB2 p.V842I | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID1174",
+          "premise_chunk": "CIViC evidence for ERBB2 p.V842I in Colon Cancer (Predictive; Supports; Sensitivity/Response). Colon cancer patient derived xenografts with HER2 mutations are sensitive to HER2 targeted drugs and the greatest tumor reduction was seen with the combination of a tyrosine kinase inhibitor with trastuzumab.",
+          "hypothesis": "Additionally, evidence from colon cancer patient-derived xenografts shows that HER2 mutations, including this variant, are sensitive to HER2 targeted therapies.",
+          "p_entail": 0.9754,
+          "p_contradict": 0.0007,
+          "label": "supported"
+        },
+        {
+          "variant_id": "TP53 p.R175H | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID319",
+          "premise_chunk": "CIViC evidence for TP53 p.R175H in Breast Cancer (Predictive; Supports; Sensitivity/Response). Breast tumors in a mouse model with R172H mutation (homologous to human R175H) are more responsive to doxorubicin than breast tumors with wild type TP53.",
+          "hypothesis": "Additionally, the variant's response to doxorubicin in a mouse model suggests a predictive role in treatment sensitivity, further supporting its classification as oncogenic.",
+          "p_entail": 0.0556,
+          "p_contradict": 0.0331,
+          "label": "neutral"
+        },
+        {
+          "variant_id": "PIK3CA p.E545K | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID1171",
+          "premise_chunk": "CIViC evidence for PIK3CA p.E545K in Lung Adenocarcinoma (Predictive; Supports; Resistance). HCC827 cell lines harboring activated PI3K (HCC827 p110\u03b1 E545K cells) were more resistant to gefitinib in vitro (IC50, 1 \u03bcM) compared with those harboring GFP alone (IC50, 0.01 \u03bcM). The presence of p110\u03b1 E545K also protected HCC827 cells from gefitinib-mediated apoptosis.",
+          "hypothesis": "Additionally, there is evidence of resistance to gefitinib in lung adenocarcinoma cell lines harboring this mutation, indicating its potential oncogenic role in this cancer type.",
+          "p_entail": 0.4566,
+          "p_contradict": 0.9967,
+          "label": "contradicted"
+        },
+        {
+          "variant_id": "ALK p.G391E | Cutaneous Melanoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:2:29606708C>T",
+          "premise_chunk": "AlphaMissense evidence for ALK p.G391E. AlphaMissense predicts ALK p.G391E as pathogenic (pathogenicity=0.656); computational evidence (OP1).",
+          "hypothesis": "The variant ALK p.G391E is predicted to be pathogenic based on computational evidence from AlphaMissense, which assigned a pathogenicity score of 0.656.",
+          "p_entail": 0.9972,
+          "p_contradict": 0.001,
+          "label": "supported"
+        }
+      ],
+      "records": [
+        {
+          "variant_id": "BRAF p.G469E | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID6003",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0234,
+          "p_contradict": 0.002,
+          "best_hypothesis": "The BRAF p.G469E variant is classified as oncogenic based on preclinical evidence showing that melanoma cell lines with this mutation are resistant to MEK inhibition but can undergo apoptosis after specific treatments, indicating a role in tumorigenesis."
+        },
+        {
+          "variant_id": "BRAF p.G469E | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID6004",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0235,
+          "p_contradict": 0.0027,
+          "best_hypothesis": "The BRAF p.G469E variant is classified as oncogenic based on preclinical evidence showing that melanoma cell lines with this mutation are resistant to MEK inhibition but can undergo apoptosis after specific treatments, indicating a role in tumorigenesis."
+        },
+        {
+          "variant_id": "BRAF p.G469E | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:7:140481402C>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.004,
+          "p_contradict": 0.0483,
+          "best_hypothesis": "The BRAF p.G469E variant is classified as oncogenic based on preclinical evidence showing that melanoma cell lines with this mutation are resistant to MEK inhibition but can undergo apoptosis after specific treatments, indicating a role in tumorigenesis."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID9851",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9661,
+          "p_contradict": 0.0155,
+          "best_hypothesis": "Specifically, the BEACON CRC trial showed that patients with BRAF V600E-mutated metastatic colorectal cancer treated with encorafenib, binimetinib, and cetuximab achieved improved outcomes compared to standard therapies, providing strong evidence of oncogenicity in this context."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID6123",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "contradicted",
+          "p_entail": 0.2384,
+          "p_contradict": 0.9658,
+          "best_hypothesis": "The BRAF p.V600E mutation has been shown to be associated with resistance to standard therapies in colorectal cancer, and clinical trials have demonstrated that combination therapies targeting BRAF and EGFR can lead to significant clinical responses in patients with this mutation."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID7612",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9009,
+          "p_contradict": 0.0489,
+          "best_hypothesis": "Specifically, the BEACON CRC trial showed that patients with BRAF V600E-mutated metastatic colorectal cancer treated with encorafenib, binimetinib, and cetuximab achieved improved outcomes compared to standard therapies, providing strong evidence of oncogenicity in this context."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1398",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9986,
+          "p_contradict": 0.0005,
+          "best_hypothesis": "For instance, the BRIM-3 trial showed a significant survival advantage for patients treated with vemurafenib compared to dacarbazine."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1409",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.782,
+          "p_contradict": 0.0052,
+          "best_hypothesis": "For instance, the BRIM-3 trial showed a significant survival advantage for patients treated with vemurafenib compared to dacarbazine."
+        },
+        {
+          "variant_id": "EGFR p.E114K | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "CIViC:EID9584",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9943,
+          "p_contradict": 0.0047,
+          "best_hypothesis": "The evidence indicates unaltered function for the EGFR p.E114K variant, which does not support an oncogenic classification."
+        },
+        {
+          "variant_id": "EGFR p.E114K | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "AlphaMissense:7:55211097G>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0067,
+          "p_contradict": 0.0495,
+          "best_hypothesis": "The evidence indicates unaltered function for the EGFR p.E114K variant, which does not support an oncogenic classification."
+        },
+        {
+          "variant_id": "EGFR p.L858R | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID879",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9975,
+          "p_contradict": 0.0005,
+          "best_hypothesis": "Specifically, a phase III clinical trial showed significant efficacy of afatinib in patients with this mutation compared to chemotherapy."
+        },
+        {
+          "variant_id": "EGFR p.L858R | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2994",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0979,
+          "p_contradict": 0.006,
+          "best_hypothesis": "Additionally, the FDA has approved erlotinib for use in patients with EGFR mutations, including L858R, further supporting its oncogenic classification."
+        },
+        {
+          "variant_id": "ERBB2 p.V842I | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID289",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9858,
+          "p_contradict": 0.0003,
+          "best_hypothesis": "The ERBB2 p.V842I variant demonstrates sensitivity to neratinib in MCF10A cell lines, indicating a potential oncogenic role in breast cancer."
+        },
+        {
+          "variant_id": "ERBB2 p.V842I | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID1174",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9754,
+          "p_contradict": 0.0007,
+          "best_hypothesis": "Additionally, evidence from colon cancer patient-derived xenografts shows that HER2 mutations, including this variant, are sensitive to HER2 targeted therapies."
+        },
+        {
+          "variant_id": "ERBB2 p.V842I | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:17:37881332G>A",
+          "source": "AlphaMissense",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0007,
+          "p_contradict": 0.0007,
+          "best_hypothesis": "Although the variant is predicted to be pathogenic, the evidence is primarily from other cancer types, which supports a classification of likely oncogenic but does not meet the criteria for Tier I due to lack of strong same-tumor-type evidence."
+        },
+        {
+          "variant_id": "KRAS p.G12A | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID3710",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0015,
+          "p_contradict": 0.0008,
+          "best_hypothesis": "Evidence from studies shows that patients with this mutation have poorer responses to treatments such as cetuximab and gefitinib, which supports its classification as likely oncogenic."
+        },
+        {
+          "variant_id": "KRAS p.G12A | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID4429",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0327,
+          "p_contradict": 0.0015,
+          "best_hypothesis": "Evidence from studies shows that patients with this mutation have poorer responses to treatments such as cetuximab and gefitinib, which supports its classification as likely oncogenic."
+        },
+        {
+          "variant_id": "KRAS p.G12C | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID9431",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.7805,
+          "p_contradict": 0.0645,
+          "best_hypothesis": "The KRAS p.G12C variant has been shown to be associated with oncogenic activity in lung adenocarcinoma, as evidenced by multiple studies demonstrating significant clinical responses to specific KRAS G12C inhibitors, such as sotorasib, in patients with this mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12C | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID11652",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0364,
+          "p_contradict": 0.0114,
+          "best_hypothesis": "The KRAS p.G12C variant has been shown to be associated with oncogenic activity in lung adenocarcinoma, as evidenced by multiple studies demonstrating significant clinical responses to specific KRAS G12C inhibitors, such as sotorasib, in patients with this mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1215",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9887,
+          "p_contradict": 0.002,
+          "best_hypothesis": "The KRAS p.G12D variant has been shown to be associated with oncogenic properties in colorectal cancer, particularly through clinical evidence indicating that patients with this mutation have longer overall survival when treated with cetuximab-based therapies."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2236",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9952,
+          "p_contradict": 0.0009,
+          "best_hypothesis": "Additionally, the variant's presence has been linked to resistance to anti-EGFR therapies, reinforcing its role in tumorigenesis."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID3946",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.3748,
+          "p_contradict": 0.0017,
+          "best_hypothesis": "Additionally, the variant's presence has been linked to resistance to anti-EGFR therapies, reinforcing its role in tumorigenesis."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1300",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9984,
+          "p_contradict": 0.0002,
+          "best_hypothesis": "The KRAS p.G12D mutation has been shown to be an independent predictor of poorer prognosis in pancreatic adenocarcinoma, with evidence from a multivariate analysis of 219 patients indicating a significant association with shorter overall survival."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1311",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "contradicted",
+          "p_entail": 0.0393,
+          "p_contradict": 0.7742,
+          "best_hypothesis": "The KRAS p.G12D mutation has been shown to be an independent predictor of poorer prognosis in pancreatic adenocarcinoma, with evidence from a multivariate analysis of 219 patients indicating a significant association with shorter overall survival."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID937",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.1079,
+          "p_contradict": 0.0004,
+          "best_hypothesis": "Additionally, this mutation has been implicated in sensitivity to targeted therapies, further supporting its oncogenic role."
+        },
+        {
+          "variant_id": "KRAS p.G12R | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1298",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.02,
+          "p_contradict": 0.0096,
+          "best_hypothesis": "The evidence from studies specifically involving pancreatic cancer supports its classification as oncogenic."
+        },
+        {
+          "variant_id": "KRAS p.G12R | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:12:25398285C>G",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "contradicted",
+          "p_entail": 0.0052,
+          "p_contradict": 0.9236,
+          "best_hypothesis": "The KRAS p.G12R variant is associated with poor prognosis in pancreatic cancer, indicating its oncogenic potential."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2219",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9154,
+          "p_contradict": 0.002,
+          "best_hypothesis": "The KRAS p.G12V variant is associated with resistance to cetuximab and panitumumab in colorectal cancer, as demonstrated in multiple studies, including a retrospective analysis of 691 patients where those with KRAS G12V had poor response to treatment."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID136",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0123,
+          "p_contradict": 0.0081,
+          "best_hypothesis": "The KRAS p.G12V variant is associated with resistance to cetuximab and panitumumab in colorectal cancer, as demonstrated in multiple studies, including a retrospective analysis of 691 patients where those with KRAS G12V had poor response to treatment."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:12:25398284C>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.001,
+          "p_contradict": 0.0011,
+          "best_hypothesis": "The KRAS p.G12V variant is associated with resistance to cetuximab and panitumumab in colorectal cancer, as demonstrated in multiple studies, including a retrospective analysis of 691 patients where those with KRAS G12V had poor response to treatment."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID987",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0285,
+          "p_contradict": 0.0049,
+          "best_hypothesis": "Evidence from retrospective studies indicates that patients with KRAS G12V mutations exhibit worse overall survival and reduced response to treatments such as cetuximab and panitumumab, supporting its oncogenic potential."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID136",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0125,
+          "p_contradict": 0.2123,
+          "best_hypothesis": "Evidence from retrospective studies indicates that patients with KRAS G12V mutations exhibit worse overall survival and reduced response to treatments such as cetuximab and panitumumab, supporting its oncogenic potential."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2219",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9841,
+          "p_contradict": 0.0029,
+          "best_hypothesis": "Evidence from retrospective studies indicates that patients with KRAS G12V mutations exhibit worse overall survival and reduced response to treatments such as cetuximab and panitumumab, supporting its oncogenic potential."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:12:25398284C>A",
+          "source": "AlphaMissense",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0448,
+          "p_contradict": 0.0048,
+          "best_hypothesis": "Furthermore, computational predictions classify this variant as pathogenic, reinforcing its oncogenic classification."
+        },
+        {
+          "variant_id": "NRAS p.Q61K | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1475",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9897,
+          "p_contradict": 0.0013,
+          "best_hypothesis": "The NRAS p.Q61K variant has been associated with oncogenic properties in cutaneous melanoma, as evidenced by preclinical studies showing resistance to vemurafenib and sensitivity to selumetinib in melanoma cell lines."
+        },
+        {
+          "variant_id": "NRAS p.Q61K | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1474",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9924,
+          "p_contradict": 0.0017,
+          "best_hypothesis": "The NRAS p.Q61K variant has been associated with oncogenic properties in cutaneous melanoma, as evidenced by preclinical studies showing resistance to vemurafenib and sensitivity to selumetinib in melanoma cell lines."
+        },
+        {
+          "variant_id": "NRAS p.Q61K | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:1:115256530G>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0017,
+          "p_contradict": 0.0019,
+          "best_hypothesis": "The NRAS p.Q61K variant has been associated with oncogenic properties in cutaneous melanoma, as evidenced by preclinical studies showing resistance to vemurafenib and sensitivity to selumetinib in melanoma cell lines."
+        },
+        {
+          "variant_id": "NRAS p.Q61R | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID23",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.963,
+          "p_contradict": 0.0009,
+          "best_hypothesis": "The NRAS p.Q61R variant has been implicated in cutaneous melanoma, with evidence showing that patients harboring this mutation respond to temozolomide treatment, resulting in significant overall survival."
+        },
+        {
+          "variant_id": "NRAS p.Q61R | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:1:115256529T>C",
+          "source": "AlphaMissense",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0014,
+          "p_contradict": 0.0007,
+          "best_hypothesis": "Additionally, the variant is predicted to be pathogenic with a high score of 0.991 from AlphaMissense, supporting its oncogenic role."
+        },
+        {
+          "variant_id": "PIK3CA p.E545K | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID1171",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "contradicted",
+          "p_entail": 0.4566,
+          "p_contradict": 0.9967,
+          "best_hypothesis": "Additionally, there is evidence of resistance to gefitinib in lung adenocarcinoma cell lines harboring this mutation, indicating its potential oncogenic role in this cancer type."
+        },
+        {
+          "variant_id": "PIK3CA p.E545K | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID710",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9812,
+          "p_contradict": 0.0307,
+          "best_hypothesis": "The PIK3CA p.E545K variant has been associated with increased sensitivity to various targeted therapies in preclinical studies, particularly in breast cancer models."
+        },
+        {
+          "variant_id": "PIK3CA p.E545K | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:3:178936091G>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0005,
+          "p_contradict": 0.0022,
+          "best_hypothesis": "The PIK3CA p.E545K variant has been associated with increased sensitivity to various targeted therapies in preclinical studies, particularly in breast cancer models."
+        },
+        {
+          "variant_id": "PIK3CA p.H1047R | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2097",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9903,
+          "p_contradict": 0.0027,
+          "best_hypothesis": "Additionally, retrospective studies indicate that patients with this mutation experience better outcomes in terms of survival, further supporting its oncogenic role in breast cancer."
+        },
+        {
+          "variant_id": "PIK3CA p.H1047R | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2100",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0004,
+          "p_contradict": 0.0002,
+          "best_hypothesis": "Additionally, retrospective studies indicate that patients with this mutation experience better outcomes in terms of survival, further supporting its oncogenic role in breast cancer."
+        },
+        {
+          "variant_id": "PIK3CA p.H1047R | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1505",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0003,
+          "p_contradict": 0.0005,
+          "best_hypothesis": "Additionally, retrospective studies indicate that patients with this mutation experience better outcomes in terms of survival, further supporting its oncogenic role in breast cancer."
+        },
+        {
+          "variant_id": "PIK3CA p.R88Q | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "CIViC:EID12034",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "contradicted",
+          "p_entail": 0.3276,
+          "p_contradict": 0.9968,
+          "best_hypothesis": "Additionally, while AlphaMissense predicts the variant as pathogenic, this computational prediction alone does not provide strong clinical evidence for oncogenicity."
+        },
+        {
+          "variant_id": "PIK3CA p.R88Q | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "CIViC:EID3832",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9166,
+          "p_contradict": 0.3535,
+          "best_hypothesis": "Although there is some predictive evidence regarding cetuximab resistance in a patient with this variant, it does not establish a clear oncogenic role in colorectal cancer."
+        },
+        {
+          "variant_id": "PIK3CA p.R88Q | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "AlphaMissense:3:178916876G>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0083,
+          "p_contradict": 0.0113,
+          "best_hypothesis": "Additionally, while AlphaMissense predicts the variant as pathogenic, this computational prediction alone does not provide strong clinical evidence for oncogenicity."
+        },
+        {
+          "variant_id": "PTEN p.R130* | Cutaneous Melanoma",
+          "call": "VUS",
+          "citation": "CIViC:EID1627",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0555,
+          "p_contradict": 0.3273,
+          "best_hypothesis": "The provided evidence indicates sensitivity to certain drugs in thyroid cancer cell lines with alterations in the PI3K/Akt pathway, but does not establish a clear oncogenic role for this specific variant in melanoma."
+        },
+        {
+          "variant_id": "TP53 p.D281E | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID10260",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.144,
+          "p_contradict": 0.0188,
+          "best_hypothesis": "The TP53 p.D281E variant has been shown to exhibit dominant negative effects in functional assays, indicating its oncogenic potential."
+        },
+        {
+          "variant_id": "TP53 p.D281E | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:17:7577095G>T",
+          "source": "AlphaMissense",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0174,
+          "p_contradict": 0.0008,
+          "best_hypothesis": "Additionally, computational predictions classify this variant as pathogenic, further supporting its role in cancer."
+        },
+        {
+          "variant_id": "TP53 p.P152L | Cutaneous Melanoma",
+          "call": "VUS",
+          "citation": "CIViC:EID10223",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9929,
+          "p_contradict": 0.9985,
+          "best_hypothesis": "The evidence presented indicates that the TP53 p.P152L variant has been tested for dominant negative effects in functional assays, but the results do not support its oncogenicity."
+        },
+        {
+          "variant_id": "TP53 p.P152L | Cutaneous Melanoma",
+          "call": "VUS",
+          "citation": "CIViC:EID10559",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9975,
+          "p_contradict": 0.0359,
+          "best_hypothesis": "Specifically, the functional studies show that the variant does not exhibit dominant negative behavior, which is a key characteristic of oncogenic TP53 mutations."
+        },
+        {
+          "variant_id": "TP53 p.P152L | Cutaneous Melanoma",
+          "call": "VUS",
+          "citation": "AlphaMissense:17:7578475G>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0033,
+          "p_contradict": 0.0048,
+          "best_hypothesis": "The evidence indicates 'Does Not Support' for dominant negative function, which does not support oncogenicity classification."
+        },
+        {
+          "variant_id": "TP53 p.R175H | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID389",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.1368,
+          "p_contradict": 0.0013,
+          "best_hypothesis": "The TP53 p.R175H variant has been associated with worse overall survival in breast cancer patients compared to wild type TP53, indicating its oncogenic potential."
+        },
+        {
+          "variant_id": "TP53 p.R175H | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID319",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0556,
+          "p_contradict": 0.0331,
+          "best_hypothesis": "Additionally, the variant's response to doxorubicin in a mouse model suggests a predictive role in treatment sensitivity, further supporting its classification as oncogenic."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID397",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0075,
+          "p_contradict": 0.3896,
+          "best_hypothesis": "The TP53 p.R273H variant is associated with poor prognosis in breast cancer patients and indicates resistance to certain therapies, suggesting its oncogenic potential."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID398",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0071,
+          "p_contradict": 0.3345,
+          "best_hypothesis": "The evidence does not support the classification of 'Likely Oncogenic' as the only functional evidence indicates 'Does Not Support' and there is no drug sensitivity evidence for the variant itself or a relevant hotspot group."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID4882",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "contradicted",
+          "p_entail": 0.004,
+          "p_contradict": 0.9629,
+          "best_hypothesis": "The evidence does not support the classification of 'Likely Oncogenic' as the only functional evidence indicates 'Does Not Support' and there is no drug sensitivity evidence for the variant itself or a relevant hotspot group."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:17:7577120C>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.002,
+          "p_contradict": 0.0522,
+          "best_hypothesis": "Additionally, computational evidence supports its pathogenicity, further reinforcing its likely oncogenic classification."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID397",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0383,
+          "p_contradict": 0.0042,
+          "best_hypothesis": "The TP53 p.R273H variant is associated with poor outcomes and resistance to certain therapies, indicating its potential oncogenic role."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID398",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0199,
+          "p_contradict": 0.3345,
+          "best_hypothesis": "The TP53 p.R273H variant is associated with poor outcomes and resistance to certain therapies, indicating its potential oncogenic role."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID4882",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "contradicted",
+          "p_entail": 0.2889,
+          "p_contradict": 0.9629,
+          "best_hypothesis": "The TP53 p.R273H variant is associated with poor outcomes and resistance to certain therapies, indicating its potential oncogenic role."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID7430",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9968,
+          "p_contradict": 0.9814,
+          "best_hypothesis": "The TP53 p.R273H variant is associated with poor outcomes and resistance to certain therapies, indicating its potential oncogenic role."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID7530",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9975,
+          "p_contradict": 0.2323,
+          "best_hypothesis": "The TP53 p.R273H variant is associated with poor outcomes and resistance to certain therapies, indicating its potential oncogenic role."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:17:7577120C>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9553,
+          "p_contradict": 0.0522,
+          "best_hypothesis": "Additionally, computational evidence suggests pathogenicity."
+        },
+        {
+          "variant_id": "TP53 p.R273L | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID2286",
+          "source": "CIViC",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9912,
+          "p_contradict": 0.0005,
+          "best_hypothesis": "The TP53 p.R273L variant is associated with resistance to platinum-based chemotherapy in ovarian cancer patients, indicating a potential oncogenic role in tumor progression."
+        },
+        {
+          "variant_id": "TP53 p.R273L | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:17:7577120C>A",
+          "source": "AlphaMissense",
+          "alignment": "inline",
+          "label": "neutral",
+          "p_entail": 0.0025,
+          "p_contradict": 0.0008,
+          "best_hypothesis": "Additionally, AlphaMissense predicts this variant as pathogenic with a high score of 0.995, supporting its likely oncogenic classification."
+        },
+        {
+          "variant_id": "TP53 p.V272G | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID10577",
+          "source": "CIViC",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.924,
+          "p_contradict": 0.023,
+          "best_hypothesis": "Additionally, functional evidence suggests that this variant exhibits dominant-negative behavior, which is a characteristic of oncogenic mutations in TP53, further supporting its likely oncogenic classification."
+        },
+        {
+          "variant_id": "TP53 p.V272G | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:17:7577123A>C",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.8924,
+          "p_contradict": 0.1825,
+          "best_hypothesis": "The variant TP53 p.V272G is predicted to be pathogenic based on computational evidence, which scores it as 0.819 for pathogenicity."
+        },
+        {
+          "variant_id": "ESR1 p.E247K | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "AlphaMissense:6:152201885G>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9971,
+          "p_contradict": 0.0009,
+          "best_hypothesis": "The variant ESR1 p.E247K is predicted to be pathogenic by AlphaMissense with a score of 0.840."
+        },
+        {
+          "variant_id": "AKT1 p.V192M | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:14:105241334C>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0096,
+          "p_contradict": 0.0012,
+          "best_hypothesis": "The variant AKT1 p.V192M is predicted to be pathogenic with a high score of 0.930 according to AlphaMissense, indicating a likely oncogenic potential."
+        },
+        {
+          "variant_id": "ALK p.F539C | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:2:29541201A>C",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0056,
+          "p_contradict": 0.0009,
+          "best_hypothesis": "The variant ALK p.F539C is predicted to be pathogenic based on computational evidence with a high pathogenicity score of 0.940, suggesting a likely oncogenic role in colorectal adenocarcinoma."
+        },
+        {
+          "variant_id": "ALK p.R291C | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "AlphaMissense:2:29917797G>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0021,
+          "p_contradict": 0.002,
+          "best_hypothesis": "The variant ALK p.R291C is classified as VUS with ambiguous computational evidence and lacks definitive drug-sensitivity evidence, which does not support an oncogenic classification."
+        },
+        {
+          "variant_id": "ALK p.E576Q | Breast Carcinoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense:2:29519845C>G",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9934,
+          "p_contradict": 0.0009,
+          "best_hypothesis": "The variant ALK p.E576Q is predicted to be benign based on computational evidence from AlphaMissense, which assigns a low pathogenicity score of 0.128."
+        },
+        {
+          "variant_id": "ALK p.G1121D | Breast Carcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:2:29445471C>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0114,
+          "p_contradict": 0.0011,
+          "best_hypothesis": "The variant ALK p.G1121D is predicted to be pathogenic based on computational evidence with a high pathogenicity score of 0.980, suggesting a likely oncogenic role in breast carcinoma."
+        },
+        {
+          "variant_id": "ALK p.R1209P | Breast Carcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:2:29443591C>G",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.1209,
+          "p_contradict": 0.017,
+          "best_hypothesis": "The variant ALK p.R1209P is predicted to be pathogenic with a high score of 0.999 according to AlphaMissense, indicating a strong likelihood of oncogenicity."
+        },
+        {
+          "variant_id": "APC p.A1366V | Breast Carcinoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense:5:112175388C>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9932,
+          "p_contradict": 0.0021,
+          "best_hypothesis": "The variant APC p.A1366V is predicted to be benign based on computational evidence from AlphaMissense, which assigns a low pathogenicity score of 0.218."
+        },
+        {
+          "variant_id": "BRAF p.H725Y | Cutaneous Melanoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:7:140434525G>A",
+          "source": "AlphaMissense",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9967,
+          "p_contradict": 0.0002,
+          "best_hypothesis": "The variant BRAF p.H725Y is predicted to be pathogenic based on computational evidence with a pathogenicity score of 0.777 from AlphaMissense."
+        },
+        {
+          "variant_id": "ROS1 p.P1539S | Cutaneous Melanoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense:6:117663617G>A",
+          "source": "AlphaMissense",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9918,
+          "p_contradict": 0.0002,
+          "best_hypothesis": "The variant ROS1 p.P1539S is predicted to be benign based on computational evidence from AlphaMissense, which provides a score of 0.078 indicating low pathogenicity."
+        },
+        {
+          "variant_id": "ALK p.G1494E | Cutaneous Melanoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense:2:29416472C>T",
+          "source": "AlphaMissense",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.9924,
+          "p_contradict": 0.0003,
+          "best_hypothesis": "The variant ALK p.G1494E is predicted to be benign based on computational evidence, with a score of 0.164 indicating low pathogenicity."
+        },
+        {
+          "variant_id": "ALK p.G391E | Cutaneous Melanoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:2:29606708C>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9972,
+          "p_contradict": 0.001,
+          "best_hypothesis": "The variant ALK p.G391E is predicted to be pathogenic based on computational evidence from AlphaMissense, which assigned a pathogenicity score of 0.656."
+        },
+        {
+          "variant_id": "ALK p.G263V | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense:2:29917880C>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9934,
+          "p_contradict": 0.0083,
+          "best_hypothesis": "The variant ALK p.G263V is predicted to be benign based on computational evidence from AlphaMissense, which assigns a low pathogenicity score of 0.291."
+        },
+        {
+          "variant_id": "ALK p.V349F | Lung Adenocarcinoma (NSCLC)",
+          "call": "VUS",
+          "citation": "AlphaMissense:2:29754890C>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0171,
+          "p_contradict": 0.0032,
+          "best_hypothesis": "The variant ALK p.V349F is classified as ambiguous in pathogenicity based on computational evidence, which does not provide strong support for oncogenicity."
+        },
+        {
+          "variant_id": "APC p.D1562N | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense:5:112175975G>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9954,
+          "p_contradict": 0.0016,
+          "best_hypothesis": "The variant APC p.D1562N is predicted to be benign based on computational evidence from AlphaMissense, which assigned a low pathogenicity score of 0.127."
+        },
+        {
+          "variant_id": "BRAF p.A762E | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense:7:140434413G>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9946,
+          "p_contradict": 0.0015,
+          "best_hypothesis": "The variant BRAF p.A762E is predicted to be benign based on computational evidence from AlphaMissense, which assigns a low pathogenicity score of 0.093."
+        },
+        {
+          "variant_id": "ALK p.R1212H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:2:29443582C>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0014,
+          "p_contradict": 0.0009,
+          "best_hypothesis": "The variant ALK p.R1212H is predicted to be pathogenic with a high pathogenicity score of 0.967 according to AlphaMissense, which supports its oncogenic potential."
+        },
+        {
+          "variant_id": "ALK p.R200K | Pancreatic Adenocarcinoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense:2:30142927C>T",
+          "source": "AlphaMissense",
+          "alignment": "inline",
+          "label": "supported",
+          "p_entail": 0.991,
+          "p_contradict": 0.0006,
+          "best_hypothesis": "The variant ALK p.R200K is predicted to be benign based on computational evidence from AlphaMissense, which assigns a low pathogenicity score of 0.121 (evidence id: )."
+        },
+        {
+          "variant_id": "APC p.P1613H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:5:112176129C>A",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "neutral",
+          "p_entail": 0.0028,
+          "p_contradict": 0.0007,
+          "best_hypothesis": "The variant APC p.P1613H is predicted to be pathogenic with a high score of 0.954 according to AlphaMissense, indicating a likely oncogenic role in pancreatic adenocarcinoma."
+        },
+        {
+          "variant_id": "APC p.R230C | Pancreatic Adenocarcinoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense:5:112128185C>T",
+          "source": "AlphaMissense",
+          "alignment": "max_over_rationale",
+          "label": "supported",
+          "p_entail": 0.9836,
+          "p_contradict": 0.0016,
+          "best_hypothesis": "The evidence indicates that the variant APC p.R230C is predicted to be benign, which does not support a classification of 'Likely Oncogenic'."
+        }
+      ]
+    },
+    "label_only_106_arm": {
+      "n_citations_total": 106,
+      "n_not_testable": 7,
+      "aggregate": {
+        "n_citations": 99,
+        "n_variants": 35,
+        "counts": {
+          "neutral": 22,
+          "contradicted": 13,
+          "supported": 64
+        },
+        "citation_level": {
+          "supported": {
+            "iid": {
+              "point": 0.646,
+              "lo": 0.556,
+              "hi": 0.737,
+              "n": 99
+            },
+            "variant_clustered": {
+              "point": 0.646,
+              "lo": 0.506,
+              "hi": 0.761,
+              "n": 99,
+              "n_clusters": 35
+            }
+          },
+          "neutral": {
+            "iid": {
+              "point": 0.222,
+              "lo": 0.141,
+              "hi": 0.303,
+              "n": 99
+            },
+            "variant_clustered": {
+              "point": 0.222,
+              "lo": 0.135,
+              "hi": 0.32,
+              "n": 99,
+              "n_clusters": 35
+            }
+          },
+          "contradicted": {
+            "iid": {
+              "point": 0.131,
+              "lo": 0.071,
+              "hi": 0.202,
+              "n": 99
+            },
+            "variant_clustered": {
+              "point": 0.131,
+              "lo": 0.067,
+              "hi": 0.222,
+              "n": 99,
+              "n_clusters": 35
+            }
+          }
+        },
+        "variant_level": {
+          "n": 35,
+          "counts": {
+            "unsupported": 10,
+            "fully": 12,
+            "partially": 13
+          },
+          "fully": {
+            "point": 0.343,
+            "lo": 0.2,
+            "hi": 0.514,
+            "n": 35
+          },
+          "partially": {
+            "point": 0.371,
+            "lo": 0.229,
+            "hi": 0.543,
+            "n": 35
+          },
+          "unsupported": {
+            "point": 0.286,
+            "lo": 0.143,
+            "hi": 0.429,
+            "n": 35
+          },
+          "any_contradicted": {
+            "point": 0.371,
+            "lo": 0.229,
+            "hi": 0.543,
+            "n": 35
+          }
+        }
+      },
+      "by_source": {
+        "AlphaMissense": {
+          "n_citations": 23,
+          "n_variants": 23,
+          "counts": {
+            "contradicted": 13,
+            "neutral": 5,
+            "supported": 5
+          },
+          "citation_level": {
+            "supported": {
+              "iid": {
+                "point": 0.217,
+                "lo": 0.087,
+                "hi": 0.391,
+                "n": 23
+              },
+              "variant_clustered": {
+                "point": 0.217,
+                "lo": 0.087,
+                "hi": 0.391,
+                "n": 23,
+                "n_clusters": 23
+              }
+            },
+            "neutral": {
+              "iid": {
+                "point": 0.217,
+                "lo": 0.087,
+                "hi": 0.391,
+                "n": 23
+              },
+              "variant_clustered": {
+                "point": 0.217,
+                "lo": 0.087,
+                "hi": 0.391,
+                "n": 23,
+                "n_clusters": 23
+              }
+            },
+            "contradicted": {
+              "iid": {
+                "point": 0.565,
+                "lo": 0.348,
+                "hi": 0.739,
+                "n": 23
+              },
+              "variant_clustered": {
+                "point": 0.565,
+                "lo": 0.348,
+                "hi": 0.739,
+                "n": 23,
+                "n_clusters": 23
+              }
+            }
+          },
+          "variant_level": {
+            "n": 23,
+            "counts": {
+              "unsupported": 18,
+              "fully": 5
+            },
+            "fully": {
+              "point": 0.217,
+              "lo": 0.087,
+              "hi": 0.391,
+              "n": 23
+            },
+            "partially": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.0,
+              "n": 23
+            },
+            "unsupported": {
+              "point": 0.783,
+              "lo": 0.609,
+              "hi": 0.913,
+              "n": 23
+            },
+            "any_contradicted": {
+              "point": 0.565,
+              "lo": 0.348,
+              "hi": 0.739,
+              "n": 23
+            }
+          }
+        },
+        "CIViC": {
+          "n_citations": 76,
+          "n_variants": 23,
+          "counts": {
+            "neutral": 17,
+            "supported": 59
+          },
+          "citation_level": {
+            "supported": {
+              "iid": {
+                "point": 0.776,
+                "lo": 0.684,
+                "hi": 0.868,
+                "n": 76
+              },
+              "variant_clustered": {
+                "point": 0.776,
+                "lo": 0.623,
+                "hi": 0.899,
+                "n": 76,
+                "n_clusters": 23
+              }
+            },
+            "neutral": {
+              "iid": {
+                "point": 0.224,
+                "lo": 0.132,
+                "hi": 0.316,
+                "n": 76
+              },
+              "variant_clustered": {
+                "point": 0.224,
+                "lo": 0.101,
+                "hi": 0.377,
+                "n": 76,
+                "n_clusters": 23
+              }
+            },
+            "contradicted": {
+              "iid": {
+                "point": 0.0,
+                "lo": 0.0,
+                "hi": 0.0,
+                "n": 76
+              },
+              "variant_clustered": {
+                "point": 0.0,
+                "lo": 0.0,
+                "hi": 0.0,
+                "n": 76,
+                "n_clusters": 23
+              }
+            }
+          },
+          "variant_level": {
+            "n": 23,
+            "counts": {
+              "unsupported": 3,
+              "fully": 14,
+              "partially": 6
+            },
+            "fully": {
+              "point": 0.609,
+              "lo": 0.391,
+              "hi": 0.783,
+              "n": 23
+            },
+            "partially": {
+              "point": 0.261,
+              "lo": 0.087,
+              "hi": 0.435,
+              "n": 23
+            },
+            "unsupported": {
+              "point": 0.13,
+              "lo": 0.0,
+              "hi": 0.261,
+              "n": 23
+            },
+            "any_contradicted": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.0,
+              "n": 23
+            }
+          }
+        }
+      },
+      "match_types": {
+        "normalized": 36,
+        "exact": 50,
+        "bare_source": 15,
+        "unresolvable": 5
+      },
+      "imprecision_crosstab": {
+        "table": {
+          "precise": {
+            "neutral": 19,
+            "contradicted": 6,
+            "supported": 59,
+            "not_testable": 2
+          },
+          "imprecise": {
+            "neutral": 3,
+            "not_testable": 5,
+            "contradicted": 7,
+            "supported": 5
+          }
+        },
+        "binary_definition": "existing: imprecise vs precise; NLI: not-supported vs supported; over citations with a resolvable premise",
+        "n": 99,
+        "percent_agreement": 0.697,
+        "cohens_kappa": 0.238
+      },
+      "not_testable_reasons": {
+        "VUS call (no template)": 2,
+        "unresolvable token": 5
+      },
+      "hand_inspection_sample": [
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID7430",
+          "premise_chunk": "CIViC evidence for TP53 p.R273H in Osteosarcoma (Predictive; Supports; Resistance). Several preclinical studies were testing drug resistance mechanisms of TP53-R273H variant. Saos-2 cells were transfected with TP53-R273H mutation and these cells were used in the study. Using a western blot, Saos-2/TP53-R273H cells were shown to have a 0.6-fold down-regulation (compared to the Control) for Procaspase-3 protein expression. In addition, Saos-2/TP53-R273H cells were shown to be more resistant to methotrexate and doxorubicin. Reduced levels of drug-induced apoptosis were seen in Saos-2/TP53-R273H cells treated with doxorubicin (0.05 uM and 0.10 uM) and methotrexate (25 nM and 50 nM) in DNA fragmentation assays. According to the results, TP53-R273H induces drug resistance when procaspase-3 is down-regulated.",
+          "hypothesis": "TP53 R273H is an oncogenic mutation.",
+          "p_entail": 0.9454,
+          "p_contradict": 0.0027,
+          "label": "supported"
+        },
+        {
+          "variant_id": "NRAS p.Q61K | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "EID1474",
+          "premise_chunk": "CIViC evidence for NRAS p.Q61K in Skin Melanoma (Predictive; Supports; Resistance). Preclinical study in melanoma cell lines. NRAS Q61K, in addition to the BRAF V600E mutation was associated with resistance to vemurafenib but sensitivity to AZD6244 (selumetinib) in vitro in the acquired resistant cell line M249-AR4 and in the patient-derived acquired resistant cell line M376.",
+          "hypothesis": "NRAS Q61K is an oncogenic mutation.",
+          "p_entail": 0.3791,
+          "p_contradict": 0.0063,
+          "label": "neutral"
+        },
+        {
+          "variant_id": "BRAF p.H725Y | Cutaneous Melanoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense",
+          "premise_chunk": "AlphaMissense evidence for BRAF p.H725Y. AlphaMissense predicts BRAF p.H725Y as pathogenic (pathogenicity=0.777); computational evidence (OP1).",
+          "hypothesis": "BRAF H725Y is an oncogenic mutation.",
+          "p_entail": 0.0019,
+          "p_contradict": 0.9471,
+          "label": "contradicted"
+        },
+        {
+          "variant_id": "KRAS p.G12V | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID136",
+          "premise_chunk": "CIViC evidence for KRAS p.G12V in Colorectal Cancer (Predictive; Supports; Resistance). Cells harboring KRAS G12V mutation were insensitive to cetuximab treatment in isogenic SW48 cells and in a mouse xenograft model.",
+          "hypothesis": "KRAS G12V is an oncogenic mutation.",
+          "p_entail": 0.9647,
+          "p_contradict": 0.0037,
+          "label": "supported"
+        },
+        {
+          "variant_id": "TP53 p.R175H | Breast Carcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID10527",
+          "premise_chunk": "CIViC evidence for TP53 p.R175H (Functional; Supports; Dominant Negative). Yeast strain yIG397 was cultured to express both wild-type (WT) and mutant R175H originally identified in anaplastic astrocytoma. Should the mutant be dominant-negative (DN), TP53 will not bind and transactivate the ADE2 protein, resulting in red/pink colonies. If the mutant is recessive, then WT function is not blocked and ADE2 protein is expressed through TP53 transactivation, resulting in white colonies. Western blot analysis showed that yeast lysates showed expression of both WT and mutant alleles. Yeast expressing p53 variant and WT p53 produced red/pink colonies, demonstrating that R175H displays transdominance. Authors reported that all of the DN mutants affected the amino acids essential to the upkeep of DNA binding surfaces according to crystallographic structure.",
+          "hypothesis": "TP53 R175H is an oncogenic mutation.",
+          "p_entail": 0.416,
+          "p_contradict": 0.182,
+          "label": "neutral"
+        },
+        {
+          "variant_id": "TP53 p.D281E | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:17:7577095G>T",
+          "premise_chunk": "AlphaMissense evidence for TP53 p.D281E. AlphaMissense predicts TP53 p.D281E as pathogenic (pathogenicity=0.999); computational evidence (OP1).",
+          "hypothesis": "TP53 D281E is an oncogenic mutation.",
+          "p_entail": 0.011,
+          "p_contradict": 0.858,
+          "label": "contradicted"
+        },
+        {
+          "variant_id": "KRAS p.G12C | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "EID9431",
+          "premise_chunk": "CIViC evidence for KRAS p.G12C in Lung Non-small Cell Carcinoma (Predictive; Supports; Sensitivity/Response). The phase II cohort of the CodeBreaK 100 study (NCT03600883) investigated the activity of the KRAS G12C inhibitor sotorasib in previously treated patients with KRAS G12C-mutated non-small cell lung cancer. A total of 124 patients had measurable disease and were evaluated for response by independent central review. Complete response was seen in four patients and partial response in 42 patients, for an objective response rate of 37.1% (95% CI, 28.6 to 46.2). The median progression-free survival and overall survival were 6.8 (95% CI, 5.1 to 8.2) months and 12.5 months (95% CI, 10.0 to could not be evaluated), respectively.",
+          "hypothesis": "KRAS G12C is an oncogenic mutation.",
+          "p_entail": 0.9957,
+          "p_contradict": 0.0013,
+          "label": "supported"
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID398",
+          "premise_chunk": "CIViC evidence for TP53 p.R273H in Breast Cancer (Prognostic; Supports; Poor Outcome). In breast cancer patients harboring TP53 mutation, mutations in DNA contact regions such as R273 are prognostic for a worse relapse-free survival compared to other non-silent mutations in TP53.",
+          "hypothesis": "TP53 R273H is an oncogenic mutation.",
+          "p_entail": 0.1938,
+          "p_contradict": 0.1091,
+          "label": "neutral"
+        },
+        {
+          "variant_id": "ALK p.G1121D | Breast Carcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense",
+          "premise_chunk": "AlphaMissense evidence for ALK p.G1121D. AlphaMissense predicts ALK p.G1121D as pathogenic (pathogenicity=0.980); computational evidence (OP1).",
+          "hypothesis": "ALK G1121D is an oncogenic mutation.",
+          "p_entail": 0.0016,
+          "p_contradict": 0.9786,
+          "label": "contradicted"
+        },
+        {
+          "variant_id": "BRAF p.V600E | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID126",
+          "premise_chunk": "CIViC evidence for BRAF p.V600E in Colorectal Cancer (Predictive; Supports; Resistance). This was a retrospective study of 691 cetuximab treated patients with metastatic, chemotherapy refractory colorectal cancer. Of those, 30 patients harbored BRAF V600E, were KRAS, NRAS and PIK3CA wt, and had individual response data. One patient (who harbored BRAF V600E in low copy number) responded, 11 had stable disease, and 18 progressed. Treatments included cetuximab + irinotecan (n=20), cetuximab monotherapy (n=5), cetuximab + FOLFIRI (n=4), and cetuximab + oxaliplatin + 5FU (n=1). Median PFS was 8 weeks (2-32 weeks), median OS was 25 weeks (4-237 weeks), and median number of previous chemotherapy lines was 2 (0-4). Median age was 61 years old (42-78) and there were 16 males and 14 females. Authors concluded that BRAF mutation (23/24 of mutants were BRAF V600E) was strongly associated with poor response to cetuximab and suggested that mutation status of BRAF is more informative than those of NRAS and PIK3CA exon 20 for predicting cetuximab response (second only to KRAS).",
+          "hypothesis": "BRAF V600E is an oncogenic mutation.",
+          "p_entail": 0.9964,
+          "p_contradict": 0.0007,
+          "label": "supported"
+        }
+      ],
+      "records": [
+        {
+          "variant_id": "BRAF p.G469E | Cutaneous Melanoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID6003",
+          "resolved_id": "CIViC:EID6003",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.0601,
+          "p_contradict": 0.0034,
+          "best_hypothesis": "BRAF G469E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "BRAF p.G469E | Cutaneous Melanoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID6004",
+          "resolved_id": "CIViC:EID6004",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.0242,
+          "p_contradict": 0.004,
+          "best_hypothesis": "BRAF G469E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "BRAF p.G469E | Cutaneous Melanoma",
+          "call": "Likely Oncogenic",
+          "citation": "7:140481402C>T",
+          "resolved_id": "AlphaMissense:7:140481402C>T",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0013,
+          "p_contradict": 0.9779,
+          "best_hypothesis": "BRAF G469E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID89",
+          "resolved_id": "CIViC:EID89",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9862,
+          "p_contradict": 0.0017,
+          "best_hypothesis": "BRAF V600E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID103",
+          "resolved_id": "CIViC:EID103",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.7388,
+          "p_contradict": 0.0025,
+          "best_hypothesis": "BRAF V600E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID126",
+          "resolved_id": "CIViC:EID126",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9964,
+          "p_contradict": 0.0007,
+          "best_hypothesis": "BRAF V600E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID104",
+          "resolved_id": "CIViC:EID104",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.121,
+          "p_contradict": 0.0032,
+          "best_hypothesis": "BRAF V600E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID95",
+          "resolved_id": "CIViC:EID95",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.7599,
+          "p_contradict": 0.0026,
+          "best_hypothesis": "BRAF V600E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "BRAF p.V600E | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID86",
+          "resolved_id": "CIViC:EID86",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9477,
+          "p_contradict": 0.0012,
+          "best_hypothesis": "BRAF V600E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "EGFR p.E114K | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "CIViC:EID9584",
+          "resolved_id": "CIViC:EID9584",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": null
+        },
+        {
+          "variant_id": "EGFR p.E114K | Colorectal Adenocarcinoma",
+          "call": "VUS",
+          "citation": "AlphaMissense:7:55211097G>A",
+          "resolved_id": "AlphaMissense:7:55211097G>A",
+          "match": "exact",
+          "imprecise": false,
+          "source": "AlphaMissense",
+          "label": null
+        },
+        {
+          "variant_id": "EGFR p.L858R | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID275",
+          "resolved_id": "CIViC:EID275",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.7354,
+          "p_contradict": 0.0106,
+          "best_hypothesis": "EGFR L858R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "EGFR p.L858R | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID276",
+          "resolved_id": "CIViC:EID276",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9669,
+          "p_contradict": 0.0009,
+          "best_hypothesis": "EGFR L858R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "EGFR p.L858R | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID347",
+          "resolved_id": "CIViC:EID347",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9624,
+          "p_contradict": 0.0018,
+          "best_hypothesis": "EGFR L858R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "EGFR p.L858R | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID879",
+          "resolved_id": "CIViC:EID879",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9956,
+          "p_contradict": 0.0008,
+          "best_hypothesis": "EGFR L858R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "EGFR p.L858R | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1665",
+          "resolved_id": "CIViC:EID1665",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9855,
+          "p_contradict": 0.0022,
+          "best_hypothesis": "EGFR L858R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "EGFR p.L858R | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2624",
+          "resolved_id": "CIViC:EID2624",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9874,
+          "p_contradict": 0.001,
+          "best_hypothesis": "EGFR L858R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "EGFR p.L858R | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2634",
+          "resolved_id": "CIViC:EID2634",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9954,
+          "p_contradict": 0.0018,
+          "best_hypothesis": "EGFR L858R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "ERBB2 p.V842I | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID289",
+          "resolved_id": "CIViC:EID289",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9756,
+          "p_contradict": 0.0017,
+          "best_hypothesis": "ERBB2 V842I is an oncogenic mutation."
+        },
+        {
+          "variant_id": "ERBB2 p.V842I | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID1174",
+          "resolved_id": "CIViC:EID1174",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9391,
+          "p_contradict": 0.005,
+          "best_hypothesis": "ERBB2 V842I is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12A | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "CIViC:EID3710",
+          "resolved_id": "CIViC:EID3710",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9967,
+          "p_contradict": 0.0009,
+          "best_hypothesis": "KRAS G12A is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12A | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:12:25398284C>G",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "neutral",
+          "p_entail": 0.2376,
+          "p_contradict": 0.0495,
+          "best_hypothesis": "KRAS G12A is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12C | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "EID9431",
+          "resolved_id": "CIViC:EID9431",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9957,
+          "p_contradict": 0.0013,
+          "best_hypothesis": "KRAS G12C is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12C | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "EID11652",
+          "resolved_id": "CIViC:EID11652",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9624,
+          "p_contradict": 0.0021,
+          "best_hypothesis": "KRAS G12C is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12C | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "EID7572",
+          "resolved_id": "CIViC:EID7572",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9908,
+          "p_contradict": 0.001,
+          "best_hypothesis": "KRAS G12C is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12C | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:12:25398285C>A",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "neutral",
+          "p_entail": 0.3822,
+          "p_contradict": 0.0243,
+          "best_hypothesis": "KRAS G12C is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1215",
+          "resolved_id": "CIViC:EID1215",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9772,
+          "p_contradict": 0.0033,
+          "best_hypothesis": "KRAS G12D is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID3946",
+          "resolved_id": "CIViC:EID3946",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9958,
+          "p_contradict": 0.0009,
+          "best_hypothesis": "KRAS G12D is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2207",
+          "resolved_id": "CIViC:EID2207",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9975,
+          "p_contradict": 0.0007,
+          "best_hypothesis": "KRAS G12D is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1300",
+          "resolved_id": "CIViC:EID1300",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9845,
+          "p_contradict": 0.0028,
+          "best_hypothesis": "KRAS G12D is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1311",
+          "resolved_id": "CIViC:EID1311",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9823,
+          "p_contradict": 0.0014,
+          "best_hypothesis": "KRAS G12D is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12D | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID937",
+          "resolved_id": "CIViC:EID937",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9874,
+          "p_contradict": 0.0012,
+          "best_hypothesis": "KRAS G12D is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12R | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID1298",
+          "resolved_id": "CIViC:EID1298",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9579,
+          "p_contradict": 0.0026,
+          "best_hypothesis": "KRAS G12R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12R | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID2264",
+          "resolved_id": "CIViC:EID2264",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9882,
+          "p_contradict": 0.0023,
+          "best_hypothesis": "KRAS G12R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12R | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID3987",
+          "resolved_id": "CIViC:EID3987",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9896,
+          "p_contradict": 0.0025,
+          "best_hypothesis": "KRAS G12R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12R | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID3989",
+          "resolved_id": "CIViC:EID3989",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9049,
+          "p_contradict": 0.0018,
+          "best_hypothesis": "KRAS G12R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12R | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID3991",
+          "resolved_id": "CIViC:EID3991",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9951,
+          "p_contradict": 0.001,
+          "best_hypothesis": "KRAS G12R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12R | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:12:25398285C>G",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "neutral",
+          "p_entail": 0.2922,
+          "p_contradict": 0.033,
+          "best_hypothesis": "KRAS G12R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID136",
+          "resolved_id": "CIViC:EID136",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9647,
+          "p_contradict": 0.0037,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2219",
+          "resolved_id": "CIViC:EID2219",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9971,
+          "p_contradict": 0.0008,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID3924",
+          "resolved_id": "CIViC:EID3924",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9923,
+          "p_contradict": 0.0013,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:12:25398284C>A",
+          "resolved_id": "AlphaMissense:12:25398284C>A",
+          "match": "exact",
+          "imprecise": false,
+          "source": "AlphaMissense",
+          "label": "neutral",
+          "p_entail": 0.2228,
+          "p_contradict": 0.0344,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID136",
+          "resolved_id": "CIViC:EID136",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9647,
+          "p_contradict": 0.0037,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID795",
+          "resolved_id": "CIViC:EID795",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9861,
+          "p_contradict": 0.0016,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID987",
+          "resolved_id": "CIViC:EID987",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9956,
+          "p_contradict": 0.0011,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1143",
+          "resolved_id": "CIViC:EID1143",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.8691,
+          "p_contradict": 0.001,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1715",
+          "resolved_id": "CIViC:EID1715",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9976,
+          "p_contradict": 0.0007,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2001",
+          "resolved_id": "CIViC:EID2001",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9837,
+          "p_contradict": 0.0019,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2219",
+          "resolved_id": "CIViC:EID2219",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9971,
+          "p_contradict": 0.0008,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2232",
+          "resolved_id": "CIViC:EID2232",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9874,
+          "p_contradict": 0.0023,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2268",
+          "resolved_id": "CIViC:EID2268",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9925,
+          "p_contradict": 0.0015,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID3824",
+          "resolved_id": "CIViC:EID3824",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9891,
+          "p_contradict": 0.0023,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID3924",
+          "resolved_id": "CIViC:EID3924",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9923,
+          "p_contradict": 0.0013,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "KRAS p.G12V | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:12:25398284C>A",
+          "resolved_id": "AlphaMissense:12:25398284C>A",
+          "match": "exact",
+          "imprecise": false,
+          "source": "AlphaMissense",
+          "label": "neutral",
+          "p_entail": 0.2228,
+          "p_contradict": 0.0344,
+          "best_hypothesis": "KRAS G12V is an oncogenic mutation."
+        },
+        {
+          "variant_id": "NRAS p.Q61K | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "EID1474",
+          "resolved_id": "CIViC:EID1474",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.3791,
+          "p_contradict": 0.0063,
+          "best_hypothesis": "NRAS Q61K is an oncogenic mutation."
+        },
+        {
+          "variant_id": "NRAS p.Q61K | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "EID1475",
+          "resolved_id": "CIViC:EID1475",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.4404,
+          "p_contradict": 0.0087,
+          "best_hypothesis": "NRAS Q61K is an oncogenic mutation."
+        },
+        {
+          "variant_id": "NRAS p.Q61K | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "EID1002",
+          "resolved_id": "CIViC:EID1002",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9931,
+          "p_contradict": 0.0008,
+          "best_hypothesis": "NRAS Q61K is an oncogenic mutation."
+        },
+        {
+          "variant_id": "NRAS p.Q61K | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "EID8933",
+          "resolved_id": "CIViC:EID8933",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9265,
+          "p_contradict": 0.003,
+          "best_hypothesis": "NRAS Q61K is an oncogenic mutation."
+        },
+        {
+          "variant_id": "NRAS p.Q61K | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:1:115256530G>T",
+          "resolved_id": "AlphaMissense:1:115256530G>T",
+          "match": "exact",
+          "imprecise": false,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0007,
+          "p_contradict": 0.9868,
+          "best_hypothesis": "NRAS Q61K is an oncogenic mutation."
+        },
+        {
+          "variant_id": "NRAS p.Q61R | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "EID23",
+          "resolved_id": "CIViC:EID23",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.0384,
+          "p_contradict": 0.0053,
+          "best_hypothesis": "NRAS Q61R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "NRAS p.Q61R | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "EID2184",
+          "resolved_id": "CIViC:EID2184",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9228,
+          "p_contradict": 0.0032,
+          "best_hypothesis": "NRAS Q61R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "NRAS p.Q61R | Cutaneous Melanoma",
+          "call": "Oncogenic",
+          "citation": "1",
+          "resolved_id": null,
+          "match": "unresolvable",
+          "imprecise": true,
+          "source": null,
+          "label": null
+        },
+        {
+          "variant_id": "PIK3CA p.E545K | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1171",
+          "resolved_id": "CIViC:EID1171",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.969,
+          "p_contradict": 0.0018,
+          "best_hypothesis": "PIK3CA E545K is an oncogenic mutation."
+        },
+        {
+          "variant_id": "PIK3CA p.E545K | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2040",
+          "resolved_id": "CIViC:EID2040",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.997,
+          "p_contradict": 0.0012,
+          "best_hypothesis": "PIK3CA E545K is an oncogenic mutation."
+        },
+        {
+          "variant_id": "PIK3CA p.H1047R | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID314",
+          "resolved_id": "CIViC:EID314",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.0318,
+          "p_contradict": 0.008,
+          "best_hypothesis": "PIK3CA H1047R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "PIK3CA p.H1047R | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID1505",
+          "resolved_id": "CIViC:EID1505",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.8898,
+          "p_contradict": 0.005,
+          "best_hypothesis": "PIK3CA H1047R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "PIK3CA p.H1047R | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2097",
+          "resolved_id": "CIViC:EID2097",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.4133,
+          "p_contradict": 0.0489,
+          "best_hypothesis": "PIK3CA H1047R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "PIK3CA p.H1047R | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2100",
+          "resolved_id": "CIViC:EID2100",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.3473,
+          "p_contradict": 0.0107,
+          "best_hypothesis": "PIK3CA H1047R is an oncogenic mutation."
+        },
+        {
+          "variant_id": "PIK3CA p.R88Q | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID3832",
+          "resolved_id": "CIViC:EID3832",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9749,
+          "p_contradict": 0.0035,
+          "best_hypothesis": "PIK3CA R88Q is an oncogenic mutation."
+        },
+        {
+          "variant_id": "PIK3CA p.R88Q | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID12034",
+          "resolved_id": "CIViC:EID12034",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.5631,
+          "p_contradict": 0.0061,
+          "best_hypothesis": "PIK3CA R88Q is an oncogenic mutation."
+        },
+        {
+          "variant_id": "PIK3CA p.R88Q | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "3",
+          "resolved_id": null,
+          "match": "unresolvable",
+          "imprecise": true,
+          "source": null,
+          "label": null
+        },
+        {
+          "variant_id": "TP53 p.D281E | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID10260",
+          "resolved_id": "CIViC:EID10260",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.0009,
+          "p_contradict": 0.0036,
+          "best_hypothesis": "TP53 D281E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.D281E | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:17:7577095G>T",
+          "resolved_id": "AlphaMissense:17:7577095G>T",
+          "match": "exact",
+          "imprecise": false,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.011,
+          "p_contradict": 0.858,
+          "best_hypothesis": "TP53 D281E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R175H | Breast Carcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID319",
+          "resolved_id": "CIViC:EID319",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.0267,
+          "p_contradict": 0.0026,
+          "best_hypothesis": "TP53 R175H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R175H | Breast Carcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID389",
+          "resolved_id": "CIViC:EID389",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.4925,
+          "p_contradict": 0.0053,
+          "best_hypothesis": "TP53 R175H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R175H | Breast Carcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "EID10527",
+          "resolved_id": "CIViC:EID10527",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.416,
+          "p_contradict": 0.182,
+          "best_hypothesis": "TP53 R175H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R175H | Breast Carcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:17:7578406C>T",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0185,
+          "p_contradict": 0.7906,
+          "best_hypothesis": "TP53 R175H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID397",
+          "resolved_id": "CIViC:EID397",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.409,
+          "p_contradict": 0.0055,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID398",
+          "resolved_id": "CIViC:EID398",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.1938,
+          "p_contradict": 0.1091,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID4882",
+          "resolved_id": "CIViC:EID4882",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.8647,
+          "p_contradict": 0.002,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID7430",
+          "resolved_id": "CIViC:EID7430",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9454,
+          "p_contradict": 0.0027,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Colorectal Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID7530",
+          "resolved_id": "CIViC:EID7530",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9142,
+          "p_contradict": 0.0622,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID397",
+          "resolved_id": "CIViC:EID397",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.409,
+          "p_contradict": 0.0055,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID398",
+          "resolved_id": "CIViC:EID398",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "neutral",
+          "p_entail": 0.1938,
+          "p_contradict": 0.1091,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID4882",
+          "resolved_id": "CIViC:EID4882",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.8647,
+          "p_contradict": 0.002,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID7430",
+          "resolved_id": "CIViC:EID7430",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9454,
+          "p_contradict": 0.0027,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273H | Pancreatic Adenocarcinoma",
+          "call": "Oncogenic",
+          "citation": "EID7530",
+          "resolved_id": "CIViC:EID7530",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9142,
+          "p_contradict": 0.0622,
+          "best_hypothesis": "TP53 R273H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273L | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "CIViC:EID2286",
+          "resolved_id": "CIViC:EID2286",
+          "match": "exact",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.9779,
+          "p_contradict": 0.0034,
+          "best_hypothesis": "TP53 R273L is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.R273L | Lung Adenocarcinoma (NSCLC)",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense:17:7577120C>A",
+          "resolved_id": "AlphaMissense:17:7577120C>A",
+          "match": "exact",
+          "imprecise": false,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0179,
+          "p_contradict": 0.669,
+          "best_hypothesis": "TP53 R273L is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.V272G | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "EID10577",
+          "resolved_id": "CIViC:EID10577",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "CIViC",
+          "label": "supported",
+          "p_entail": 0.6704,
+          "p_contradict": 0.0096,
+          "best_hypothesis": "TP53 V272G is an oncogenic mutation."
+        },
+        {
+          "variant_id": "TP53 p.V272G | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Oncogenic",
+          "citation": "17:7577123A>C",
+          "resolved_id": "AlphaMissense:17:7577123A>C",
+          "match": "normalized",
+          "imprecise": false,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.017,
+          "p_contradict": 0.7583,
+          "best_hypothesis": "TP53 V272G is an oncogenic mutation."
+        },
+        {
+          "variant_id": "ESR1 p.E247K | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:6:152201885G>A",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0004,
+          "p_contradict": 0.9955,
+          "best_hypothesis": "ESR1 E247K is an oncogenic mutation."
+        },
+        {
+          "variant_id": "AKT1 p.V192M | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:14:105241334C>T",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0011,
+          "p_contradict": 0.987,
+          "best_hypothesis": "AKT1 V192M is an oncogenic mutation."
+        },
+        {
+          "variant_id": "ALK p.F539C | Colorectal Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "OP1",
+          "resolved_id": null,
+          "match": "unresolvable",
+          "imprecise": true,
+          "source": null,
+          "label": null
+        },
+        {
+          "variant_id": "ALK p.E576Q | Breast Carcinoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:2:29519845C>G",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "supported",
+          "p_entail": 0.9694,
+          "p_contradict": 0.0027,
+          "best_hypothesis": "ALK E576Q is not an oncogenic mutation."
+        },
+        {
+          "variant_id": "ALK p.G1121D | Breast Carcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:2:29445471C>T",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0016,
+          "p_contradict": 0.9786,
+          "best_hypothesis": "ALK G1121D is an oncogenic mutation."
+        },
+        {
+          "variant_id": "ALK p.R1209P | Breast Carcinoma",
+          "call": "Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:2:29443591C>G",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0012,
+          "p_contradict": 0.9851,
+          "best_hypothesis": "ALK R1209P is an oncogenic mutation."
+        },
+        {
+          "variant_id": "APC p.A1366V | Breast Carcinoma",
+          "call": "Likely Benign",
+          "citation": "5",
+          "resolved_id": null,
+          "match": "unresolvable",
+          "imprecise": true,
+          "source": null,
+          "label": null
+        },
+        {
+          "variant_id": "BRAF p.H725Y | Cutaneous Melanoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:7:140434525G>A",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0019,
+          "p_contradict": 0.9471,
+          "best_hypothesis": "BRAF H725Y is an oncogenic mutation."
+        },
+        {
+          "variant_id": "ROS1 p.P1539S | Cutaneous Melanoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:6:117663617G>A",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "supported",
+          "p_entail": 0.9619,
+          "p_contradict": 0.0025,
+          "best_hypothesis": "ROS1 P1539S is not an oncogenic mutation."
+        },
+        {
+          "variant_id": "ALK p.G1494E | Cutaneous Melanoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:2:29416472C>T",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "supported",
+          "p_entail": 0.9592,
+          "p_contradict": 0.003,
+          "best_hypothesis": "ALK G1494E is not an oncogenic mutation."
+        },
+        {
+          "variant_id": "ALK p.G391E | Cutaneous Melanoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense:2:29606708C>T",
+          "resolved_id": "AlphaMissense:2:29606708C>T",
+          "match": "exact",
+          "imprecise": false,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0011,
+          "p_contradict": 0.9795,
+          "best_hypothesis": "ALK G391E is an oncogenic mutation."
+        },
+        {
+          "variant_id": "APC p.D1562N | Lung Adenocarcinoma (NSCLC)",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:5:112175975G>A",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "supported",
+          "p_entail": 0.8935,
+          "p_contradict": 0.0036,
+          "best_hypothesis": "APC D1562N is not an oncogenic mutation."
+        },
+        {
+          "variant_id": "ALK p.R1212H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "2",
+          "resolved_id": null,
+          "match": "unresolvable",
+          "imprecise": true,
+          "source": null,
+          "label": null
+        },
+        {
+          "variant_id": "APC p.P1613H | Pancreatic Adenocarcinoma",
+          "call": "Likely Oncogenic",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:5:112176129C>A",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "contradicted",
+          "p_entail": 0.0005,
+          "p_contradict": 0.9926,
+          "best_hypothesis": "APC P1613H is an oncogenic mutation."
+        },
+        {
+          "variant_id": "APC p.R230C | Pancreatic Adenocarcinoma",
+          "call": "Likely Benign",
+          "citation": "AlphaMissense",
+          "resolved_id": "AlphaMissense:5:112128185C>T",
+          "match": "bare_source",
+          "imprecise": true,
+          "source": "AlphaMissense",
+          "label": "supported",
+          "p_entail": 0.8573,
+          "p_contradict": 0.0043,
+          "best_hypothesis": "APC R230C is not an oncogenic mutation."
+        }
+      ]
+    }
+  },
+  "no_retrieval_arm": {
+    "audited": false,
+    "reason": "its citations (e.g. 'ClinGen: BRAF') resolve to no evidence item with text; no offline premise exists"
+  },
+  "sensitivity": {
+    "premise_statement_only__primary_model": {
+      "pipeline_rationale_arm": {
+        "counts": {
+          "neutral": 57,
+          "supported": 29,
+          "contradicted": 4
+        },
+        "n": 90,
+        "supported": {
+          "point": 0.322,
+          "lo": 0.233,
+          "hi": 0.422,
+          "n": 90
+        },
+        "contradicted": {
+          "point": 0.044,
+          "lo": 0.011,
+          "hi": 0.089,
+          "n": 90
+        }
+      },
+      "label_only_106_arm": {
+        "counts": {
+          "neutral": 40,
+          "contradicted": 13,
+          "supported": 46
+        },
+        "n": 99,
+        "supported": {
+          "point": 0.465,
+          "lo": 0.364,
+          "hi": 0.566,
+          "n": 99
+        },
+        "contradicted": {
+          "point": 0.131,
+          "lo": 0.071,
+          "hi": 0.202,
+          "n": 99
+        },
+        "imprecision_crosstab": {
+          "table": {
+            "precise": {
+              "neutral": 37,
+              "contradicted": 6,
+              "supported": 41,
+              "not_testable": 2
+            },
+            "imprecise": {
+              "neutral": 3,
+              "not_testable": 5,
+              "contradicted": 7,
+              "supported": 5
+            }
+          },
+          "binary_definition": "existing: imprecise vs precise; NLI: not-supported vs supported; over citations with a resolvable premise",
+          "n": 99,
+          "percent_agreement": 0.515,
+          "cohens_kappa": 0.076
+        }
+      }
+    },
+    "sensitivity_model__header+statement": {
+      "pipeline_rationale_arm": {
+        "counts": {
+          "supported": 33,
+          "neutral": 56,
+          "contradicted": 1
+        },
+        "n": 90,
+        "supported": {
+          "point": 0.367,
+          "lo": 0.267,
+          "hi": 0.467,
+          "n": 90
+        },
+        "contradicted": {
+          "point": 0.011,
+          "lo": 0.0,
+          "hi": 0.033,
+          "n": 90
+        }
+      },
+      "label_only_106_arm": {
+        "counts": {
+          "supported": 40,
+          "neutral": 59
+        },
+        "n": 99,
+        "supported": {
+          "point": 0.404,
+          "lo": 0.313,
+          "hi": 0.505,
+          "n": 99
+        },
+        "contradicted": {
+          "point": 0.0,
+          "lo": 0.0,
+          "hi": 0.0,
+          "n": 99
+        },
+        "imprecision_crosstab": {
+          "table": {
+            "precise": {
+              "supported": 40,
+              "neutral": 44,
+              "not_testable": 2
+            },
+            "imprecise": {
+              "neutral": 15,
+              "not_testable": 5
+            }
+          },
+          "binary_definition": "existing: imprecise vs precise; NLI: not-supported vs supported; over citations with a resolvable premise",
+          "n": 99,
+          "percent_agreement": 0.556,
+          "cohens_kappa": 0.216
+        }
+      }
+    }
+  },
+  "caveats": [
+    "NLI models are trained on general-domain text; short clinical evidence snippets and templated claims make scores noisy.",
+    "label_only_106_arm has no rationale; its claim is the emitted label rendered by an a-priori template, so it tests label-level support, not sentence-level.",
+    "max_over_rationale alignment picks the best of all rationale sentences and is an optimistic upper bound on support.",
+    "'neutral' means the NLI model did not find entailment; it is not proof the citation is wrong (e.g. computational scores vs 'oncogenic' claims).",
+    "'contradicted' is the least reliable label: the model scores 'AlphaMissense predicts X as pathogenic' as contradicting 'X is an oncogenic mutation' (see by_source), and under max_over_rationale the max contradiction can come from a sentence unrelated to the cited item. Read contradicted rows by hand before treating any as a real contradiction.",
+    "Scoring is per cited item; a sentence that conjoins facts from two co-cited items (e.g. a cohort size from one, a hazard ratio from another) is not entailed by either alone, which biases 'supported' downward.",
+    "Rationale sentences often append an inference ('..., supporting its oncogenic role') that no evidence item states; NLI then withholds entailment even when the factual clause is supported, again biasing 'supported' downward."
+  ]
+}

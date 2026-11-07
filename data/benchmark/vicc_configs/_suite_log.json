@@ -1,0 +1,930 @@
+{
+ "os2_fixed": {
+  "config": "os2_fixed",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config os2_fixed --out data/benchmark/vicc_configs/os2_fixed/horak_vicc.json --roc-png data/benchmark/vicc_configs/os2_fixed/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.7,
+    "tail": "[+] VICC point engine [os2_fixed] on Horak (n=70): acc5=0.614  acc3=0.786\n    AUROC(ONC)=0.897  sensitivity=0.545  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'ONC': 18, 'VUS': 45, 'BEN': 7}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config os2_fixed --out data/benchmark/vicc_configs/os2_fixed/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 4.4,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.786   0.545     1.0\n    2. + residue-hotspot OM3         0.843   0.697   0.973\n    3. + OS1 (ClinVar)                 0.8   0.606   0.973\n    4. + both                        0.843   0.727   0.946\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/os2_fixed/horak_vicc.json --out data/benchmark/vicc_configs/os2_fixed/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.2,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.783   0.609     1.0   0.545\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=1.000  (ours-only-correct 13, OncoVI-only-correct 14)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=27\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/os2_fixed/horak_vicc.json --out data/benchmark/vicc_configs/os2_fixed/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/os2_fixed/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.5,
+    "tail": "[+] CancerVar head-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.786     1.0   0.545\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.088  (ours-only-correct 27, CancerVar-only-correct 15)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'correct': 55, 'miss': 15} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 42\n[+] wrote data/benchmark/vicc_configs/os2_fixed/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/os2_fixed/horak_vicc.json --out data/benchmark/vicc_configs/os2_fixed/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.1,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.786    0.686-0.871  0.545    1.0     0    15\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=1.0 (ours-only 10, HemaGuide-only 11)\n[+] wrote data/benchmark/vicc_configs/os2_fixed/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config os2_fixed --out data/benchmark/vicc_configs/os2_fixed/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/os2_fixed/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 17.1,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.843 [0.793, 0.894]  spec 0.763 [0.632, 0.895]  AUROC 0.833 [0.752, 0.906]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.445 [0.399, 0.493]  spec 0.97 [0.949, 0.986]  AUROC 0.856 [0.829, 0.883]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/os2_fixed/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/os2_fixed/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 4.9,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/os2_fixed/horak_known_novel.json\n  known  n=20  VICC acc=0.750 [0.550-0.901]  majority=0.750  sens=0.667  spec=1.0\n  novel  n=50  VICC acc=0.800 [0.680-0.900]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.786 [0.686-0.871]  majority=0.471  sens=0.545  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/os2_fixed/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/os2_fixed/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/os2_fixed/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": " 0.614\nmacro-F1               0.548\nquadratic \u03ba            0.712\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          0         30          0          0\nLikely Oncogenic            0          0         12          7          0\nOncogenic                   0          0          3         10          1\n\n\uc800\uc7a5: data/benchmark/vicc_configs/os2_fixed/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": {
+   "horak_rows_identical": true,
+   "clinvar_rows_identical": true
+  }
+ },
+ "original": {
+  "config": "original",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config original --out data/benchmark/vicc_configs/original/horak_vicc.json --roc-png data/benchmark/vicc_configs/original/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.7,
+    "tail": "[+] VICC point engine [original] on Horak (n=70): acc5=0.643  acc3=0.843\n    AUROC(ONC)=0.906  sensitivity=0.697  specificity=0.973\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'ONC': 24, 'VUS': 39, 'BEN': 7}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config original --out data/benchmark/vicc_configs/original/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 4.5,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.843   0.697   0.973\n    2. + residue-hotspot OM3         0.843   0.727   0.946\n    3. + OS1 (ClinVar)               0.843   0.727   0.946\n    4. + both                        0.843   0.758   0.919\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/original/horak_vicc.json --out data/benchmark/vicc_configs/original/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.2,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.841   0.638   0.972   0.697\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.664  (ours-only-correct 12, OncoVI-only-correct 9)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=21\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/original/horak_vicc.json --out data/benchmark/vicc_configs/original/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/original/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.5,
+    "tail": "ar head-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.843   0.973   0.697\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.011  (ours-only-correct 26, CancerVar-only-correct 10)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'correct': 59, 'miss': 10, 'over_call': 1} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 36\n[+] wrote data/benchmark/vicc_configs/original/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/original/horak_vicc.json --out data/benchmark/vicc_configs/original/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.1,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.843    0.757-0.929  0.697  0.973     1    10\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.629 (ours-only 10, HemaGuide-only 7)\n[+] wrote data/benchmark/vicc_configs/original/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config original --out data/benchmark/vicc_configs/original/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/original/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 17.0,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.854 [0.803, 0.899]  spec 0.763 [0.632, 0.895]  AUROC 0.845 [0.769, 0.913]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.49 [0.442, 0.538]  spec 0.963 [0.939, 0.983]  AUROC 0.857 [0.831, 0.884]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/original/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/original/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 5.0,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/original/horak_known_novel.json\n  known  n=20  VICC acc=0.950 [0.850-1.000]  majority=0.750  sens=1.0  spec=0.8\n  novel  n=50  VICC acc=0.800 [0.680-0.900]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.843 [0.757-0.929]  majority=0.471  sens=0.697  spec=0.973\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/original/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/original/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/original/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "  0.643\nmacro-F1               0.565\nquadratic \u03ba            0.806\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      2          3          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          0         29          1          0\nLikely Oncogenic            0          0         10          8          1\nOncogenic                   0          0          0         10          4\n\n\uc800\uc7a5: data/benchmark/vicc_configs/original/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": {
+   "horak_rows_identical": true,
+   "clinvar_rows_identical": true
+  }
+ },
+ "sop_strict": {
+  "config": "sop_strict",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config sop_strict --out data/benchmark/vicc_configs/sop_strict/horak_vicc.json --roc-png data/benchmark/vicc_configs/sop_strict/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.7,
+    "tail": "[+] VICC point engine [sop_strict] on Horak (n=70): acc5=0.5  acc3=0.657\n    AUROC(ONC)=0.885  sensitivity=0.424  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 43, 'ONC': 14, 'BEN': 13}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config sop_strict --out data/benchmark/vicc_configs/sop_strict/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 4.5,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. SOP-strict (default)          0.657   0.424     1.0\n    2. + residue-total hotspot tiering (non-SOP)   0.657   0.455   0.973\n    3. + OS1 (ClinVar)                 0.7   0.545   0.973\n    4. + both                        0.686   0.545   0.946\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/sop_strict/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.1,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.493     1.0   0.424\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.087  (ours-only-correct 9, OncoVI-only-correct 19)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=28\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/sop_strict/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/sop_strict/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.5,
+    "tail": "rVar head-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.424\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.771  (ours-only-correct 25, CancerVar-only-correct 22)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 19, 'correct': 46, 'other': 5} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 49\n[+] wrote data/benchmark/vicc_configs/sop_strict/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/sop_strict/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.1,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.424    1.0     0    19\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/sop_strict/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config sop_strict --out data/benchmark/vicc_configs/sop_strict/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/sop_strict/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 17.1,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.798 [0.742, 0.854]  spec 0.789 [0.658, 0.921]  AUROC 0.875 [0.82, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.466 [0.421, 0.517]  spec 0.97 [0.949, 0.986]  AUROC 0.852 [0.826, 0.88]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/sop_strict/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/sop_strict/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 5.0,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/sop_strict/horak_known_novel.json\n  known  n=20  VICC acc=0.500 [0.250-0.700]  majority=0.750  sens=0.4  spec=1.0\n  novel  n=50  VICC acc=0.720 [0.600-0.840]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.424  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/sop_strict/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/sop_strict/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/sop_strict/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "0.500\nmacro-F1               0.430\nquadratic \u03ba            0.635\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          5         25          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          4          9          1\n\n\uc800\uc7a5: data/benchmark/vicc_configs/sop_strict/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": {
+   "horak_rows_identical": true,
+   "clinvar_rows_identical": true
+  }
+ },
+ "sop_strict_v2": {
+  "config": "sop_strict_v2",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config sop_strict_v2 --out data/benchmark/vicc_configs/sop_strict_v2/horak_vicc.json --roc-png data/benchmark/vicc_configs/sop_strict_v2/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.7,
+    "tail": "[+] VICC point engine [sop_strict_v2] on Horak (n=70): acc5=0.514  acc3=0.657\n    AUROC(ONC)=0.9  sensitivity=0.364  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 47, 'ONC': 12, 'BEN': 11}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config sop_strict_v2 --out data/benchmark/vicc_configs/sop_strict_v2/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 4.5,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.364     1.0\n    2. + residue-hotspot OM3         0.671   0.394     1.0\n    3. + OS1 (ClinVar)                 0.7   0.455     1.0\n    4. + both                          0.7   0.455     1.0\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.1,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.507     1.0   0.364\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.099  (ours-only-correct 10, OncoVI-only-correct 20)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=30\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/sop_strict_v2/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.5,
+    "tail": "r head-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.364\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.775  (ours-only-correct 26, CancerVar-only-correct 23)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 21, 'correct': 46, 'other': 3} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 50\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.0,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.364    1.0     0    21\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config sop_strict_v2 --out data/benchmark/vicc_configs/sop_strict_v2/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/sop_strict_v2/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 18.0,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.747 [0.687, 0.808]  spec 0.789 [0.658, 0.921]  AUROC 0.871 [0.812, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.394 [0.349, 0.442]  spec 0.97 [0.949, 0.986]  AUROC 0.847 [0.82, 0.875]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/sop_strict_v2/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/sop_strict_v2/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 4.7,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/sop_strict_v2/horak_known_novel.json\n  known  n=20  VICC acc=0.450 [0.250-0.650]  majority=0.750  sens=0.267  spec=1.0\n  novel  n=50  VICC acc=0.740 [0.620-0.860]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.364  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/sop_strict_v2/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/sop_strict_v2/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/sop_strict_v2/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "14\nmacro-F1               0.422\nquadratic \u03ba            0.580\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          3         27          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          6          8          0\n\n\uc800\uc7a5: data/benchmark/vicc_configs/sop_strict_v2/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "sop_strict_v2_revel": {
+  "config": "sop_strict_v2_revel",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config sop_strict_v2_revel --out data/benchmark/vicc_configs/sop_strict_v2_revel/horak_vicc.json --roc-png data/benchmark/vicc_configs/sop_strict_v2_revel/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.0,
+    "tail": "[+] VICC point engine [sop_strict_v2_revel] on Horak (n=70): acc5=0.529  acc3=0.671\n    AUROC(ONC)=0.888  sensitivity=0.394  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 46, 'ONC': 13, 'BEN': 11}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config sop_strict_v2_revel --out data/benchmark/vicc_configs/sop_strict_v2_revel/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 5.1,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.671   0.394     1.0\n    2. + residue-hotspot OM3         0.686   0.424     1.0\n    3. + OS1 (ClinVar)               0.729   0.515     1.0\n    4. + both                        0.729   0.515     1.0\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_revel/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_revel/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 5.0,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.667   0.522     1.0   0.394\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.136  (ours-only-correct 10, OncoVI-only-correct 19)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=29\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_revel/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_revel/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/sop_strict_v2_revel/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.0,
+    "tail": "-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.671     1.0   0.394\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.665  (ours-only-correct 26, CancerVar-only-correct 22)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 20, 'correct': 47, 'other': 3} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 49\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2_revel/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_revel/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_revel/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.5,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.671    0.557-0.771  0.394    1.0     0    20\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.122 (ours-only 9, HemaGuide-only 18)\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2_revel/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config sop_strict_v2_revel --out data/benchmark/vicc_configs/sop_strict_v2_revel/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/sop_strict_v2_revel/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 16.6,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.763 [0.702, 0.818]  spec 0.789 [0.658, 0.921]  AUROC 0.877 [0.82, 0.926]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.416 [0.37, 0.464]  spec 0.966 [0.943, 0.986]  AUROC 0.855 [0.827, 0.881]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/sop_strict_v2_revel/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/sop_strict_v2_revel/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 4.9,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/sop_strict_v2_revel/horak_known_novel.json\n  known  n=20  VICC acc=0.500 [0.300-0.700]  majority=0.750  sens=0.333  spec=1.0\n  novel  n=50  VICC acc=0.740 [0.620-0.860]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.671 [0.557-0.771]  majority=0.471  sens=0.394  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/sop_strict_v2_revel/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/sop_strict_v2_revel/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/sop_strict_v2_revel/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "ro-F1               0.450\nquadratic \u03ba            0.617\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          3         27          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          5          8          1\n\n\uc800\uc7a5: data/benchmark/vicc_configs/sop_strict_v2_revel/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "sop_strict_v2_devcut": {
+  "config": "sop_strict_v2_devcut",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config sop_strict_v2_devcut --out data/benchmark/vicc_configs/sop_strict_v2_devcut/horak_vicc.json --roc-png data/benchmark/vicc_configs/sop_strict_v2_devcut/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.0,
+    "tail": "[+] VICC point engine [sop_strict_v2_devcut] on Horak (n=70): acc5=0.543  acc3=0.7\n    AUROC(ONC)=0.871  sensitivity=0.424  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 46, 'ONC': 14, 'BEN': 10}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config sop_strict_v2_devcut --out data/benchmark/vicc_configs/sop_strict_v2_devcut/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 5.1,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)          0.7   0.424     1.0\n    2. + residue-hotspot OM3         0.714   0.455     1.0\n    3. + OS1 (ClinVar)               0.743   0.545   0.973\n    4. + both                        0.743   0.545   0.973\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_devcut/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_devcut/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 5.0,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.696   0.536     1.0   0.424\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.265  (ours-only-correct 11, OncoVI-only-correct 18)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=29\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_devcut/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_devcut/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/sop_strict_v2_devcut/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.0,
+    "tail": "to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours             0.7     1.0   0.424\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.461  (ours-only-correct 26, CancerVar-only-correct 20)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 19, 'correct': 49, 'other': 2} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 47\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2_devcut/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_devcut/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_devcut/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.5,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours            0.7      0.586-0.8  0.424    1.0     0    19\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.23 (ours-only 9, HemaGuide-only 16)\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2_devcut/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config sop_strict_v2_devcut --out data/benchmark/vicc_configs/sop_strict_v2_devcut/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/sop_strict_v2_devcut/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 16.6,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.768 [0.707, 0.823]  spec 0.789 [0.658, 0.921]  AUROC 0.877 [0.821, 0.927]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.44 [0.394, 0.488]  spec 0.966 [0.943, 0.986]  AUROC 0.855 [0.829, 0.883]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/sop_strict_v2_devcut/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/sop_strict_v2_devcut/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 4.8,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/sop_strict_v2_devcut/horak_known_novel.json\n  known  n=20  VICC acc=0.550 [0.300-0.750]  majority=0.750  sens=0.4  spec=1.0\n  novel  n=50  VICC acc=0.760 [0.640-0.880]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.700 [0.586-0.800]  majority=0.471  sens=0.424  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/sop_strict_v2_devcut/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/sop_strict_v2_devcut/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/sop_strict_v2_devcut/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "o-F1               0.463\nquadratic \u03ba            0.641\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          2         28          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          4          9          1\n\n\uc800\uc7a5: data/benchmark/vicc_configs/sop_strict_v2_devcut/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "sop_strict_v2_5pred": {
+  "config": "sop_strict_v2_5pred",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config sop_strict_v2_5pred --out data/benchmark/vicc_configs/sop_strict_v2_5pred/horak_vicc.json --roc-png data/benchmark/vicc_configs/sop_strict_v2_5pred/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.0,
+    "tail": "[+] VICC point engine [sop_strict_v2_5pred] on Horak (n=70): acc5=0.486  acc3=0.586\n    AUROC(ONC)=0.882  sensitivity=0.242  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 50, 'ONC': 8, 'BEN': 12}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config sop_strict_v2_5pred --out data/benchmark/vicc_configs/sop_strict_v2_5pred/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 5.0,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.586   0.242     1.0\n    2. + residue-hotspot OM3         0.586   0.242     1.0\n    3. + OS1 (ClinVar)               0.629   0.333     1.0\n    4. + both                        0.614   0.303     1.0\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_5pred/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_5pred/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 5.0,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours              0.58   0.478     1.0   0.242\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.017  (ours-only-correct 10, OncoVI-only-correct 25)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=35\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_5pred/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_5pred/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/sop_strict_v2_5pred/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.0,
+    "tail": "-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.586     1.0   0.242\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.890  (ours-only-correct 25, CancerVar-only-correct 27)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 25, 'correct': 41, 'other': 4} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 54\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2_5pred/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_5pred/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_5pred/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.5,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.586      0.471-0.7  0.242    1.0     0    25\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.014 (ours-only 9, HemaGuide-only 24)\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2_5pred/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config sop_strict_v2_5pred --out data/benchmark/vicc_configs/sop_strict_v2_5pred/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/sop_strict_v2_5pred/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 16.8,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.657 [0.591, 0.722]  spec 0.868 [0.763, 0.974]  AUROC 0.867 [0.808, 0.92]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.339 [0.293, 0.387]  spec 0.98 [0.963, 0.993]  AUROC 0.839 [0.811, 0.868]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/sop_strict_v2_5pred/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/sop_strict_v2_5pred/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 4.9,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/sop_strict_v2_5pred/horak_known_novel.json\n  known  n=20  VICC acc=0.300 [0.100-0.500]  majority=0.750  sens=0.133  spec=1.0\n  novel  n=50  VICC acc=0.700 [0.580-0.820]  majority=0.540  sens=0.333  spec=1.0\n  all    n=70  VICC acc=0.586 [0.471-0.700]  majority=0.471  sens=0.242  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/sop_strict_v2_5pred/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/sop_strict_v2_5pred/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/sop_strict_v2_5pred/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "ro-F1               0.397\nquadratic \u03ba            0.504\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          4         26          0          0\nLikely Oncogenic            0          1         15          3          0\nOncogenic                   0          0          9          5          0\n\n\uc800\uc7a5: data/benchmark/vicc_configs/sop_strict_v2_5pred/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "sop_strict_v2_om1domain": {
+  "config": "sop_strict_v2_om1domain",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config sop_strict_v2_om1domain --out data/benchmark/vicc_configs/sop_strict_v2_om1domain/horak_vicc.json --roc-png data/benchmark/vicc_configs/sop_strict_v2_om1domain/vicc_roc.png",
+    "rc": 0,
+    "seconds": 6.9,
+    "tail": "[+] VICC point engine [sop_strict_v2_om1domain] on Horak (n=70): acc5=0.529  acc3=0.671\n    AUROC(ONC)=0.897  sensitivity=0.394  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 46, 'ONC': 13, 'BEN': 11}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config sop_strict_v2_om1domain --out data/benchmark/vicc_configs/sop_strict_v2_om1domain/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 5.2,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.671   0.394     1.0\n    2. + residue-hotspot OM3         0.686   0.424     1.0\n    3. + OS1 (ClinVar)               0.714   0.485     1.0\n    4. + both                        0.714   0.485     1.0\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_om1domain/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_om1domain/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.9,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.667   0.522     1.0   0.394\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.150  (ours-only-correct 11, OncoVI-only-correct 20)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=31\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_om1domain/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_om1domain/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/sop_strict_v2_om1domain/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.9,
+    "tail": "head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.671     1.0   0.394\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.665  (ours-only-correct 26, CancerVar-only-correct 22)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 20, 'correct': 47, 'other': 3} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 49\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2_om1domain/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/sop_strict_v2_om1domain/horak_vicc.json --out data/benchmark/vicc_configs/sop_strict_v2_om1domain/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.5,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.671    0.557-0.772  0.394    1.0     0    20\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.122 (ours-only 9, HemaGuide-only 18)\n[+] wrote data/benchmark/vicc_configs/sop_strict_v2_om1domain/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config sop_strict_v2_om1domain --out data/benchmark/vicc_configs/sop_strict_v2_om1domain/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/sop_strict_v2_om1domain/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 16.9,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.753 [0.692, 0.813]  spec 0.789 [0.658, 0.921]  AUROC 0.834 [0.764, 0.903]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.397 [0.351, 0.445]  spec 0.97 [0.949, 0.986]  AUROC 0.842 [0.813, 0.872]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/sop_strict_v2_om1domain/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/sop_strict_v2_om1domain/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 4.7,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/sop_strict_v2_om1domain/horak_known_novel.json\n  known  n=20  VICC acc=0.500 [0.300-0.700]  majority=0.750  sens=0.333  spec=1.0\n  novel  n=50  VICC acc=0.740 [0.620-0.860]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.671 [0.557-0.772]  majority=0.471  sens=0.394  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/sop_strict_v2_om1domain/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/sop_strict_v2_om1domain/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/sop_strict_v2_om1domain/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "1               0.435\nquadratic \u03ba            0.588\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          3         27          0          0\nLikely Oncogenic            0          1         13          5          0\nOncogenic                   0          0          6          8          0\n\n\uc800\uc7a5: data/benchmark/vicc_configs/sop_strict_v2_om1domain/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "abl_strict_plus_a0": {
+  "config": "abl_strict_plus_a0",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config abl_strict_plus_a0 --out data/benchmark/vicc_configs/abl_strict_plus_a0/horak_vicc.json --roc-png data/benchmark/vicc_configs/abl_strict_plus_a0/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.1,
+    "tail": "[+] VICC point engine [abl_strict_plus_a0] on Horak (n=70): acc5=0.5  acc3=0.657\n    AUROC(ONC)=0.885  sensitivity=0.424  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 43, 'ONC': 14, 'BEN': 13}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config abl_strict_plus_a0 --out data/benchmark/vicc_configs/abl_strict_plus_a0/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 5.1,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.424     1.0\n    2. + residue-hotspot OM3         0.671   0.455     1.0\n    3. + OS1 (ClinVar)                 0.7   0.545   0.973\n    4. + both                          0.7   0.545   0.973\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_a0/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_a0/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.9,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.493     1.0   0.424\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.087  (ours-only-correct 9, OncoVI-only-correct 19)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=28\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_a0/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_a0/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/abl_strict_plus_a0/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.2,
+    "tail": "d-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.424\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.771  (ours-only-correct 25, CancerVar-only-correct 22)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 19, 'correct': 46, 'other': 5} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 49\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_a0/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_a0/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_a0/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.0,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.424    1.0     0    19\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_a0/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config abl_strict_plus_a0 --out data/benchmark/vicc_configs/abl_strict_plus_a0/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/abl_strict_plus_a0/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 13.6,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.788 [0.727, 0.843]  spec 0.789 [0.658, 0.921]  AUROC 0.877 [0.821, 0.928]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.454 [0.409, 0.505]  spec 0.97 [0.949, 0.986]  AUROC 0.856 [0.829, 0.884]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/abl_strict_plus_a0/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/abl_strict_plus_a0/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 3.7,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/abl_strict_plus_a0/horak_known_novel.json\n  known  n=20  VICC acc=0.500 [0.250-0.700]  majority=0.750  sens=0.4  spec=1.0\n  novel  n=50  VICC acc=0.720 [0.600-0.840]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.424  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/abl_strict_plus_a0/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/abl_strict_plus_a0/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/abl_strict_plus_a0/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.1,
+    "tail": "cro-F1               0.430\nquadratic \u03ba            0.635\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          5         25          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          4          9          1\n\n\uc800\uc7a5: data/benchmark/vicc_configs/abl_strict_plus_a0/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "abl_strict_plus_a": {
+  "config": "abl_strict_plus_a",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config abl_strict_plus_a --out data/benchmark/vicc_configs/abl_strict_plus_a/horak_vicc.json --roc-png data/benchmark/vicc_configs/abl_strict_plus_a/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.2,
+    "tail": "[+] VICC point engine [abl_strict_plus_a] on Horak (n=70): acc5=0.514  acc3=0.657\n    AUROC(ONC)=0.9  sensitivity=0.364  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 47, 'ONC': 12, 'BEN': 11}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config abl_strict_plus_a --out data/benchmark/vicc_configs/abl_strict_plus_a/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 5.1,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.364     1.0\n    2. + residue-hotspot OM3         0.671   0.394     1.0\n    3. + OS1 (ClinVar)                 0.7   0.455     1.0\n    4. + both                          0.7   0.455     1.0\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_a/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_a/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.9,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.507     1.0   0.364\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.099  (ours-only-correct 10, OncoVI-only-correct 20)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=30\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_a/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_a/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/abl_strict_plus_a/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.2,
+    "tail": "ad-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.364\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.775  (ours-only-correct 26, CancerVar-only-correct 23)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 21, 'correct': 46, 'other': 3} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 50\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_a/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_a/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_a/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.0,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.364    1.0     0    21\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_a/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config abl_strict_plus_a --out data/benchmark/vicc_configs/abl_strict_plus_a/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/abl_strict_plus_a/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 13.6,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.747 [0.687, 0.808]  spec 0.789 [0.658, 0.921]  AUROC 0.871 [0.812, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.389 [0.344, 0.438]  spec 0.97 [0.949, 0.986]  AUROC 0.851 [0.824, 0.88]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/abl_strict_plus_a/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/abl_strict_plus_a/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 3.7,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/abl_strict_plus_a/horak_known_novel.json\n  known  n=20  VICC acc=0.450 [0.250-0.650]  majority=0.750  sens=0.267  spec=1.0\n  novel  n=50  VICC acc=0.740 [0.620-0.860]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.364  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/abl_strict_plus_a/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/abl_strict_plus_a/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/abl_strict_plus_a/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "acro-F1               0.422\nquadratic \u03ba            0.580\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          3         27          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          6          8          0\n\n\uc800\uc7a5: data/benchmark/vicc_configs/abl_strict_plus_a/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "abl_strict_plus_b": {
+  "config": "abl_strict_plus_b",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config abl_strict_plus_b --out data/benchmark/vicc_configs/abl_strict_plus_b/horak_vicc.json --roc-png data/benchmark/vicc_configs/abl_strict_plus_b/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.2,
+    "tail": "[+] VICC point engine [abl_strict_plus_b] on Horak (n=70): acc5=0.5  acc3=0.657\n    AUROC(ONC)=0.885  sensitivity=0.424  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 43, 'ONC': 14, 'BEN': 13}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config abl_strict_plus_b --out data/benchmark/vicc_configs/abl_strict_plus_b/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 5.0,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.424     1.0\n    2. + residue-hotspot OM3         0.657   0.455   0.973\n    3. + OS1 (ClinVar)                 0.7   0.545   0.973\n    4. + both                        0.686   0.545   0.946\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_b/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_b/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.0,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.493     1.0   0.424\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.087  (ours-only-correct 9, OncoVI-only-correct 19)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=28\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_b/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_b/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/abl_strict_plus_b/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.2,
+    "tail": "ad-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.424\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.771  (ours-only-correct 25, CancerVar-only-correct 22)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 19, 'correct': 46, 'other': 5} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 49\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_b/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_b/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_b/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.0,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.424    1.0     0    19\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_b/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config abl_strict_plus_b --out data/benchmark/vicc_configs/abl_strict_plus_b/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/abl_strict_plus_b/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 13.6,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.798 [0.742, 0.854]  spec 0.789 [0.658, 0.921]  AUROC 0.875 [0.82, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.466 [0.421, 0.517]  spec 0.97 [0.949, 0.986]  AUROC 0.852 [0.826, 0.88]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/abl_strict_plus_b/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/abl_strict_plus_b/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 3.6,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/abl_strict_plus_b/horak_known_novel.json\n  known  n=20  VICC acc=0.500 [0.250-0.700]  majority=0.750  sens=0.4  spec=1.0\n  novel  n=50  VICC acc=0.720 [0.600-0.840]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.424  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/abl_strict_plus_b/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/abl_strict_plus_b/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/abl_strict_plus_b/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "acro-F1               0.430\nquadratic \u03ba            0.635\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          5         25          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          4          9          1\n\n\uc800\uc7a5: data/benchmark/vicc_configs/abl_strict_plus_b/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "abl_strict_plus_c1": {
+  "config": "abl_strict_plus_c1",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config abl_strict_plus_c1 --out data/benchmark/vicc_configs/abl_strict_plus_c1/horak_vicc.json --roc-png data/benchmark/vicc_configs/abl_strict_plus_c1/vicc_roc.png",
+    "rc": 0,
+    "seconds": 7.4,
+    "tail": "[+] VICC point engine [abl_strict_plus_c1] on Horak (n=70): acc5=0.5  acc3=0.657\n    AUROC(ONC)=0.885  sensitivity=0.424  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 43, 'ONC': 14, 'BEN': 13}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config abl_strict_plus_c1 --out data/benchmark/vicc_configs/abl_strict_plus_c1/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 4.7,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.424     1.0\n    2. + residue-hotspot OM3         0.657   0.455   0.973\n    3. + OS1 (ClinVar)                 0.7   0.545   0.973\n    4. + both                        0.686   0.545   0.946\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_c1/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_c1/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 4.0,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.493     1.0   0.424\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.087  (ours-only-correct 9, OncoVI-only-correct 19)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=28\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_c1/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_c1/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/abl_strict_plus_c1/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.3,
+    "tail": "d-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.424\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.771  (ours-only-correct 25, CancerVar-only-correct 22)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 19, 'correct': 46, 'other': 5} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 49\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_c1/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_c1/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_c1/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.0,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.424    1.0     0    19\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_c1/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config abl_strict_plus_c1 --out data/benchmark/vicc_configs/abl_strict_plus_c1/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/abl_strict_plus_c1/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 14.4,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.798 [0.742, 0.854]  spec 0.789 [0.658, 0.921]  AUROC 0.875 [0.82, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.466 [0.421, 0.517]  spec 0.97 [0.949, 0.986]  AUROC 0.853 [0.826, 0.88]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/abl_strict_plus_c1/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/abl_strict_plus_c1/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 3.6,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/abl_strict_plus_c1/horak_known_novel.json\n  known  n=20  VICC acc=0.500 [0.250-0.700]  majority=0.750  sens=0.4  spec=1.0\n  novel  n=50  VICC acc=0.720 [0.600-0.840]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.424  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/abl_strict_plus_c1/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/abl_strict_plus_c1/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/abl_strict_plus_c1/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.1,
+    "tail": "cro-F1               0.430\nquadratic \u03ba            0.635\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          5         25          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          4          9          1\n\n\uc800\uc7a5: data/benchmark/vicc_configs/abl_strict_plus_c1/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "abl_strict_plus_c2": {
+  "config": "abl_strict_plus_c2",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config abl_strict_plus_c2 --out data/benchmark/vicc_configs/abl_strict_plus_c2/horak_vicc.json --roc-png data/benchmark/vicc_configs/abl_strict_plus_c2/vicc_roc.png",
+    "rc": 0,
+    "seconds": 6.3,
+    "tail": "[+] VICC point engine [abl_strict_plus_c2] on Horak (n=70): acc5=0.5  acc3=0.657\n    AUROC(ONC)=0.885  sensitivity=0.424  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 43, 'ONC': 14, 'BEN': 13}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config abl_strict_plus_c2 --out data/benchmark/vicc_configs/abl_strict_plus_c2/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 4.1,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.424     1.0\n    2. + residue-hotspot OM3         0.657   0.455   0.973\n    3. + OS1 (ClinVar)                 0.7   0.545   0.973\n    4. + both                        0.686   0.545   0.946\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_c2/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_c2/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.8,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.493     1.0   0.424\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.087  (ours-only-correct 9, OncoVI-only-correct 19)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=28\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_c2/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_c2/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/abl_strict_plus_c2/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.1,
+    "tail": "d-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.424\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.771  (ours-only-correct 25, CancerVar-only-correct 22)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 19, 'correct': 46, 'other': 5} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 49\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_c2/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/abl_strict_plus_c2/horak_vicc.json --out data/benchmark/vicc_configs/abl_strict_plus_c2/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 2.9,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.424    1.0     0    19\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/abl_strict_plus_c2/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config abl_strict_plus_c2 --out data/benchmark/vicc_configs/abl_strict_plus_c2/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/abl_strict_plus_c2/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 13.1,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.798 [0.742, 0.854]  spec 0.789 [0.658, 0.921]  AUROC 0.875 [0.82, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.466 [0.421, 0.517]  spec 0.966 [0.943, 0.986]  AUROC 0.849 [0.822, 0.877]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/abl_strict_plus_c2/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/abl_strict_plus_c2/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 3.7,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/abl_strict_plus_c2/horak_known_novel.json\n  known  n=20  VICC acc=0.500 [0.250-0.700]  majority=0.750  sens=0.4  spec=1.0\n  novel  n=50  VICC acc=0.720 [0.600-0.840]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.424  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/abl_strict_plus_c2/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/abl_strict_plus_c2/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/abl_strict_plus_c2/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.1,
+    "tail": "cro-F1               0.430\nquadratic \u03ba            0.635\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          5         25          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          4          9          1\n\n\uc800\uc7a5: data/benchmark/vicc_configs/abl_strict_plus_c2/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "abl_v2_minus_a": {
+  "config": "abl_v2_minus_a",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config abl_v2_minus_a --out data/benchmark/vicc_configs/abl_v2_minus_a/horak_vicc.json --roc-png data/benchmark/vicc_configs/abl_v2_minus_a/vicc_roc.png",
+    "rc": 0,
+    "seconds": 6.3,
+    "tail": "[+] VICC point engine [abl_v2_minus_a] on Horak (n=70): acc5=0.5  acc3=0.657\n    AUROC(ONC)=0.885  sensitivity=0.424  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 43, 'ONC': 14, 'BEN': 13}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config abl_v2_minus_a --out data/benchmark/vicc_configs/abl_v2_minus_a/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 4.1,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.424     1.0\n    2. + residue-hotspot OM3         0.657   0.455   0.973\n    3. + OS1 (ClinVar)                 0.7   0.545   0.973\n    4. + both                        0.686   0.545   0.946\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_a/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_a/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.8,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.493     1.0   0.424\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.087  (ours-only-correct 9, OncoVI-only-correct 19)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=28\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_a/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_a/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/abl_v2_minus_a/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.1,
+    "tail": " head-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.424\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.771  (ours-only-correct 25, CancerVar-only-correct 22)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 19, 'correct': 46, 'other': 5} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 49\n[+] wrote data/benchmark/vicc_configs/abl_v2_minus_a/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_a/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_a/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 2.9,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.424    1.0     0    19\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/abl_v2_minus_a/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config abl_v2_minus_a --out data/benchmark/vicc_configs/abl_v2_minus_a/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/abl_v2_minus_a/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 13.9,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.798 [0.742, 0.854]  spec 0.789 [0.658, 0.921]  AUROC 0.875 [0.82, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.466 [0.421, 0.517]  spec 0.966 [0.943, 0.986]  AUROC 0.85 [0.822, 0.878]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/abl_v2_minus_a/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/abl_v2_minus_a/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 3.6,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/abl_v2_minus_a/horak_known_novel.json\n  known  n=20  VICC acc=0.500 [0.250-0.700]  majority=0.750  sens=0.4  spec=1.0\n  novel  n=50  VICC acc=0.720 [0.600-0.840]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.424  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/abl_v2_minus_a/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/abl_v2_minus_a/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/abl_v2_minus_a/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.2,
+    "tail": "0\nmacro-F1               0.430\nquadratic \u03ba            0.635\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          5         25          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          4          9          1\n\n\uc800\uc7a5: data/benchmark/vicc_configs/abl_v2_minus_a/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "abl_v2_minus_b": {
+  "config": "abl_v2_minus_b",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config abl_v2_minus_b --out data/benchmark/vicc_configs/abl_v2_minus_b/horak_vicc.json --roc-png data/benchmark/vicc_configs/abl_v2_minus_b/vicc_roc.png",
+    "rc": 0,
+    "seconds": 6.4,
+    "tail": "[+] VICC point engine [abl_v2_minus_b] on Horak (n=70): acc5=0.514  acc3=0.657\n    AUROC(ONC)=0.9  sensitivity=0.364  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 47, 'ONC': 12, 'BEN': 11}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config abl_v2_minus_b --out data/benchmark/vicc_configs/abl_v2_minus_b/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 4.1,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.364     1.0\n    2. + residue-hotspot OM3         0.671   0.394     1.0\n    3. + OS1 (ClinVar)                 0.7   0.455     1.0\n    4. + both                          0.7   0.455     1.0\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_b/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_b/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.7,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.507     1.0   0.364\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.099  (ours-only-correct 10, OncoVI-only-correct 20)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=30\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_b/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_b/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/abl_v2_minus_b/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.0,
+    "tail": " head-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.364\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.775  (ours-only-correct 26, CancerVar-only-correct 23)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 21, 'correct': 46, 'other': 3} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 50\n[+] wrote data/benchmark/vicc_configs/abl_v2_minus_b/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_b/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_b/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 2.9,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.364    1.0     0    21\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/abl_v2_minus_b/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config abl_v2_minus_b --out data/benchmark/vicc_configs/abl_v2_minus_b/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/abl_v2_minus_b/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 13.9,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.747 [0.687, 0.808]  spec 0.789 [0.658, 0.921]  AUROC 0.871 [0.812, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.394 [0.349, 0.442]  spec 0.97 [0.949, 0.986]  AUROC 0.847 [0.82, 0.875]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/abl_v2_minus_b/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/abl_v2_minus_b/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 3.6,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/abl_v2_minus_b/horak_known_novel.json\n  known  n=20  VICC acc=0.450 [0.250-0.650]  majority=0.750  sens=0.267  spec=1.0\n  novel  n=50  VICC acc=0.740 [0.620-0.860]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.364  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/abl_v2_minus_b/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/abl_v2_minus_b/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/abl_v2_minus_b/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.1,
+    "tail": "4\nmacro-F1               0.422\nquadratic \u03ba            0.580\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          3         27          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          6          8          0\n\n\uc800\uc7a5: data/benchmark/vicc_configs/abl_v2_minus_b/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "abl_v2_minus_c1": {
+  "config": "abl_v2_minus_c1",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config abl_v2_minus_c1 --out data/benchmark/vicc_configs/abl_v2_minus_c1/horak_vicc.json --roc-png data/benchmark/vicc_configs/abl_v2_minus_c1/vicc_roc.png",
+    "rc": 0,
+    "seconds": 6.5,
+    "tail": "[+] VICC point engine [abl_v2_minus_c1] on Horak (n=70): acc5=0.514  acc3=0.657\n    AUROC(ONC)=0.9  sensitivity=0.364  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 47, 'ONC': 12, 'BEN': 11}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config abl_v2_minus_c1 --out data/benchmark/vicc_configs/abl_v2_minus_c1/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 4.1,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.364     1.0\n    2. + residue-hotspot OM3         0.671   0.394     1.0\n    3. + OS1 (ClinVar)                 0.7   0.455     1.0\n    4. + both                          0.7   0.455     1.0\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_c1/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_c1/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.9,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.507     1.0   0.364\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.099  (ours-only-correct 10, OncoVI-only-correct 20)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=30\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_c1/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_c1/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/abl_v2_minus_c1/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 3.0,
+    "tail": "head-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.364\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.775  (ours-only-correct 26, CancerVar-only-correct 23)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 21, 'correct': 46, 'other': 3} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 50\n[+] wrote data/benchmark/vicc_configs/abl_v2_minus_c1/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_c1/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_c1/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 3.0,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.364    1.0     0    21\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/abl_v2_minus_c1/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config abl_v2_minus_c1 --out data/benchmark/vicc_configs/abl_v2_minus_c1/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/abl_v2_minus_c1/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 13.3,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.747 [0.687, 0.808]  spec 0.789 [0.658, 0.921]  AUROC 0.871 [0.812, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.389 [0.344, 0.438]  spec 0.97 [0.949, 0.986]  AUROC 0.848 [0.821, 0.877]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/abl_v2_minus_c1/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/abl_v2_minus_c1/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 3.5,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/abl_v2_minus_c1/horak_known_novel.json\n  known  n=20  VICC acc=0.450 [0.250-0.650]  majority=0.750  sens=0.267  spec=1.0\n  novel  n=50  VICC acc=0.740 [0.620-0.860]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.364  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/abl_v2_minus_c1/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/abl_v2_minus_c1/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/abl_v2_minus_c1/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.1,
+    "tail": "\nmacro-F1               0.422\nquadratic \u03ba            0.580\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          3         27          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          6          8          0\n\n\uc800\uc7a5: data/benchmark/vicc_configs/abl_v2_minus_c1/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "abl_v2_minus_c2": {
+  "config": "abl_v2_minus_c2",
+  "steps": [
+   {
+    "cmd": "scripts.run_horak_vicc --config abl_v2_minus_c2 --out data/benchmark/vicc_configs/abl_v2_minus_c2/horak_vicc.json --roc-png data/benchmark/vicc_configs/abl_v2_minus_c2/vicc_roc.png",
+    "rc": 0,
+    "seconds": 4.1,
+    "tail": "[+] VICC point engine [abl_v2_minus_c2] on Horak (n=70): acc5=0.514  acc3=0.657\n    AUROC(ONC)=0.9  sensitivity=0.364  specificity=1.0\n    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80\n    pred {'VUS': 47, 'ONC': 12, 'BEN': 11}  gold {'ONC': 33, 'VUS': 30, 'BEN': 7}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_sensitivity_modes --config abl_v2_minus_c2 --out data/benchmark/vicc_configs/abl_v2_minus_c2/horak_sensitivity_modes.json",
+    "rc": 0,
+    "seconds": 3.0,
+    "tail": "[+] Sensitivity dial on Horak (n=70). OncoVI reference: sens 0.909 / spec 0.806 / acc 0.797\n    mode                              acc3    sens    spec\n    1. conservative (default)        0.657   0.364     1.0\n    2. + residue-hotspot OM3         0.671   0.394     1.0\n    3. + OS1 (ClinVar)                 0.7   0.455     1.0\n    4. + both                          0.7   0.455     1.0\n"
+   },
+   {
+    "cmd": "scripts.run_oncovi_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_c2/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_c2/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 2.9,
+    "tail": "[+] OncoVI head-to-head on 69 shared Horak variants (vs same expert gold)\n                      acc3    acc5    spec    sens\n    ours             0.652   0.507     1.0   0.364\n    OncoVI           0.797   0.609   0.806   0.909\n    paired McNemar (3-class): p=0.099  (ours-only-correct 10, OncoVI-only-correct 20)\n    OncoVI published (all 93): acc 0.80, sens 0.88\n    both arms auditable (citable VICC codes); n disagreements=30\n"
+   },
+   {
+    "cmd": "scripts.run_cancervar_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_c2/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_c2/cancervar_headtohead.json --oncovi-h2h data/benchmark/vicc_configs/abl_v2_minus_c2/oncovi_headtohead.json",
+    "rc": 0,
+    "seconds": 2.2,
+    "tail": "head-to-head on 70 shared Horak variants (vs same expert gold)\n                    acc3    spec    sens\n    ours           0.657     1.0   0.364\n    CancerVar      0.614   0.432     1.0\n    paired McNemar (3-class): p=0.775  (ours-only-correct 26, CancerVar-only-correct 23)\n    CancerVar tier dist: {'Tier_II_potential': 45, 'Tier_III': 16, 'Tier_I_strong': 9}\n    error breakdown: ours={'miss': 21, 'correct': 46, 'other': 3} | cancervar={'correct': 43, 'over_call': 21, 'other': 6}\n    n disagreements (3-class) = 50\n[+] wrote data/benchmark/vicc_configs/abl_v2_minus_c2/cancervar_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_hemaguide_headtohead --ours data/benchmark/vicc_configs/abl_v2_minus_c2/horak_vicc.json --out data/benchmark/vicc_configs/abl_v2_minus_c2/hemaguide_headtohead.json",
+    "rc": 0,
+    "seconds": 2.0,
+    "tail": "[+] HemaGuide head-to-head on 70 Horak variants (same expert gold)\n                   acc3             CI   sens   spec  over  miss\n    ours          0.657    0.543-0.771  0.364    1.0     0    21\n    HemaGuide       0.8      0.7-0.886  0.879  0.838     6     4\n    paired McNemar: p=0.087 (ours-only 9, HemaGuide-only 19)\n[+] wrote data/benchmark/vicc_configs/abl_v2_minus_c2/hemaguide_headtohead.json\n"
+   },
+   {
+    "cmd": "scripts.run_clinvar_onc_holdout --config abl_v2_minus_c2 --out data/benchmark/vicc_configs/abl_v2_minus_c2/clinvar_onc_holdout.json --out-rows data/benchmark/vicc_configs/abl_v2_minus_c2/clinvar_onc_holdout_rows.json",
+    "rc": 0,
+    "seconds": 9.1,
+    "tail": "[+] panel9: n=236 (ONC 198 / VUS 38)  sens 0.747 [0.687, 0.808]  spec 0.789 [0.658, 0.921]  AUROC 0.871 [0.812, 0.925]\n[+] all: n=712 (ONC 416 / VUS 296)  sens 0.394 [0.349, 0.442]  spec 0.97 [0.949, 0.986]  AUROC 0.851 [0.823, 0.878]\n    funnel: {'snapshot_rows': 737, 'dropped_aggregate_conflicting': 2, 'dropped_horak70_overlap_rows': 16, 'horak70_overlap_keys': 16, 'unique_gene_aa_keys': 714, 'keys_with_multiple_nucleotide_variants': 5, 'dropped_keys_conflicting_labels': 0, 'final_keys': 714}\n"
+   },
+   {
+    "cmd": "scripts.run_horak_known_novel --vicc data/benchmark/vicc_configs/abl_v2_minus_c2/horak_vicc.json --composition-from data/benchmark/horak_known_novel.json --out data/benchmark/vicc_configs/abl_v2_minus_c2/horak_known_novel.json",
+    "rc": 0,
+    "seconds": 2.5,
+    "tail": "[check] n_evidence reproduced for 70/70 variants\n[ok] wrote data/benchmark/vicc_configs/abl_v2_minus_c2/horak_known_novel.json\n  known  n=20  VICC acc=0.450 [0.250-0.650]  majority=0.750  sens=0.267  spec=1.0\n  novel  n=50  VICC acc=0.740 [0.620-0.860]  majority=0.540  sens=0.444  spec=1.0\n  all    n=70  VICC acc=0.657 [0.543-0.771]  majority=0.471  sens=0.364  spec=1.0\n"
+   },
+   {
+    "cmd": "scripts.eval_precision_recall --horak-vicc data/benchmark/vicc_configs/abl_v2_minus_c2/horak_vicc.json --clinvar-rows data/benchmark/vicc_configs/abl_v2_minus_c2/clinvar_onc_holdout_rows.json --out data/benchmark/vicc_configs/abl_v2_minus_c2/precision_recall_report.json",
+    "rc": 0,
+    "seconds": 0.1,
+    "tail": "\nmacro-F1               0.422\nquadratic \u03ba            0.580\n\n\ud63c\ub3d9\ud589\ub82c (\ud589=\uc815\ub2f5, \uc5f4=\uc608\uce21)\n                       Benign  Likely Be        VUS  Likely On  Oncogenic\nBenign                      3          2          0          0          0\nLikely Benign               0          2          0          0          0\nVUS                         0          3         27          0          0\nLikely Oncogenic            0          1         14          4          0\nOncogenic                   0          0          6          8          0\n\n\uc800\uc7a5: data/benchmark/vicc_configs/abl_v2_minus_c2/precision_recall_report.json\n"
+   }
+  ],
+  "reproduction_vs_previous_outputs": "no previous outputs"
+ },
+ "_last_run_utc": "2026-09-24T13:50:10Z"
+}

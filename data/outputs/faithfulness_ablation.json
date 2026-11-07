@@ -1,0 +1,22 @@
+{
+  "n_variants": 56,
+  "injected_violations": {
+    "fabricated": 14,
+    "contradiction": 15,
+    "overconfident": 15
+  },
+  "before_enforcement": {
+    "hallucination_rate": 0.452,
+    "citation_grounding_rate": 1.0,
+    "directional_faithfulness": 0.483,
+    "abstention_recall": 0.4
+  },
+  "after_enforcement": {
+    "hallucination_rate": 0.0,
+    "citation_grounding_rate": 1.0,
+    "directional_faithfulness": 1.0,
+    "abstention_recall": 1.0
+  },
+  "n_corrected": 44,
+  "note": "Fault-injection stress test: faithfulness metrics on a deliberately corrupted cohort, before vs after the deterministic enforcement gate. The gate is a worst-case guarantee, not a measurement of any real model."
+}

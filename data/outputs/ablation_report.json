@@ -1,0 +1,1112 @@
+{
+  "n": 56,
+  "tier_accuracy_vs_civic": {
+    "rule_only": 1.0,
+    "llm_no_retrieval": 1.0,
+    "llm_with_retrieval": 1.0,
+    "n_matched": 2
+  },
+  "tier_kappa": {
+    "norag_vs_rag": 0.181,
+    "rule_vs_rag": 0.417
+  },
+  "oncogenicity_kappa": {
+    "norag_vs_rag": 0.21
+  },
+  "faithfulness": {
+    "norag_ungrounded_citations": 26,
+    "note": "no-retrieval arm has no evidence bundle, so any citation it emits is ungrounded."
+  },
+  "rows": [
+    {
+      "variant_key": "BRAF p.G469E",
+      "gene": "BRAF",
+      "hgvsp": "p.G469E",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "ClinGen: BRAF",
+        "CGC: BRAF",
+        "VICC: BRAF"
+      ]
+    },
+    {
+      "variant_key": "BRAF p.V600E",
+      "gene": "BRAF",
+      "hgvsp": "p.V600E",
+      "rule": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "ClinGen",
+        "CGC"
+      ]
+    },
+    {
+      "variant_key": "BRAF p.V600E",
+      "gene": "BRAF",
+      "hgvsp": "p.V600E",
+      "rule": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 19474124",
+        "PMID: 20516116",
+        "PMID: 22729286"
+      ]
+    },
+    {
+      "variant_key": "EGFR p.E114K",
+      "gene": "EGFR",
+      "hgvsp": "p.E114K",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "EGFR p.L858R",
+      "gene": "EGFR",
+      "hgvsp": "p.L858R",
+      "rule": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "variant_key": "ERBB2 p.V842I",
+      "gene": "ERBB2",
+      "hgvsp": "p.V842I",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "KRAS p.G12A",
+      "gene": "KRAS",
+      "hgvsp": "p.G12A",
+      "rule": [
+        "Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "KRAS p.G12C",
+      "gene": "KRAS",
+      "hgvsp": "p.G12C",
+      "rule": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 29514012",
+        "PMID: 30305666"
+      ]
+    },
+    {
+      "variant_key": "KRAS p.G12D",
+      "gene": "KRAS",
+      "hgvsp": "p.G12D",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "ClinGen: 123456",
+        "CGC: 789012"
+      ]
+    },
+    {
+      "variant_key": "KRAS p.G12D",
+      "gene": "KRAS",
+      "hgvsp": "p.G12D",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 19430412",
+        "PMID: 20516118",
+        "PMID: 23300080"
+      ]
+    },
+    {
+      "variant_key": "KRAS p.G12R",
+      "gene": "KRAS",
+      "hgvsp": "p.G12R",
+      "rule": [
+        "Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "ClinGen: 123456",
+        "CGC: 789012",
+        "VICC: 345678"
+      ]
+    },
+    {
+      "variant_key": "KRAS p.G12V",
+      "gene": "KRAS",
+      "hgvsp": "p.G12V",
+      "rule": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "123",
+        "456"
+      ]
+    },
+    {
+      "variant_key": "KRAS p.G12V",
+      "gene": "KRAS",
+      "hgvsp": "p.G12V",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 20164919",
+        "PMID: 22751185"
+      ]
+    },
+    {
+      "variant_key": "NRAS p.Q61K",
+      "gene": "NRAS",
+      "hgvsp": "p.Q61K",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "123",
+        "456"
+      ]
+    },
+    {
+      "variant_key": "NRAS p.Q61R",
+      "gene": "NRAS",
+      "hgvsp": "p.Q61R",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 22722205",
+        "PMID: 23695669"
+      ]
+    },
+    {
+      "variant_key": "PIK3CA p.E545K",
+      "gene": "PIK3CA",
+      "hgvsp": "p.E545K",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 24662967",
+        "PMID: 26729245"
+      ]
+    },
+    {
+      "variant_key": "PIK3CA p.H1047R",
+      "gene": "PIK3CA",
+      "hgvsp": "p.H1047R",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "123",
+        "456"
+      ]
+    },
+    {
+      "variant_key": "PIK3CA p.R88Q",
+      "gene": "PIK3CA",
+      "hgvsp": "p.R88Q",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "PTEN p.R130*",
+      "gene": "PTEN",
+      "hgvsp": "p.R130*",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "TP53 p.D281E",
+      "gene": "TP53",
+      "hgvsp": "p.D281E",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "TP53 p.P152L",
+      "gene": "TP53",
+      "hgvsp": "p.P152L",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "TP53 p.R175H",
+      "gene": "TP53",
+      "hgvsp": "p.R175H",
+      "rule": [
+        "Oncogenic",
+        "Tier II"
+      ],
+      "llm_rag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "123",
+        "456"
+      ]
+    },
+    {
+      "variant_key": "TP53 p.R273H",
+      "gene": "TP53",
+      "hgvsp": "p.R273H",
+      "rule": [
+        "Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "TP53 p.R273H",
+      "gene": "TP53",
+      "hgvsp": "p.R273H",
+      "rule": [
+        "Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "TP53 p.R273L",
+      "gene": "TP53",
+      "hgvsp": "p.R273L",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "TP53 p.V272G",
+      "gene": "TP53",
+      "hgvsp": "p.V272G",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "ESR1 p.E247K",
+      "gene": "ESR1",
+      "hgvsp": "p.E247K",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "AKT1 p.V192M",
+      "gene": "AKT1",
+      "hgvsp": "p.V192M",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.F539C",
+      "gene": "ALK",
+      "hgvsp": "p.F539C",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.R291C",
+      "gene": "ALK",
+      "hgvsp": "p.R291C",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.E576Q",
+      "gene": "ALK",
+      "hgvsp": "p.E576Q",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.G1121D",
+      "gene": "ALK",
+      "hgvsp": "p.G1121D",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.R1209P",
+      "gene": "ALK",
+      "hgvsp": "p.R1209P",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "APC p.A1366V",
+      "gene": "APC",
+      "hgvsp": "p.A1366V",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "BRAF p.H725Y",
+      "gene": "BRAF",
+      "hgvsp": "p.H725Y",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ROS1 p.P1539S",
+      "gene": "ROS1",
+      "hgvsp": "p.P1539S",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.G1494E",
+      "gene": "ALK",
+      "hgvsp": "p.G1494E",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Benign",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.G391E",
+      "gene": "ALK",
+      "hgvsp": "p.G391E",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.G263V",
+      "gene": "ALK",
+      "hgvsp": "p.G263V",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.V349F",
+      "gene": "ALK",
+      "hgvsp": "p.V349F",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "APC p.D1562N",
+      "gene": "APC",
+      "hgvsp": "p.D1562N",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "BRAF p.A762E",
+      "gene": "BRAF",
+      "hgvsp": "p.A762E",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.R1212H",
+      "gene": "ALK",
+      "hgvsp": "p.R1212H",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.R200K",
+      "gene": "ALK",
+      "hgvsp": "p.R200K",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "APC p.P1613H",
+      "gene": "APC",
+      "hgvsp": "p.P1613H",
+      "rule": [
+        "Likely Oncogenic",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "APC p.R230C",
+      "gene": "APC",
+      "hgvsp": "p.R230C",
+      "rule": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_rag": [
+        "Likely Benign",
+        "Tier IV"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "ALK p.R401*",
+      "gene": "ALK",
+      "hgvsp": "p.R401*",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "APC p.R1450*",
+      "gene": "APC",
+      "hgvsp": "p.R1450*",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "ClinVar: VCV000123456"
+      ]
+    },
+    {
+      "variant_key": "ALK p.X263_splice",
+      "gene": "ALK",
+      "hgvsp": "p.X263_splice",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "BRAF p.X565_splice",
+      "gene": "BRAF",
+      "hgvsp": "p.X565_splice",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "APC p.E109*",
+      "gene": "APC",
+      "hgvsp": "p.E109*",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "APC p.S2223*",
+      "gene": "APC",
+      "hgvsp": "p.S2223*",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "VUS",
+        "Tier III"
+      ],
+      "norag_citations": []
+    },
+    {
+      "variant_key": "BRAF p.L485*",
+      "gene": "BRAF",
+      "hgvsp": "p.L485*",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "CDKN2A p.R58*",
+      "gene": "CDKN2A",
+      "hgvsp": "p.R58*",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "BRCA2 p.N1784Kfs*3",
+      "gene": "BRCA2",
+      "hgvsp": "p.N1784Kfs*3",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Oncogenic",
+        "Tier I"
+      ],
+      "norag_citations": [
+        "PMID: 12345678",
+        "PMID: 87654321"
+      ]
+    },
+    {
+      "variant_key": "CDKN2A p.E69Afs*74",
+      "gene": "CDKN2A",
+      "hgvsp": "p.E69Afs*74",
+      "rule": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_rag": [
+        "VUS",
+        "Tier III"
+      ],
+      "llm_norag": [
+        "Likely Oncogenic",
+        "Tier II"
+      ],
+      "norag_citations": []
+    }
+  ]
+}

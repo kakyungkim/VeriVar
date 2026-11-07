@@ -1,0 +1,4545 @@
+[
+  {
+    "gene": "FLT3",
+    "aa": "p.G295S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.D540H",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.G739A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.Q667K",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.M128V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.H279R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.N434S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.L164P",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.E217G",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.K513N",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.P937R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.S976R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.E240A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.A425S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.C965R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.C965Y",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.L983V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.E209G",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.E803G",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.T382A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.G295S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.D540H",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.G739A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.Q667K",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.M128V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.H279R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.N434S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.L164P",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.E217G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.K513N",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.P937R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.S976R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.E240A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.A425S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.C965R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.C965Y",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.L983V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.E209G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.E803G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "FLT3",
+    "aa": "p.T382A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.G466A",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.T488S",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.N581Y",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.N581S",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.F247L",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.E586K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.G464V",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.G469E",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 6,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OM4",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.D594G",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 9,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.G469A",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.K601E",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OM4",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.V600E",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.G466A",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.T488S",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.N581Y",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.P705L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.G9V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.H510R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.P376R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.R252*",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.Q356H",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.D361V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.Q344H",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.P490A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.S419N",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.Q58*",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.G104R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.P705L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.G9V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.H510R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.P376R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.R252*",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.Q356H",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.Q344H",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.P490A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.*712C",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.R199G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.P705L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.L222M",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.L711F",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.F346L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.A38E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.S634G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.V197I",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.A115T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.T218I",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.N229S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.D454A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.T310S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.K418E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.S126C",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.I554V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.K687E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.A736T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "BRAF",
+    "aa": "p.A246G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.R132G",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.R132S",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.R132C",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.R132L",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.R132H",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 9,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OM4",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.G310E",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.R49P",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.V386L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.E306A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.G310R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.A369V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.E62K",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.D390G",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.K260E",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.D59A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.P33L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.E324G",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.D273V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.E153K",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.G263R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.Y272H",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.I330M",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.L383I",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.I215M",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.S389Y",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.G310E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.R49P",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.I99M",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.H194Y",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.V386L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.E306A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.R20Q",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.G310R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.A369V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.E62K",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.D390G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.K260E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.D59A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.P33L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.E324G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.D273V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.E153K",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.G263R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.Y272H",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "IDH1",
+    "aa": "p.I330M",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.R68S",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G12F",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.A11D",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.E63K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.Q22K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 2,
+    "codes": [
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.L19F",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.K117N",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.Q61H",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OS3",
+      "OM4",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G12A",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.Q61L",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM3",
+      "OM4",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.Q61R",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM3",
+      "OM4",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G12S",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G12V",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G12D",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G13D",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G12R",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G12C",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.R68S",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.A11D",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.E63K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.I188K",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.T20M",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.A130P",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.S65T",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.Q61R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM3",
+      "OM4",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.K117R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.Y32C",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G138A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.I163T",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.R164*",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.I188K",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.T20M",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.A130P",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.Y32C",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.G138A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.I163T",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.R164*",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.A130S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.I46M",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.A59E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.V81A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.V109A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.M188V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.Y40C",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.I188K",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.M188I",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.T158R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.D132E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.T20M",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.A130P",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.S65T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.V8L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.D154V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.V29M",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.D154G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.V9A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "KRAS",
+    "aa": "p.Y32C",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.Q75E",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E39K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.M1004I",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.R93W",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OM4",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E970K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E365K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.V344G",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.R38C",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.R38H",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.M1043V",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E81K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E726K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OS3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E453K",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 9,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.Y1021C",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.P539R",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.N345K",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.R88Q",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 11,
+    "codes": [
+      "OM1",
+      "OS3",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.Q546P",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E545Q",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.R108H",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E563K",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.K532R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E9Q",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.I459V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.A1027V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E710Q",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E563K",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.K532R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E9Q",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.I459V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.A1027V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E710Q",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.S790T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E494D",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.Q63R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.N444T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.Q630R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.R357Q",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.F734C",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.R375S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.D1045E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.G122V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.L831F",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.D717E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.E563K",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.F667L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.M599I",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.P377T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.M789L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.D258A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.D186G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PIK3CA",
+    "aa": "p.D434E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.V217D",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.E73*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.E235*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.G156V",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.I122N",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.H118L",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.E114*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.Q219*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.D326N",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.W111*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.A39V",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.A126G",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.L112V",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.G36R",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.K13E",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.F90S",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.S170N",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.G132S",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.L42P",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.Q171E",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.C124F",
+    "gold": "BEN",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.T319S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.T401A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.T2A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.K221R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.L140F",
+    "gold": "BEN",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.C136G",
+    "gold": "BEN",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.N228H",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.D331G",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.A137S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.D116E",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.V365L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.I32S",
+    "gold": "BEN",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.I50N",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.N340Y",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.S305T",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.K263E",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.C250R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.T167P",
+    "gold": "BEN",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.F337L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.E106K",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.V216E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.D52E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.I67L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.H196Q",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.H185D",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.T319S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.T401A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.T2A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.K221R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.L140F",
+    "gold": "VUS",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.T26A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.C136G",
+    "gold": "VUS",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.N228H",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.D331G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.A137S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.D116E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.V365L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.I50N",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "PTEN",
+    "aa": "p.N340Y",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R830T",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.G802*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.E48*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.E413*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.Q631*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R251*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.Q504*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R455*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.K341*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R255*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.E737*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.Q637*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R661W",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 2,
+    "codes": [
+      "OM1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R358*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R830T",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.G802*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.E48*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.E413*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R251*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.Q504*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.A188S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.A22T",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.V456A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.A188S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.A22T",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.V456A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.A10V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.Q217E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.I425L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R150G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.Q395K",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.E364V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.P71S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.D566G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.P26L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.L191P",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.K95E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.S393R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.P357L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.C61R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.D363N",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.N849Y",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.N767T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.R451L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.H678Q",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "RB1",
+    "aa": "p.D578N",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.Y646N",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OM1",
+      "OM3",
+      "OM4",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.E745K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.E745K",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.I459L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.S8T",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.E488A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.F547V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.M24R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.K498R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.A226G",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.D140E",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.E584A",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.K515N",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 4,
+    "codes": [
+      "OM1",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.W599*",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.I482M",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.D36N",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.R712K",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.R358H",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.S538L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.S76T",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.R207Q",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.R18H",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.R561C",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.A720G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.Q3*",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.F42L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.S601N",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.E194K",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.A506T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.M230L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.A487V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.P587H",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.N309S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.R347W",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.E488A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.F547V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.M24R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.G235V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.K498R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.A269D",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.A226G",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.D140E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "EZH2",
+    "aa": "p.E584A",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 3,
+    "codes": [
+      "OM1",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.K291*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.G334V",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.P278V",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OM1",
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.Y205S",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 6,
+    "codes": [
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.Q38*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.I232F",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 6,
+    "codes": [
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.T155P",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 6,
+    "codes": [
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.E285*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.L265R",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 6,
+    "codes": [
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.Y234*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.M133K",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 6,
+    "codes": [
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.V173L",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OS2",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.Q136*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.T284P",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.V218E",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 6,
+    "codes": [
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.E56*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.E271*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.L145R",
+    "gold": "ONC",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.E204*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.G266*",
+    "gold": "ONC",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.Y220F",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 2,
+    "codes": [
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.P92S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.L369M",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -1,
+    "codes": [
+      "OM1",
+      "SBS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.L299V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.P75S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.E287G",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.R280*",
+    "gold": "BEN",
+    "pred": "ONC",
+    "points": 8,
+    "codes": [
+      "OVS1"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.E388D",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.P77L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.A79V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.R175S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -2,
+    "codes": [
+      "SBS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.I332L",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.S95T",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 5,
+    "codes": [
+      "OS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.L350R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.E258K",
+    "gold": "BEN",
+    "pred": "ONC",
+    "points": 7,
+    "codes": [
+      "OS2",
+      "OM3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.P72R",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.Y220F",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": 2,
+    "codes": [
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.P92S",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.L369M",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -1,
+    "codes": [
+      "OM1",
+      "SBS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.L299V",
+    "gold": "BEN",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.K381N",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -1,
+    "codes": [
+      "OM1",
+      "SBS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.K372E",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -1,
+    "codes": [
+      "OM1",
+      "SBS2",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.M243I",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.Q104H",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -2,
+    "codes": [
+      "SBS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.P152A",
+    "gold": "VUS",
+    "pred": "ONC",
+    "points": 6,
+    "codes": [
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.P92T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.V73L",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.S15I",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.N30Y",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.A88T",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.S95P",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.S106C",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.K139N",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": 0,
+    "codes": []
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.W146R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -2,
+    "codes": [
+      "SBS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.Y205F",
+    "gold": "VUS",
+    "pred": "ONC",
+    "points": 6,
+    "codes": [
+      "OS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.N288S",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.E294D",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -2,
+    "codes": [
+      "SBS2",
+      "OP3",
+      "OP4"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.F328V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.L330V",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -4,
+    "codes": [
+      "SBS2"
+    ]
+  },
+  {
+    "gene": "TP53",
+    "aa": "p.K370R",
+    "gold": "VUS",
+    "pred": "VUS",
+    "points": -1,
+    "codes": [
+      "OM1",
+      "SBS2",
+      "OP4"
+    ]
+  }
+]

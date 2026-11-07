@@ -1,0 +1,148 @@
+{
+  "clinvar": {
+    "123456": {
+      "accession": null,
+      "error": "cannot get document summary",
+      "exists": false,
+      "genes": [],
+      "title": null
+    }
+  },
+  "inputs": [
+    "data/outputs/ablation_report.json",
+    "data/outputs/multimodel_faithfulness_gpt4o.json",
+    "data/outputs/cohort_interpretation.json"
+  ],
+  "pmid": {
+    "12345678": {
+      "abstract": null,
+      "error": null,
+      "exists": true,
+      "journal": "Integration (Tokyo, Japan)",
+      "pubdate": "1994 Jun",
+      "title": "Denpasar Declaration on Population and Development."
+    },
+    "19430412": {
+      "abstract": "The grief experience of same-sex couples is under researched when considering the large body of literature that exists on bereavement within the heterosexual community. In a previous article, the background to a study which sought to explore the grief experience of same-sex couples within an Irish context was presented and some of the findings relating to one of the themes (tacit acknowledgement) was presented (Glacken and Higgins, 2008). This article discusses other aspects of the findings under the theme titled sculpting the distress. This theme describes a number of critical incidents that sculpted the bereaveds distress and were perceived by the bereaved person as either being helpful in their bereavement journey or exacerbating their distress. The critical incidents related to communication issues, staff attitudes and treating the couple as a unit of care. The differing philosophies of hospital and hospice care in relation to the care of the dying were clearly evident within this theme.",
+      "error": null,
+      "exists": true,
+      "journal": "International journal of palliative nursing",
+      "pubdate": "2009 Apr",
+      "title": "Sculpting the distress: easing or exacerbating the grief experience of same-sex couples."
+    },
+    "19474124": {
+      "abstract": "Carotid angioplasty with stent placement (CAS) is an optional treatment for significant carotid stenosis. Cerebral vasoreactivity (CVR), representing the reserve capacity of cerebral perfusion, usually decreases in patients with severe carotid stenosis. This study aimed to investigate the relationship between the baseline CVR assessed by functional MR imaging (fMRI) and the changes in cerebral blood flow (CBF) after CAS. Fourteen patients with at least 70% unilateral carotid stenosis underwent CAS. Baseline CVR was evaluated by fMRI a under breath-holding paradigm. CBF was assessed by dynamic susceptibility-weighted contrast-enhanced MR imaging before and 3-5 days after CAS. The lateral index (LI) was defined as (n - L) / (n + L), where n and L represent the number of activated voxels in fMRI on the normal and lesion hemispheres, respectively. No subject had clinical evidence of hyperperfusion syndrome. The LI represented baseline CVR. Patients were divided into normal (LI < 0, n = 6) and impaired (LI > 0, n = 8) CVR groups. The CBF on the normal and lesion sides was calculated separately. CBF increment on the lesion side after CAS was significantly higher in the impaired CVR group than that in the normal CVR group (P = .035). There was a significantly positive correlation between CVR impairment and the CBF increment (P = .026). fMRI could be a reproducible tool in evaluating CVR. After CAS, early CBF changes on the lesion side are more prominent in patients with impaired CVR. Baseline CVR might predict early CBF increase after CAS.",
+      "error": null,
+      "exists": true,
+      "journal": "AJNR. American journal of neuroradiology",
+      "pubdate": "2009 Aug",
+      "title": "Change in cerebral perfusion after carotid angioplasty with stenting is related to cerebral vasoreactivity: a study using dynamic susceptibility-weighted contrast-enhanced MR imaging and functional MR imaging with a breath-holding paradigm."
+    },
+    "20164919": {
+      "abstract": "The cancer genome is moulded by the dual processes of somatic mutation and selection. Homozygous deletions in cancer genomes occur over recessive cancer genes, where they can confer selective growth advantage, and over fragile sites, where they are thought to reflect an increased local rate of DNA breakage. However, most homozygous deletions in cancer genomes are unexplained. Here we identified 2,428 somatic homozygous deletions in 746 cancer cell lines. These overlie 11% of protein-coding genes that, therefore, are not mandatory for survival of human cells. We derived structural signatures that distinguish between homozygous deletions over recessive cancer genes and fragile sites. Application to clusters of unexplained homozygous deletions suggests that many are in regions of inherent fragility, whereas a small subset overlies recessive cancer genes. The results illustrate how structural signatures can be used to distinguish between the influences of mutation and selection in cancer genomes. The extensive copy number, genotyping, sequence and expression data available for this large series of publicly available cancer cell lines renders them informative reagents for future studies of cancer biology and drug discovery.",
+      "error": null,
+      "exists": true,
+      "journal": "Nature",
+      "pubdate": "2010 Feb 18",
+      "title": "Signatures of mutation and selection in the cancer genome."
+    },
+    "20516116": {
+      "abstract": "Metastatic progression of advanced prostate cancer is a major clinical problem. Identifying the cell(s) of origin in prostate cancer and its distant metastases may permit the development of more effective treatment and preventive therapies. In this study, aldehyde dehydrogenase (ALDH) activity was used as a basis to isolate and compare subpopulations of primary human prostate cancer cells and cell lines. ALDH-high prostate cancer cells displayed strongly elevated clonogenicity and migratory behavior in vitro. More strikingly, ALDH-high cells readily formed distant metastases with strongly enhanced tumor progression at both orthotopic and metastatic sites in preclinical models. Several ALDH isoforms were expressed in human prostate cancer cells and clinical specimens of primary prostate tumors with matched bone metastases. Our findings suggest that ALDH-based viable cell sorting can be used to identify and characterize tumor-initiating and, more importantly perhaps, metastasis-initiating cells in human prostate cancer.",
+      "error": null,
+      "exists": true,
+      "journal": "Cancer research",
+      "pubdate": "2010 Jun 15",
+      "title": "High aldehyde dehydrogenase activity identifies tumor-initiating and metastasis-initiating cells in human prostate cancer."
+    },
+    "20516118": {
+      "abstract": "Reactive oxygen species (ROS) have been implicated in the activation of protein kinases, DNA damage responses, and cell apoptosis. The details of how ROS regulate these intracellular biochemical and genetic processes remain to be fully understood. By establishing transformed bronchial epithelial cells through chronic low-dose arsenic treatment, we showed that the capacity of ROS generation induced by arsenic is substantially reduced in the transformed cells relative to the nontransformed cells. Such a reduction in ROS generation endows cells with premalignant features, including rapid growth, resistance to arsenic toxicity, and increased colony formation of the transformed cells. To validate these observations, the capability of ROS generation was restored in the transformed cells by treatment with inhibitors or siRNAs to silence the function of superoxide dismutase (SOD) or catalase and cell growth was determined following these treatments. Enhancement in ROS generation suppressed cell growth and colony formation of the transformed cells significantly. Despite the fact that the transformed cells showed a decreased expression of NF-kappaB signaling proteins IKKbeta and IKKgamma, the proteolytic processing p105 and p100 and NF-kappaB DNA binding activity were elevated in these cells. Increasing ROS generation by silencing SOD and catalase reduced the DNA binding activity of NF-kappaB in the transformed cells. Taken together, the transformed cells induced by arsenic exhibited a decrease in ROS generation, which is responsible for the enhanced cell growth and colony formation of the transformed cells, most likely through a sustained alternative activation of the NF-kappaB transcription factor.",
+      "error": null,
+      "exists": true,
+      "journal": "Cancer research",
+      "pubdate": "2010 Jun 15",
+      "title": "Reduced reactive oxygen species-generating capacity contributes to the enhanced cell growth of arsenic-transformed epithelial cells."
+    },
+    "22722205": {
+      "abstract": "Highly pathogenic avian H5N1 influenza A viruses occasionally infect humans, but currently do not transmit efficiently among humans. The viral haemagglutinin (HA) protein is a known host-range determinant as it mediates virus binding to host-specific cellular receptors. Here we assess the molecular changes in HA that would allow a virus possessing subtype H5 HA to be transmissible among mammals. We identified a reassortant H5 HA/H1N1 virus-comprising H5 HA (from an H5N1 virus) with four mutations and the remaining seven gene segments from a 2009 pandemic H1N1 virus-that was capable of droplet transmission in a ferret model. The transmissible H5 reassortant virus preferentially recognized human-type receptors, replicated efficiently in ferrets, caused lung lesions and weight loss, but was not highly pathogenic and did not cause mortality. These results indicate that H5 HA can convert to an HA that supports efficient viral transmission in mammals; however, we do not know whether the four mutations in the H5 HA identified here would render a wholly avian H5N1 virus transmissible. The genetic origin of the remaining seven viral gene segments may also critically contribute to transmissibility in mammals. Nevertheless, as H5N1 viruses continue to evolve and infect humans, receptor-binding variants of H5N1 viruses with pandemic potential, including avian-human reassortant viruses as tested here, may emerge. Our findings emphasize the need to prepare for potential pandemics caused by influenza viruses possessing H5 HA, and will help individuals conducting surveillance in regions with circulating H5N1 viruses to recognize key residues that predict the pandemic potential of isolates, which will inform the development, production and distribution of effective countermeasures.",
+      "error": null,
+      "exists": true,
+      "journal": "Nature",
+      "pubdate": "2012 May 2",
+      "title": "Experimental adaptation of an influenza H5 HA confers respiratory droplet transmission to a reassortant H5 HA/H1N1 virus in ferrets."
+    },
+    "22729286": {
+      "abstract": "Tissue damage induced by ionizing radiation in the hematopoietic and gastrointestinal systems is the major cause of lethality in radiological emergency scenarios and underlies some deleterious side effects in patients undergoing radiation therapy. The identification of target-specific interventions that confer radiomitigating activity is an unmet challenge. Here we identify the thrombomodulin (Thbd)-activated protein C (aPC) pathway as a new mechanism for the mitigation of total body irradiation (TBI)-induced mortality. Although the effects of the endogenous Thbd-aPC pathway were largely confined to the local microenvironment of Thbd-expressing cells, systemic administration of soluble Thbd or aPC could reproduce and augment the radioprotective effect of the endogenous Thbd-aPC pathway. Therapeutic administration of recombinant, soluble Thbd or aPC to lethally irradiated wild-type mice resulted in an accelerated recovery of hematopoietic progenitor activity in bone marrow and a mitigation of lethal TBI. Starting infusion of aPC as late as 24 h after exposure to radiation was sufficient to mitigate radiation-induced mortality in these mice. These findings suggest that pharmacologic augmentation of the activity of the Thbd-aPC pathway by recombinant Thbd or aPC might offer a rational approach to the mitigation of tissue injury and lethality caused by ionizing radiation.",
+      "error": null,
+      "exists": true,
+      "journal": "Nature medicine",
+      "pubdate": "2012 Jul",
+      "title": "Pharmacological targeting of the thrombomodulin-activated protein C pathway mitigates radiation toxicity."
+    },
+    "22751185": {
+      "abstract": "A grounded theory study of 19 adults with spinal cord injury was conducted. Participants engaged in individual in-depth interviews, and took photographs of aspects of their environment that promoted and restricted participation. Analysis consisted of an inductive process of constant comparison. A focus group with participants was held to discuss and contribute to the credibility of findings. To develop a theoretical understanding of the influences on self-perceived participation for individuals with SCI. Manitoba, Canada. The constructed grounded theory model is summarized as follows: negotiating the body-environment interface is a continuous process for those living with a SCI. Despite the relative stability of their changed body, they live in a changed world, one that is perceived differently after SCI. People use various strategies to interact within their environment, to engage in a process of participation. Intervening conditions are the environmental aspects that serve as barriers or facilitators to this process of participation. Study findings lend support to the need for a self-perceived definition of participation. The theory constructed in this study can be used to target interventions intended to improve the participation experiences of individuals with SCI.",
+      "error": null,
+      "exists": true,
+      "journal": "Spinal cord",
+      "pubdate": "2012 Dec",
+      "title": "Self-perceived participation among adults with spinal cord injury: a grounded theory study."
+    },
+    "23300080": {
+      "abstract": "CALHM1 (calcium homeostasis modulator 1) forms a plasma membrane ion channel that mediates neuronal excitability in response to changes in extracellular Ca(2+) concentration. Six human CALHM homologs exist with no homology to other proteins, although CALHM1 is conserved across >20 species. Here we demonstrate that CALHM1 shares functional and quaternary and secondary structural similarities with connexins and evolutionarily distinct innexins and their vertebrate pannexin homologs. A CALHM1 channel is a hexamer, comprised of six monomers, each of which possesses four transmembrane domains, cytoplasmic amino and carboxyl termini, an amino-terminal helix, and conserved extracellular cysteines. The estimated pore diameter of the CALHM1 channel is ∼14 Å, enabling permeation of large charged molecules. Thus, CALHMs, connexins, and pannexins and innexins are structurally related protein families with shared and distinct functional properties.",
+      "error": null,
+      "exists": true,
+      "journal": "The Journal of biological chemistry",
+      "pubdate": "2013 Mar 1",
+      "title": "Structural and functional similarities of calcium homeostasis modulator 1 (CALHM1) ion channel with connexins, pannexins, and innexins."
+    },
+    "23695669": {
+      "abstract": "Acetylcholine-binding protein is a water-soluble homologue of the extracellular ligand-binding domain of cys-loop receptors. It is used as a structurally accessible prototype for studying ligand binding to these pharmaceutically important pentameric ion channels, in particular to nicotinic acetylcholine receptors, due to conserved binding site residues present at the interface between two subunits. Here we report that an aromatic conjugated small molecule binds acetylcholine-binding protein in an ordered π-π stack of three identical molecules per binding site, two parallel and one antiparallel. Acetylcholine-binding protein stabilizes the assembly of the stack by aromatic contacts. Thanks to the plasticity of its ligand-binding site, acetylcholine-binding protein can accommodate the formation of aromatic stacks of different size by simple loop repositioning and minimal adjustment of the interactions. This type of supramolecular binding provides a novel paradigm in drug design.",
+      "error": null,
+      "exists": true,
+      "journal": "Nature communications",
+      "pubdate": "2013",
+      "title": "Assembly of a π-π stack of ligands in the binding site of an acetylcholine-binding protein."
+    },
+    "24662967": {
+      "abstract": "In today's age, companies employ machine learning to extract information from large quantities of data. One of those techniques, reservoir computing (RC), is a decade old and has achieved state-of-the-art performance for processing sequential data. Dedicated hardware realizations of RC could enable speed gains and power savings. Here we propose the first integrated passive silicon photonics reservoir. We demonstrate experimentally and through simulations that, thanks to the RC paradigm, this generic chip can be used to perform arbitrary Boolean logic operations with memory as well as 5-bit header recognition up to 12.5 Gbit s(-1), without power consumption in the reservoir. It can also perform isolated spoken digit recognition. Our realization exploits optical phase for computing. It is scalable to larger networks and much higher bitrates, up to speeds >100 Gbit s(-1). These results pave the way for the application of integrated photonic RC for a wide range of applications.",
+      "error": null,
+      "exists": true,
+      "journal": "Nature communications",
+      "pubdate": "2014 Mar 24",
+      "title": "Experimental demonstration of reservoir computing on a silicon photonics chip."
+    },
+    "26729245": {
+      "abstract": "Erosive lichen planus affecting the vulva (ELPV) is a relatively rare, chronic condition causing painful raw areas in the vulvovaginal region. Symptoms are pain and burning, which impact upon daily living. There is paucity of evidence regarding therapy. A 2012 Cochrane systematic review found no randomised controlled trials (RCTs) in this field. Topically administered corticosteroids are the accepted first-line therapy: however, there is uncertainty as to which second-line treatments to use. Several systemic agents have been clinically noted to show promise for ELPV refractory to topically administered corticosteroids but there is no RCT evidence to support these. The 'hELP' study is a RCT with an internal pilot phase designed to provide high-quality evidence. The objective is to test whether systemic therapy in addition to standard topical therapy is a beneficial second-line treatment for ELPV. Adjunctive systemic therapies used are hydroxychloroquine, methotrexate, mycophenolate mofetil and prednisolone. Topical therapy plus a short course of prednisolone given orally is considered the comparator intervention. The trial is a four-armed, open-label, pragmatic RCT which uses a blinded independent clinical assessor. To provide 80 % power for each comparison, 96 participants are required in total. The pilot phase aims to recruit 40 participants. The primary clinical outcome is the proportion of patients achieving treatment success at 6 months. 'Success' is defined by a composite measure of Patient Global Assessment score of 0 or 1 on a 4-point scale plus improvement from baseline on clinical photographs scored by a clinician blinded to treatment allocation. Secondary clinical outcomes include 6-month assessment of: (1) Reduction in pain/soreness; (2) Global assessment of disease; (3) Response at other affected mucosal sites; (4) Hospital Anxiety and Depression Scale scores; (5) Sexual function; (6) Health-related quality of life using 'Short Form 36' and 'Skindex-29' questionnaires; (7) Days of topical steroid use; (8) Treatment satisfaction; (9) Discontinuation of medications due to treatment failure; (10) Per participant cost of intervention in each treatment group. Adverse events will also be reported. 'hELP' is the first RCT to address second-line treatment of ELPV. The trial has encountered unique methodological challenges and has required collaborative efforts of the UK Dermatology Clinical Trials Network alongside expert clinicians. ISRCTN 81883379 . Date of registration 12 June 2014.",
+      "error": null,
+      "exists": true,
+      "journal": "Trials",
+      "pubdate": "2016 Jan 4",
+      "title": "Systemic therapy for vulval Erosive Lichen Planus (the 'hELP' trial): study protocol for a randomised controlled trial."
+    },
+    "29514012": {
+      "abstract": null,
+      "error": "cannot get document summary",
+      "exists": false,
+      "journal": null,
+      "pubdate": null,
+      "title": null
+    },
+    "30305666": {
+      "abstract": "The differential diagnosis of Ewing sarcoma and osteomyelitis can be challenging and can lead to delays in treatment with possibly devastating results. In this retrospective, small-cohort study we demonstrate, that the Fourier Transformed Infrared (FTIR) spectra of osteomyelitis bone tissue can be differentiated from Ewing sarcoma and normal bone tissue sampled outside tumour area. Significant differences in osteomyelitis samples can be seen in lipid and protein composition. Supervised learning using a quadratic discriminant analysis classifier was able to differentiate the osteomyelitis samples with high accuracy. FTIR spectroscopy, alongside routine radiological and histopathological methods, may offer an additional tool for the differential diagnosis of osteomyelitis and ES.",
+      "error": null,
+      "exists": true,
+      "journal": "Scientific reports",
+      "pubdate": "2018 Oct 10",
+      "title": "Distinguishing Ewing sarcoma and osteomyelitis using FTIR spectroscopy."
+    },
+    "87654321": {
+      "abstract": null,
+      "error": "cannot get document summary",
+      "exists": false,
+      "journal": null,
+      "pubdate": null,
+      "title": null
+    }
+  },
+  "retrieved_utc": "2026-09-24T06:05:56+00:00",
+  "source": "NCBI E-utilities (esummary pubmed/clinvar; efetch pubmed abstracts)"
+}

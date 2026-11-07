@@ -87,14 +87,26 @@
   nav#TOC a{color:var(--fg)}
   nav#TOC a:hover{color:var(--accent)}
 
+  /* long identifiers (DOIs, URLs, HGVS strings) must wrap, never widen the page */
+  p,li,td,th,figcaption{overflow-wrap:anywhere}
+  code,a{overflow-wrap:anywhere; word-break:break-word}
+  html,body{max-width:100%; overflow-x:hidden}
   @media (max-width:620px){
     body{font-size:16px}
-    .wrap{padding:36px 18px 80px}
+    .wrap{padding:36px 16px 80px; max-width:100%}
     h1{font-size:1.6rem}
     p,li{text-align:left}
+    /* wide tables scroll inside their own box instead of stretching the page */
+    table{display:block; overflow-x:auto; white-space:nowrap; border-radius:0}
+    table td,table th{white-space:normal; min-width:9em}
   }
+  @page{size:A4; margin:18mm 16mm 18mm 16mm}
   @media print{
     body{font-size:10.5pt; line-height:1.5}
+    p,li{text-align:justify}
+    table{font-size:8.5pt; display:table; white-space:normal}
+    h2,h3{break-after:avoid}
+    table,figure,blockquote{break-inside:avoid}
     .wrap{max-width:none; padding:0}
     h2{border-bottom:1px solid #999}
     figure,img{break-inside:avoid}

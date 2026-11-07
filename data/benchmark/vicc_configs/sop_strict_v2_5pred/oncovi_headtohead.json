@@ -1,0 +1,511 @@
+{
+ "n_shared_variants": 69,
+ "note": "Identical Horak variants, both tools scored vs the same expert gold. OncoVI predictions from its published SOP_table_union output; ours from the citable VICC engine. Both arms are fully auditable (citable criterion codes).",
+ "ours": {
+  "accuracy_3class": 0.58,
+  "accuracy_5class": 0.478,
+  "specificity_onc": 1.0,
+  "sensitivity_onc": 0.242,
+  "accuracy_3class_ci": {
+   "point": 0.58,
+   "lo": 0.464,
+   "hi": 0.696,
+   "n": 69
+  },
+  "onc_exact_ci95": {
+   "sensitivity": {
+    "wilson": {
+     "point": 0.242,
+     "lo": 0.128,
+     "hi": 0.41,
+     "k": 8,
+     "n": 33,
+     "method": "wilson"
+    },
+    "clopper_pearson": {
+     "point": 0.242,
+     "lo": 0.111,
+     "hi": 0.423,
+     "k": 8,
+     "n": 33,
+     "method": "clopper_pearson"
+    }
+   },
+   "specificity": {
+    "wilson": {
+     "point": 1.0,
+     "lo": 0.904,
+     "hi": 1.0,
+     "k": 36,
+     "n": 36,
+     "method": "wilson"
+    },
+    "clopper_pearson": {
+     "point": 1.0,
+     "lo": 0.903,
+     "hi": 1.0,
+     "k": 36,
+     "n": 36,
+     "method": "clopper_pearson"
+    }
+   }
+  }
+ },
+ "oncovi": {
+  "accuracy_3class": 0.797,
+  "accuracy_5class": 0.609,
+  "specificity_onc": 0.806,
+  "sensitivity_onc": 0.909,
+  "accuracy_3class_ci": {
+   "point": 0.797,
+   "lo": 0.696,
+   "hi": 0.884,
+   "n": 69
+  },
+  "onc_exact_ci95": {
+   "sensitivity": {
+    "wilson": {
+     "point": 0.909,
+     "lo": 0.764,
+     "hi": 0.969,
+     "k": 30,
+     "n": 33,
+     "method": "wilson"
+    },
+    "clopper_pearson": {
+     "point": 0.909,
+     "lo": 0.757,
+     "hi": 0.981,
+     "k": 30,
+     "n": 33,
+     "method": "clopper_pearson"
+    }
+   },
+   "specificity": {
+    "wilson": {
+     "point": 0.806,
+     "lo": 0.65,
+     "hi": 0.902,
+     "k": 29,
+     "n": 36,
+     "method": "wilson"
+    },
+    "clopper_pearson": {
+     "point": 0.806,
+     "lo": 0.64,
+     "hi": 0.918,
+     "k": 29,
+     "n": 36,
+     "method": "clopper_pearson"
+    }
+   }
+  }
+ },
+ "oncovi_published_full_93": {
+  "accuracy": 0.8,
+  "sensitivity_onc": 0.88,
+  "note": "Carta et al. on all 93; here we share 69."
+ },
+ "paired_mcnemar_3class": {
+  "p_two_sided": 0.017,
+  "ours_only_correct": 10,
+  "oncovi_only_correct": 25
+ },
+ "pred_dist": {
+  "gold": {
+   "ONC": 33,
+   "VUS": 29,
+   "BEN": 7
+  },
+  "ours": {
+   "VUS": 49,
+   "ONC": 8,
+   "BEN": 12
+  },
+  "oncovi": {
+   "ONC": 37,
+   "VUS": 23,
+   "BEN": 9
+  }
+ },
+ "disagreements": [
+  {
+   "variant": "FLT3 p.D835Y",
+   "gold": "Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OM3,OP1,OP4",
+   "ours_codes": [
+    "OM3",
+    "OP1",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "FLT3 p.D835E",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OM3,OP3,OP4,SBP1",
+   "ours_codes": [
+    "OP3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "FLT3 p.D835H",
+   "gold": "Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OM3,OP1,OP3,OP4",
+   "ours_codes": [
+    "OP3",
+    "OP1",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "FLT3 p.D835V",
+   "gold": "Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OM3,OP1,OP3,OP4",
+   "ours_codes": [
+    "OP3",
+    "OP1",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "FLT3 p.N676K",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OM3,OP4,SBP1",
+   "ours_codes": [
+    "OP4"
+   ]
+  },
+  {
+   "variant": "FLT3 p.Y842C",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OM3,OP1,OP4",
+   "ours_codes": [
+    "OP1",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "FLT3 p.F691L",
+   "gold": "VUS",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OP1,OP4",
+   "ours_codes": [
+    "OP4"
+   ]
+  },
+  {
+   "variant": "BRAF p.K601E",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OM3,OP1,OP4",
+   "ours_codes": [
+    "OM3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "BRAF p.G469A",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OP1,OP4",
+   "ours_codes": [
+    "OS3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "BRAF p.G469E",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OM3,OP1,OP3,OP4",
+   "ours_codes": [
+    "OM1",
+    "OP3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "IDH1 p.R132H",
+   "gold": "Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OP1,OP4",
+   "ours_codes": [
+    "OS3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "IDH1 p.R132C",
+   "gold": "Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OM3,OP1,OP4",
+   "ours_codes": [
+    "OS3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "IDH1 p.R132S",
+   "gold": "Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OP1,OP4",
+   "ours_codes": [
+    "OS3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "IDH1 p.F32V",
+   "gold": "VUS",
+   "oncovi": "Likely Benign",
+   "ours": "VUS",
+   "oncovi_codes": "OP1,OP4,SBS2",
+   "ours_codes": []
+  },
+  {
+   "variant": "KRAS p.R164Q",
+   "gold": "VUS",
+   "oncovi": "VUS",
+   "ours": "Likely Benign",
+   "oncovi_codes": "OP1,OP4",
+   "ours_codes": [
+    "SBS2_Moderate",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "KRAS p.S65I",
+   "gold": "VUS",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS2,OM3,OP1,OP4",
+   "ours_codes": [
+    "OP4"
+   ]
+  },
+  {
+   "variant": "KRAS p.Q61K",
+   "gold": "Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OM3,OP1,OP4",
+   "ours_codes": [
+    "OS3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "PIK3CA p.H1047R",
+   "gold": "Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OM3,OP1,OP4",
+   "ours_codes": [
+    "OS3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "PIK3CA p.H1065Y",
+   "gold": "VUS",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS2,OP1,OP3,OP4",
+   "ours_codes": [
+    "OP3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "PIK3CA p.E545A",
+   "gold": "Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OP1,OP4",
+   "ours_codes": [
+    "OS3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "PIK3CA p.E453K",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OM4,OP1,OP4",
+   "ours_codes": [
+    "OM3",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "PIK3CA p.E418K",
+   "gold": "VUS",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS2,OM1,OP1,OP4",
+   "ours_codes": [
+    "OP4"
+   ]
+  },
+  {
+   "variant": "PTEN p.T131I",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OM3,OP1,OP4",
+   "ours_codes": [
+    "OP4"
+   ]
+  },
+  {
+   "variant": "PTEN p.P204A",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS2,OM1,OP1,OP4",
+   "ours_codes": [
+    "OP4"
+   ]
+  },
+  {
+   "variant": "RB1 p.S567L",
+   "gold": "VUS",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OP1,OP4",
+   "ours_codes": [
+    "OP1",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "RB1 p.R661W",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS1,OS2,OP1,OP4",
+   "ours_codes": [
+    "OP1",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "EZH2 p.Y646F",
+   "gold": "Oncogenic",
+   "oncovi": "VUS",
+   "ours": "Likely Oncogenic",
+   "oncovi_codes": "OM1,OP1,OP4",
+   "ours_codes": [
+    "OM3",
+    "OS2",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "EZH2 p.V626M",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS2,OM1,OP1,OP4",
+   "ours_codes": [
+    "OP1",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "EZH2 p.R684C",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS2,OM1,OP1,OP4",
+   "ours_codes": [
+    "OP4"
+   ]
+  },
+  {
+   "variant": "EZH2 p.R690H",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS3,OP1,OP4",
+   "ours_codes": [
+    "OP4"
+   ]
+  },
+  {
+   "variant": "EZH2 p.S695L",
+   "gold": "VUS",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS2,OM1,OP1,OP4",
+   "ours_codes": [
+    "OP1",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "EZH2 p.Y731H",
+   "gold": "VUS",
+   "oncovi": "Likely Oncogenic",
+   "ours": "VUS",
+   "oncovi_codes": "OS2,OM1,OP1,OP4",
+   "ours_codes": [
+    "OP1",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "TP53 p.G334R",
+   "gold": "VUS",
+   "oncovi": "VUS",
+   "ours": "Likely Benign",
+   "oncovi_codes": "OM1,OP1,OP4",
+   "ours_codes": [
+    "SBS2"
+   ]
+  },
+  {
+   "variant": "TP53 p.A347D",
+   "gold": "Likely Oncogenic",
+   "oncovi": "Oncogenic",
+   "ours": "Likely Benign",
+   "oncovi_codes": "OS1,OS2,OM3,OP4,SBP1",
+   "ours_codes": [
+    "SBS2",
+    "OP4"
+   ]
+  },
+  {
+   "variant": "TP53 p.H365Y",
+   "gold": "Likely Benign",
+   "oncovi": "VUS",
+   "ours": "Likely Benign",
+   "oncovi_codes": "OS1,OP1,OP4,SBS2",
+   "ours_codes": [
+    "SBS2",
+    "OP4"
+   ]
+  }
+ ]
+}

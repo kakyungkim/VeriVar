@@ -1,0 +1,970 @@
+{
+  "config": "abl_strict_plus_a",
+  "config_description": "Ablation: sop_strict + change a (predictors).",
+  "n": 70,
+  "accuracy_5class": 0.514,
+  "accuracy_3class": 0.657,
+  "baselines": {
+    "simplified_rule_3class": 0.557,
+    "llm_retrieval_3class": 0.6,
+    "oncovi_3class": 0.8
+  },
+  "pred_dist_3class": {
+    "VUS": 47,
+    "ONC": 12,
+    "BEN": 11
+  },
+  "gold_dist_3class": {
+    "ONC": 33,
+    "VUS": 30,
+    "BEN": 7
+  },
+  "rows": [
+    {
+      "variant": "FLT3 p.D835Y",
+      "gold": "Oncogenic",
+      "vicc": "VUS",
+      "points": 4,
+      "codes": [
+        "OM3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Sensitivity/Response": 5
+      }
+    },
+    {
+      "variant": "FLT3 p.D835E",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP3",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "FLT3 p.D835H",
+      "gold": "Oncogenic",
+      "vicc": "VUS",
+      "points": 3,
+      "codes": [
+        "OP3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Resistance": 2,
+        "Predictive|Sensitivity/Response": 1
+      }
+    },
+    {
+      "variant": "FLT3 p.D835V",
+      "gold": "Oncogenic",
+      "vicc": "VUS",
+      "points": 3,
+      "codes": [
+        "OP3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Resistance": 1,
+        "Predictive|Sensitivity/Response": 7
+      }
+    },
+    {
+      "variant": "FLT3 p.N676K",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 1,
+      "codes": [
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "FLT3 p.Y842C",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Resistance": 4,
+        "Predictive|Sensitivity/Response": 2
+      }
+    },
+    {
+      "variant": "FLT3 p.F691L",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 1,
+      "codes": [
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Resistance": 2
+      }
+    },
+    {
+      "variant": "FLT3 p.Y693C",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "FLT3 p.Y693N",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "BRAF p.K601E",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 4,
+      "codes": [
+        "OM3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Sensitivity/Response": 1
+      }
+    },
+    {
+      "variant": "BRAF p.D594N",
+      "gold": "Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 6,
+      "codes": [
+        "OS3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "BRAF p.G469A",
+      "gold": "Likely Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 6,
+      "codes": [
+        "OS3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Sensitivity/Response": 1
+      }
+    },
+    {
+      "variant": "BRAF p.G469E",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 5,
+      "codes": [
+        "OM1",
+        "OP3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Sensitivity/Response": 1,
+        "Predictive|Resistance": 1
+      }
+    },
+    {
+      "variant": "BRAF p.P14R",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 0,
+      "codes": [
+        "SBP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "BRAF p.A31G",
+      "gold": "VUS",
+      "vicc": "Likely Benign",
+      "points": -1,
+      "codes": [
+        "SBP1"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "BRAF p.D445H",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 1,
+      "codes": [
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "IDH1 p.R132H",
+      "gold": "Oncogenic",
+      "vicc": "VUS",
+      "points": 5,
+      "codes": [
+        "OS3",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Sensitivity/Response": 2
+      }
+    },
+    {
+      "variant": "IDH1 p.R132C",
+      "gold": "Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 6,
+      "codes": [
+        "OS3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Diagnostic|Positive": 1,
+        "Prognostic|nan": 1,
+        "Predictive|Sensitivity/Response": 7
+      }
+    },
+    {
+      "variant": "IDH1 p.R132S",
+      "gold": "Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 6,
+      "codes": [
+        "OS3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "IDH1 p.V178I",
+      "gold": "Benign",
+      "vicc": "Benign",
+      "points": -8,
+      "codes": [
+        "SBVS1"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "IDH1 p.D220G",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "IDH1 p.E262K",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 1,
+      "codes": [
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "IDH1 p.F32V",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 0,
+      "codes": [],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "IDH1 p.V71I",
+      "gold": "Benign",
+      "vicc": "Likely Benign",
+      "points": -5,
+      "codes": [
+        "SBP1",
+        "SBS1"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "KRAS p.G12A",
+      "gold": "Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 6,
+      "codes": [
+        "OS3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Resistance": 9
+      }
+    },
+    {
+      "variant": "KRAS p.R164Q",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 0,
+      "codes": [
+        "SBS2_Moderate",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [
+        "7935"
+      ],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "KRAS p.S65I",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 1,
+      "codes": [
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "KRAS p.Q61K",
+      "gold": "Oncogenic",
+      "vicc": "VUS",
+      "points": 5,
+      "codes": [
+        "OS3",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Resistance": 1
+      }
+    },
+    {
+      "variant": "PIK3CA p.H1047R",
+      "gold": "Oncogenic",
+      "vicc": "VUS",
+      "points": 5,
+      "codes": [
+        "OS3",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Resistance": 10,
+        "Predictive|Sensitivity/Response": 16,
+        "Prognostic|Better Outcome": 2,
+        "Prognostic|Poor Outcome": 1
+      }
+    },
+    {
+      "variant": "PIK3CA p.H1047Q",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP3",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PIK3CA p.H1065Y",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP3",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PIK3CA p.K733R",
+      "gold": "VUS",
+      "vicc": "Likely Benign",
+      "points": -1,
+      "codes": [
+        "SBP1"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PIK3CA p.E545A",
+      "gold": "Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 6,
+      "codes": [
+        "OS3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PIK3CA p.E453K",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 3,
+      "codes": [
+        "OM3",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Sensitivity/Response": 1
+      }
+    },
+    {
+      "variant": "PIK3CA p.E418K",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 1,
+      "codes": [
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PIK3CA p.I391M",
+      "gold": "Benign",
+      "vicc": "Benign",
+      "points": -9,
+      "codes": [
+        "SBP1",
+        "SBVS1"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Resistance": 2
+      }
+    },
+    {
+      "variant": "PIK3CA p.M1?",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 1,
+      "codes": [
+        "OP3",
+        "SBP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PTEN p.R130Q",
+      "gold": "Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 6,
+      "codes": [
+        "OS3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PTEN p.T131I",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PTEN p.H123R",
+      "gold": "Likely Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 6,
+      "codes": [
+        "OS2",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PTEN p.P204A",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PTEN p.L182S",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "PTEN p.P354L",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 1,
+      "codes": [
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "RB1 p.Q689H",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 1,
+      "codes": [
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "RB1 p.S567L",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "RB1 p.W563L",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "RB1 p.R661W",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "RB1 p.E554K",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "RB1 p.Y606C",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP3",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.Y646F",
+      "gold": "Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 8,
+      "codes": [
+        "OM3",
+        "OS2",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [
+        "9517",
+        "9519",
+        "10394"
+      ],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.D136V",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.D233G",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.V626M",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.R658T",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.A682G",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 4,
+      "codes": [
+        "OS2_Moderate",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [
+        "12408"
+      ],
+      "civic_ignored": {
+        "Oncogenic|Oncogenicity": 2
+      }
+    },
+    {
+      "variant": "EZH2 p.A682V",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.R684C",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.R690H",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.S695L",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.Y731F",
+      "gold": "Likely Oncogenic",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "EZH2 p.Y731H",
+      "gold": "VUS",
+      "vicc": "VUS",
+      "points": 2,
+      "codes": [
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "TP53 p.P47S",
+      "gold": "Benign",
+      "vicc": "Benign",
+      "points": -8,
+      "codes": [
+        "SBS2",
+        "SBS1"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {
+        "Predictive|Resistance": 1
+      }
+    },
+    {
+      "variant": "TP53 p.V73M",
+      "gold": "Benign",
+      "vicc": "Likely Benign",
+      "points": -4,
+      "codes": [
+        "SBS2"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "TP53 p.C135G",
+      "gold": "Likely Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 7,
+      "codes": [
+        "OS2",
+        "OP3",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "TP53 p.V173M",
+      "gold": "Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 9,
+      "codes": [
+        "OS2",
+        "OS3",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "TP53 p.E180K",
+      "gold": "Likely Oncogenic",
+      "vicc": "Likely Oncogenic",
+      "points": 6,
+      "codes": [
+        "OS2",
+        "OP1",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "TP53 p.E298K",
+      "gold": "Likely Benign",
+      "vicc": "Likely Benign",
+      "points": -4,
+      "codes": [
+        "SBS2",
+        "OP3",
+        "SBP1"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "TP53 p.G334R",
+      "gold": "VUS",
+      "vicc": "Likely Benign",
+      "points": -4,
+      "codes": [
+        "SBS2"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "TP53 p.A347D",
+      "gold": "Likely Oncogenic",
+      "vicc": "Likely Benign",
+      "points": -3,
+      "codes": [
+        "SBS2",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    },
+    {
+      "variant": "TP53 p.H365Y",
+      "gold": "Likely Benign",
+      "vicc": "Likely Benign",
+      "points": -3,
+      "codes": [
+        "SBS2",
+        "OP4"
+      ],
+      "civic_functional_eids": [],
+      "civic_ignored": {}
+    }
+  ],
+  "auroc_onc": 0.9,
+  "sensitivity_onc": 0.364,
+  "specificity_onc": 1.0,
+  "operating_threshold": "points >= 6",
+  "roc_figure": "data/benchmark/vicc_configs/abl_strict_plus_a/vicc_roc.png",
+  "accuracy_3class_ci": {
+    "point": 0.657,
+    "lo": 0.543,
+    "hi": 0.771,
+    "n": 70
+  },
+  "sensitivity_onc_exact_ci": {
+    "wilson": {
+      "point": 0.364,
+      "lo": 0.222,
+      "hi": 0.534,
+      "k": 12,
+      "n": 33,
+      "method": "wilson"
+    },
+    "clopper_pearson": {
+      "point": 0.364,
+      "lo": 0.204,
+      "hi": 0.549,
+      "k": 12,
+      "n": 33,
+      "method": "clopper_pearson"
+    }
+  },
+  "specificity_onc_exact_ci": {
+    "wilson": {
+      "point": 1.0,
+      "lo": 0.906,
+      "hi": 1.0,
+      "k": 37,
+      "n": 37,
+      "method": "wilson"
+    },
+    "clopper_pearson": {
+      "point": 1.0,
+      "lo": 0.905,
+      "hi": 1.0,
+      "k": 37,
+      "n": 37,
+      "method": "clopper_pearson"
+    }
+  }
+}

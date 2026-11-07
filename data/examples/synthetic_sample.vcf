@@ -1,0 +1,16 @@
+##fileformat=VCFv4.2
+##source=synthetic_generator
+##reference=GRCh38
+##INFO=<ID=GENE,Number=1,Type=String,Description="Gene symbol">
+##INFO=<ID=HGVSc,Number=1,Type=String,Description="HGVS coding sequence name">
+##INFO=<ID=HGVSp,Number=1,Type=String,Description="HGVS protein sequence name">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth (reads with MQ=255 or with bad mates are filtered)">
+##FORMAT=<ID=AF,Number=A,Type=Float,Description="Allele fractions of alternate alleles in the tumor">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	TUMOR
+chr7	55259515	.	T	G	100	PASS	GENE=EGFR;HGVSc=c.2573T>G;HGVSp=p.L858R;DP=500	GT:AD:DP:AF	0/1:250,250:500:0.50
+chr12	25245350	.	C	A	100	PASS	GENE=KRAS;HGVSc=c.34G>T;HGVSp=p.G12C;DP=400	GT:AD:DP:AF	0/1:300,100:400:0.25
+chr17	7675088	.	C	T	100	PASS	GENE=TP53;HGVSc=c.524G>A;HGVSp=p.R175H;DP=300	GT:AD:DP:AF	0/1:200,100:300:0.33
+chr7	140753336	.	A	T	100	PASS	GENE=BRAF;HGVSc=c.1799T>A;HGVSp=p.V600E;DP=600	GT:AD:DP:AF	0/1:500,100:600:0.16

@@ -1,0 +1,322 @@
+{
+  "n_total": 56,
+  "n_discordant": 31,
+  "adjacent": 26,
+  "gross": 5,
+  "category_counts": {
+    "tier_boundary": 17,
+    "oncogenic_confidence": 6,
+    "rule_overcall_corrected_by_llm": 3,
+    "benign_label": 2,
+    "verifier_tier_downgrade": 2,
+    "llm_overcall_vs_rule": 1
+  },
+  "llm_more_conservative": 9,
+  "by_cancer": {
+    "Cutaneous Melanoma": {
+      "tier_boundary": 5,
+      "rule_overcall_corrected_by_llm": 1,
+      "benign_label": 1,
+      "verifier_tier_downgrade": 1
+    },
+    "Colorectal Adenocarcinoma": {
+      "benign_label": 1,
+      "tier_boundary": 3,
+      "rule_overcall_corrected_by_llm": 2,
+      "oncogenic_confidence": 1,
+      "verifier_tier_downgrade": 1
+    },
+    "Pancreatic Adenocarcinoma": {
+      "oncogenic_confidence": 3,
+      "tier_boundary": 4
+    },
+    "Lung Adenocarcinoma (NSCLC)": {
+      "oncogenic_confidence": 2,
+      "tier_boundary": 1,
+      "llm_overcall_vs_rule": 1
+    },
+    "Breast Carcinoma": {
+      "tier_boundary": 4
+    }
+  },
+  "categories": {
+    "tier_boundary": [
+      {
+        "variant": "BRAF p.G469E",
+        "cancer": "Cutaneous Melanoma",
+        "mode_a": "Oncogenic/Tier I",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "KRAS p.G12D",
+        "cancer": "Colorectal Adenocarcinoma",
+        "mode_a": "Oncogenic/Tier I",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "KRAS p.G12D",
+        "cancer": "Pancreatic Adenocarcinoma",
+        "mode_a": "Oncogenic/Tier I",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "KRAS p.G12R",
+        "cancer": "Pancreatic Adenocarcinoma",
+        "mode_a": "Oncogenic/Tier I",
+        "mode_b": "Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "NRAS p.Q61K",
+        "cancer": "Cutaneous Melanoma",
+        "mode_a": "Oncogenic/Tier I",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "NRAS p.Q61R",
+        "cancer": "Cutaneous Melanoma",
+        "mode_a": "Oncogenic/Tier I",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "PIK3CA p.H1047R",
+        "cancer": "Breast Carcinoma",
+        "mode_a": "Oncogenic/Tier I",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "TP53 p.R175H",
+        "cancer": "Breast Carcinoma",
+        "mode_a": "Oncogenic/Tier I",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "TP53 p.R273L",
+        "cancer": "Lung Adenocarcinoma (NSCLC)",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "AKT1 p.V192M",
+        "cancer": "Colorectal Adenocarcinoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "ALK p.F539C",
+        "cancer": "Colorectal Adenocarcinoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "ALK p.G1121D",
+        "cancer": "Breast Carcinoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "ALK p.R1209P",
+        "cancer": "Breast Carcinoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "BRAF p.H725Y",
+        "cancer": "Cutaneous Melanoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "ALK p.G391E",
+        "cancer": "Cutaneous Melanoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "ALK p.R1212H",
+        "cancer": "Pancreatic Adenocarcinoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "APC p.P1613H",
+        "cancer": "Pancreatic Adenocarcinoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 0.667
+      }
+    ],
+    "benign_label": [
+      {
+        "variant": "EGFR p.E114K",
+        "cancer": "Colorectal Adenocarcinoma",
+        "mode_a": "VUS/Tier IV",
+        "mode_b": "Likely Benign/Tier IV",
+        "llm_more_conservative": false,
+        "confidence": 0.5
+      },
+      {
+        "variant": "TP53 p.P152L",
+        "cancer": "Cutaneous Melanoma",
+        "mode_a": "VUS/Tier IV",
+        "mode_b": "Likely Benign/Tier IV",
+        "llm_more_conservative": false,
+        "confidence": 0.5
+      }
+    ],
+    "oncogenic_confidence": [
+      {
+        "variant": "ERBB2 p.V842I",
+        "cancer": "Pancreatic Adenocarcinoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": true,
+        "confidence": 0.667
+      },
+      {
+        "variant": "KRAS p.G12A",
+        "cancer": "Pancreatic Adenocarcinoma",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Oncogenic/Tier III",
+        "llm_more_conservative": true,
+        "confidence": 1.0
+      },
+      {
+        "variant": "PIK3CA p.E545K",
+        "cancer": "Lung Adenocarcinoma (NSCLC)",
+        "mode_a": "Likely Oncogenic/Tier II",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": true,
+        "confidence": 1.0
+      },
+      {
+        "variant": "TP53 p.D281E",
+        "cancer": "Lung Adenocarcinoma (NSCLC)",
+        "mode_a": "Oncogenic/Tier I",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": false,
+        "confidence": 1.0
+      },
+      {
+        "variant": "TP53 p.R273H",
+        "cancer": "Colorectal Adenocarcinoma",
+        "mode_a": "Likely Oncogenic/Tier III",
+        "mode_b": "Oncogenic/Tier III",
+        "llm_more_conservative": true,
+        "confidence": 0.5
+      },
+      {
+        "variant": "TP53 p.R273H",
+        "cancer": "Pancreatic Adenocarcinoma",
+        "mode_a": "Likely Oncogenic/Tier III",
+        "mode_b": "Oncogenic/Tier III",
+        "llm_more_conservative": true,
+        "confidence": 0.5
+      }
+    ],
+    "rule_overcall_corrected_by_llm": [
+      {
+        "variant": "PIK3CA p.R88Q",
+        "cancer": "Colorectal Adenocarcinoma",
+        "mode_a": "VUS/Tier IV",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": true,
+        "confidence": 0.5
+      },
+      {
+        "variant": "PTEN p.R130*",
+        "cancer": "Cutaneous Melanoma",
+        "mode_a": "VUS/Tier III",
+        "mode_b": "Oncogenic/Tier II",
+        "llm_more_conservative": true,
+        "confidence": 1.0
+      },
+      {
+        "variant": "ESR1 p.E247K",
+        "cancer": "Colorectal Adenocarcinoma",
+        "mode_a": "VUS/Tier III",
+        "mode_b": "Likely Oncogenic/Tier III",
+        "llm_more_conservative": true,
+        "confidence": 1.0
+      }
+    ],
+    "llm_overcall_vs_rule": [
+      {
+        "variant": "TP53 p.V272G",
+        "cancer": "Lung Adenocarcinoma (NSCLC)",
+        "mode_a": "Likely Oncogenic/Tier III",
+        "mode_b": "Likely Benign/Tier IV",
+        "llm_more_conservative": false,
+        "confidence": 0.5
+      }
+    ],
+    "verifier_tier_downgrade": [
+      {
+        "variant": "ALK p.R291C",
+        "cancer": "Colorectal Adenocarcinoma",
+        "mode_a": "VUS/Tier IV",
+        "mode_b": "VUS/Tier III",
+        "llm_more_conservative": true,
+        "confidence": 0.5
+      },
+      {
+        "variant": "ALK p.G1494E",
+        "cancer": "Cutaneous Melanoma",
+        "mode_a": "Likely Benign/Tier III",
+        "mode_b": "Likely Benign/Tier IV",
+        "llm_more_conservative": false,
+        "confidence": 0.5
+      }
+    ]
+  },
+  "provenance": {
+    "mode_used": "live",
+    "model_name": "gpt-4o-mini",
+    "data_sources": {
+      "cohort": "cBioPortal REST (TCGA PanCancer Atlas)",
+      "civic": "CIViC nightly",
+      "dgidb": "DGIdb",
+      "alphamissense": "Ensembl VEP REST",
+      "trials": "ClinicalTrials.gov v2"
+    },
+    "timestamp": "2026-05-31T03:00:33Z",
+    "n_variants": 56,
+    "techniques": [
+      "dense-RAG",
+      "self-consistency(n=3)",
+      "agentic-verifier"
+    ]
+  }
+}

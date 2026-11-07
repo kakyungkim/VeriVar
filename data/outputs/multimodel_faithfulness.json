@@ -1,0 +1,122 @@
+{
+  "summary": {
+    "backend": "mock",
+    "models": [
+      "mock-A",
+      "mock-B",
+      "mock-C"
+    ],
+    "n_variants": 3,
+    "abstain_threshold": 0.66,
+    "abstained": 0,
+    "abstention_rate": 0.0,
+    "mean_agreement": 1.0,
+    "nli_enabled": false
+  },
+  "results": [
+    {
+      "variant_key": "BRAF p.G469E",
+      "gene": "BRAF",
+      "hgvsp": "p.G469E",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 3,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense:7:140481402C>T",
+        "CIViC:EID6003",
+        "CIViC:EID6004"
+      ],
+      "per_model": {
+        "mock-A": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID6003",
+            "CIViC:EID6004",
+            "AlphaMissense:7:140481402C>T"
+          ]
+        },
+        "mock-B": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID6003",
+            "CIViC:EID6004",
+            "AlphaMissense:7:140481402C>T"
+          ]
+        },
+        "mock-C": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID6003",
+            "CIViC:EID6004",
+            "AlphaMissense:7:140481402C>T"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "BRAF p.V600E",
+      "gene": "BRAF",
+      "hgvsp": "p.V600E",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 96,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [],
+      "per_model": {
+        "mock-A": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": []
+        },
+        "mock-B": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": []
+        },
+        "mock-C": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "BRAF p.V600E",
+      "gene": "BRAF",
+      "hgvsp": "p.V600E",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 97,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [],
+      "per_model": {
+        "mock-A": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": []
+        },
+        "mock-B": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": []
+        },
+        "mock-C": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": []
+        }
+      }
+    }
+  ],
+  "risk_coverage": null
+}

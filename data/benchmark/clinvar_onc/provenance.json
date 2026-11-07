@@ -1,0 +1,106 @@
+{
+  "fetched_utc": "2026-09-24T00:06:42Z",
+  "script": "scripts/fetch_clinvar_oncogenicity.py",
+  "license": "ClinVar data are public domain (NCBI). AlphaMissense (CC BY 4.0) and gnomAD AF obtained through the Ensembl VEP REST API.",
+  "source_files": {
+    "variant_summary.txt.gz": {
+      "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz",
+      "last_modified": "Mon, 14 Sep 2026 13:55:03 GMT",
+      "content_length": 443063763,
+      "md5_remote": "b9f838ef66726499901fc8d1345a65c1",
+      "md5_local": "b9f838ef66726499901fc8d1345a65c1",
+      "sha256_local": "f25970aa49619fc73cdf8c878a3a20faaa69a0abd56cc8e14954f1d143e7e44e",
+      "size_bytes": 443063763
+    },
+    "submission_summary.txt.gz": {
+      "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/submission_summary.txt.gz",
+      "last_modified": "Sun, 13 Sep 2026 15:57:57 GMT",
+      "content_length": 389000708,
+      "md5_remote": "6e3933e0b88ec0b2cc1d3c1e879da45c",
+      "md5_local": "6e3933e0b88ec0b2cc1d3c1e879da45c",
+      "sha256_local": "cd0c127b746e6fe1c2d9e6cea8da4e6dac39605724b9a626c59e163e7ff76b7c",
+      "size_bytes": 389000708
+    }
+  },
+  "label_field": "variant_summary column 'Oncogenicity' (aggregate somatic oncogenicity classification); NOT the E-utilities [Oncogenicity Classification] search qualifier",
+  "filters": [
+    "Assembly == GRCh38",
+    "Oncogenicity not in {'-', 'no classification for the single variant'}",
+    "ReviewStatusOncogenicity startswith 'criteria provided'",
+    "Type == 'single nucleotide variant'",
+    "Name ends with a missense p.(Xxx###Yyy) (no Ter, no '=')"
+  ],
+  "funnel": {
+    "grch38_with_oncogenicity_classification": 1885,
+    "criteria_provided": 1777,
+    "dropped_snv_not_missense": 528,
+    "dropped_not_snv": 512,
+    "kept_missense": 737,
+    "dropped_no_assertion_criteria": 108
+  },
+  "n_rows": 737,
+  "label_dist": {
+    "Uncertain significance": 297,
+    "Oncogenic": 225,
+    "Likely oncogenic": 210,
+    "Benign": 2,
+    "Likely benign": 1,
+    "Conflicting classifications of oncogenicity": 2
+  },
+  "class_dist": {
+    "VUS": 297,
+    "ONC": 435,
+    "BEN": 3,
+    "CONFLICT": 2
+  },
+  "onc_last_evaluated_year": {
+    "2025": 735,
+    "2026": 1,
+    "2024": 1
+  },
+  "submitters_in_snapshot": {
+    "Center for Genomic Medicine, Rigshospitalet, Copenhagen University Hospital": 710,
+    "Dr. Guy Rouleau's laboratory, McGill University": 23,
+    "Microbiology and Molecular Biology Lab, Lahore College for Women University": 7,
+    "Genome Sciences Centre, British Columbia Cancer Agency": 3,
+    "Department of Urology, Affiliated Hospital of Jining Medical University": 1,
+    "CIViC Knowledgebase, Washington University School of Medicine": 1,
+    "Department of Pathology, Institute of Nuclear Medicine and Oncology": 1
+  },
+  "all_oncogenicity_scvs_in_clinvar": {
+    "n_scv": 1924,
+    "n_submitters": 20,
+    "by_submitter": {
+      "Center for Genomic Medicine, Rigshospitalet, Copenhagen University Hospital": 1715,
+      "Genome Sciences Centre, British Columbia Cancer Agency": 79,
+      "Dr. Guy Rouleau's laboratory, McGill University": 47,
+      "National Institute of Cancer Research, National Health Research Institutes": 32,
+      "Microbiology and Molecular Biology Lab, Lahore College for Women University": 11,
+      "Center for Precision Oncology and Cancer Prevention, Roswell Park Comprehensive Cancer Center": 7,
+      "Department of Pathology, Institute of Nuclear Medicine and Oncology": 6,
+      "Department of Urology, Affiliated Hospital of Jining Medical University": 4,
+      "Adnan Lab, Aga Khan University": 4,
+      "Research Institute for Clinical Oncology, Saitama Cancer Center": 3,
+      "Biochemistry Department, University of Zimbabwe": 2,
+      "Molecular Diagnostics Laboratory, Fox Chase Cancer Center - Temple Health": 2,
+      "CHARM Consortium": 2,
+      "Genomics Lab, University of Education": 2,
+      "Oncology Lab, University of Education": 2,
+      "Leukemia Research Group, Cancer Lab, Institute of Biochemistry, Biotechnology and Bioinformatics": 2,
+      "Anatomical Molecular Laboratory, Singapore General Hospital": 1,
+      "CIViC Knowledgebase, Washington University School of Medicine": 1,
+      "Molecular Diagnostics Division, Virginia Commonwealth University": 1,
+      "Centre de Biotechnologie de Sfax, Universit\u00e9 de Sfax": 1
+    }
+  },
+  "vep": {
+    "skipped": false,
+    "endpoint": "https://rest.ensembl.org/vep/human/region?AlphaMissense=1&af_gnomade=1&af_gnomadg=1",
+    "ensembl_release": [
+      116
+    ],
+    "n_with_alphamissense": 724,
+    "n_with_gnomad_af_gt0": 213,
+    "gnomad_rule": "max(gnomADe AF, gnomADg AF) for the alt allele; 0.0 when no gnomAD record is co-located"
+  }
+}

@@ -25,6 +25,8 @@ import os
 import random
 from collections import Counter
 
+from src.eval.stats import onc_vs_rest_exact_ci
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 BENCH = os.path.join(ROOT, "data", "benchmark")
 CANCERVAR_PRED = os.path.join(BENCH, "cancervar", "cancervar_predictions.json")
@@ -107,6 +109,17 @@ def classify_error(gold3, pred3):
 
 
 def main():
+    # --ours/--out (added 2026-09-24): per-configuration runs of the VICC suite write to
+    # data/benchmark/vicc_configs/<config>/ without touching the top-level primary files.
+    import argparse
+    global OUR_PRED, ONCOVI_H2H
+    _ap = argparse.ArgumentParser(description=__doc__.split("\n")[0] if __doc__ else None)
+    _ap.add_argument("--ours", default=OUR_PRED)
+    _ap.add_argument("--out", default=os.path.join(BENCH, "cancervar_headtohead.json"))
+    _ap.add_argument("--oncovi-h2h", default=ONCOVI_H2H)
+    _args = _ap.parse_args()
+    OUR_PRED = _args.ours
+    ONCOVI_H2H = _args.oncovi_h2h
     cv = json.load(open(CANCERVAR_PRED))
     if cv.get("n_failed", 0) > 0 or cv["n_parsed"] < cv["n_total"]:
         print(f"[!] WARNING: CancerVar fetch incomplete "
@@ -168,6 +181,8 @@ def main():
             "sensitivity_onc": (round(sens(pred3, g3), 3)
                                 if sens(pred3, g3) is not None else None),
             "sensitivity_onc_ci": boot_ci(pred3, g3, sens),
+            # Wilson + Clopper-Pearson; the bootstrap collapses at 0 or 1 (peer review P1-3)
+            "onc_exact_ci95": onc_vs_rest_exact_ci(pred3, g3),
         }
 
     # 3-way context (rule arm vs OncoVI vs CancerVar) for the manuscript.
@@ -213,7 +228,7 @@ def main():
         "three_way_context": three_way,
         "variants_compared": [r["variant"] for r in rows],
     }
-    out_path = os.path.join(BENCH, "cancervar_headtohead.json")
+    out_path = _args.out
     json.dump(report, open(out_path, "w"), indent=2)
 
     print(f"[+] CancerVar head-to-head on {n} shared Horak variants (vs same expert gold)")

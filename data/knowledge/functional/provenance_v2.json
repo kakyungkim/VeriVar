@@ -1,0 +1,1331 @@
+{
+  "fetched_utc": "2026-09-24T09:12:53Z",
+  "script": "scripts/fetch_vicc_v2_inputs.py --steps mavedb",
+  "api": "https://api.mavedb.org/api/v1",
+  "candidate_genes": [
+    "APC",
+    "ARID1A",
+    "ATM",
+    "BAP1",
+    "BRCA1",
+    "BRCA2",
+    "CDKN2A",
+    "CHEK2",
+    "FAT1",
+    "FBXW7",
+    "KEAP1",
+    "MLH1",
+    "MSH6",
+    "NF1",
+    "NOTCH1",
+    "RB1",
+    "SMAD4",
+    "STK11"
+  ],
+  "criteria": {
+    "gene": "(Horak-9 U ClinVar-snapshot genes) & TUMOUR_SUPPRESSORS, minus TP53/PTEN",
+    "licence": [
+      "CC BY 4.0",
+      "CC0"
+    ],
+    "published_not_superseded": true,
+    "single_human_target_equal_to_gene": true,
+    "min_nonsense": 10,
+    "min_missense_aa": 50,
+    "min_uniprot_ref_match": 0.95,
+    "exclude_inverted_synonymous": true,
+    "partition_subsets_dropped": "a set whose scored amino-acid changes are all contained in a larger eligible set of the same MaveDB experiment set is dropped (exon-level partitions of one SGE screen)"
+  },
+  "calibration": "cutoff = (median missense + median nonsense)/2; LoF side = side of the nonsense median; per-aa median over nucleotide variants; LoF in ANY eligible set of the gene -> LoF; no neutral calls",
+  "existing_sources_licence": {
+    "urn:mavedb:00000054-a-1": "CC0",
+    "urn:mavedb:00000013-a-1": "CC0",
+    "urn:mavedb:00001236-0-1": "CC0"
+  },
+  "sets": [
+    {
+      "urn": "urn:mavedb:00000662-0-1",
+      "title": "BAP1 SGE",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 18108,
+      "doi_pubmed": [
+        "38969833"
+      ],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-r-1",
+      "title": "BAP1 SGE additional variant scores",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1691,
+      "doi_pubmed": [
+        "38969833"
+      ],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-a-2",
+      "title": "BAP1 SGE Exon 1",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 620,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-k-1",
+      "title": "BAP1 SGE Exon 10",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1149,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-i-1",
+      "title": "BAP1 SGE Exon 11",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1401,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-l-1",
+      "title": "BAP1 SGE Exon 12",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1185,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-m-1",
+      "title": "BAP1 SGE Exon 13",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1599,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-n-1",
+      "title": "BAP1 SGE Exon 14",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1199,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-o-1",
+      "title": "BAP1 SGE Exon 15",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 819,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-p-1",
+      "title": "BAP1 SGE Exon 16",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 690,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-q-1",
+      "title": "BAP1 SGE Exon 17",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1341,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-b-1",
+      "title": "BAP1 SGE Exon 2",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 357,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-c-1",
+      "title": "BAP1 SGE Exon 3",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 518,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-d-1",
+      "title": "BAP1 SGE Exon 4",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1063,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-e-1",
+      "title": "BAP1 SGE Exon 5",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1029,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-f-1",
+      "title": "BAP1 SGE Exon 6",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 608,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-g-1",
+      "title": "BAP1 SGE Exon 7",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1137,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-h-1",
+      "title": "BAP1 SGE Exon 8",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 656,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000662-j-1",
+      "title": "BAP1 SGE Exon 9",
+      "licence": "CC BY 4.0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BAP1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000662",
+      "num_variants": 1045,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00001237-a-1",
+      "title": "VarChAMP_Imaging_Localization_May_2025",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "RHO",
+        "BAP1",
+        "BRAF",
+        "FH",
+        "BRCA1",
+        "PTPN11",
+        "ABCD1",
+        "CTCF",
+        "KRAS",
+        "RPS19",
+        "SOS2",
+        "NF2",
+        "BCL10",
+        "LMNA",
+        "RET",
+        "F9",
+        "RAF1",
+        "RAD51D",
+        "SHOC2",
+        "SDHD",
+        "ZC4H2",
+        "CCM2",
+        "FLCN",
+        "MSH2",
+        "FARS2",
+        "FANCC",
+        "BRIP1",
+        "G6PD"
+      ],
+      "organism": [
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001237",
+      "num_variants": 430,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "eligible": false,
+      "reason": "targets ['RHO', 'BAP1', 'BRAF', 'FH', 'BRCA1', 'PTPN11', 'ABCD1', 'CTCF', 'KRAS', 'RPS19', 'SOS2', 'NF2', 'BCL10', 'LMNA', 'RET', 'F9', 'RAF1', 'RAD51D', 'SHOC2', 'SDHD', 'ZC4H2', 'CCM2', 'FLCN', 'MSH2', 'FARS2', 'FANCC', 'BRIP1', 'G6PD'] (multi-target or different gene)"
+    },
+    {
+      "urn": "urn:mavedb:00001237-a-2",
+      "title": "VarChAMP_Imaging_Morphological_Change_May_2025",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "RHO",
+        "BAP1",
+        "BRAF",
+        "FH",
+        "BRCA1",
+        "PTPN11",
+        "ABCD1",
+        "CTCF",
+        "KRAS",
+        "RPS19",
+        "SOS2",
+        "NF2",
+        "BCL10",
+        "LMNA",
+        "RET",
+        "F9",
+        "RAF1",
+        "RAD51D",
+        "SHOC2",
+        "SDHD",
+        "ZC4H2",
+        "CCM2",
+        "FLCN",
+        "MSH2",
+        "FARS2",
+        "FANCC",
+        "BRIP1",
+        "G6PD"
+      ],
+      "organism": [
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001237",
+      "num_variants": 430,
+      "doi_pubmed": [],
+      "gene": "BAP1",
+      "uniprot": "Q92560",
+      "eligible": false,
+      "reason": "targets ['RHO', 'BAP1', 'BRAF', 'FH', 'BRCA1', 'PTPN11', 'ABCD1', 'CTCF', 'KRAS', 'RPS19', 'SOS2', 'NF2', 'BCL10', 'LMNA', 'RET', 'F9', 'RAF1', 'RAD51D', 'SHOC2', 'SDHD', 'ZC4H2', 'CCM2', 'FLCN', 'MSH2', 'FARS2', 'FANCC', 'BRIP1', 'G6PD'] (multi-target or different gene)"
+    },
+    {
+      "urn": "urn:mavedb:00000081-a-1",
+      "title": "BRCA1 RING and BRCT domains depletion scores",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA1"
+      ],
+      "organism": [
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00000081",
+      "num_variants": 1061,
+      "doi_pubmed": [
+        "30219179"
+      ],
+      "gene": "BRCA1",
+      "uniprot": "P38398",
+      "n_missense_aa": 1055,
+      "n_nonsense": 4,
+      "n_synonymous": 0,
+      "ref_match": 1.0,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00000081-a-2",
+      "title": "BRCA1 RING and BRCT domains mean HDR fluorescence score",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA1"
+      ],
+      "organism": [
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00000081",
+      "num_variants": 2820,
+      "doi_pubmed": [
+        "30219179"
+      ],
+      "gene": "BRCA1",
+      "uniprot": "P38398",
+      "n_missense_aa": 2749,
+      "n_nonsense": 71,
+      "n_synonymous": 0,
+      "ref_match": 1.0,
+      "eligible": true,
+      "missense_median": -0.0672,
+      "nonsense_median": -1.6226,
+      "cutoff": -0.8449,
+      "lof_side": "low",
+      "n_lof": 169
+    },
+    {
+      "urn": "urn:mavedb:00001222-a-2",
+      "title": "Scores from growth assay of BRCA1 variants",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA1"
+      ],
+      "organism": [
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001222",
+      "num_variants": 1427,
+      "doi_pubmed": [
+        "35196514"
+      ],
+      "gene": "BRCA1",
+      "uniprot": "P38398",
+      "n_missense_aa": 1359,
+      "n_nonsense": 68,
+      "n_synonymous": 0,
+      "ref_match": 0.053,
+      "eligible": false,
+      "reason": "reference amino acids do not match UniProt numbering (>=95% required)"
+    },
+    {
+      "urn": "urn:mavedb:00000097-0-2",
+      "title": "BRCA1 SGE Normalized Scores",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA1"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00000097",
+      "num_variants": 3893,
+      "doi_pubmed": [
+        "30209399"
+      ],
+      "gene": "BRCA1",
+      "uniprot": "P38398",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00001222-b-2",
+      "title": "Scores from multiplexed functional assay of BRCA1 variants",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA1"
+      ],
+      "organism": [
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001222",
+      "num_variants": 2271,
+      "doi_pubmed": [
+        "35196514"
+      ],
+      "gene": "BRCA1",
+      "uniprot": "P38398",
+      "n_missense_aa": 2150,
+      "n_nonsense": 121,
+      "n_synonymous": 0,
+      "ref_match": 0.074,
+      "eligible": false,
+      "reason": "reference amino acids do not match UniProt numbering (>=95% required)"
+    },
+    {
+      "urn": "urn:mavedb:00001237-a-2",
+      "title": "VarChAMP_Imaging_Morphological_Change_May_2025",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "RHO",
+        "BAP1",
+        "BRAF",
+        "FH",
+        "BRCA1",
+        "PTPN11",
+        "ABCD1",
+        "CTCF",
+        "KRAS",
+        "RPS19",
+        "SOS2",
+        "NF2",
+        "BCL10",
+        "LMNA",
+        "RET",
+        "F9",
+        "RAF1",
+        "RAD51D",
+        "SHOC2",
+        "SDHD",
+        "ZC4H2",
+        "CCM2",
+        "FLCN",
+        "MSH2",
+        "FARS2",
+        "FANCC",
+        "BRIP1",
+        "G6PD"
+      ],
+      "organism": [
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001237",
+      "num_variants": 430,
+      "doi_pubmed": [],
+      "gene": "BRCA1",
+      "uniprot": "P38398",
+      "eligible": false,
+      "reason": "targets ['RHO', 'BAP1', 'BRAF', 'FH', 'BRCA1', 'PTPN11', 'ABCD1', 'CTCF', 'KRAS', 'RPS19', 'SOS2', 'NF2', 'BCL10', 'LMNA', 'RET', 'F9', 'RAF1', 'RAD51D', 'SHOC2', 'SDHD', 'ZC4H2', 'CCM2', 'FLCN', 'MSH2', 'FARS2', 'FANCC', 'BRIP1', 'G6PD'] (multi-target or different gene)"
+    },
+    {
+      "urn": "urn:mavedb:00001237-a-1",
+      "title": "VarChAMP_Imaging_Localization_May_2025",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "RHO",
+        "BAP1",
+        "BRAF",
+        "FH",
+        "BRCA1",
+        "PTPN11",
+        "ABCD1",
+        "CTCF",
+        "KRAS",
+        "RPS19",
+        "SOS2",
+        "NF2",
+        "BCL10",
+        "LMNA",
+        "RET",
+        "F9",
+        "RAF1",
+        "RAD51D",
+        "SHOC2",
+        "SDHD",
+        "ZC4H2",
+        "CCM2",
+        "FLCN",
+        "MSH2",
+        "FARS2",
+        "FANCC",
+        "BRIP1",
+        "G6PD"
+      ],
+      "organism": [
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens",
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001237",
+      "num_variants": 430,
+      "doi_pubmed": [],
+      "gene": "BRCA1",
+      "uniprot": "P38398",
+      "eligible": false,
+      "reason": "targets ['RHO', 'BAP1', 'BRAF', 'FH', 'BRCA1', 'PTPN11', 'ABCD1', 'CTCF', 'KRAS', 'RPS19', 'SOS2', 'NF2', 'BCL10', 'LMNA', 'RET', 'F9', 'RAF1', 'RAD51D', 'SHOC2', 'SDHD', 'ZC4H2', 'CCM2', 'FLCN', 'MSH2', 'FARS2', 'FANCC', 'BRIP1', 'G6PD'] (multi-target or different gene)"
+    },
+    {
+      "urn": "urn:mavedb:00001224-a-1",
+      "title": "Scores from arrayed screen of BRCA2 homology directed repair function in VC-8 cells",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA2"
+      ],
+      "organism": [
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001224",
+      "num_variants": 462,
+      "doi_pubmed": [
+        "38417439"
+      ],
+      "gene": "BRCA2",
+      "uniprot": "P51587",
+      "n_missense_aa": 462,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": 1.0,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00001268-0-1",
+      "title": "Global scores from saturation mutagenesis of BRCA2 exon 13",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA2"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00001268",
+      "num_variants": 252,
+      "doi_pubmed": [
+        "37713444"
+      ],
+      "gene": "BRCA2",
+      "uniprot": "P51587",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00001263-a-2",
+      "title": "Saturation Genome Editing of BRCA2 scores",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA2"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00001263",
+      "num_variants": 871,
+      "doi_pubmed": [],
+      "gene": "BRCA2",
+      "uniprot": "P51587",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00001268-c-1",
+      "title": "Scores from SGE of BRCA2 exon 13",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA2"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00001268",
+      "num_variants": 252,
+      "doi_pubmed": [
+        "37713444"
+      ],
+      "gene": "BRCA2",
+      "uniprot": "P51587",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00001268-a-1",
+      "title": "Scores from SGE of BRCA2 exon 13 with cisplatin drug selection",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA2"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00001268",
+      "num_variants": 252,
+      "doi_pubmed": [
+        "37713444"
+      ],
+      "gene": "BRCA2",
+      "uniprot": "P51587",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00001268-b-1",
+      "title": "Scores from SGE of BRCA2 exon 13 with olaparib drug selection",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA2"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00001268",
+      "num_variants": 252,
+      "doi_pubmed": [
+        "37713444"
+      ],
+      "gene": "BRCA2",
+      "uniprot": "P51587",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00001279-a-1",
+      "title": "Scores from SGE of BRCA2 exons 15 to 26 in Hap1 cells",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "BRCA2"
+      ],
+      "organism": [
+        null
+      ],
+      "experiment_set": "urn:mavedb:00001279",
+      "num_variants": 6959,
+      "doi_pubmed": [
+        "39779857"
+      ],
+      "gene": "BRCA2",
+      "uniprot": "P51587",
+      "n_missense_aa": 0,
+      "n_nonsense": 0,
+      "n_synonymous": 0,
+      "ref_match": null,
+      "eligible": false,
+      "reason": "too few nonsense or missense scores"
+    },
+    {
+      "urn": "urn:mavedb:00001280-a-1",
+      "title": "CHEK2_McCarthy_Leo",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "CHEK2"
+      ],
+      "organism": [
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001280",
+      "num_variants": 3912,
+      "doi_pubmed": [
+        "39146382"
+      ],
+      "gene": "CHEK2",
+      "uniprot": "O96017",
+      "n_missense_aa": 3187,
+      "n_nonsense": 195,
+      "n_synonymous": 530,
+      "ref_match": 1.0,
+      "synonymous_median": 0.2478,
+      "eligible": true,
+      "missense_median": 0.6573,
+      "nonsense_median": 3.2387,
+      "cutoff": 1.948,
+      "lof_side": "high",
+      "n_lof": 751
+    },
+    {
+      "urn": "urn:mavedb:00001205-a-1",
+      "title": "CHEK2 Yeast Complementation in MMS",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "CHEK2"
+      ],
+      "organism": [
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001205",
+      "num_variants": 8847,
+      "doi_pubmed": [
+        "10.1101/2024.02.13.579700"
+      ],
+      "gene": "CHEK2",
+      "uniprot": "O96017",
+      "n_missense_aa": 7955,
+      "n_nonsense": 419,
+      "n_synonymous": 473,
+      "ref_match": 1.0,
+      "synonymous_median": 1.0112,
+      "eligible": true,
+      "missense_median": 0.802,
+      "nonsense_median": 0.075,
+      "cutoff": 0.4385,
+      "lof_side": "low",
+      "n_lof": 2590
+    },
+    {
+      "urn": "urn:mavedb:00001218-a-1",
+      "title": "Cellular abundance of MLH1",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "MLH1"
+      ],
+      "organism": [
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001218",
+      "num_variants": 5056,
+      "doi_pubmed": [
+        "10.1101/2024.07.28.605491"
+      ],
+      "gene": "MLH1",
+      "uniprot": "P40692",
+      "n_missense_aa": 4802,
+      "n_nonsense": 37,
+      "n_synonymous": 0,
+      "ref_match": 0.0552,
+      "eligible": false,
+      "reason": "reference amino acids do not match UniProt numbering (>=95% required)"
+    },
+    {
+      "urn": "urn:mavedb:00001218-a-2",
+      "title": "PMS2 interaction of MLH1",
+      "licence": "CC0",
+      "published": true,
+      "superseded_by": null,
+      "targets": [
+        "MLH1"
+      ],
+      "organism": [
+        "Homo sapiens"
+      ],
+      "experiment_set": "urn:mavedb:00001218",
+      "num_variants": 5056,
+      "doi_pubmed": [
+        "10.1101/2024.07.28.605491"
+      ],
+      "gene": "MLH1",
+      "uniprot": "P40692",
+      "n_missense_aa": 4802,
+      "n_nonsense": 37,
+      "n_synonymous": 0,
+      "ref_match": 0.0552,
+      "eligible": false,
+      "reason": "reference amino acids do not match UniProt numbering (>=95% required)"
+    }
+  ],
+  "genes": {
+    "APC": {
+      "uniprot": "P25054",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "ARID1A": {
+      "uniprot": "O14497",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "ATM": {
+      "uniprot": "Q13315",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "BAP1": {
+      "uniprot": "Q92560",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "BRCA1": {
+      "uniprot": "P38398",
+      "sets_used": [
+        "urn:mavedb:00000081-a-2"
+      ],
+      "n_lof_aa": 169
+    },
+    "BRCA2": {
+      "uniprot": "P51587",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "CDKN2A": {
+      "uniprot": "P42771",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "CHEK2": {
+      "uniprot": "O96017",
+      "sets_used": [
+        "urn:mavedb:00001280-a-1",
+        "urn:mavedb:00001205-a-1"
+      ],
+      "n_lof_aa": 3042
+    },
+    "FAT1": {
+      "uniprot": "Q14517",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "FBXW7": {
+      "uniprot": "Q969H0",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "KEAP1": {
+      "uniprot": "Q14145",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "MLH1": {
+      "uniprot": "P40692",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "MSH6": {
+      "uniprot": "P52701",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "NF1": {
+      "uniprot": "P21359",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "NOTCH1": {
+      "uniprot": "P46531",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "RB1": {
+      "uniprot": "P06400",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "SMAD4": {
+      "uniprot": "Q13485",
+      "sets_used": [],
+      "n_lof_aa": 0
+    },
+    "STK11": {
+      "uniprot": "Q15831",
+      "sets_used": [],
+      "n_lof_aa": 0
+    }
+  },
+  "output": "data/knowledge/functional/dms_lof_v2.json",
+  "sha256": "d390ac6e0b0fa7cb9dee37d91ec5acbafaa084b69e37a598aacb99839fbe2bda",
+  "note": "TP53 and PTEN are copied unchanged from dms_lof.json; dms_neutral.json is unchanged and still the only neutral (SBS2) DMS source"
+}

@@ -1,0 +1,33 @@
+{
+  "results": [
+    {
+      "cutoff_before": "full",
+      "corpus_evidence": 988,
+      "acc_3class": 0.586,
+      "kappa_3class": 0.311,
+      "oncogenic_recall": 0.727
+    },
+    {
+      "cutoff_before": 2018,
+      "corpus_evidence": 885,
+      "acc_3class": 0.629,
+      "kappa_3class": 0.386,
+      "oncogenic_recall": 0.818
+    },
+    {
+      "cutoff_before": 2015,
+      "corpus_evidence": 666,
+      "acc_3class": 0.6,
+      "kappa_3class": 0.341,
+      "oncogenic_recall": 0.818
+    },
+    {
+      "cutoff_before": 2012,
+      "corpus_evidence": 459,
+      "acc_3class": 0.643,
+      "kappa_3class": 0.413,
+      "oncogenic_recall": 0.848
+    }
+  ],
+  "note": "RAG corpus restricted to pre-cutoff literature; parametric floor = no-RAG in horak_results.json"
+}

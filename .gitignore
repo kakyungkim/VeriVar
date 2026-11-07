@@ -35,6 +35,106 @@ data/outputs/*
 !data/outputs/context_ablation_grounding.json
 !data/outputs/baseline_repeatability.json
 
+# HemaGuide Supplementary Table 6 (CC BY 4.0) and the head-to-head scored from it. They ship
+# so the third external comparator can be re-scored offline. The downloaded workbook stays
+# ignored.
+!data/benchmark/
+data/benchmark/*
+!data/benchmark/hemaguide/
+data/benchmark/hemaguide/raw/
+!data/benchmark/hemaguide_headtohead.json
+
+# --- Reproducibility bundle (2026-09-24 audit) --------------------------------------------
+# Every number, figure and gate check in the preprint is recomputed from the files below.
+# LLM outputs cannot be regenerated deterministically, so the per-variant caches ship; the
+# small reports derived from them ship too, because verify_manuscript and make_figures read
+# them directly. Resume checkpoints (*.partial.jsonl), run logs (they carry local paths),
+# rendered reports and diagnostic golden-set runs stay ignored.
+!data/outputs/cohort_interpretation.json
+!data/outputs/cohort_interpretation.csv
+!data/outputs/cohort_noverify.json
+!data/outputs/ablation_report.json
+!data/outputs/eval_report.json
+!data/outputs/stats_report.json
+!data/outputs/discordance_analysis.json
+!data/outputs/analyses_report.json
+!data/outputs/faithfulness_ablation.json
+!data/outputs/faithfulness_real_norag.json
+!data/outputs/verifier_effect.json
+!data/outputs/multimodel_faithfulness.json
+!data/outputs/multimodel_faithfulness_poc.json
+!data/outputs/multimodel_faithfulness_gpt4o.json
+
+# Horak-70 benchmark: derived gold table, LLM/rule predictions, and the public-evidence
+# snapshots (CIViC CC0, DGIdb, gnomAD, ClinVar) the offline re-scoring needs. The Horak
+# supplementary workbooks themselves (PMC author manuscript, no open licence) stay ignored;
+# scripts/build_horak_benchmark.py rebuilds the table from a downloaded copy.
+!data/benchmark/provenance.json
+!data/benchmark/civic_assertions.tsv
+!data/benchmark/horak_benchmark.tsv
+!data/benchmark/horak_results.json
+!data/benchmark/horak_vicc.json
+!data/benchmark/horak_gpt4o.json
+!data/benchmark/horak_lovo.json
+!data/benchmark/horak_temporal.json
+!data/benchmark/horak_sensitivity_modes.json
+!data/benchmark/horak_known_novel.json
+!data/benchmark/horak_civic.tsv
+!data/benchmark/horak_dgidb.json
+!data/benchmark/horak_gnomad.json
+!data/benchmark/horak_clinvar_os1.json
+!data/benchmark/clinvar_vicc.json
+!data/benchmark/clinvar_vicc_rows.json
+!data/benchmark/embed_ablation.json
+# OncoVI published predictions (MIT). The COSMIC Cancer Gene Census CSVs that sit beside
+# them are not ours to redistribute and nothing reads them.
+!data/benchmark/oncovi/
+data/benchmark/oncovi/*
+!data/benchmark/oncovi/SOP_table_union_OncoVI_prediction.xlsx
+!data/benchmark/oncovi/LICENSE
+!data/benchmark/oncovi/README.md
+!data/benchmark/oncovi_headtohead.json
+# CancerVar web-server tiers, parsed. Raw HTML page captures stay ignored.
+!data/benchmark/cancervar/
+data/benchmark/cancervar/*
+!data/benchmark/cancervar/cancervar_predictions.json
+!data/benchmark/cancervar/README.md
+!data/benchmark/cancervar_headtohead.json
+!data/benchmark/cgi/
+data/benchmark/cgi/*
+!data/benchmark/cgi/FEASIBILITY_BLOCKED.json
+
+# Small per-variant knowledge caches (AlphaMissense via VEP, trials, hotspots, MaveDB DMS,
+# UniProt domains, VEP annotations for the example VCFs). The dense index stays ignored;
+# scripts/build_index.py rebuilds it.
+!data/knowledge/alphamissense/
+!data/knowledge/trials/
+!data/knowledge/hotspots/
+!data/knowledge/functional/
+!data/knowledge/domains/
+!data/knowledge/resources.json
+!data/knowledge/vep_byo_cache.json
+!data/examples/
+
+# NLI citation-attribution audit (no LLM calls) and the ClinVar FTP oncogenicity holdout
+# that replaces the esearch-built clinvar_vicc set (public domain; VEP annotations cached so
+# the holdout re-scores offline).
+!data/outputs/nli_attribution_report.json
+!data/benchmark/clinvar_onc/
+!data/benchmark/clinvar_onc_holdout.json
+!data/benchmark/clinvar_onc_holdout_rows.json
+
+# Three VICC rule-arm configurations (original / os2_fixed / sop_strict) cited in the
+# correction note and Table 3.
+!data/benchmark/vicc_config_comparison.json
+!data/benchmark/vicc_configs/
+
+# Citation taxonomy (one rule set for all arms), its cached NCBI lookups, and the gnomAD
+# missingness audit — cited in the faithfulness headline and Methods (OP4).
+!data/outputs/citation_taxonomy.json
+!data/outputs/citation_lookup_cache.json
+!data/outputs/gnomad_missingness_audit.json
+
 # Secrets
 .env
 
@@ -73,4 +173,34 @@ docs/company_review_packet_ko.md
 docs/company-agent-templates/
 ppt/
 SUBMISSION_STEPS_LOCAL.md
-docs/manuscript/submission/
+docs/manuscript/submission/*
+!docs/manuscript/submission/README.md
+
+# Internal planning / audit memos and drafts (2026-09-24) — local only, not for the public repo
+docs/manuscript/*_2026????.md
+docs/manuscript/related_work_verified_*.bib
+docs/manuscript/abstract_GIW2026_LBA.md
+NOTE_*.md
+*.bak_*
+
+# Repository reorganisation (2026-09-24, scripts/reorganize_repo.py).
+# archive/ holds superseded local material and is never published. The
+# old-location patterns above (ppt/, company review packet, NOTE_*.md,
+# SUBMISSION_STEPS_LOCAL.md, dated manuscript memos) are kept on purpose
+# so those files stay ignored if they are ever recreated at the old paths.
+archive/
+
+# REVEL / CADD per-variant scores: non-commercial licences, no redistribution grant.
+# Fetch-only (scripts/fetch_vicc_v2_inputs.py); never commit the raw score snapshots.
+data/knowledge/vep_v2/
+data/benchmark/vicc_v2/*_v2_inputs.json
+data/benchmark/vicc_v2/op1_sbp1_diagnosis.json
+
+# scratch figures inside the VICC configuration suite (regenerable; never shipped)
+data/benchmark/vicc_configs/*/figures_scratch/
+data/benchmark/vicc_configs/*/vicc_roc.png
+
+# poster build products and third-party event logos
+docs/poster/*/out/
+docs/poster/*/assets/
+!docs/poster/*/assets/verivar_icon.svg

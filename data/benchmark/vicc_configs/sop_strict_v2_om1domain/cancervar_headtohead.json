@@ -1,0 +1,848 @@
+{
+  "n_shared_variants": 70,
+  "comparator": "CancerVar (WGLab, Li et al. Sci. Adv. 2022)",
+  "provenance": {
+    "tool": "CancerVar (WGLab)",
+    "source": "official web server",
+    "endpoint": "https://cancervar.wglab.org/results_new.php",
+    "citation": "Li Q, Ren Z, Cao K, Li MM, Zhou Y, Wang K. CancerVar: an Artificial Intelligence empowered platform for clinical interpretation of somatic mutations in cancer. Sci. Adv. 2022;8(18):eabj1624.",
+    "build": "hg38_update (GRCh38, Horak b38 coordinates)",
+    "cancer_type": "All_types",
+    "query_type": "position (chr/pos/ref/alt)",
+    "fetched_utc": "2026-06-14T10:51:43.905170Z",
+    "note": "Tiers parsed verbatim from CancerVar result HTML (clnsg=Tier_X, c_points=N). No tier was computed or assigned by this pipeline. CancerVar emits AMP/ASCO/CAP tiers, not VICC oncogenicity labels."
+  },
+  "semantic_caveat": "CancerVar emits AMP/ASCO/CAP clinical-actionability tiers (Tier_I..IV), not VICC oncogenicity. We map Tier_I/II->ONC, Tier_III->VUS, Tier_IV->BEN to score against the VICC oncogenicity gold. This cross-axis mapping favours neither tool but means CancerVar is being asked an actionability question, scored on an oncogenicity gold; interpret accuracy gaps with that in mind. Our engine and OncoVI both answer the native VICC oncogenicity question.",
+  "tier_to_3class_map": {
+    "Tier_I": "ONC",
+    "Tier_II": "ONC",
+    "Tier_III": "VUS",
+    "Tier_IV": "BEN"
+  },
+  "ours": {
+    "accuracy_3class": 0.671,
+    "accuracy_3class_ci": [
+      0.557,
+      0.771
+    ],
+    "specificity_onc": 1.0,
+    "specificity_onc_ci": [
+      1.0,
+      1.0
+    ],
+    "sensitivity_onc": 0.394,
+    "sensitivity_onc_ci": [
+      0.222,
+      0.564
+    ],
+    "onc_exact_ci95": {
+      "sensitivity": {
+        "wilson": {
+          "point": 0.394,
+          "lo": 0.247,
+          "hi": 0.563,
+          "k": 13,
+          "n": 33,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.394,
+          "lo": 0.229,
+          "hi": 0.579,
+          "k": 13,
+          "n": 33,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity": {
+        "wilson": {
+          "point": 1.0,
+          "lo": 0.906,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 1.0,
+          "lo": 0.905,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "clopper_pearson"
+        }
+      }
+    }
+  },
+  "cancervar": {
+    "accuracy_3class": 0.614,
+    "accuracy_3class_ci": [
+      0.5,
+      0.729
+    ],
+    "specificity_onc": 0.432,
+    "specificity_onc_ci": [
+      0.278,
+      0.6
+    ],
+    "sensitivity_onc": 1.0,
+    "sensitivity_onc_ci": [
+      1.0,
+      1.0
+    ],
+    "onc_exact_ci95": {
+      "sensitivity": {
+        "wilson": {
+          "point": 1.0,
+          "lo": 0.896,
+          "hi": 1.0,
+          "k": 33,
+          "n": 33,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 1.0,
+          "lo": 0.894,
+          "hi": 1.0,
+          "k": 33,
+          "n": 33,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity": {
+        "wilson": {
+          "point": 0.432,
+          "lo": 0.287,
+          "hi": 0.591,
+          "k": 16,
+          "n": 37,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.432,
+          "lo": 0.271,
+          "hi": 0.605,
+          "k": 16,
+          "n": 37,
+          "method": "clopper_pearson"
+        }
+      }
+    }
+  },
+  "paired_mcnemar_3class": {
+    "p_two_sided": 0.665,
+    "ours_only_correct": 26,
+    "cancervar_only_correct": 22,
+    "note": "exact, two-sided, paired on 3-class correctness"
+  },
+  "pred_dist_3class": {
+    "gold": {
+      "ONC": 33,
+      "VUS": 30,
+      "BEN": 7
+    },
+    "ours": {
+      "VUS": 46,
+      "ONC": 13,
+      "BEN": 11
+    },
+    "cancervar": {
+      "ONC": 54,
+      "VUS": 16
+    }
+  },
+  "cancervar_tier_dist": {
+    "Tier_II_potential": 45,
+    "Tier_III": 16,
+    "Tier_I_strong": 9
+  },
+  "error_breakdown_vs_gold": {
+    "ours": {
+      "miss": 20,
+      "correct": 47,
+      "other": 3
+    },
+    "cancervar": {
+      "correct": 43,
+      "over_call": 21,
+      "other": 6
+    }
+  },
+  "n_disagreements_3class": 49,
+  "disagreements": [
+    {
+      "variant": "FLT3 p.D835Y",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.D835E",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.D835H",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.D835V",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.N676K",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.Y842C",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.F691L",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "BRAF p.K601E",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "BRAF p.G469E",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_I_strong",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "BRAF p.A31G",
+      "gold3": "VUS",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "cancervar3": "VUS",
+      "cancervar_tier": "Tier_III",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "other",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "IDH1 p.R132H",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_I_strong",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "IDH1 p.V178I",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Benign",
+      "cancervar3": "VUS",
+      "cancervar_tier": "Tier_III",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "other"
+    },
+    {
+      "variant": "IDH1 p.D220G",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "IDH1 p.E262K",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "IDH1 p.V71I",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "cancervar3": "VUS",
+      "cancervar_tier": "Tier_III",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "other"
+    },
+    {
+      "variant": "KRAS p.R164Q",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "KRAS p.S65I",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "KRAS p.Q61K",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "PIK3CA p.H1047R",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "PIK3CA p.H1047Q",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "PIK3CA p.H1065Y",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "PIK3CA p.K733R",
+      "gold3": "VUS",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "cancervar3": "VUS",
+      "cancervar_tier": "Tier_III",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "other",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "PIK3CA p.E453K",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "PIK3CA p.I391M",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Benign",
+      "cancervar3": "VUS",
+      "cancervar_tier": "Tier_III",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "other"
+    },
+    {
+      "variant": "PIK3CA p.M1?",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "PTEN p.T131I",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "PTEN p.P204A",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "PTEN p.L182S",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "PTEN p.P354L",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "RB1 p.S567L",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "RB1 p.W563L",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "RB1 p.R661W",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "RB1 p.E554K",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "RB1 p.Y606C",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "EZH2 p.D136V",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "EZH2 p.D233G",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "EZH2 p.V626M",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "EZH2 p.A682V",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "EZH2 p.R684C",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "EZH2 p.R690H",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "EZH2 p.S695L",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "EZH2 p.Y731F",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "EZH2 p.Y731H",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "TP53 p.P47S",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Benign",
+      "cancervar3": "VUS",
+      "cancervar_tier": "Tier_III",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "other"
+    },
+    {
+      "variant": "TP53 p.V73M",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "cancervar3": "VUS",
+      "cancervar_tier": "Tier_III",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "other"
+    },
+    {
+      "variant": "TP53 p.E298K",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "cancervar3": "VUS",
+      "cancervar_tier": "Tier_III",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "other"
+    },
+    {
+      "variant": "TP53 p.G334R",
+      "gold3": "VUS",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": false,
+      "ours_error": "other",
+      "cancervar_error": "over_call"
+    },
+    {
+      "variant": "TP53 p.A347D",
+      "gold3": "ONC",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": false,
+      "cancervar_correct": true,
+      "ours_error": "miss",
+      "cancervar_error": "correct"
+    },
+    {
+      "variant": "TP53 p.H365Y",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "cancervar3": "ONC",
+      "cancervar_tier": "Tier_II_potential",
+      "ours_correct": true,
+      "cancervar_correct": false,
+      "ours_error": "correct",
+      "cancervar_error": "over_call"
+    }
+  ],
+  "three_way_context": {
+    "note": "Different shared subsets per tool; not directly poolable.",
+    "oncovi_shared_n": 69,
+    "oncovi": {
+      "accuracy_3class": 0.797,
+      "specificity_onc": 0.806,
+      "sensitivity_onc": 0.909
+    },
+    "ours_on_oncovi_subset": {
+      "accuracy_3class": 0.667,
+      "specificity_onc": 1.0,
+      "sensitivity_onc": 0.394
+    }
+  },
+  "variants_compared": [
+    "FLT3 p.D835Y",
+    "FLT3 p.D835E",
+    "FLT3 p.D835H",
+    "FLT3 p.D835V",
+    "FLT3 p.N676K",
+    "FLT3 p.Y842C",
+    "FLT3 p.F691L",
+    "FLT3 p.Y693C",
+    "FLT3 p.Y693N",
+    "BRAF p.K601E",
+    "BRAF p.D594N",
+    "BRAF p.G469A",
+    "BRAF p.G469E",
+    "BRAF p.P14R",
+    "BRAF p.A31G",
+    "BRAF p.D445H",
+    "IDH1 p.R132H",
+    "IDH1 p.R132C",
+    "IDH1 p.R132S",
+    "IDH1 p.V178I",
+    "IDH1 p.D220G",
+    "IDH1 p.E262K",
+    "IDH1 p.F32V",
+    "IDH1 p.V71I",
+    "KRAS p.G12A",
+    "KRAS p.R164Q",
+    "KRAS p.S65I",
+    "KRAS p.Q61K",
+    "PIK3CA p.H1047R",
+    "PIK3CA p.H1047Q",
+    "PIK3CA p.H1065Y",
+    "PIK3CA p.K733R",
+    "PIK3CA p.E545A",
+    "PIK3CA p.E453K",
+    "PIK3CA p.E418K",
+    "PIK3CA p.I391M",
+    "PIK3CA p.M1?",
+    "PTEN p.R130Q",
+    "PTEN p.T131I",
+    "PTEN p.H123R",
+    "PTEN p.P204A",
+    "PTEN p.L182S",
+    "PTEN p.P354L",
+    "RB1 p.Q689H",
+    "RB1 p.S567L",
+    "RB1 p.W563L",
+    "RB1 p.R661W",
+    "RB1 p.E554K",
+    "RB1 p.Y606C",
+    "EZH2 p.Y646F",
+    "EZH2 p.D136V",
+    "EZH2 p.D233G",
+    "EZH2 p.V626M",
+    "EZH2 p.R658T",
+    "EZH2 p.A682G",
+    "EZH2 p.A682V",
+    "EZH2 p.R684C",
+    "EZH2 p.R690H",
+    "EZH2 p.S695L",
+    "EZH2 p.Y731F",
+    "EZH2 p.Y731H",
+    "TP53 p.P47S",
+    "TP53 p.V73M",
+    "TP53 p.C135G",
+    "TP53 p.V173M",
+    "TP53 p.E180K",
+    "TP53 p.E298K",
+    "TP53 p.G334R",
+    "TP53 p.A347D",
+    "TP53 p.H365Y"
+  ]
+}

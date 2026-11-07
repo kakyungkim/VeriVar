@@ -1,0 +1,1901 @@
+{
+ "definition": "known = >=1 curated CIViC evidence item retrieved for the exact protein change; novel = 0 such items (AlphaMissense prior only, or nothing)",
+ "note": "Post-hoc descriptive stratification of an existing run. Class base rates differ between strata, so accuracies are reported against each stratum's majority-class baseline and are not comparable across strata as a difficulty measure.",
+ "n_total": 70,
+ "strata": {
+  "known": {
+   "n": 20,
+   "gold_3class": {
+    "oncogenic": 15,
+    "vus": 3,
+    "benign": 2
+   },
+   "gold_5class": {
+    "Oncogenic": 9,
+    "Likely Oncogenic": 6,
+    "VUS": 3,
+    "Benign": 2
+   },
+   "majority_class": "oncogenic",
+   "majority_baseline_accuracy": 0.75,
+   "evidence": {
+    "civic_items_total": 86,
+    "alphamissense_items_total": 18,
+    "variants_with_alphamissense": 18,
+    "variants_with_no_evidence_at_all": 0
+   },
+   "arms": {
+    "vicc": {
+     "label": "citable VICC rule arm",
+     "accuracy_3class": {
+      "point": 0.95,
+      "lo": 0.85,
+      "hi": 1.0,
+      "n": 20
+     },
+     "accuracy_5class": 0.6,
+     "lift_over_majority": 0.2,
+     "pred_3class": {
+      "oncogenic": 16,
+      "vus": 2,
+      "benign": 2
+     },
+     "vus_rate": 0.1,
+     "oncogenic_vs_rest": {
+      "tp": 15,
+      "fn": 0,
+      "fp": 1,
+      "tn": 4,
+      "sensitivity_onc": 1.0,
+      "specificity_onc": 0.8,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 1.0,
+        "lo": 0.796,
+        "hi": 1.0,
+        "k": 15,
+        "n": 15,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 1.0,
+        "lo": 0.782,
+        "hi": 1.0,
+        "k": 15,
+        "n": 15,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.8,
+        "lo": 0.376,
+        "hi": 0.964,
+        "k": 4,
+        "n": 5,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.8,
+        "lo": 0.284,
+        "hi": 0.995,
+        "k": 4,
+        "n": 5,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    },
+    "rule": {
+     "label": "simplified rule",
+     "accuracy_3class": {
+      "point": 0.75,
+      "lo": 0.55,
+      "hi": 0.9,
+      "n": 20
+     },
+     "accuracy_5class": 0.45,
+     "lift_over_majority": 0.0,
+     "pred_3class": {
+      "oncogenic": 17,
+      "benign": 3
+     },
+     "vus_rate": 0.0,
+     "oncogenic_vs_rest": {
+      "tp": 14,
+      "fn": 1,
+      "fp": 3,
+      "tn": 2,
+      "sensitivity_onc": 0.933,
+      "specificity_onc": 0.4,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.933,
+        "lo": 0.702,
+        "hi": 0.988,
+        "k": 14,
+        "n": 15,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.933,
+        "lo": 0.681,
+        "hi": 0.998,
+        "k": 14,
+        "n": 15,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.4,
+        "lo": 0.118,
+        "hi": 0.769,
+        "k": 2,
+        "n": 5,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.4,
+        "lo": 0.053,
+        "hi": 0.853,
+        "k": 2,
+        "n": 5,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    },
+    "llm_rag": {
+     "label": "generative (retrieval)",
+     "accuracy_3class": {
+      "point": 0.75,
+      "lo": 0.55,
+      "hi": 0.95,
+      "n": 20
+     },
+     "accuracy_5class": 0.25,
+     "lift_over_majority": 0.0,
+     "pred_3class": {
+      "oncogenic": 16,
+      "vus": 4
+     },
+     "vus_rate": 0.2,
+     "oncogenic_vs_rest": {
+      "tp": 14,
+      "fn": 1,
+      "fp": 2,
+      "tn": 3,
+      "sensitivity_onc": 0.933,
+      "specificity_onc": 0.6,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.933,
+        "lo": 0.702,
+        "hi": 0.988,
+        "k": 14,
+        "n": 15,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.933,
+        "lo": 0.681,
+        "hi": 0.998,
+        "k": 14,
+        "n": 15,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.6,
+        "lo": 0.231,
+        "hi": 0.882,
+        "k": 3,
+        "n": 5,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.6,
+        "lo": 0.147,
+        "hi": 0.947,
+        "k": 3,
+        "n": 5,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    },
+    "llm_norag": {
+     "label": "generative (no retrieval)",
+     "accuracy_3class": {
+      "point": 0.65,
+      "lo": 0.45,
+      "hi": 0.85,
+      "n": 20
+     },
+     "accuracy_5class": 0.3,
+     "lift_over_majority": -0.1,
+     "pred_3class": {
+      "oncogenic": 15,
+      "vus": 5
+     },
+     "vus_rate": 0.25,
+     "oncogenic_vs_rest": {
+      "tp": 12,
+      "fn": 3,
+      "fp": 3,
+      "tn": 2,
+      "sensitivity_onc": 0.8,
+      "specificity_onc": 0.4,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.8,
+        "lo": 0.548,
+        "hi": 0.93,
+        "k": 12,
+        "n": 15,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.8,
+        "lo": 0.519,
+        "hi": 0.957,
+        "k": 12,
+        "n": 15,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.4,
+        "lo": 0.118,
+        "hi": 0.769,
+        "k": 2,
+        "n": 5,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.4,
+        "lo": 0.053,
+        "hi": 0.853,
+        "k": 2,
+        "n": 5,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    }
+   },
+   "mcnemar_rag_vs_norag_3class": {
+    "a_better": 2,
+    "b_better": 0,
+    "discordant_pairs": 2,
+    "p_value": 0.5
+   }
+  },
+  "novel": {
+   "n": 50,
+   "gold_3class": {
+    "oncogenic": 18,
+    "vus": 27,
+    "benign": 5
+   },
+   "gold_5class": {
+    "Likely Oncogenic": 13,
+    "VUS": 27,
+    "Oncogenic": 5,
+    "Benign": 3,
+    "Likely Benign": 2
+   },
+   "majority_class": "vus",
+   "majority_baseline_accuracy": 0.54,
+   "evidence": {
+    "civic_items_total": 0,
+    "alphamissense_items_total": 48,
+    "variants_with_alphamissense": 48,
+    "variants_with_no_evidence_at_all": 2
+   },
+   "arms": {
+    "vicc": {
+     "label": "citable VICC rule arm",
+     "accuracy_3class": {
+      "point": 0.8,
+      "lo": 0.68,
+      "hi": 0.9,
+      "n": 50
+     },
+     "accuracy_5class": 0.66,
+     "lift_over_majority": 0.26,
+     "pred_3class": {
+      "vus": 37,
+      "oncogenic": 8,
+      "benign": 5
+     },
+     "vus_rate": 0.74,
+     "oncogenic_vs_rest": {
+      "tp": 8,
+      "fn": 10,
+      "fp": 0,
+      "tn": 32,
+      "sensitivity_onc": 0.444,
+      "specificity_onc": 1.0,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.444,
+        "lo": 0.246,
+        "hi": 0.663,
+        "k": 8,
+        "n": 18,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.444,
+        "lo": 0.215,
+        "hi": 0.692,
+        "k": 8,
+        "n": 18,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 1.0,
+        "lo": 0.893,
+        "hi": 1.0,
+        "k": 32,
+        "n": 32,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 1.0,
+        "lo": 0.891,
+        "hi": 1.0,
+        "k": 32,
+        "n": 32,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    },
+    "rule": {
+     "label": "simplified rule",
+     "accuracy_3class": {
+      "point": 0.48,
+      "lo": 0.34,
+      "hi": 0.62,
+      "n": 50
+     },
+     "accuracy_5class": 0.32,
+     "lift_over_majority": -0.06,
+     "pred_3class": {
+      "oncogenic": 35,
+      "benign": 12,
+      "vus": 3
+     },
+     "vus_rate": 0.06,
+     "oncogenic_vs_rest": {
+      "tp": 17,
+      "fn": 1,
+      "fp": 18,
+      "tn": 14,
+      "sensitivity_onc": 0.944,
+      "specificity_onc": 0.438,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.944,
+        "lo": 0.742,
+        "hi": 0.99,
+        "k": 17,
+        "n": 18,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.944,
+        "lo": 0.727,
+        "hi": 0.999,
+        "k": 17,
+        "n": 18,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.438,
+        "lo": 0.282,
+        "hi": 0.607,
+        "k": 14,
+        "n": 32,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.438,
+        "lo": 0.264,
+        "hi": 0.623,
+        "k": 14,
+        "n": 32,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    },
+    "llm_rag": {
+     "label": "generative (retrieval)",
+     "accuracy_3class": {
+      "point": 0.54,
+      "lo": 0.4,
+      "hi": 0.68,
+      "n": 50
+     },
+     "accuracy_5class": 0.4,
+     "lift_over_majority": 0.0,
+     "pred_3class": {
+      "oncogenic": 23,
+      "benign": 11,
+      "vus": 16
+     },
+     "vus_rate": 0.32,
+     "oncogenic_vs_rest": {
+      "tp": 12,
+      "fn": 6,
+      "fp": 11,
+      "tn": 21,
+      "sensitivity_onc": 0.667,
+      "specificity_onc": 0.656,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.667,
+        "lo": 0.437,
+        "hi": 0.837,
+        "k": 12,
+        "n": 18,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.667,
+        "lo": 0.41,
+        "hi": 0.867,
+        "k": 12,
+        "n": 18,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.656,
+        "lo": 0.483,
+        "hi": 0.796,
+        "k": 21,
+        "n": 32,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.656,
+        "lo": 0.468,
+        "hi": 0.814,
+        "k": 21,
+        "n": 32,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    },
+    "llm_norag": {
+     "label": "generative (no retrieval)",
+     "accuracy_3class": {
+      "point": 0.56,
+      "lo": 0.42,
+      "hi": 0.7,
+      "n": 50
+     },
+     "accuracy_5class": 0.52,
+     "lift_over_majority": 0.02,
+     "pred_3class": {
+      "oncogenic": 11,
+      "vus": 39
+     },
+     "vus_rate": 0.78,
+     "oncogenic_vs_rest": {
+      "tp": 6,
+      "fn": 12,
+      "fp": 5,
+      "tn": 27,
+      "sensitivity_onc": 0.333,
+      "specificity_onc": 0.844,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.333,
+        "lo": 0.163,
+        "hi": 0.563,
+        "k": 6,
+        "n": 18,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.333,
+        "lo": 0.133,
+        "hi": 0.59,
+        "k": 6,
+        "n": 18,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.844,
+        "lo": 0.682,
+        "hi": 0.931,
+        "k": 27,
+        "n": 32,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.844,
+        "lo": 0.672,
+        "hi": 0.947,
+        "k": 27,
+        "n": 32,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    }
+   },
+   "mcnemar_rag_vs_norag_3class": {
+    "a_better": 13,
+    "b_better": 14,
+    "discordant_pairs": 27,
+    "p_value": 1.0
+   }
+  },
+  "all": {
+   "n": 70,
+   "gold_3class": {
+    "oncogenic": 33,
+    "vus": 30,
+    "benign": 7
+   },
+   "gold_5class": {
+    "Oncogenic": 14,
+    "Likely Oncogenic": 19,
+    "VUS": 30,
+    "Benign": 5,
+    "Likely Benign": 2
+   },
+   "majority_class": "oncogenic",
+   "majority_baseline_accuracy": 0.471,
+   "evidence": {
+    "civic_items_total": 86,
+    "alphamissense_items_total": 66,
+    "variants_with_alphamissense": 66,
+    "variants_with_no_evidence_at_all": 2
+   },
+   "arms": {
+    "vicc": {
+     "label": "citable VICC rule arm",
+     "accuracy_3class": {
+      "point": 0.843,
+      "lo": 0.757,
+      "hi": 0.929,
+      "n": 70
+     },
+     "accuracy_5class": 0.643,
+     "lift_over_majority": 0.372,
+     "pred_3class": {
+      "oncogenic": 24,
+      "vus": 39,
+      "benign": 7
+     },
+     "vus_rate": 0.557,
+     "oncogenic_vs_rest": {
+      "tp": 23,
+      "fn": 10,
+      "fp": 1,
+      "tn": 36,
+      "sensitivity_onc": 0.697,
+      "specificity_onc": 0.973,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.697,
+        "lo": 0.527,
+        "hi": 0.826,
+        "k": 23,
+        "n": 33,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.697,
+        "lo": 0.513,
+        "hi": 0.844,
+        "k": 23,
+        "n": 33,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.973,
+        "lo": 0.862,
+        "hi": 0.995,
+        "k": 36,
+        "n": 37,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.973,
+        "lo": 0.858,
+        "hi": 0.999,
+        "k": 36,
+        "n": 37,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    },
+    "rule": {
+     "label": "simplified rule",
+     "accuracy_3class": {
+      "point": 0.557,
+      "lo": 0.443,
+      "hi": 0.671,
+      "n": 70
+     },
+     "accuracy_5class": 0.357,
+     "lift_over_majority": 0.086,
+     "pred_3class": {
+      "oncogenic": 52,
+      "benign": 15,
+      "vus": 3
+     },
+     "vus_rate": 0.043,
+     "oncogenic_vs_rest": {
+      "tp": 31,
+      "fn": 2,
+      "fp": 21,
+      "tn": 16,
+      "sensitivity_onc": 0.939,
+      "specificity_onc": 0.432,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.939,
+        "lo": 0.804,
+        "hi": 0.983,
+        "k": 31,
+        "n": 33,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.939,
+        "lo": 0.798,
+        "hi": 0.993,
+        "k": 31,
+        "n": 33,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.432,
+        "lo": 0.287,
+        "hi": 0.591,
+        "k": 16,
+        "n": 37,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.432,
+        "lo": 0.271,
+        "hi": 0.605,
+        "k": 16,
+        "n": 37,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    },
+    "llm_rag": {
+     "label": "generative (retrieval)",
+     "accuracy_3class": {
+      "point": 0.6,
+      "lo": 0.486,
+      "hi": 0.714,
+      "n": 70
+     },
+     "accuracy_5class": 0.357,
+     "lift_over_majority": 0.129,
+     "pred_3class": {
+      "oncogenic": 39,
+      "vus": 20,
+      "benign": 11
+     },
+     "vus_rate": 0.286,
+     "oncogenic_vs_rest": {
+      "tp": 26,
+      "fn": 7,
+      "fp": 13,
+      "tn": 24,
+      "sensitivity_onc": 0.788,
+      "specificity_onc": 0.649,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.788,
+        "lo": 0.622,
+        "hi": 0.893,
+        "k": 26,
+        "n": 33,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.788,
+        "lo": 0.611,
+        "hi": 0.91,
+        "k": 26,
+        "n": 33,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.649,
+        "lo": 0.488,
+        "hi": 0.782,
+        "k": 24,
+        "n": 37,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.649,
+        "lo": 0.475,
+        "hi": 0.798,
+        "k": 24,
+        "n": 37,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    },
+    "llm_norag": {
+     "label": "generative (no retrieval)",
+     "accuracy_3class": {
+      "point": 0.586,
+      "lo": 0.471,
+      "hi": 0.7,
+      "n": 70
+     },
+     "accuracy_5class": 0.457,
+     "lift_over_majority": 0.115,
+     "pred_3class": {
+      "oncogenic": 26,
+      "vus": 44
+     },
+     "vus_rate": 0.629,
+     "oncogenic_vs_rest": {
+      "tp": 18,
+      "fn": 15,
+      "fp": 8,
+      "tn": 29,
+      "sensitivity_onc": 0.545,
+      "specificity_onc": 0.784,
+      "sensitivity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.545,
+        "lo": 0.38,
+        "hi": 0.702,
+        "k": 18,
+        "n": 33,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.545,
+        "lo": 0.364,
+        "hi": 0.719,
+        "k": 18,
+        "n": 33,
+        "method": "clopper_pearson"
+       }
+      },
+      "specificity_onc_exact_ci": {
+       "wilson": {
+        "point": 0.784,
+        "lo": 0.628,
+        "hi": 0.886,
+        "k": 29,
+        "n": 37,
+        "method": "wilson"
+       },
+       "clopper_pearson": {
+        "point": 0.784,
+        "lo": 0.618,
+        "hi": 0.902,
+        "k": 29,
+        "n": 37,
+        "method": "clopper_pearson"
+       }
+      }
+     }
+    }
+   },
+   "mcnemar_rag_vs_norag_3class": {
+    "a_better": 15,
+    "b_better": 14,
+    "discordant_pairs": 29,
+    "p_value": 1.0
+   }
+  }
+ },
+ "vicc_arm_misses": [
+  {
+   "variant": "FLT3 p.D835E",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 1
+  },
+  {
+   "variant": "FLT3 p.N676K",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 1
+  },
+  {
+   "variant": "PTEN p.T131I",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 1
+  },
+  {
+   "variant": "PTEN p.P204A",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 1
+  },
+  {
+   "variant": "RB1 p.R661W",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 1
+  },
+  {
+   "variant": "EZH2 p.V626M",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 0
+  },
+  {
+   "variant": "EZH2 p.R684C",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 1
+  },
+  {
+   "variant": "EZH2 p.R690H",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 1
+  },
+  {
+   "variant": "EZH2 p.Y731F",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 1
+  },
+  {
+   "variant": "TP53 p.A347D",
+   "gold": "Likely Oncogenic",
+   "vicc": "VUS",
+   "stratum": "novel",
+   "n_civic": 0,
+   "n_alphamissense": 1
+  }
+ ],
+ "vicc_arm_overcalls": [
+  {
+   "variant": "FLT3 p.F691L",
+   "gold": "VUS",
+   "vicc": "Likely Oncogenic",
+   "stratum": "known",
+   "n_civic": 2,
+   "n_alphamissense": 1
+  }
+ ],
+ "rows": [
+  {
+   "variant": "FLT3 p.D835Y",
+   "gold": "Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 6,
+   "n_civic": 5,
+   "n_alphamissense": 1,
+   "n_drugs": 29,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "FLT3 p.D835E",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "FLT3 p.D835H",
+   "gold": "Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 3,
+   "n_civic": 2,
+   "n_alphamissense": 1,
+   "n_drugs": 17,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "FLT3 p.D835V",
+   "gold": "Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 9,
+   "n_civic": 8,
+   "n_alphamissense": 1,
+   "n_drugs": 23,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "FLT3 p.N676K",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "FLT3 p.Y842C",
+   "gold": "Likely Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 7,
+   "n_civic": 6,
+   "n_alphamissense": 1,
+   "n_drugs": 21,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "FLT3 p.F691L",
+   "gold": "VUS",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 3,
+   "n_civic": 2,
+   "n_alphamissense": 1,
+   "n_drugs": 17,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "FLT3 p.Y693C",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "FLT3 p.Y693N",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "BRAF p.K601E",
+   "gold": "Likely Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 2,
+   "n_civic": 1,
+   "n_alphamissense": 1,
+   "n_drugs": 17,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "BRAF p.D594N",
+   "gold": "Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "novel"
+  },
+  {
+   "variant": "BRAF p.G469A",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Benign",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 2,
+   "n_civic": 1,
+   "n_alphamissense": 1,
+   "n_drugs": 16,
+   "n_trials": 1,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "BRAF p.G469E",
+   "gold": "Likely Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 3,
+   "n_civic": 2,
+   "n_alphamissense": 1,
+   "n_drugs": 17,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "BRAF p.P14R",
+   "gold": "VUS",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "BRAF p.A31G",
+   "gold": "VUS",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "BRAF p.D445H",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "IDH1 p.R132H",
+   "gold": "Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Oncogenic",
+   "n_evidence": 3,
+   "n_civic": 2,
+   "n_alphamissense": 1,
+   "n_drugs": 17,
+   "n_trials": 0,
+   "vicc": "Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "IDH1 p.R132C",
+   "gold": "Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 9,
+   "n_civic": 8,
+   "n_alphamissense": 1,
+   "n_drugs": 21,
+   "n_trials": 0,
+   "vicc": "Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "IDH1 p.R132S",
+   "gold": "Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "novel"
+  },
+  {
+   "variant": "IDH1 p.V178I",
+   "gold": "Benign",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Benign",
+   "stratum": "novel"
+  },
+  {
+   "variant": "IDH1 p.D220G",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "IDH1 p.E262K",
+   "gold": "VUS",
+   "rule": "Likely Benign",
+   "llm_rag": "VUS",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "IDH1 p.F32V",
+   "gold": "VUS",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "IDH1 p.V71I",
+   "gold": "Benign",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Benign",
+   "stratum": "novel"
+  },
+  {
+   "variant": "KRAS p.G12A",
+   "gold": "Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 10,
+   "n_civic": 9,
+   "n_alphamissense": 1,
+   "n_drugs": 21,
+   "n_trials": 0,
+   "vicc": "Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "KRAS p.R164Q",
+   "gold": "VUS",
+   "rule": "Likely Benign",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 1,
+   "n_alphamissense": 0,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "known"
+  },
+  {
+   "variant": "KRAS p.S65I",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "KRAS p.Q61K",
+   "gold": "Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 2,
+   "n_civic": 1,
+   "n_alphamissense": 1,
+   "n_drugs": 17,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "PIK3CA p.H1047R",
+   "gold": "Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Oncogenic",
+   "n_evidence": 27,
+   "n_civic": 26,
+   "n_alphamissense": 1,
+   "n_drugs": 33,
+   "n_trials": 0,
+   "vicc": "Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "PIK3CA p.H1047Q",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Oncogenic",
+   "n_evidence": 2,
+   "n_civic": 1,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "known"
+  },
+  {
+   "variant": "PIK3CA p.H1065Y",
+   "gold": "VUS",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PIK3CA p.K733R",
+   "gold": "VUS",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PIK3CA p.E545A",
+   "gold": "Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PIK3CA p.E453K",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 2,
+   "n_civic": 1,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "PIK3CA p.E418K",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PIK3CA p.I391M",
+   "gold": "Benign",
+   "rule": "Likely Benign",
+   "llm_rag": "VUS",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 3,
+   "n_civic": 2,
+   "n_alphamissense": 1,
+   "n_drugs": 17,
+   "n_trials": 0,
+   "vicc": "Benign",
+   "stratum": "known"
+  },
+  {
+   "variant": "PIK3CA p.M1?",
+   "gold": "VUS",
+   "rule": "VUS",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 0,
+   "n_civic": 0,
+   "n_alphamissense": 0,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PTEN p.R130Q",
+   "gold": "Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PTEN p.T131I",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PTEN p.H123R",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PTEN p.P204A",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PTEN p.L182S",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "PTEN p.P354L",
+   "gold": "VUS",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "RB1 p.Q689H",
+   "gold": "VUS",
+   "rule": "VUS",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "RB1 p.S567L",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "RB1 p.W563L",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "RB1 p.R661W",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "RB1 p.E554K",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "RB1 p.Y606C",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.Y646F",
+   "gold": "Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 5,
+   "n_civic": 4,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "EZH2 p.D136V",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.D233G",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.V626M",
+   "gold": "Likely Oncogenic",
+   "rule": "VUS",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 0,
+   "n_civic": 0,
+   "n_alphamissense": 0,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.R658T",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.A682G",
+   "gold": "Likely Oncogenic",
+   "rule": "Oncogenic",
+   "llm_rag": "Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 4,
+   "n_civic": 3,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "known"
+  },
+  {
+   "variant": "EZH2 p.A682V",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.R684C",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.R690H",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.S695L",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.Y731F",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "EZH2 p.Y731H",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 14,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "TP53 p.P47S",
+   "gold": "Benign",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "VUS",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 1,
+   "n_alphamissense": 0,
+   "n_drugs": 16,
+   "n_trials": 0,
+   "vicc": "Likely Benign",
+   "stratum": "known"
+  },
+  {
+   "variant": "TP53 p.V73M",
+   "gold": "Benign",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Benign",
+   "stratum": "novel"
+  },
+  {
+   "variant": "TP53 p.C135G",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "novel"
+  },
+  {
+   "variant": "TP53 p.V173M",
+   "gold": "Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "novel"
+  },
+  {
+   "variant": "TP53 p.E180K",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Oncogenic",
+   "stratum": "novel"
+  },
+  {
+   "variant": "TP53 p.E298K",
+   "gold": "Likely Benign",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Benign",
+   "stratum": "novel"
+  },
+  {
+   "variant": "TP53 p.G334R",
+   "gold": "VUS",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "Likely Oncogenic",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "TP53 p.A347D",
+   "gold": "Likely Oncogenic",
+   "rule": "Likely Oncogenic",
+   "llm_rag": "Likely Oncogenic",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "VUS",
+   "stratum": "novel"
+  },
+  {
+   "variant": "TP53 p.H365Y",
+   "gold": "Likely Benign",
+   "rule": "Likely Benign",
+   "llm_rag": "Likely Benign",
+   "llm_norag": "VUS",
+   "n_evidence": 1,
+   "n_civic": 0,
+   "n_alphamissense": 1,
+   "n_drugs": 15,
+   "n_trials": 0,
+   "vicc": "Likely Benign",
+   "stratum": "novel"
+  }
+ ],
+ "composition_from": "data/benchmark/horak_known_novel.json"
+}

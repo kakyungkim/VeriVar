@@ -25,6 +25,8 @@ from collections import Counter
 
 import pandas as pd
 
+from src.eval.stats import bootstrap_ci, onc_vs_rest_exact_ci
+
 ONCOVI_URL = ("https://raw.githubusercontent.com/MGCarta/oncovi/main/"
               "exampleoutput/SOP_table_union_OncoVI_prediction.xlsx")
 
@@ -70,6 +72,15 @@ def mcnemar_exact(gold, a, b):
 
 
 def main():
+    # --ours/--out (added 2026-09-24): per-configuration runs of the VICC suite write to
+    # data/benchmark/vicc_configs/<config>/ without touching the top-level primary files.
+    import argparse
+    global OUR_PRED
+    _ap = argparse.ArgumentParser(description=__doc__.split("\n")[0] if __doc__ else None)
+    _ap.add_argument("--ours", default=OUR_PRED)
+    _ap.add_argument("--out", default=os.path.join(BENCH, "oncovi_headtohead.json"))
+    _args = _ap.parse_args()
+    OUR_PRED = _args.ours
     if not os.path.exists(ONCOVI_PRED):
         os.makedirs(os.path.dirname(ONCOVI_PRED), exist_ok=True)
         print(f"[*] downloading OncoVI predictions from {ONCOVI_URL}")
@@ -114,6 +125,10 @@ def main():
         fp = sum(1 for p, q in zip(pred3, gold3) if q != "ONC" and p == "ONC")
         return round(tn / (tn + fp), 3) if tn + fp else None
 
+    def acc_ci(pred, gold):
+        """95% percentile-bootstrap CI (seed 0, 5,000 resamples) on accuracy."""
+        return bootstrap_ci([float(p == q) for p, q in zip(pred, gold)])
+
     def sens(pred3, gold3):
         tp = sum(1 for p, q in zip(pred3, gold3) if q == "ONC" and p == "ONC")
         fn = sum(1 for p, q in zip(pred3, gold3) if q == "ONC" and p != "ONC")
@@ -126,9 +141,13 @@ def main():
                 "OncoVI predictions from its published SOP_table_union output; ours from the "
                 "citable VICC engine. Both arms are fully auditable (citable criterion codes).",
         "ours": {"accuracy_3class": acc(u3, g3), "accuracy_5class": acc(u5, g5),
-                 "specificity_onc": spec(u3, g3), "sensitivity_onc": sens(u3, g3)},
+                 "specificity_onc": spec(u3, g3), "sensitivity_onc": sens(u3, g3),
+                 "accuracy_3class_ci": acc_ci(u3, g3),
+                 "onc_exact_ci95": onc_vs_rest_exact_ci(u3, g3)},
         "oncovi": {"accuracy_3class": acc(o3, g3), "accuracy_5class": acc(o5, g5),
-                   "specificity_onc": spec(o3, g3), "sensitivity_onc": sens(o3, g3)},
+                   "specificity_onc": spec(o3, g3), "sensitivity_onc": sens(o3, g3),
+                   "accuracy_3class_ci": acc_ci(o3, g3),
+                   "onc_exact_ci95": onc_vs_rest_exact_ci(o3, g3)},
         "oncovi_published_full_93": {"accuracy": 0.80, "sensitivity_onc": 0.88,
                                      "note": "Carta et al. on all 93; here we share 69."},
         "paired_mcnemar_3class": {"p_two_sided": round(p3, 3),
@@ -137,7 +156,7 @@ def main():
                       "oncovi": dict(Counter(o3))},
         "disagreements": [r for r in rows if collapse(r["ours"]) != collapse(r["oncovi"])],
     }
-    json.dump(report, open(os.path.join(BENCH, "oncovi_headtohead.json"), "w"), indent=2)
+    json.dump(report, open(_args.out, "w"), indent=1)
 
     print(f"[+] OncoVI head-to-head on {n} shared Horak variants (vs same expert gold)")
     print(f"    {'':14s}{'acc3':>8s}{'acc5':>8s}{'spec':>8s}{'sens':>8s}")

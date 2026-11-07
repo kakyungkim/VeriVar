@@ -1,0 +1,206 @@
+/* VeriVar poster, A0 portrait (841 x 1189 mm).
+   Change --page-w / --page-h to retarget; everything else is relative.
+   Fonts: Pretendard (installed locally). Charts are SVG with text as paths. */
+
+:root {
+  --page-w: 841mm;
+  --page-h: 1189mm;
+  --margin: 30mm;
+  --gutter: 14mm;
+  --col: 251mm;                 /* (841 - 60 - 28) / 3 */
+
+  --navy: #1B2E5E;
+  --navy-soft: #EDF1F7;
+  --teal: #2EB8A6;
+  --teal-deep: #1E9485;
+  --teal-soft: #E6F6F2;
+  --orange: #D55E00;
+  --orange-soft: #FDF0E6;
+  --summit: #00A97C;
+  --ink: #16202E;
+  --mut: #5B6470;
+  --line: #D3DBE2;
+  --paper: #FFFFFF;
+}
+
+@page { size: 841mm 1189mm; margin: 0; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: var(--page-w);
+  height: var(--page-h);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Pretendard, "Helvetica Neue", Arial, sans-serif;
+  font-size: 11mm;
+  line-height: 1.44;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.sheet {
+  width: var(--page-w);
+  height: var(--page-h);
+  padding: var(--margin);
+  display: flex;
+  flex-direction: column;
+  gap: 9mm;
+  overflow: hidden;
+}
+
+/* ---------- header ---------- */
+.head {
+  display: grid;
+  grid-template-columns: 150mm 1fr 118mm;
+  gap: 10mm;
+  align-items: center;
+  border-bottom: 2.4mm solid var(--navy);
+  padding-bottom: 7mm;
+}
+.event { display: flex; flex-direction: column; gap: 4mm; }
+.event-logos { display: flex; align-items: center; gap: 7mm; flex-wrap: wrap; }
+.event-logos img { height: 11mm; width: auto; object-fit: contain; }
+.event-logos img.wide { height: 8mm; }
+.event-name {
+  font-size: 5.6mm; line-height: 1.35; color: var(--mut); font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.event-name b { color: var(--navy); font-weight: 800; display: block; font-size: 6.2mm; }
+
+.titleblock { text-align: center; }
+h1 {
+  font-size: 22mm; line-height: 1.04; font-weight: 800; letter-spacing: -0.015em;
+  color: var(--navy);
+}
+h1 .hl { color: var(--teal-deep); }
+.subtitle {
+  margin-top: 4mm; font-size: 10.2mm; line-height: 1.25; color: var(--ink); font-weight: 500;
+}
+.authors { margin-top: 5mm; font-size: 8.0mm; color: var(--ink); }
+.authors b { font-weight: 700; }
+.authors .aff { color: var(--mut); font-size: 7.2mm; display: block; margin-top: 1.5mm; }
+
+.brand { display: flex; align-items: center; justify-content: flex-end; gap: 7mm; }
+.brand img.mark { height: 30mm; width: auto; }
+.qr { text-align: center; }
+.qr svg, .qr img { width: 32mm; height: 32mm; display: block; }
+.qr span {
+  display: block; margin-top: 2mm; font-size: 4.6mm; color: var(--mut); line-height: 1.25;
+}
+
+/* ---------- headline strip ---------- */
+.headline {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 4mm;
+  padding: 8mm 12mm;
+  display: grid;
+  grid-template-columns: 1fr 300mm;
+  gap: 14mm;
+  align-items: center;
+}
+.headline p { font-size: 12.4mm; line-height: 1.26; font-weight: 600; }
+.headline p em { font-style: normal; color: #7FE3D2; font-weight: 800; }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8mm; }
+.kpi { text-align: center; }
+.kpi .v { font-size: 16.5mm; font-weight: 800; line-height: 1.0; color: #fff; }
+.kpi .v.warn { color: #FFB071; }
+.kpi .l { font-size: 5.6mm; line-height: 1.3; color: #C3CEDE; margin-top: 2.5mm; }
+
+/* ---------- summary ---------- */
+.summary {
+  border: 0.8mm solid var(--summit);
+  border-left: 4mm solid var(--summit);
+  border-radius: 0 3mm 3mm 0;
+  background: #F4FBF8;
+  padding: 6mm 9mm;
+  font-size: 8.6mm;
+  line-height: 1.40;
+}
+.summary b { color: var(--teal-deep); font-weight: 700; }
+
+/* ---------- body grid ---------- */
+.body { display: grid; grid-template-columns: repeat(3, var(--col)); gap: var(--gutter); flex: 1; min-height: 0; }
+.stack { display: flex; flex-direction: column; gap: 9mm; min-width: 0; }
+
+section { break-inside: avoid; }
+h2 {
+  font-size: 8.6mm; font-weight: 800; color: #fff; background: var(--navy);
+  padding: 2.6mm 5mm; border-radius: 2mm; display: flex; align-items: baseline; gap: 3.5mm;
+  letter-spacing: -0.005em;
+}
+h2 .n {
+  font-size: 7.0mm; font-weight: 800; color: var(--teal);
+  font-variant-numeric: tabular-nums;
+}
+h2.alt { background: var(--teal-deep); }
+h2.alt .n { color: #BFF0E6; }
+
+section p, section li { font-size: 7.4mm; line-height: 1.44; }
+section p + p { margin-top: 3mm; }
+section ul { margin: 3mm 0 0 0; padding-left: 6mm; }
+section li { margin: 2mm 0; }
+section li::marker { color: var(--teal-deep); }
+
+figure { margin-top: 4mm; }
+figure img { width: 100%; height: auto; display: block; }
+figcaption {
+  margin-top: 3mm; font-size: 6.1mm; line-height: 1.38; color: var(--mut);
+}
+figcaption b { color: var(--ink); font-weight: 700; }
+
+.note {
+  margin-top: 3mm; background: var(--navy-soft); border-radius: 2.5mm;
+  padding: 5mm 6mm; font-size: 6.6mm; line-height: 1.40; color: var(--ink);
+}
+.note.warn { background: var(--orange-soft); }
+.note b { font-weight: 700; }
+
+.statrow { display: flex; gap: 6mm; margin-top: 4mm; }
+.stat {
+  flex: 1; background: var(--teal-soft); border-radius: 2.5mm; padding: 4mm 3mm;
+  text-align: center;
+}
+.stat .v { font-size: 11.5mm; font-weight: 800; color: var(--teal-deep); line-height: 1.05; }
+.stat .l { font-size: 5.6mm; color: var(--mut); line-height: 1.28; margin-top: 2mm; }
+
+/* right-hand rail cards */
+.card {
+  border: 0.7mm solid var(--line); border-radius: 3mm; padding: 6mm 6mm 5mm;
+}
+.card h3 {
+  font-size: 8.0mm; font-weight: 800; color: var(--teal-deep); margin-bottom: 3mm;
+}
+.card.navy h3 { color: var(--navy); }
+.card dl { display: grid; grid-template-columns: auto 1fr; gap: 3.2mm 5mm; font-size: 6.8mm; }
+.card dt { font-weight: 700; color: var(--navy); white-space: nowrap; }
+.card dd { color: var(--ink); line-height: 1.34; }
+
+/* ---------- take-home ---------- */
+.takehome {
+  background: var(--teal-deep); color: #fff; border-radius: 4mm; padding: 7mm 12mm;
+  display: grid; grid-template-columns: 70mm 1fr; gap: 10mm; align-items: center;
+}
+.takehome h2 {
+  background: none; padding: 0; font-size: 11mm; color: #fff; display: block;
+}
+.takehome ol { margin: 0; padding-left: 8mm; }
+.takehome li { font-size: 8.4mm; line-height: 1.34; margin: 1.6mm 0; }
+.takehome li b { font-weight: 800; color: #CFF6EE; }
+
+/* ---------- footer ---------- */
+.foot {
+  border-top: 0.8mm solid var(--line); padding-top: 5mm;
+  display: grid; grid-template-columns: 1fr 1fr 170mm; gap: 10mm;
+  font-size: 5.5mm; line-height: 1.38; color: var(--mut);
+}
+.foot b { color: var(--ink); font-weight: 700; }
+.foot .refs { column-count: 1; }
+.disclaimer {
+  color: var(--orange); font-weight: 700;
+}
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.92em; background: #F1F4F7; padding: 0.3mm 1.2mm; border-radius: 1mm;
+}

@@ -1,0 +1,51 @@
+{
+  "status": "BLOCKED",
+  "comparator": "CGI (Cancer Genome Interpreter), cancergenomeinterpreter.org / Barcelona Biomedical Genomics Lab (BBGLab)",
+  "summary": "CGI could NOT be run on the Horak-70 variants in this environment. Every machine-accessible path to obtain CGI's own per-variant calls is gated behind an email-registration authentication token (REST API) or an interactive/registered web session that cannot be reliably driven without reverse-engineering a non-public, unstable form protocol. No precomputed CGI prediction table for these variants was found. Per the anti-fabrication contract, no CGI classifications were assigned. CGI is therefore kept out of the head-to-head (same honest scoping as the OncoVI/CancerVar pair, which DID run).",
+  "fetch_attempted_utc": "2026-06-14T11:23:00Z",
+  "paths_evaluated": [
+    {
+      "path": "New CGI tool (2026 rebuild), platform.cgiclinics.eu",
+      "result": "BLOCKED",
+      "detail": "The current cancergenomeinterpreter.org is a static SPA (rebuilt 2026-04-23). It states the CGI tool 'is operated on a separate platform (platform.cgiclinics.eu)' and offers 'Register for CGI Open' requiring a university/institutional email address. Account registration required; no anonymous machine path."
+    },
+    {
+      "path": "Legacy CGI REST API: https://www.cancergenomeinterpreter.org/2021/api/v1 (CherryPy 18.10.0, live)",
+      "result": "BLOCKED (token-gated)",
+      "detail": "Live and accepting GET/POST/DELETE, but enforces auth. GET with no auth -> HTTP 400 {\"error_code\":400,\"message\":\"Missing user email or token. Please sign up in the method website and request a token\"}. GET with a fabricated 'email token' header -> HTTP 404 {\"error_code\":404,\"message\":\"User not found. Please register in our website\"}. The docs (raw/legacy_rest_api_docs.html) state: 'To be able to use this feature you need to register in our website and request an authentication token.' No token is available in this environment (no CGI/BBGLab env var set).",
+      "raw": ["raw/api_v1_no_token.json", "raw/api_v1_fake_token.json", "raw/legacy_rest_api_docs.html"]
+    },
+    {
+      "path": "Legacy CGI anonymous web submission: POST /2021/analysis/submit",
+      "result": "BLOCKED (could not drive)",
+      "detail": "The legacy /2021/analysis page exposes a multipart form (fields: alterations, files x4, cancertype, title, reference) and an anonymous() JS path. Direct POSTs (urlencoded; multipart with/without empty file slots; with session cookie + Referer) all return CherryPy HTTP 400 'Bad request syntax or unsupported method' at the protocol layer. Driving this would require reverse-engineering the exact CherryPy multipart expectation and job-polling flow -- an unsanctioned, unstable interface; declined per anti-fabrication / honest-scoping policy rather than guess a protocol."
+    },
+    {
+      "path": "Precomputed CGI catalog / published prediction table for Horak-70",
+      "result": "NOT FOUND",
+      "detail": "Legacy /2021/download and /2021/data return 404/empty. The SPA links github.com/bbglab/cgi-pipeline (HTTP 404 / not public) and a downloads section that does not expose a variant-level prediction catalog for these specific variants. No official CGI prediction table covering the Horak-70 set was located."
+    }
+  ],
+  "axis_analysis": {
+    "what_cgi_outputs": "CGI annotates each alteration on (1) a DRIVER / oncogenicity axis -- 'known' oncogenic mutations (from prior knowledge / Catalog of Validated Oncogenic Mutations) and 'predicted' drivers (OncodriveMUT / BoostDM) vs predicted passengers -- and (2) a separate ACTIONABILITY axis (biomarkers of drug response from the Cancer Biomarkers Database). The site tagline is 'Identification of therapeutically actionable genomic alterations in tumors.'",
+    "axis_verdict": "If run, the correct comparison would be NEAR-AXIS: map CGI's driver/oncogenicity field (known oncogenic / predicted driver -> ONC; predicted passenger / non-protein-affecting -> BEN; unknown -> VUS) onto the VICC 3-class oncogenicity gold. This is closer to our engine's native axis than CancerVar (which is cross-axis, AMP/ASCO/CAP actionability). NOTE: CGI's driver taxonomy is still NOT identical to VICC oncogenicity (driver != VICC Oncogenic/Likely Oncogenic point system), so even near-axis it requires the documented mapping above and a stated caveat.",
+    "intended_mapping_if_unblocked": {
+      "source_field": "CGI per-mutation oncogenicity/driver classification (Oncogenic Summary / driver_statement, e.g. 'known' | 'predicted driver' | 'predicted passenger' | 'non-protein-affecting')",
+      "map": {"known": "ONC", "predicted driver": "ONC", "predicted passenger": "BEN", "non-protein-affecting": "BEN", "unknown / not annotated": "VUS"},
+      "status": "NOT APPLIED -- no CGI outputs were obtained; this mapping is documented only for the future unblocked run."
+    }
+  },
+  "what_is_needed_to_unblock": "A CGI authentication token (register an email at the legacy CGI site / cgiclinics platform and request a token), supplied to this environment as an env var (e.g. CGI_EMAIL + CGI_TOKEN, names only). With that, scripts/fetch_cgi.py would POST the Horak-70 (hg38 coordinates, alterations format) to /2021/api/v1, poll the job, parse per-variant driver calls, archive raw JSON under data/benchmark/cgi/raw/, and run_cgi_headtohead.py would score it exactly like cancervar_headtohead.json.",
+  "provenance": {
+    "tool": "CGI (Cancer Genome Interpreter)",
+    "maintainer": "Barcelona Biomedical Genomics Lab (BBGLab), IRB Barcelona",
+    "endpoints_probed": [
+      "https://www.cancergenomeinterpreter.org/ (SPA)",
+      "https://www.cancergenomeinterpreter.org/2021/api/v1 (legacy REST API)",
+      "https://www.cancergenomeinterpreter.org/2021/analysis/submit (legacy web form)",
+      "https://platform.cgiclinics.eu/ (new platform)"
+    ],
+    "citation": "Tamborero D, Rubio-Perez C, Deu-Pons J, et al. Cancer Genome Interpreter annotates the biological and clinical relevance of tumor alterations. Genome Medicine. 2018;10:25. (Citation recorded from CGI documentation; NOT applied to any prediction because no CGI prediction was produced.)",
+    "no_predictions_were_fabricated": true
+  }
+}

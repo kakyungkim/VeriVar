@@ -1,0 +1,432 @@
+{
+  "model": "gpt-4o",
+  "lovo": false,
+  "n": 70,
+  "acc_5class": 0.557,
+  "acc_3class": 0.7,
+  "kappa_3class": 0.506,
+  "oncogenic_recall": 0.788,
+  "mean_evidence": 2.17,
+  "rows": [
+    {
+      "variant": "FLT3 p.D835Y",
+      "gold": "Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 6
+    },
+    {
+      "variant": "FLT3 p.D835E",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "FLT3 p.D835H",
+      "gold": "Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 3
+    },
+    {
+      "variant": "FLT3 p.D835V",
+      "gold": "Oncogenic",
+      "pred": "Oncogenic",
+      "n_evidence": 9
+    },
+    {
+      "variant": "FLT3 p.N676K",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "FLT3 p.Y842C",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 7
+    },
+    {
+      "variant": "FLT3 p.F691L",
+      "gold": "VUS",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 3
+    },
+    {
+      "variant": "FLT3 p.Y693C",
+      "gold": "VUS",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "FLT3 p.Y693N",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "BRAF p.K601E",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 2
+    },
+    {
+      "variant": "BRAF p.D594N",
+      "gold": "Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "BRAF p.G469A",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 2
+    },
+    {
+      "variant": "BRAF p.G469E",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 3
+    },
+    {
+      "variant": "BRAF p.P14R",
+      "gold": "VUS",
+      "pred": "Likely Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "BRAF p.A31G",
+      "gold": "VUS",
+      "pred": "Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "BRAF p.D445H",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "IDH1 p.R132H",
+      "gold": "Oncogenic",
+      "pred": "Oncogenic",
+      "n_evidence": 3
+    },
+    {
+      "variant": "IDH1 p.R132C",
+      "gold": "Oncogenic",
+      "pred": "Oncogenic",
+      "n_evidence": 9
+    },
+    {
+      "variant": "IDH1 p.R132S",
+      "gold": "Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "IDH1 p.V178I",
+      "gold": "Benign",
+      "pred": "Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "IDH1 p.D220G",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "IDH1 p.E262K",
+      "gold": "VUS",
+      "pred": "Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "IDH1 p.F32V",
+      "gold": "VUS",
+      "pred": "Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "IDH1 p.V71I",
+      "gold": "Benign",
+      "pred": "Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "KRAS p.G12A",
+      "gold": "Oncogenic",
+      "pred": "Oncogenic",
+      "n_evidence": 10
+    },
+    {
+      "variant": "KRAS p.R164Q",
+      "gold": "VUS",
+      "pred": "Likely Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "KRAS p.S65I",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "KRAS p.Q61K",
+      "gold": "Oncogenic",
+      "pred": "Oncogenic",
+      "n_evidence": 2
+    },
+    {
+      "variant": "PIK3CA p.H1047R",
+      "gold": "Oncogenic",
+      "pred": "Oncogenic",
+      "n_evidence": 27
+    },
+    {
+      "variant": "PIK3CA p.H1047Q",
+      "gold": "VUS",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 2
+    },
+    {
+      "variant": "PIK3CA p.H1065Y",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "PIK3CA p.K733R",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "PIK3CA p.E545A",
+      "gold": "Oncogenic",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "PIK3CA p.E453K",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 2
+    },
+    {
+      "variant": "PIK3CA p.E418K",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "PIK3CA p.I391M",
+      "gold": "Benign",
+      "pred": "Likely Benign",
+      "n_evidence": 3
+    },
+    {
+      "variant": "PIK3CA p.M1?",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 0
+    },
+    {
+      "variant": "PTEN p.R130Q",
+      "gold": "Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "PTEN p.T131I",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "PTEN p.H123R",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "PTEN p.P204A",
+      "gold": "Likely Oncogenic",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "PTEN p.L182S",
+      "gold": "VUS",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "PTEN p.P354L",
+      "gold": "VUS",
+      "pred": "Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "RB1 p.Q689H",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "RB1 p.S567L",
+      "gold": "VUS",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "RB1 p.W563L",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "RB1 p.R661W",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "RB1 p.E554K",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "RB1 p.Y606C",
+      "gold": "VUS",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "EZH2 p.Y646F",
+      "gold": "Oncogenic",
+      "pred": "Oncogenic",
+      "n_evidence": 5
+    },
+    {
+      "variant": "EZH2 p.D136V",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "EZH2 p.D233G",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "EZH2 p.V626M",
+      "gold": "Likely Oncogenic",
+      "pred": "VUS",
+      "n_evidence": 0
+    },
+    {
+      "variant": "EZH2 p.R658T",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "EZH2 p.A682G",
+      "gold": "Likely Oncogenic",
+      "pred": "Oncogenic",
+      "n_evidence": 4
+    },
+    {
+      "variant": "EZH2 p.A682V",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "EZH2 p.R684C",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "EZH2 p.R690H",
+      "gold": "Likely Oncogenic",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "EZH2 p.S695L",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "EZH2 p.Y731F",
+      "gold": "Likely Oncogenic",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "EZH2 p.Y731H",
+      "gold": "VUS",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "TP53 p.P47S",
+      "gold": "Benign",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "TP53 p.V73M",
+      "gold": "Benign",
+      "pred": "Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "TP53 p.C135G",
+      "gold": "Likely Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "TP53 p.V173M",
+      "gold": "Oncogenic",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "TP53 p.E180K",
+      "gold": "Likely Oncogenic",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "TP53 p.E298K",
+      "gold": "Likely Benign",
+      "pred": "Benign",
+      "n_evidence": 1
+    },
+    {
+      "variant": "TP53 p.G334R",
+      "gold": "VUS",
+      "pred": "Likely Oncogenic",
+      "n_evidence": 1
+    },
+    {
+      "variant": "TP53 p.A347D",
+      "gold": "Likely Oncogenic",
+      "pred": "VUS",
+      "n_evidence": 1
+    },
+    {
+      "variant": "TP53 p.H365Y",
+      "gold": "Likely Benign",
+      "pred": "Benign",
+      "n_evidence": 1
+    }
+  ]
+}

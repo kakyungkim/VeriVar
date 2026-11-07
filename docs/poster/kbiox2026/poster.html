@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VeriVar poster — Chuncheon x KNU x K-BioX Global Bio Innovation Summit 2026</title>
+<link rel="stylesheet" href="poster.css">
+</head>
+<body>
+<div class="sheet">
+
+  <header class="head">
+    <div class="event">
+      <div class="event-logos">
+        <img src="assets/kbiox.jpg" alt="K-BioX">
+        <img src="assets/knu-anchor.png" class="wide" alt="Kangwon National University ANCHOR">
+        <img src="assets/chuncheon.jpg" alt="Chuncheon City">
+      </div>
+      <div class="event-name">
+        <b>Global Bio Innovation SUMMIT 2026</b>
+        Chuncheon x KNU x K-BioX · Nov 14, 2026<br>
+        KNU Science &amp; Industry Innovation Hub · Poster session
+      </div>
+    </div>
+
+    <div class="titleblock">
+      <h1>Can an LLM's variant report be<br><span class="hl">audited line by line?</span></h1>
+      <p class="subtitle">VeriVar: citation-grounded retrieval for faithful somatic variant interpretation,
+        with a leakage-controlled benchmark</p>
+      <p class="authors"><b>Ka-Kyung Kim</b>
+        <span class="aff">Independent Researcher, Seoul, Republic of Korea · kakyung.kim@gmail.com</span>
+      </p>
+    </div>
+
+    <div class="brand">
+      <img src="assets/verivar_icon.svg" class="mark" alt="VeriVar">
+      <div class="qr">
+        <img src="figures/qr_repo.svg" alt="QR code to the VeriVar repository">
+        <span>Code, data<br>and preprint draft</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="headline">
+    <p>Retrieval makes an LLM's citations <em>real and checkable</em>.
+      At this scale it buys no accuracy, and that is worth saying plainly.</p>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="v">0 / 86</div>
+        <div class="l">identifier citations outside<br>the retrieved evidence</div>
+      </div>
+      <div class="kpi">
+        <div class="v warn">19 / 56</div>
+        <div class="l">variants given a fabricated or<br>misattributed identifier without retrieval</div>
+      </div>
+      <div class="kpi">
+        <div class="v">0.600 vs 0.586</div>
+        <div class="l">three-class accuracy with and<br>without retrieval (p = 1.0)</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="summary">
+    A somatic variant report decides whether a patient is offered a targeted drug, so an interpretation that
+    cites a paper which does not exist is unusable even when the call is right.
+    <b>We built a system that may cite only the evidence it actually retrieved and must abstain when it has none</b>,
+    then measured what it cites, how accurate it is, and where the guarantee breaks.
+    Everything runs on public data and the code is released.
+  </p>
+
+  <main class="body">
+
+    <!-- column 1 -->
+    <div class="stack">
+      <section>
+        <h2><span class="n">1</span> The problem</h2>
+        <p>Large language models read the literature fluently and write structured reports, which is exactly
+          what somatic variant interpretation needs. Two failure modes block clinical use.</p>
+        <ul>
+          <li><b>They invent sources.</b> A confident paragraph can rest on a PubMed identifier that belongs
+            to an unrelated paper, or to no paper at all.</li>
+          <li><b>They answer from memory.</b> A well-known variant can be classified from what the model
+            absorbed in training rather than from evidence anyone can check.</li>
+        </ul>
+        <p>Both make the output unauditable. A reviewer cannot tell a sound call from a lucky one, which is
+          the property a molecular tumour board actually needs.</p>
+      </section>
+
+      <section>
+        <h2><span class="n">2</span> What VeriVar does</h2>
+        <p>Every variant is classified on two international standards, ClinGen/CGC/VICC oncogenicity and the
+          AMP/ASCO/CAP clinical tier, under a contract enforced in the retrieval and gating layers rather
+          than in the model's weights.</p>
+        <ul>
+          <li>Hybrid retrieval builds an evidence bundle in which every item has a citable identifier.</li>
+          <li>The model may cite <b>only</b> identifiers from that bundle.</li>
+          <li>With no variant-specific evidence it must return VUS instead of guessing.</li>
+          <li>A separate deterministic rule arm scores the guideline's own criteria with no LLM call.</li>
+        </ul>
+        <figure>
+          <img src="figures/p1_design.svg" alt="System schematic: an LLM branch and a parallel rule branch">
+          <figcaption><b>Figure 1.</b> The two branches run on the same variant. The rule arm uses its own
+            open sources and emits oncogenicity only.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2><span class="n">3</span> How it was evaluated</h2>
+        <div class="statrow">
+          <div class="stat"><div class="v">56</div><div class="l">variant × context units<br>5 cancers, 27-gene panel</div></div>
+          <div class="stat"><div class="v">70</div><div class="l">expert-classified variants<br>Horak 2022 gold standard</div></div>
+          <div class="stat"><div class="v">712</div><div class="l">ClinVar variants<br>independent holdout</div></div>
+        </div>
+        <p style="margin-top:4mm">Evidence comes from CIViC, DGIdb, AlphaMissense and ClinicalTrials.gov as
+          committed offline snapshots, so the whole evaluation re-runs without network access.
+          Leakage was controlled two ways: a temporal sweep that rolls the retrieval corpus back to
+          pre-2012 literature, and a leave-own-evidence-out run that deletes each variant's own curated
+          evidence before classifying it.</p>
+        <p>Three things are then measured and reported separately, because they fail in different ways:
+          whether a cited record <b>exists</b> in the retrieved evidence, whether it <b>supports</b> the
+          sentence citing it, and whether the call is <b>correct</b> against the expert standard.</p>
+        <div class="note"><b>Repeatability first.</b> At temperature 0 the classifier disagrees with itself
+          on 17.3% of compared fields. Every difference reported here clears that floor.</div>
+      </section>
+    </div>
+
+    <!-- column 2 -->
+    <div class="stack">
+      <section>
+        <h2><span class="n">4</span> Citations become checkable</h2>
+        <p>Both arms are scored by one citation taxonomy, applied identically. The measurement is taken
+          <b>before</b> the gate removes anything, so it is a behaviour, not a guarantee.</p>
+        <figure>
+          <img src="figures/p2_faithfulness.svg" alt="Fabricated or misattributed identifiers, with and without retrieval">
+          <figcaption><b>Figure 2.</b> Variant-level rate with Wilson 95% intervals. Of the 41 identifiers the
+            no-retrieval arm emitted, 13 were real PubMed records describing something else, including a
+            carotid angioplasty study cited for BRAF V600E.</figcaption>
+        </figure>
+        <div class="note warn"><b>Read this honestly.</b> The two arms differ in two ways at once: one has no
+          evidence bundle, and its prompt never tells it to cite only listed identifiers. The comparison is
+          the deployment contrast, not a single-factor experiment.</div>
+      </section>
+
+      <section>
+        <h2><span class="n">5</span> Accuracy does not move</h2>
+        <figure>
+          <img src="figures/p3_accuracy.svg" alt="Three-class accuracy of four arms with confidence intervals">
+          <figcaption><b>Figure 3.</b> No pair separates at n = 70 (McNemar p = 1.0 for retrieval versus no
+            retrieval). Accuracy also held under both leakage controls.</figcaption>
+        </figure>
+        <div class="note"><b>No accuracy claim is made.</b> Absence of evidence of a difference at n = 70 is
+          not evidence of equivalence. The contribution is auditability, and saying so is the point rather
+          than a caveat.</div>
+      </section>
+
+      <section>
+        <h2><span class="n">6</span> Two kinds of caution</h2>
+        <figure>
+          <img src="figures/p4_rule_discordance.svg" alt="Rule-arm specificity against sensitivity, and dual-mode discordance types">
+          <figcaption><b>Figure 4.</b> The rule arm never calls a benign or uncertain variant oncogenic, and
+            pays for it by leaving most oncogenic variants at VUS. Where the two LLM modes disagree, 26 of 31
+            disagreements are one step apart.</figcaption>
+        </figure>
+        <p>Published engines sit the other way round: OncoVI reaches 0.797 accuracy on the 69 shared variants
+          by accepting over-calls. Neither difference is significant (p = 0.087). Which error you prefer is a
+          clinical choice, not a technical one.</p>
+      </section>
+    </div>
+
+    <!-- column 3 -->
+    <div class="stack">
+      <section>
+        <h2 class="alt"><span class="n">7</span> Where the guarantee breaks</h2>
+        <p>The contract promises that citations exist. It does not promise the system recognised the variant
+          you asked about. Rewriting the same variant with an older gene symbol tests that.</p>
+        <figure>
+          <img src="figures/p5_robustness.svg" alt="Evidence loss under an alias symbol, and the calls that followed">
+          <figcaption><b>Figure 5.</b> An HGNC alias symbol empties the text-keyed evidence while the
+            coordinate-keyed annotator is untouched. Of the 26 variants that lost everything, 22 were still
+            called drivers, each citing only the computational prior.</figcaption>
+        </figure>
+        <div class="note warn"><b>This is a negative result we report rather than fix.</b> No citation was
+          out of bundle anywhere in the perturbation (0 of 228), so the contract held exactly as written and
+          was still not enough. A driver call needs an evidence-sufficiency condition, not only a citation
+          condition.</div>
+        <p>Repeatability was measured, not assumed: at temperature 0 the same prompt disagrees with itself on
+          17.3% of compared fields, which is the floor any claim of change has to clear.</p>
+      </section>
+
+      <div class="card">
+        <h3>Open and reproducible</h3>
+        <dl>
+          <dt>Data</dt><dd>public only: TCGA via cBioPortal, CIViC, DGIdb, AlphaMissense, ClinVar, ClinicalTrials.gov</dd>
+          <dt>Runs</dt><dd>offline from committed snapshots; model outputs cached per variant</dd>
+          <dt>Checks</dt><dd>392 tests, plus a gate that recomputes every number in the manuscript and resolves every DOI</dd>
+          <dt>Code</dt><dd><code>github.com/kakyungkim/VeriVar</code></dd>
+        </dl>
+      </div>
+
+      <div class="card navy">
+        <h3>Who this is for</h3>
+        <dl>
+          <dt>Researchers</dt><dd>a draft interpretation whose every sentence can be traced to a record, and an
+            abstention when the evidence is not there</dd>
+          <dt>Industry R&amp;D</dt><dd>a worked pattern for putting a citation contract and an audit gate around
+            a hosted model, including the change-control checks a model swap forces</dd>
+          <dt>Students</dt><dd>the whole pipeline, data and evaluation are public and run on a laptop without an
+            API key</dd>
+        </dl>
+      </div>
+
+      <div class="card">
+        <h3>What we would fix next</h3>
+        <dl>
+          <dt>Normalise</dt><dd>resolve gene symbols and HGVS spellings before retrieval, so an alias cannot
+            silently empty the evidence</dd>
+          <dt>Require</dt><dd>an evidence-sufficiency condition on driver calls, not a citation condition alone</dd>
+          <dt>Check</dt><dd>that the cited record describes the residue actually asked about</dd>
+          <dt>Gate</dt><dd>citations on entailment, not only on membership of the bundle</dd>
+        </dl>
+      </div>
+    </div>
+  </main>
+
+  <div class="takehome">
+    <h2>Take home</h2>
+    <ol>
+      <li>Grounding a model in retrieved evidence makes its citations <b>real and checkable</b>; without it,
+        about a third of variants carried an identifier that was fabricated or pointed somewhere else.</li>
+      <li>It bought <b>no accuracy gain</b> at this scale, and the honest report of that is part of the result.</li>
+      <li>Citations existing is not the same as the system having understood the question: one alias symbol
+        emptied the evidence and <b>22 of 26 driver calls stood anyway</b>.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <div>
+      <b>Limitations.</b> Retrospective and research-only. n = 70 cannot support an accuracy claim.
+      Whether each real citation <i>supports</i> its sentence is measured only approximately
+      (entailment audit 0.444, a noisy lower bound). The post-gate scorecard reports guarantees the gate
+      enforces, not measured outcomes. Clinical utility is motivated, not measured.
+      <p class="disclaimer" style="margin-top:3mm">Research and education only. Not a medical device.
+        Not for clinical decision-making.</p>
+    </div>
+    <div class="refs">
+      <b>Key references.</b>
+      Horak P et al. <i>Genet Med</i> 2022;24:986. ·
+      Li MM et al. <i>J Mol Diagn</i> 2017;19:4. ·
+      Carta C et al. (OncoVI) <i>J Mol Diagn</i> 2026;28:469. ·
+      Tjota MY et al. (OLIVE) <i>J Mol Diagn</i> 2026;28:524. ·
+      Zoller J et al. (HemaGuide) <i>Nat Med</i> 2026;32:3224. ·
+      Gao T et al. (ALCE) <i>EMNLP</i> 2023.
+    </div>
+    <div>
+      <b>Reproduce.</b><br>
+      <code>git clone github.com/kakyungkim/VeriVar</code><br>
+      <code>./setup.sh &amp;&amp; python -m scripts.run_eval</code>
+      <p style="margin-top:3mm">Preprint in preparation (medRxiv). The repository carries the manuscript,
+        every result file and the figure code.</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

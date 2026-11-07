@@ -1,0 +1,9 @@
+{
+  "corpus": 988,
+  "n_variants": 70,
+  "recall_at_5": {
+    "pubmedbert(domain)": 0.243,
+    "minilm(general)": 0.229,
+    "openai-3-small": 0.229
+  }
+}

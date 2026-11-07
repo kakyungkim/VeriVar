@@ -1,0 +1,359 @@
+{
+  "FLT3|D835Y": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "FLT3|D835E": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "FLT3|D835H": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "FLT3|D835V": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "FLT3|N676K": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "FLT3|Y842C": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "FLT3|F691L": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "FLT3|Y693C": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "FLT3|Y693N": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "BRAF|K601E": {
+    "oncogenic": true,
+    "vcv": "VCV000013966",
+    "label": "Oncogenic"
+  },
+  "BRAF|D594N": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "BRAF|G469A": {
+    "oncogenic": true,
+    "vcv": "VCV000013971",
+    "label": "Oncogenic"
+  },
+  "BRAF|G469E": {
+    "oncogenic": true,
+    "vcv": "VCV000013974",
+    "label": "Oncogenic"
+  },
+  "BRAF|P14R": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "BRAF|A31G": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "BRAF|D445H": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "IDH1|R132H": {
+    "oncogenic": true,
+    "vcv": "VCV000156444",
+    "label": "Oncogenic"
+  },
+  "IDH1|R132C": {
+    "oncogenic": true,
+    "vcv": "VCV000375891",
+    "label": "Oncogenic"
+  },
+  "IDH1|R132S": {
+    "oncogenic": true,
+    "vcv": "VCV000375893",
+    "label": "Oncogenic"
+  },
+  "IDH1|V178I": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "IDH1|D220G": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "IDH1|E262K": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "IDH1|F32V": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "IDH1|V71I": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "KRAS|G12A": {
+    "oncogenic": true,
+    "vcv": "VCV000045122",
+    "label": "Oncogenic"
+  },
+  "KRAS|R164Q": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "KRAS|S65I": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "KRAS|Q61K": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "PIK3CA|H1047R": {
+    "oncogenic": true,
+    "vcv": "VCV000013652",
+    "label": "Oncogenic"
+  },
+  "PIK3CA|H1047Q": {
+    "oncogenic": false,
+    "vcv": "VCV003765059",
+    "label": "Uncertain significance"
+  },
+  "PIK3CA|H1065Y": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "PIK3CA|K733R": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "PIK3CA|E545A": {
+    "oncogenic": true,
+    "vcv": "VCV000013659",
+    "label": "Oncogenic"
+  },
+  "PIK3CA|E453K": {
+    "oncogenic": true,
+    "vcv": "VCV000376470",
+    "label": "Oncogenic"
+  },
+  "PIK3CA|E418K": {
+    "oncogenic": true,
+    "vcv": "VCV000045464",
+    "label": "Likely oncogenic"
+  },
+  "PIK3CA|I391M": {
+    "oncogenic": false,
+    "vcv": "VCV000135038",
+    "label": "Likely benign"
+  },
+  "PIK3CA|M1?": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "PTEN|R130Q": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "PTEN|T131I": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "PTEN|H123R": {
+    "oncogenic": true,
+    "vcv": "VCV000007816",
+    "label": "Oncogenic"
+  },
+  "PTEN|P204A": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "PTEN|L182S": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "PTEN|P354L": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "RB1|Q689H": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "RB1|S567L": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "RB1|W563L": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "RB1|R661W": {
+    "oncogenic": true,
+    "vcv": "VCV000013087",
+    "label": "Oncogenic"
+  },
+  "RB1|E554K": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "RB1|Y606C": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|Y646F": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|D136V": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|D233G": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|V626M": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|R658T": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|A682G": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|A682V": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|R684C": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|R690H": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|S695L": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|Y731F": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "EZH2|Y731H": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "TP53|P47S": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "TP53|V73M": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "TP53|C135G": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "TP53|V173M": {
+    "oncogenic": true,
+    "vcv": "VCV000233951",
+    "label": "Oncogenic"
+  },
+  "TP53|E180K": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "TP53|E298K": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "TP53|G334R": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "TP53|A347D": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "TP53|H365Y": {
+    "oncogenic": false,
+    "vcv": null,
+    "label": null
+  },
+  "_provenance": {
+    "source": "data/benchmark/clinvar_onc/clinvar_oncogenicity_missense_grch38.tsv (ClinVar FTP variant_summary, aggregate Oncogenicity)",
+    "rule": "OS1 iff exact gene + protein-change match labelled Oncogenic/Likely oncogenic",
+    "n_variants": 70,
+    "n_os1": 14,
+    "built_utc": "2026-09-24T02:06:58Z"
+  }
+}

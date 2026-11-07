@@ -1,0 +1,3687 @@
+{
+ "1 11128120 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9365,
+  "gnomad_af": 0.0
+ },
+ "1 11129790 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9965,
+  "gnomad_af": 0.0
+ },
+ "1 11157245 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9912,
+  "gnomad_af": 0.0
+ },
+ "1 114713873 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9937,
+  "gnomad_af": 0.0
+ },
+ "1 114713907 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 0.0
+ },
+ "1 114713907 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 0.0
+ },
+ "1 114713908 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9912,
+  "gnomad_af": 0.0
+ },
+ "1 114713909 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9853,
+  "gnomad_af": 6.849e-07
+ },
+ "1 114716052 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9988,
+  "gnomad_af": 0.0
+ },
+ "1 114716058 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9943,
+  "gnomad_af": 0.0
+ },
+ "1 114716060 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9983,
+  "gnomad_af": 0.0
+ },
+ "1 114716081 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9896,
+  "gnomad_af": 0.0
+ },
+ "1 114716095 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9938,
+  "gnomad_af": 0.0
+ },
+ "1 114716117 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "1 114716123 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9989,
+  "gnomad_af": 6.841e-07
+ },
+ "1 114716126 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9966,
+  "gnomad_af": 6.841e-07
+ },
+ "1 114716126 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 1.313e-05
+ },
+ "1 114716127 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 0.0
+ },
+ "1 114716127 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9918,
+  "gnomad_af": 2.737e-06
+ },
+ "1 116570972 . T G . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "1 119937447 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7941,
+  "gnomad_af": 0.0
+ },
+ "1 155904499 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.948,
+  "gnomad_af": 6.852e-07
+ },
+ "1 156879315 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9332,
+  "gnomad_af": 0.0
+ },
+ "1 226064434 . A T . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "1 23559213 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3616,
+  "gnomad_af": 2.052e-06
+ },
+ "1 23559218 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9961,
+  "gnomad_af": 0.0
+ },
+ "1 23559237 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.478,
+  "gnomad_af": 3.42e-06
+ },
+ "1 243505296 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.5928,
+  "gnomad_af": 0.0
+ },
+ "1 26729730 . G T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1337,
+  "gnomad_af": 0.0
+ },
+ "1 26780608 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9766,
+  "gnomad_af": 6.57e-06
+ },
+ "1 36467833 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6348,
+  "gnomad_af": 0.0
+ },
+ "1 45332614 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1285,
+  "gnomad_af": 9.203e-05
+ },
+ "1 85270791 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2378,
+  "gnomad_af": 6.157e-06
+ },
+ "10 121515239 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0829,
+  "gnomad_af": 1.026e-05
+ },
+ "10 121515260 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9964,
+  "gnomad_af": 0.0
+ },
+ "10 121517391 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9954,
+  "gnomad_af": 0.0
+ },
+ "10 121520091 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9992,
+  "gnomad_af": 0.0
+ },
+ "10 121520163 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.992,
+  "gnomad_af": 0.0
+ },
+ "10 43112905 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8503,
+  "gnomad_af": 0.0
+ },
+ "10 43114585 . A C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.19,
+  "gnomad_af": 0.0
+ },
+ "10 43114716 . G T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1633,
+  "gnomad_af": 0.0
+ },
+ "10 43116699 . G C . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4464,
+  "gnomad_af": 0.0
+ },
+ "10 43119566 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9031,
+  "gnomad_af": 0.0
+ },
+ "10 62813572 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9945,
+  "gnomad_af": 0.0
+ },
+ "10 8064109 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "10 86921584 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9947,
+  "gnomad_af": 6.573e-06
+ },
+ "10 87864487 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9988,
+  "gnomad_af": 0.0
+ },
+ "10 87864506 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "10 87864514 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "10 87864525 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9893,
+  "gnomad_af": 0.0
+ },
+ "10 87864536 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9813,
+  "gnomad_af": 6.841e-07
+ },
+ "10 87864539 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 6.841e-07
+ },
+ "10 87864541 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "10 87864546 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.999,
+  "gnomad_af": 6.57e-06
+ },
+ "10 87894051 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "10 87894061 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 0.0
+ },
+ "10 87894070 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9799,
+  "gnomad_af": 0.0
+ },
+ "10 87933028 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9992,
+  "gnomad_af": 6.573e-06
+ },
+ "10 87933033 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9994,
+  "gnomad_af": 0.0
+ },
+ "10 87933046 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9983,
+  "gnomad_af": 0.0
+ },
+ "10 87933090 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "10 87933093 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9234,
+  "gnomad_af": 0.0
+ },
+ "10 87933112 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.869,
+  "gnomad_af": 0.0
+ },
+ "10 87933124 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "10 87933127 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "10 87933136 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9682,
+  "gnomad_af": 0.0
+ },
+ "10 87933138 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 1,
+  "gnomad_af": 6.841e-07
+ },
+ "10 87933145 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "10 87933147 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "10 87933153 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9994,
+  "gnomad_af": 0.0
+ },
+ "10 87933165 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "10 87933168 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9995,
+  "gnomad_af": 0.0
+ },
+ "10 87933226 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9992,
+  "gnomad_af": 0.0
+ },
+ "10 87933236 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "10 87952122 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9994,
+  "gnomad_af": 0.0
+ },
+ "10 87952134 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 0.0
+ },
+ "10 87952136 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9765,
+  "gnomad_af": 0.0
+ },
+ "10 87952142 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9981,
+  "gnomad_af": 6.582e-06
+ },
+ "10 87952143 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9951,
+  "gnomad_af": 2.053e-06
+ },
+ "10 87952151 . T C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1428,
+  "gnomad_af": 0.0
+ },
+ "10 87957868 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "10 87957955 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9779,
+  "gnomad_af": 0.0
+ },
+ "10 87958015 . A G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0989,
+  "gnomad_af": 0.0
+ },
+ "10 87960922 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9993,
+  "gnomad_af": 0.0
+ },
+ "10 87961021 . A G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1076,
+  "gnomad_af": 0.0
+ },
+ "10 87961068 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9995,
+  "gnomad_af": 0.0
+ },
+ "10 87965300 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "10 87965356 . A C . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3424,
+  "gnomad_af": 0.0
+ },
+ "11 108247072 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2928,
+  "gnomad_af": 7.458e-05
+ },
+ "11 108250957 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1065,
+  "gnomad_af": 0.0
+ },
+ "11 108251918 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0954,
+  "gnomad_af": 0.0
+ },
+ "11 108315847 . A G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.126,
+  "gnomad_af": 0.0
+ },
+ "11 108315872 . A G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5425,
+  "gnomad_af": 6.571e-06
+ },
+ "11 108316108 . A T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1997,
+  "gnomad_af": 0.0
+ },
+ "11 108325416 . C T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5444,
+  "gnomad_af": 1.316e-05
+ },
+ "11 108330270 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9501,
+  "gnomad_af": 0.0
+ },
+ "11 108343225 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6526,
+  "gnomad_af": 0.0
+ },
+ "11 108345882 . C T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.467,
+  "gnomad_af": 3.945e-05
+ },
+ "11 108345884 . C T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5357,
+  "gnomad_af": 0.0001971
+ },
+ "11 108354818 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6029,
+  "gnomad_af": 6.843e-07
+ },
+ "11 533874 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9779,
+  "gnomad_af": 0.0
+ },
+ "11 533874 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.991,
+  "gnomad_af": 0.0
+ },
+ "11 534285 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9973,
+  "gnomad_af": 0.0
+ },
+ "11 69641444 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9536,
+  "gnomad_af": 0.0
+ },
+ "11 69641449 . A G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3769,
+  "gnomad_af": 0.0
+ },
+ "11 78669416 . A T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.3124,
+  "gnomad_af": 0.0
+ },
+ "11 92798175 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9719,
+  "gnomad_af": 0.0
+ },
+ "11 92801279 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.5711,
+  "gnomad_af": 0.0
+ },
+ "11 92801281 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8522,
+  "gnomad_af": 0.0
+ },
+ "11 92810068 . C A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2412,
+  "gnomad_af": 0.0
+ },
+ "12 112450385 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9977,
+  "gnomad_af": 0.0
+ },
+ "12 112450406 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "12 112477720 . A G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5185,
+  "gnomad_af": 0.0
+ },
+ "12 112488445 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9966,
+  "gnomad_af": 0.0
+ },
+ "12 113077530 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9138,
+  "gnomad_af": 9.966e-05
+ },
+ "12 11650144 . C G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0714,
+  "gnomad_af": 0.0
+ },
+ "12 11650154 . C A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2857,
+  "gnomad_af": 1.973e-05
+ },
+ "12 11884541 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9872,
+  "gnomad_af": 6.572e-06
+ },
+ "12 132673664 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9565,
+  "gnomad_af": 6.841e-07
+ },
+ "12 132676632 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9982,
+  "gnomad_af": 6.845e-07
+ },
+ "12 25209901 . T A . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "12 25225713 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 6.845e-07
+ },
+ "12 25227320 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9985,
+  "gnomad_af": 0.0
+ },
+ "12 25227337 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9966,
+  "gnomad_af": 0.0
+ },
+ "12 25227341 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9977,
+  "gnomad_af": 0.0
+ },
+ "12 25227342 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9647,
+  "gnomad_af": 0.0
+ },
+ "12 25227342 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9866,
+  "gnomad_af": 0.0
+ },
+ "12 25245317 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9836,
+  "gnomad_af": 0.0
+ },
+ "12 25245321 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9799,
+  "gnomad_af": 0.0
+ },
+ "12 25245328 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9811,
+  "gnomad_af": 0.0
+ },
+ "12 25245347 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.998,
+  "gnomad_af": 1.971e-05
+ },
+ "12 25245350 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9949,
+  "gnomad_af": 6.847e-07
+ },
+ "12 25245350 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9575,
+  "gnomad_af": 1.369e-06
+ },
+ "12 25245350 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9984,
+  "gnomad_af": 1.314e-05
+ },
+ "12 25245351 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9975,
+  "gnomad_af": 0.0
+ },
+ "12 25245351 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9977,
+  "gnomad_af": 0.0
+ },
+ "12 25245351 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.985,
+  "gnomad_af": 3.423e-06
+ },
+ "12 25245363 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9114,
+  "gnomad_af": 0.0
+ },
+ "12 49022717 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "12 49043917 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8284,
+  "gnomad_af": 2.052e-06
+ },
+ "12 56085070 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.558,
+  "gnomad_af": 6.84e-07
+ },
+ "12 56085070 . G T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4856,
+  "gnomad_af": 0.0
+ },
+ "12 56088022 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.3281,
+  "gnomad_af": 0.0
+ },
+ "12 56088138 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.862,
+  "gnomad_af": 0.0
+ },
+ "12 56088557 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8956,
+  "gnomad_af": 0.0
+ },
+ "12 56098849 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9525,
+  "gnomad_af": 6.841e-07
+ },
+ "12 57102878 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9907,
+  "gnomad_af": 0.0
+ },
+ "12 57102879 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9976,
+  "gnomad_af": 0.0
+ },
+ "12 57102885 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9683,
+  "gnomad_af": 0.0
+ },
+ "12 6954913 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9965,
+  "gnomad_af": 0.0
+ },
+ "13 28050157 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0982,
+  "gnomad_af": 0.6159
+ },
+ "13 32339831 . G T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0949,
+  "gnomad_af": 0.0
+ },
+ "13 32346896 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0786,
+  "gnomad_af": 6.203e-06
+ },
+ "13 32394869 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6176,
+  "gnomad_af": 0.0
+ },
+ "13 40666151 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9859,
+  "gnomad_af": 0.0
+ },
+ "13 48349001 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9918,
+  "gnomad_af": 0.0
+ },
+ "13 48459708 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9897,
+  "gnomad_af": 1.368e-06
+ },
+ "13 48463753 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 0.0
+ },
+ "13 48465368 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8253,
+  "gnomad_af": 0.0
+ },
+ "13 51974966 . C T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.56,
+  "gnomad_af": 0.0
+ },
+ "13 72772202 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9981,
+  "gnomad_af": 0.0
+ },
+ "14 104773083 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9982,
+  "gnomad_af": 0.0
+ },
+ "14 104780118 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2346,
+  "gnomad_af": 0.0
+ },
+ "14 104780214 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9977,
+  "gnomad_af": 0.0
+ },
+ "14 65102338 . A T . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "14 68411433 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1256,
+  "gnomad_af": 0.0
+ },
+ "14 68611185 . C G . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "14 75038358 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0807,
+  "gnomad_af": 6.842e-07
+ },
+ "14 95091305 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "14 95094127 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9975,
+  "gnomad_af": 0.0
+ },
+ "15 40997569 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9965,
+  "gnomad_af": 0.0
+ },
+ "15 44711547 . A C . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "15 44711547 . A G . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 6.842e-07
+ },
+ "15 44711548 . T A . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "15 44711572 . T C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1261,
+  "gnomad_af": 0.0
+ },
+ "15 44711581 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7216,
+  "gnomad_af": 6.841e-07
+ },
+ "15 66435086 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.211,
+  "gnomad_af": 2.736e-06
+ },
+ "15 66435103 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9964,
+  "gnomad_af": 0.0
+ },
+ "15 66435113 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9934,
+  "gnomad_af": 0.0
+ },
+ "15 66435115 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9973,
+  "gnomad_af": 6.841e-07
+ },
+ "15 66436843 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9685,
+  "gnomad_af": 0.0
+ },
+ "15 67187473 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9947,
+  "gnomad_af": 6.84e-07
+ },
+ "15 67190502 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9399,
+  "gnomad_af": 0.0
+ },
+ "15 72580990 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9926,
+  "gnomad_af": 0.0
+ },
+ "15 87929237 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "15 87929267 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "15 90088606 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9944,
+  "gnomad_af": 6.84e-07
+ },
+ "15 90088607 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9981,
+  "gnomad_af": 0.0
+ },
+ "15 90088702 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9872,
+  "gnomad_af": 6.578e-05
+ },
+ "15 98891612 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5035,
+  "gnomad_af": 0.0
+ },
+ "16 11255066 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.853,
+  "gnomad_af": 0.0
+ },
+ "16 11255105 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9409,
+  "gnomad_af": 0.0
+ },
+ "16 2053409 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9605,
+  "gnomad_af": 0.0
+ },
+ "16 2080363 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9992,
+  "gnomad_af": 0.0
+ },
+ "16 2175555 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7246,
+  "gnomad_af": 0.0
+ },
+ "16 2175882 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9966,
+  "gnomad_af": 0.0
+ },
+ "16 2175895 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9978,
+  "gnomad_af": 0.0
+ },
+ "16 2175937 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9976,
+  "gnomad_af": 0.0
+ },
+ "16 2176307 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.995,
+  "gnomad_af": 0.0
+ },
+ "16 2176308 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9905,
+  "gnomad_af": 0.0
+ },
+ "16 2176344 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6697,
+  "gnomad_af": 0.0
+ },
+ "16 24822956 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "16 3736702 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9075,
+  "gnomad_af": 0.0
+ },
+ "16 3736703 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 0.0
+ },
+ "16 3736704 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "16 3738584 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9989,
+  "gnomad_af": 0.0
+ },
+ "16 3738616 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9981,
+  "gnomad_af": 0.0
+ },
+ "16 3738617 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9942,
+  "gnomad_af": 0.0
+ },
+ "16 3738644 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9857,
+  "gnomad_af": 0.0
+ },
+ "16 3738650 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "16 75656238 . A G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3475,
+  "gnomad_af": 1.369e-06
+ },
+ "16 85903082 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9928,
+  "gnomad_af": 0.0
+ },
+ "17 12107827 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9973,
+  "gnomad_af": 0.0
+ },
+ "17 31095312 . G A . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 7.218e-07
+ },
+ "17 31155990 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9425,
+  "gnomad_af": 0.0
+ },
+ "17 31225134 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2677,
+  "gnomad_af": 3.421e-06
+ },
+ "17 31226684 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9872,
+  "gnomad_af": 0.0
+ },
+ "17 31259077 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9961,
+  "gnomad_af": 6.574e-06
+ },
+ "17 31349224 . A C . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3998,
+  "gnomad_af": 0.0
+ },
+ "17 35101356 . G C . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4141,
+  "gnomad_af": 0.0
+ },
+ "17 39470971 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4286,
+  "gnomad_af": 1.972e-05
+ },
+ "17 39509739 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9979,
+  "gnomad_af": 0.0
+ },
+ "17 39711955 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6937,
+  "gnomad_af": 0.0
+ },
+ "17 39723405 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0814,
+  "gnomad_af": 6.841e-07
+ },
+ "17 39723578 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7338,
+  "gnomad_af": 0.0
+ },
+ "17 39723967 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "17 39724004 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9559,
+  "gnomad_af": 0.0
+ },
+ "17 39724747 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9019,
+  "gnomad_af": 0.0
+ },
+ "17 39725079 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6678,
+  "gnomad_af": 2.052e-06
+ },
+ "17 40354354 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9892,
+  "gnomad_af": 0.0
+ },
+ "17 42207711 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9448,
+  "gnomad_af": 6.575e-06
+ },
+ "17 42322402 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9935,
+  "gnomad_af": 6.57e-06
+ },
+ "17 42322464 . T A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3677,
+  "gnomad_af": 6.57e-06
+ },
+ "17 42323052 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9771,
+  "gnomad_af": 0.0
+ },
+ "17 43067661 . A T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.3317,
+  "gnomad_af": 0.0
+ },
+ "17 43094414 . T G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1003,
+  "gnomad_af": 0.0
+ },
+ "17 49619068 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9989,
+  "gnomad_af": 0.0
+ },
+ "17 49619070 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9904,
+  "gnomad_af": 0.0
+ },
+ "17 49619237 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6735,
+  "gnomad_af": 0.0
+ },
+ "17 49619281 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9887,
+  "gnomad_af": 0.0
+ },
+ "17 49619281 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8362,
+  "gnomad_af": 0.0
+ },
+ "17 49619326 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9931,
+  "gnomad_af": 0.0
+ },
+ "17 49619327 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9886,
+  "gnomad_af": 0.0
+ },
+ "17 49619357 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9934,
+  "gnomad_af": 0.0
+ },
+ "17 58692740 . C G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0844,
+  "gnomad_af": 0.0
+ },
+ "17 61683336 . G C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0843,
+  "gnomad_af": 0.0
+ },
+ "17 61744543 . T C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0702,
+  "gnomad_af": 0.0
+ },
+ "17 63929439 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9681,
+  "gnomad_af": 0.0
+ },
+ "17 65014265 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7173,
+  "gnomad_af": 0.0
+ },
+ "17 65014576 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9964,
+  "gnomad_af": 0.0
+ },
+ "17 72122813 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "17 75779092 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9834,
+  "gnomad_af": 0.0
+ },
+ "17 7670700 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8021,
+  "gnomad_af": 0.0
+ },
+ "17 7670708 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9921,
+  "gnomad_af": 0.0
+ },
+ "17 7673535 . C G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3988,
+  "gnomad_af": 0.0
+ },
+ "17 76736877 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9818,
+  "gnomad_af": 0.0001184
+ },
+ "17 7673759 . C G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0988,
+  "gnomad_af": 6.573e-06
+ },
+ "17 7673764 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8972,
+  "gnomad_af": 0.0
+ },
+ "17 7673764 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9477,
+  "gnomad_af": 0.0
+ },
+ "17 7673766 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9811,
+  "gnomad_af": 0.0
+ },
+ "17 7673767 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9737,
+  "gnomad_af": 6.573e-06
+ },
+ "17 7673770 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.912,
+  "gnomad_af": 0.0
+ },
+ "17 7673776 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9462,
+  "gnomad_af": 6.578e-06
+ },
+ "17 7673777 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9991,
+  "gnomad_af": 0.0
+ },
+ "17 7673777 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9991,
+  "gnomad_af": 0.0
+ },
+ "17 7673779 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9959,
+  "gnomad_af": 0.0
+ },
+ "17 7673779 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9988,
+  "gnomad_af": 6.574e-06
+ },
+ "17 7673787 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9993,
+  "gnomad_af": 0.0
+ },
+ "17 7673790 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9904,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7673790 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9986,
+  "gnomad_af": 2.052e-06
+ },
+ "17 7673793 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9993,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7673796 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9978,
+  "gnomad_af": 0.0
+ },
+ "17 7673796 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 6.576e-06
+ },
+ "17 7673797 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9926,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7673800 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9915,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7673800 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.967,
+  "gnomad_af": 0.0
+ },
+ "17 7673802 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9954,
+  "gnomad_af": 6.577e-06
+ },
+ "17 7673802 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9889,
+  "gnomad_af": 1.971e-05
+ },
+ "17 7673803 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9945,
+  "gnomad_af": 4.105e-06
+ },
+ "17 7673803 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9981,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7673806 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9653,
+  "gnomad_af": 0.0
+ },
+ "17 7673806 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9572,
+  "gnomad_af": 1.368e-06
+ },
+ "17 7673811 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9952,
+  "gnomad_af": 0.0
+ },
+ "17 7673820 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8812,
+  "gnomad_af": 1.316e-05
+ },
+ "17 7673821 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9682,
+  "gnomad_af": 2.053e-06
+ },
+ "17 7673823 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9988,
+  "gnomad_af": 0.0
+ },
+ "17 7673824 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9986,
+  "gnomad_af": 0.0
+ },
+ "17 7673826 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8691,
+  "gnomad_af": 0.0
+ },
+ "17 7673835 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9878,
+  "gnomad_af": 2.055e-06
+ },
+ "17 7674191 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9918,
+  "gnomad_af": 0.0
+ },
+ "17 7674199 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9923,
+  "gnomad_af": 0.0
+ },
+ "17 7674200 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7283,
+  "gnomad_af": 6.846e-07
+ },
+ "17 7674214 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9135,
+  "gnomad_af": 6.842e-07
+ },
+ "17 7674216 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9995,
+  "gnomad_af": 0.0
+ },
+ "17 7674217 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9991,
+  "gnomad_af": 0.0
+ },
+ "17 7674217 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9066,
+  "gnomad_af": 0.0
+ },
+ "17 7674220 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.999,
+  "gnomad_af": 0.0
+ },
+ "17 7674220 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9963,
+  "gnomad_af": 1.974e-05
+ },
+ "17 7674221 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9968,
+  "gnomad_af": 6.157e-06
+ },
+ "17 7674221 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9985,
+  "gnomad_af": 0.0
+ },
+ "17 7674225 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9793,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7674227 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9304,
+  "gnomad_af": 6.579e-06
+ },
+ "17 7674229 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9969,
+  "gnomad_af": 6.579e-06
+ },
+ "17 7674229 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9856,
+  "gnomad_af": 0.0
+ },
+ "17 7674230 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9965,
+  "gnomad_af": 0.0
+ },
+ "17 7674230 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9732,
+  "gnomad_af": 6.581e-06
+ },
+ "17 7674232 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7674233 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9978,
+  "gnomad_af": 0.0
+ },
+ "17 7674233 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9907,
+  "gnomad_af": 0.0
+ },
+ "17 7674238 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9994,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7674241 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.999,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7674241 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.998,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7674241 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9984,
+  "gnomad_af": 0.0
+ },
+ "17 7674242 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9981,
+  "gnomad_af": 0.0
+ },
+ "17 7674250 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 1.976e-05
+ },
+ "17 7674252 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9957,
+  "gnomad_af": 6.581e-06
+ },
+ "17 7674253 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9612,
+  "gnomad_af": 0.0
+ },
+ "17 7674254 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8096,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7674256 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9599,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7674260 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8126,
+  "gnomad_af": 0.0
+ },
+ "17 7674262 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8,
+  "gnomad_af": 0.0
+ },
+ "17 7674263 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9891,
+  "gnomad_af": 0.0
+ },
+ "17 7674269 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7616,
+  "gnomad_af": 0.0
+ },
+ "17 7674275 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8389,
+  "gnomad_af": 0.0
+ },
+ "17 7674859 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8106,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7674872 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8515,
+  "gnomad_af": 6.573e-06
+ },
+ "17 7674873 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9869,
+  "gnomad_af": 0.0
+ },
+ "17 7674878 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.99,
+  "gnomad_af": 0.0
+ },
+ "17 7674884 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9564,
+  "gnomad_af": 0.0
+ },
+ "17 7674885 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9421,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7674886 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.998,
+  "gnomad_af": 0.0
+ },
+ "17 7674890 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9451,
+  "gnomad_af": 0.0
+ },
+ "17 7674893 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9986,
+  "gnomad_af": 0.0
+ },
+ "17 7674893 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9561,
+  "gnomad_af": 2.736e-06
+ },
+ "17 7674917 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9955,
+  "gnomad_af": 0.0
+ },
+ "17 7674918 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9986,
+  "gnomad_af": 0.0
+ },
+ "17 7674942 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8149,
+  "gnomad_af": 0.0
+ },
+ "17 7674944 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9985,
+  "gnomad_af": 0.0
+ },
+ "17 7674947 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9962,
+  "gnomad_af": 1.368e-06
+ },
+ "17 7674947 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.998,
+  "gnomad_af": 0.0
+ },
+ "17 7674951 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9428,
+  "gnomad_af": 0.0
+ },
+ "17 7674953 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9942,
+  "gnomad_af": 0.0
+ },
+ "17 7675071 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7821,
+  "gnomad_af": 6.57e-06
+ },
+ "17 7675076 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.996,
+  "gnomad_af": 0.0
+ },
+ "17 7675076 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9963,
+  "gnomad_af": 6.57e-06
+ },
+ "17 7675077 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9976,
+  "gnomad_af": 6.568e-06
+ },
+ "17 7675082 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9256,
+  "gnomad_af": 6.569e-06
+ },
+ "17 7675084 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9993,
+  "gnomad_af": 0.0
+ },
+ "17 7675085 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.999,
+  "gnomad_af": 1.368e-06
+ },
+ "17 7675086 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "17 7675088 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9857,
+  "gnomad_af": 6.57e-06
+ },
+ "17 7675089 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9953,
+  "gnomad_af": 2.052e-06
+ },
+ "17 7675094 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9926,
+  "gnomad_af": 0.0
+ },
+ "17 7675094 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 6.84e-07
+ },
+ "17 7675095 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9942,
+  "gnomad_af": 6.84e-07
+ },
+ "17 7675095 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9942,
+  "gnomad_af": 0.0
+ },
+ "17 7675095 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9974,
+  "gnomad_af": 1.368e-06
+ },
+ "17 7675098 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9499,
+  "gnomad_af": 6.84e-07
+ },
+ "17 7675124 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9824,
+  "gnomad_af": 6.575e-06
+ },
+ "17 7675131 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6616,
+  "gnomad_af": 0.0
+ },
+ "17 7675136 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6808,
+  "gnomad_af": 0.0
+ },
+ "17 7675137 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9973,
+  "gnomad_af": 1.368e-06
+ },
+ "17 7675139 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9986,
+  "gnomad_af": 0.0
+ },
+ "17 7675139 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9236,
+  "gnomad_af": 6.573e-06
+ },
+ "17 7675143 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9349,
+  "gnomad_af": 0.0
+ },
+ "17 7675149 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9028,
+  "gnomad_af": 0.0
+ },
+ "17 7675157 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3559,
+  "gnomad_af": 6.571e-06
+ },
+ "17 7675160 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.992,
+  "gnomad_af": 0.0
+ },
+ "17 7675178 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9946,
+  "gnomad_af": 0.0
+ },
+ "17 7675190 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9774,
+  "gnomad_af": 2.052e-06
+ },
+ "17 7675199 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9331,
+  "gnomad_af": 0.0
+ },
+ "17 7675212 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 0.0
+ },
+ "17 7675214 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9651,
+  "gnomad_af": 0.0
+ },
+ "17 7675216 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 0.0
+ },
+ "17 7675216 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 0.0
+ },
+ "17 7675217 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9874,
+  "gnomad_af": 0.0
+ },
+ "17 7675217 . T C . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5077,
+  "gnomad_af": 6.578e-06
+ },
+ "17 7675220 . T C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1566,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7675221 . T A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5291,
+  "gnomad_af": 0.0
+ },
+ "17 7675232 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9947,
+  "gnomad_af": 0.0
+ },
+ "17 7675233 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9962,
+  "gnomad_af": 0.0
+ },
+ "17 7675235 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8716,
+  "gnomad_af": 6.841e-07
+ },
+ "17 7675995 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9602,
+  "gnomad_af": 6.57e-06
+ },
+ "17 7675995 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9823,
+  "gnomad_af": 0.0
+ },
+ "17 7676040 . C A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2152,
+  "gnomad_af": 6.571e-06
+ },
+ "17 7676040 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9045,
+  "gnomad_af": 0.0
+ },
+ "17 7676041 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0983,
+  "gnomad_af": 1.438e-05
+ },
+ "17 7676154 . G C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0724,
+  "gnomad_af": 0.7163
+ },
+ "17 81512060 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9773,
+  "gnomad_af": 0.0
+ },
+ "18 32769991 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.587,
+  "gnomad_af": 0.0
+ },
+ "18 32770132 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9376,
+  "gnomad_af": 0.0
+ },
+ "18 47841832 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9818,
+  "gnomad_af": 0.0
+ },
+ "18 51048762 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 0.0
+ },
+ "18 51048789 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.996,
+  "gnomad_af": 0.0
+ },
+ "18 51048816 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "18 51065534 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9971,
+  "gnomad_af": 0.0
+ },
+ "18 51065548 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9975,
+  "gnomad_af": 6.841e-07
+ },
+ "18 51065549 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9904,
+  "gnomad_af": 0.0
+ },
+ "18 51067035 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 1,
+  "gnomad_af": 0.0
+ },
+ "18 51067134 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9991,
+  "gnomad_af": 0.0
+ },
+ "18 51078286 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9995,
+  "gnomad_af": 0.0
+ },
+ "18 51078331 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9985,
+  "gnomad_af": 0.0
+ },
+ "18 51078380 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "18 51078418 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 0.0
+ },
+ "18 51078419 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9995,
+  "gnomad_af": 0.0
+ },
+ "18 63318269 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9612,
+  "gnomad_af": 0.0
+ },
+ "18 63318489 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0743,
+  "gnomad_af": 7.372e-07
+ },
+ "18 63318616 . C G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.409,
+  "gnomad_af": 0.0
+ },
+ "18 63318628 . C G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4629,
+  "gnomad_af": 0.0
+ },
+ "19 10224293 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9184,
+  "gnomad_af": 0.0
+ },
+ "19 10489771 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.969,
+  "gnomad_af": 0.0
+ },
+ "19 10492195 . T C . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5141,
+  "gnomad_af": 0.0
+ },
+ "19 11013018 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9992,
+  "gnomad_af": 0.0
+ },
+ "19 11023554 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9964,
+  "gnomad_af": 0.0
+ },
+ "19 11024383 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7976,
+  "gnomad_af": 0.0
+ },
+ "19 11027870 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9988,
+  "gnomad_af": 0.0
+ },
+ "19 1220716 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.931,
+  "gnomad_af": 0.0
+ },
+ "19 1221976 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "19 1221996 . C T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4984,
+  "gnomad_af": 0.0
+ },
+ "19 15167324 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0878,
+  "gnomad_af": 0.0
+ },
+ "19 15185017 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.211,
+  "gnomad_af": 3.553e-05
+ },
+ "19 16325937 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8869,
+  "gnomad_af": 0.0
+ },
+ "19 16325961 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9958,
+  "gnomad_af": 0.0
+ },
+ "19 16325964 . G C . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3438,
+  "gnomad_af": 0.0
+ },
+ "19 17826910 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6628,
+  "gnomad_af": 6.867e-07
+ },
+ "19 17831762 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7736,
+  "gnomad_af": 0.0
+ },
+ "19 17834910 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2911,
+  "gnomad_af": 4.446e-05
+ },
+ "19 17841423 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1679,
+  "gnomad_af": 4.853e-05
+ },
+ "19 17844246 . C A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.282,
+  "gnomad_af": 0.0
+ },
+ "19 19149414 . G A . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 4.788e-06
+ },
+ "19 29817439 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8774,
+  "gnomad_af": 0.0
+ },
+ "19 3113357 . G T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4473,
+  "gnomad_af": 6.569e-06
+ },
+ "19 3118944 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9925,
+  "gnomad_af": 0.0
+ },
+ "19 40800583 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0938,
+  "gnomad_af": 2.628e-05
+ },
+ "19 42286795 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9046,
+  "gnomad_af": 0.0
+ },
+ "19 42287566 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9995,
+  "gnomad_af": 6.844e-07
+ },
+ "19 42287605 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "19 45353112 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9964,
+  "gnomad_af": 0.0003203
+ },
+ "19 45357362 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9963,
+  "gnomad_af": 0.0
+ },
+ "19 48757972 . C A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4443,
+  "gnomad_af": 0.0
+ },
+ "19 50398880 . G T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0726,
+  "gnomad_af": 6.871e-07
+ },
+ "19 50402032 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.067,
+  "gnomad_af": 1.315e-05
+ },
+ "19 52211389 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9906,
+  "gnomad_af": 6.563e-06
+ },
+ "19 52213045 . C G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.3333,
+  "gnomad_af": 0.0
+ },
+ "19 52213070 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9991,
+  "gnomad_af": 0.0
+ },
+ "19 6586058 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6208,
+  "gnomad_af": 0.0
+ },
+ "19 6821798 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9008,
+  "gnomad_af": 0.0
+ },
+ "2 141810396 . G C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0703,
+  "gnomad_af": 0.0
+ },
+ "2 144430009 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1166,
+  "gnomad_af": 6.573e-06
+ },
+ "2 157766005 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9612,
+  "gnomad_af": 0.0
+ },
+ "2 15942195 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8961,
+  "gnomad_af": 0.0
+ },
+ "2 177234217 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8438,
+  "gnomad_af": 0.0
+ },
+ "2 177234228 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8718,
+  "gnomad_af": 0.0
+ },
+ "2 177234245 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9944,
+  "gnomad_af": 0.0
+ },
+ "2 177234247 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9954,
+  "gnomad_af": 0.0
+ },
+ "2 197401887 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8021,
+  "gnomad_af": 0.0
+ },
+ "2 197402110 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9986,
+  "gnomad_af": 4.546e-05
+ },
+ "2 197402760 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 2.052e-06
+ },
+ "2 208248388 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9981,
+  "gnomad_af": 0.0
+ },
+ "2 208248388 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.992,
+  "gnomad_af": 1.317e-05
+ },
+ "2 208248389 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9873,
+  "gnomad_af": 6.603e-06
+ },
+ "2 208248389 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9977,
+  "gnomad_af": 0.0
+ },
+ "2 208248389 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9991,
+  "gnomad_af": 0.0
+ },
+ "2 214780587 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9475,
+  "gnomad_af": 0.0
+ },
+ "2 25234373 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9953,
+  "gnomad_af": 0.0003686
+ },
+ "2 25234374 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9979,
+  "gnomad_af": 0.0001578
+ },
+ "2 25243931 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9366,
+  "gnomad_af": 4.215e-05
+ },
+ "2 29197623 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.946,
+  "gnomad_af": 0.0
+ },
+ "2 29213994 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "2 29220831 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "2 29239777 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2352,
+  "gnomad_af": 0.0001361
+ },
+ "2 29239778 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4563,
+  "gnomad_af": 5.473e-06
+ },
+ "2 29296948 . G T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1165,
+  "gnomad_af": 0.0
+ },
+ "2 29920178 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0882,
+  "gnomad_af": 0.0
+ },
+ "2 47806213 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9975,
+  "gnomad_af": 0.0
+ },
+ "2 61492337 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 3.473e-06
+ },
+ "20 36927248 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9859,
+  "gnomad_af": 0.0
+ },
+ "20 58909365 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9985,
+  "gnomad_af": 1.315e-05
+ },
+ "20 58909366 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9991,
+  "gnomad_af": 2.601e-05
+ },
+ "21 43104346 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "22 20988022 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9994,
+  "gnomad_af": 0.0
+ },
+ "22 20991684 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.957,
+  "gnomad_af": 6.571e-06
+ },
+ "22 21772875 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9884,
+  "gnomad_af": 0.0
+ },
+ "22 23834143 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9993,
+  "gnomad_af": 0.0
+ },
+ "22 23834152 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 6.568e-06
+ },
+ "22 28696955 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9995,
+  "gnomad_af": 0.0
+ },
+ "22 28734532 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8431,
+  "gnomad_af": 0.000171
+ },
+ "22 41129965 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9992,
+  "gnomad_af": 0.0
+ },
+ "22 41140150 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9443,
+  "gnomad_af": 0.0
+ },
+ "22 41169525 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9971,
+  "gnomad_af": 0.0
+ },
+ "22 41170470 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.994,
+  "gnomad_af": 0.0
+ },
+ "22 41170518 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 0.0
+ },
+ "22 41170523 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9969,
+  "gnomad_af": 0.0
+ },
+ "3 12405897 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9995,
+  "gnomad_af": 0.0
+ },
+ "3 12416724 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8533,
+  "gnomad_af": 0.0
+ },
+ "3 12434051 . C T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4544,
+  "gnomad_af": 0.0
+ },
+ "3 128481877 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9993,
+  "gnomad_af": 0.0
+ },
+ "3 138655451 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9483,
+  "gnomad_af": 0.0
+ },
+ "3 138655454 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8468,
+  "gnomad_af": 6.569e-06
+ },
+ "3 138707281 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8293,
+  "gnomad_af": 3.466e-06
+ },
+ "3 142457737 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9196,
+  "gnomad_af": 0.0
+ },
+ "3 142498630 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7151,
+  "gnomad_af": 0.0
+ },
+ "3 177026437 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9995,
+  "gnomad_af": 0.0
+ },
+ "3 179198938 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9569,
+  "gnomad_af": 2.056e-06
+ },
+ "3 179198940 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9753,
+  "gnomad_af": 0.0
+ },
+ "3 179199048 . C G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2682,
+  "gnomad_af": 0.0
+ },
+ "3 179199066 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9621,
+  "gnomad_af": 0.0
+ },
+ "3 179199088 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8807,
+  "gnomad_af": 0.0
+ },
+ "3 179199102 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8801,
+  "gnomad_af": 0.0
+ },
+ "3 179199148 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.5884,
+  "gnomad_af": 6.575e-06
+ },
+ "3 179199690 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9889,
+  "gnomad_af": 0.0
+ },
+ "3 179203761 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9853,
+  "gnomad_af": 0.0
+ },
+ "3 179203765 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9973,
+  "gnomad_af": 0.0
+ },
+ "3 179204536 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.921,
+  "gnomad_af": 0.0
+ },
+ "3 179209622 . A G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0808,
+  "gnomad_af": 0.1005
+ },
+ "3 179209638 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9827,
+  "gnomad_af": 0.0
+ },
+ "3 179210186 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9665,
+  "gnomad_af": 0.0
+ },
+ "3 179210192 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9797,
+  "gnomad_af": 0.0
+ },
+ "3 179210279 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7727,
+  "gnomad_af": 0.0
+ },
+ "3 179210291 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9092,
+  "gnomad_af": 0.0
+ },
+ "3 179210330 . C T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3737,
+  "gnomad_af": 0.0
+ },
+ "3 179218286 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9692,
+  "gnomad_af": 0.0
+ },
+ "3 179218294 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9409,
+  "gnomad_af": 0.0
+ },
+ "3 179218303 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9878,
+  "gnomad_af": 0.0
+ },
+ "3 179218303 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.954,
+  "gnomad_af": 0.0
+ },
+ "3 179218304 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9665,
+  "gnomad_af": 0.0
+ },
+ "3 179218306 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8848,
+  "gnomad_af": 0.0
+ },
+ "3 179218307 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8971,
+  "gnomad_af": 0.0
+ },
+ "3 179218307 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9392,
+  "gnomad_af": 0.0
+ },
+ "3 179221146 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6471,
+  "gnomad_af": 0.0
+ },
+ "3 179230277 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9985,
+  "gnomad_af": 0.0
+ },
+ "3 179230348 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5289,
+  "gnomad_af": 0.0
+ },
+ "3 179234169 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9826,
+  "gnomad_af": 0.0
+ },
+ "3 179234206 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9766,
+  "gnomad_af": 0.0
+ },
+ "3 179234219 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9834,
+  "gnomad_af": 0.0
+ },
+ "3 179234284 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6697,
+  "gnomad_af": 0.0
+ },
+ "3 179234297 . A G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.5381,
+  "gnomad_af": 0.0
+ },
+ "3 179234297 . A T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.438,
+  "gnomad_af": 0.0
+ },
+ "3 179234298 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6438,
+  "gnomad_af": 0.0
+ },
+ "3 183499638 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9982,
+  "gnomad_af": 0.0
+ },
+ "3 183555460 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.952,
+  "gnomad_af": 0.0
+ },
+ "3 30672256 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9522,
+  "gnomad_af": 0.0
+ },
+ "3 30672334 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9863,
+  "gnomad_af": 0.0
+ },
+ "3 30674124 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9986,
+  "gnomad_af": 0.0
+ },
+ "3 30691477 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9909,
+  "gnomad_af": 0.0
+ },
+ "3 31980988 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7543,
+  "gnomad_af": 0.0
+ },
+ "3 36996690 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9983,
+  "gnomad_af": 0.0
+ },
+ "3 37048538 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9421,
+  "gnomad_af": 0.0
+ },
+ "3 38140801 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7716,
+  "gnomad_af": 2.052e-06
+ },
+ "3 38141150 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9974,
+  "gnomad_af": 2.668e-05
+ },
+ "3 41224606 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9951,
+  "gnomad_af": 0.0
+ },
+ "3 41224607 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9985,
+  "gnomad_af": 0.0
+ },
+ "3 41224610 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9886,
+  "gnomad_af": 0.0
+ },
+ "3 41224610 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9983,
+  "gnomad_af": 0.0
+ },
+ "3 41224622 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9951,
+  "gnomad_af": 0.0
+ },
+ "3 41224633 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7939,
+  "gnomad_af": 0.0
+ },
+ "3 41224645 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9557,
+  "gnomad_af": 0.0
+ },
+ "3 41224646 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9695,
+  "gnomad_af": 0.0
+ },
+ "3 41233408 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9993,
+  "gnomad_af": 0.0
+ },
+ "3 47037774 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9712,
+  "gnomad_af": 0.0
+ },
+ "3 47103417 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9979,
+  "gnomad_af": 0.0
+ },
+ "3 49375536 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "3 49375536 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "3 49375540 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "3 49375546 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9911,
+  "gnomad_af": 0.0
+ },
+ "3 49375577 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9832,
+  "gnomad_af": 0.0
+ },
+ "3 50256271 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9983,
+  "gnomad_af": 0.0
+ },
+ "3 52407203 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "3 52408056 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9945,
+  "gnomad_af": 0.0
+ },
+ "3 52408061 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9993,
+  "gnomad_af": 0.0
+ },
+ "3 52408554 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9963,
+  "gnomad_af": 0.0
+ },
+ "3 89210284 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9482,
+  "gnomad_af": 0.0
+ },
+ "3 89431247 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9563,
+  "gnomad_af": 1.368e-06
+ },
+ "4 105242912 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9989,
+  "gnomad_af": 1.43e-06
+ },
+ "4 105272894 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0694,
+  "gnomad_af": 0.0002366
+ },
+ "4 152324294 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9994,
+  "gnomad_af": 6.846e-07
+ },
+ "4 152324348 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9921,
+  "gnomad_af": 6.857e-07
+ },
+ "4 152326121 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9933,
+  "gnomad_af": 0.0
+ },
+ "4 152326214 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 6.845e-07
+ },
+ "4 152328232 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "4 152328233 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 1.388e-06
+ },
+ "4 1801841 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9413,
+  "gnomad_af": 0.0
+ },
+ "4 1804362 . G T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2667,
+  "gnomad_af": 0.0
+ },
+ "4 1804372 . A G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1754,
+  "gnomad_af": 0.0
+ },
+ "4 1807203 . G C . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.562,
+  "gnomad_af": 6.867e-07
+ },
+ "4 186603704 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7374,
+  "gnomad_af": 0.0
+ },
+ "4 186707759 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2935,
+  "gnomad_af": 0.0
+ },
+ "4 54267392 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9723,
+  "gnomad_af": 0.0
+ },
+ "4 54277981 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "4 54285925 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9963,
+  "gnomad_af": 0.0
+ },
+ "4 54729400 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8726,
+  "gnomad_af": 5.816e-05
+ },
+ "4 54733082 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9989,
+  "gnomad_af": 0.0
+ },
+ "4 55089799 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8855,
+  "gnomad_af": 4.106e-06
+ },
+ "4 55090006 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9899,
+  "gnomad_af": 0.0
+ },
+ "4 55090035 . T C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1886,
+  "gnomad_af": 0.0
+ },
+ "4 55094892 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0985,
+  "gnomad_af": 6.226e-05
+ },
+ "5 112839640 . A G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1871,
+  "gnomad_af": 6.571e-06
+ },
+ "5 1293391 . T G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.534,
+  "gnomad_af": 0.0
+ },
+ "5 132575868 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7737,
+  "gnomad_af": 0.0
+ },
+ "5 150121936 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8032,
+  "gnomad_af": 0.0
+ },
+ "5 158840039 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.999,
+  "gnomad_af": 0.0
+ },
+ "5 177090531 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1809,
+  "gnomad_af": 0.0006704
+ },
+ "5 177093517 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2474,
+  "gnomad_af": 0.0
+ },
+ "5 177095415 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9362,
+  "gnomad_af": 0.0
+ },
+ "5 177095550 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6345,
+  "gnomad_af": 1.372e-06
+ },
+ "5 180626171 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1043,
+  "gnomad_af": 1.095e-05
+ },
+ "5 225938 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9904,
+  "gnomad_af": 2.628e-05
+ },
+ "5 225988 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9972,
+  "gnomad_af": 1.313e-05
+ },
+ "5 236480 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9816,
+  "gnomad_af": 2.737e-06
+ },
+ "5 38947271 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6162,
+  "gnomad_af": 6.574e-06
+ },
+ "5 68293310 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9987,
+  "gnomad_af": 0.0
+ },
+ "5 68293319 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "5 68295269 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9991,
+  "gnomad_af": 0.0
+ },
+ "5 68295288 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "6 106088449 . G C . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4329,
+  "gnomad_af": 0.0
+ },
+ "6 111313458 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9986,
+  "gnomad_af": 0.0
+ },
+ "6 111313464 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9463,
+  "gnomad_af": 0.0
+ },
+ "6 111375488 . T G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2109,
+  "gnomad_af": 0.0
+ },
+ "6 117311039 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1252,
+  "gnomad_af": 5.917e-05
+ },
+ "6 151808084 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0736,
+  "gnomad_af": 6.847e-07
+ },
+ "6 151944400 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.3256,
+  "gnomad_af": 1.313e-05
+ },
+ "6 151944481 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6999,
+  "gnomad_af": 0.0
+ },
+ "6 152011697 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7246,
+  "gnomad_af": 0.0
+ },
+ "6 152098787 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7209,
+  "gnomad_af": 0.0
+ },
+ "6 152098788 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7638,
+  "gnomad_af": 0.0
+ },
+ "6 152098788 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7633,
+  "gnomad_af": 0.0
+ },
+ "6 152098791 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9634,
+  "gnomad_af": 0.0
+ },
+ "6 26031978 . T A . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "6 36722173 . A C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1532,
+  "gnomad_af": 0.0
+ },
+ "6 36722173 . A T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2378,
+  "gnomad_af": 0.0
+ },
+ "6 37170818 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7144,
+  "gnomad_af": 0.0
+ },
+ "6 41935969 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9747,
+  "gnomad_af": 6.847e-07
+ },
+ "7 106905140 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3549,
+  "gnomad_af": 6.02e-05
+ },
+ "7 124853023 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9712,
+  "gnomad_af": 6.844e-07
+ },
+ "7 129205387 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7559,
+  "gnomad_af": 0.0
+ },
+ "7 129206557 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8336,
+  "gnomad_af": 0.0
+ },
+ "7 140753334 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9991,
+  "gnomad_af": 6.846e-07
+ },
+ "7 140753336 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9927,
+  "gnomad_af": 1.369e-06
+ },
+ "7 140753349 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 6.849e-07
+ },
+ "7 140753354 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9999,
+  "gnomad_af": 0.0
+ },
+ "7 140753379 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9839,
+  "gnomad_af": 0.0
+ },
+ "7 140753393 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6791,
+  "gnomad_af": 1.407e-06
+ },
+ "7 140754187 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9923,
+  "gnomad_af": 0.0
+ },
+ "7 140778019 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9929,
+  "gnomad_af": 0.0
+ },
+ "7 140778046 . T A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1769,
+  "gnomad_af": 0.0
+ },
+ "7 140781602 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9977,
+  "gnomad_af": 2.052e-06
+ },
+ "7 140781602 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 1,
+  "gnomad_af": 0.0
+ },
+ "7 140781611 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9997,
+  "gnomad_af": 0.0
+ },
+ "7 140781614 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.5721,
+  "gnomad_af": 0.0
+ },
+ "7 140850176 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7425,
+  "gnomad_af": 0.0
+ },
+ "7 148807669 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9962,
+  "gnomad_af": 0.0
+ },
+ "7 148811636 . A T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9994,
+  "gnomad_af": 0.0
+ },
+ "7 2937980 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9795,
+  "gnomad_af": 0.0
+ },
+ "7 2939865 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9973,
+  "gnomad_af": 0.0
+ },
+ "7 2944396 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0728,
+  "gnomad_af": 3.42e-06
+ },
+ "7 2945828 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7831,
+  "gnomad_af": 0.0
+ },
+ "7 55142382 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.736,
+  "gnomad_af": 0.0
+ },
+ "7 55142384 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8478,
+  "gnomad_af": 0.0
+ },
+ "7 55143314 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9809,
+  "gnomad_af": 2.736e-06
+ },
+ "7 55143379 . G T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.3191,
+  "gnomad_af": 0.0
+ },
+ "7 55143387 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.909,
+  "gnomad_af": 0.0
+ },
+ "7 55143387 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9963,
+  "gnomad_af": 0.0
+ },
+ "7 55154128 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6095,
+  "gnomad_af": 0.0
+ },
+ "7 55154129 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9515,
+  "gnomad_af": 0.0
+ },
+ "7 55154129 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8289,
+  "gnomad_af": 0.0
+ },
+ "7 55156628 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.647,
+  "gnomad_af": 0.0
+ },
+ "7 55165297 . C G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0792,
+  "gnomad_af": 6.571e-06
+ },
+ "7 55165302 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9904,
+  "gnomad_af": 1.368e-06
+ },
+ "7 55165319 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4687,
+  "gnomad_af": 6.573e-06
+ },
+ "7 55165344 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7554,
+  "gnomad_af": 1.314e-05
+ },
+ "7 55165350 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.838,
+  "gnomad_af": 0.0
+ },
+ "7 55165406 . T A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9975,
+  "gnomad_af": 0.0
+ },
+ "7 55165417 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9936,
+  "gnomad_af": 0.0
+ },
+ "7 55165428 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9851,
+  "gnomad_af": 0.0
+ },
+ "7 55172994 . C T . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3458,
+  "gnomad_af": 1.437e-05
+ },
+ "7 55172997 . C G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3769,
+  "gnomad_af": 0.0
+ },
+ "7 55173013 . G T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.101,
+  "gnomad_af": 0.0
+ },
+ "7 55174014 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.998,
+  "gnomad_af": 0.0
+ },
+ "7 55174015 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9927,
+  "gnomad_af": 0.0
+ },
+ "7 55181312 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9018,
+  "gnomad_af": 0.0
+ },
+ "7 55181329 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.925,
+  "gnomad_af": 5.473e-06
+ },
+ "7 55181378 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.966,
+  "gnomad_af": 4.599e-05
+ },
+ "7 55181399 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7397,
+  "gnomad_af": 0.0
+ },
+ "7 55191821 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9277,
+  "gnomad_af": 0.0
+ },
+ "7 55191822 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9968,
+  "gnomad_af": 0.0
+ },
+ "7 55191831 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9913,
+  "gnomad_af": 0.0
+ },
+ "7 55205307 . C G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4665,
+  "gnomad_af": 0.0
+ },
+ "7 6387262 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9955,
+  "gnomad_af": 0.0
+ },
+ "7 81758760 . G A . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.3931,
+  "gnomad_af": 0.0
+ },
+ "7 81762710 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9844,
+  "gnomad_af": 0.0
+ },
+ "8 112301801 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.086,
+  "gnomad_af": 0.0
+ },
+ "8 112666314 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1333,
+  "gnomad_af": 6.848e-07
+ },
+ "8 127736610 . T C . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "8 127738428 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8079,
+  "gnomad_af": 0.0
+ },
+ "8 127738435 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9821,
+  "gnomad_af": 0.0
+ },
+ "8 127738437 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9726,
+  "gnomad_af": 0.0
+ },
+ "8 127738446 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9642,
+  "gnomad_af": 0.0
+ },
+ "8 127738699 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9446,
+  "gnomad_af": 0.0
+ },
+ "8 127738707 . C G . . .": {
+  "am_class": "ambiguous",
+  "am_pathogenicity": 0.4294,
+  "gnomad_af": 0.0
+ },
+ "8 127738987 . A G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1061,
+  "gnomad_af": 0.0
+ },
+ "8 127740770 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9852,
+  "gnomad_af": 1.368e-06
+ },
+ "8 17969660 . T G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0676,
+  "gnomad_af": 0.0
+ },
+ "8 28717377 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1952,
+  "gnomad_af": 2.189e-05
+ },
+ "8 38414790 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9977,
+  "gnomad_af": 0.0
+ },
+ "8 38417331 . G T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9852,
+  "gnomad_af": 0.0
+ },
+ "8 55999442 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9825,
+  "gnomad_af": 2.053e-06
+ },
+ "8 68038241 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9727,
+  "gnomad_af": 6.572e-06
+ },
+ "9 107487067 . T G . . .": {
+  "am_class": "",
+  "am_pathogenicity": null,
+  "gnomad_af": 0.0
+ },
+ "9 136504898 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7067,
+  "gnomad_af": 0.0
+ },
+ "9 136504913 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.956,
+  "gnomad_af": 0.0
+ },
+ "9 136504970 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9933,
+  "gnomad_af": 0.0
+ },
+ "9 136510741 . G C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9937,
+  "gnomad_af": 0.0
+ },
+ "9 136518717 . T C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8873,
+  "gnomad_af": 0.0
+ },
+ "9 21971109 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7537,
+  "gnomad_af": 6.886e-07
+ },
+ "9 21971109 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8357,
+  "gnomad_af": 0.0
+ },
+ "9 21971112 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.7859,
+  "gnomad_af": 0.0
+ },
+ "9 5089701 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.5776,
+  "gnomad_af": 3.814e-06
+ },
+ "9 77797577 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.997,
+  "gnomad_af": 0.0
+ },
+ "9 85020209 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9836,
+  "gnomad_af": 6.574e-06
+ },
+ "9 95449230 . G A . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0932,
+  "gnomad_af": 6.95e-07
+ },
+ "X 101353987 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9847,
+  "gnomad_af": 0.0
+ },
+ "X 108734933 . T G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0972,
+  "gnomad_af": 0.0
+ },
+ "X 129448406 . A C . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9967,
+  "gnomad_af": 0.0
+ },
+ "X 129490147 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8121,
+  "gnomad_af": 3.716e-06
+ },
+ "X 129511838 . C T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1261,
+  "gnomad_af": 2.675e-05
+ },
+ "X 20138613 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9996,
+  "gnomad_af": 0.0
+ },
+ "X 67545319 . A G . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.1097,
+  "gnomad_af": 0.0
+ },
+ "X 67545319 . A T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.2176,
+  "gnomad_af": 0.0004292
+ },
+ "X 67722943 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9972,
+  "gnomad_af": 9.107e-07
+ },
+ "X 67723701 . C T . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.8535,
+  "gnomad_af": 0.0
+ },
+ "X 67723710 . A G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.6054,
+  "gnomad_af": 0.0
+ },
+ "X 67723758 . G A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9867,
+  "gnomad_af": 0.0
+ },
+ "X 67723798 . T G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9984,
+  "gnomad_af": 0.0
+ },
+ "X 77454180 . G T . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.3199,
+  "gnomad_af": 0.0
+ },
+ "X 77616650 . C A . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9985,
+  "gnomad_af": 0.0
+ },
+ "X 77618883 . C G . . .": {
+  "am_class": "likely_pathogenic",
+  "am_pathogenicity": 0.9998,
+  "gnomad_af": 0.0
+ },
+ "X 77683409 . T C . . .": {
+  "am_class": "likely_benign",
+  "am_pathogenicity": 0.0779,
+  "gnomad_af": 0.0
+ }
+}

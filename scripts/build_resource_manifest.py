@@ -2,7 +2,7 @@
 
 Aggregates every committed provenance record this pipeline relies on into a
 machine-readable manifest (``data/knowledge/resources.json``) and a
-human-readable table (``docs/RESOURCES.md``) for the paper Methods.
+human-readable table (``docs/reference/RESOURCES.md``) for the paper Methods.
 
 ANTI-FABRICATION CONTRACT: every version / snapshot date / genome build / URL is
 read from a committed provenance file or a real constant in this repo's fetch
@@ -33,7 +33,7 @@ CGI_BLOCKED = ROOT / "data/benchmark/cgi/FEASIBILITY_BLOCKED.json"
 UNIPROT_DOMAINS = ROOT / "data/knowledge/domains/uniprot_domains.json"
 
 OUT_JSON = ROOT / "data/knowledge/resources.json"
-OUT_MD = ROOT / "docs/RESOURCES.md"
+OUT_MD = ROOT / "docs/reference/RESOURCES.md"
 
 # Columns of the rendered table / each resource record.
 FIELDS = ["resource", "version_snapshot", "genome_build", "source_url",

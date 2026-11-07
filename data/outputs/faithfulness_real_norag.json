@@ -1,0 +1,15 @@
+{
+  "n_variants": 56,
+  "arm": "real no-retrieval gpt-4o-mini (from ablation_report.json)",
+  "before_enforcement": {
+    "ungrounded_citation_rate": 0.464,
+    "variants_with_ungrounded_citations": 26
+  },
+  "after_enforcement": {
+    "ungrounded_citation_rate": 0.0,
+    "variants_with_ungrounded_citations": 0,
+    "variants_abstained": 56
+  },
+  "variants_corrected_by_gate": 56,
+  "note": "Real model, not fault injection: with no evidence bundle every emitted citation is ungrounded; the gate drops them and forces abstention, so a real 46% confident-fabrication rate becomes 0% by construction (honest abstention)."
+}

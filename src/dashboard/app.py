@@ -95,18 +95,27 @@ _VICC_CRITERIA = {
     # Oncogenic — very strong / strong / moderate / supporting
     "OVS1": ("Null (LoF) variant in a tumour-suppressor gene", 8),
     "OS1":  ("Same amino-acid change as an established oncogenic variant", 4),
-    "OS2":  ("Well-established functional study shows loss-of-function / damaging", 4),
-    "OS3":  ("Recurs in ≥50 samples at a cancerhotspots.org hotspot residue", 4),
-    "OM1":  ("Located in a well-established functional domain (UniProt)", 2),
-    "OM3":  ("Recurs in 10–49 samples at a hotspot residue", 2),
-    "OM4":  ("CIViC evidence supports an oncogenic role", 2),
+    "OS2":  ("Functional study (MaveDB DMS, or >=2 independent CIViC functional citations) "
+             "supports an oncogenic effect", 4),
+    "OS2_Moderate": ("Single CIViC functional study supports an oncogenic effect "
+                     "(OS2 downgraded to moderate)", 2),
+    "OS3":  ("Hotspot residue with ≥50 samples and the same change ≥10 (cancerhotspots.org)", 4),
+    "OM1":  ("Located at a critical functional site (UniProt active/binding site)", 2),
+    "OM2":  ("Protein length change (in-frame indel in a cancer gene, or stop-loss in a "
+             "tumour suppressor)", 2),
+    "OM3":  ("Same change recurs >=10 times at a hotspot residue with <50 samples", 2),
+    "OM4":  ("Different missense change at the same residue is oncogenic "
+             "(Grantham distance at least ~equal)", 2),
     "OP1":  ("Computational evidence (AlphaMissense) predicts pathogenic", 1),
     "OP3":  ("Located at a cancerhotspots.org hotspot residue", 1),
     "OP4":  ("Absent / very rare in population databases (gnomAD)", 1),
     # Benign — very strong / strong / supporting
     "SBVS1": ("Population allele frequency ≥5% in gnomAD (common → benign)", -8),
     "SBS1":  ("Population allele frequency ≥1% in gnomAD", -4),
-    "SBS2":  ("Functional study / CIViC evidence shows neutral / refutes oncogenic role", -4),
+    "SBS2":  ("Functional study (DMS, or >=2 CIViC functional citations) shows no "
+              "oncogenic effect", -4),
+    "SBS2_Moderate": ("Single CIViC functional study shows no oncogenic effect "
+                      "(SBS2 downgraded to moderate)", -2),
     "SBP1":  ("Computational evidence (AlphaMissense) predicts benign", -1),
 }
 
@@ -321,7 +330,7 @@ def _fired_criteria_rows(v: dict):
 
 def render_criteria_fired(v: dict):
     """Feature 1 — per-criterion VICC rationale panel (the auditability headline)."""
-    st.markdown("**Which ClinGen / CGC / VICC criteria fired (auditable)**")
+    st.markdown("**Codes recorded by the two modes (from the cohort output)**")
     rows = _fired_criteria_rows(v)
     if rows:
         st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
@@ -331,6 +340,32 @@ def render_criteria_fired(v: dict):
     else:
         st.info("No named VICC criteria fired for this variant — the call rests on the "
                 "overall evidence tier (or honest abstention to VUS). Not an error.")
+
+
+def render_vicc_rule_arm(v: dict):
+    """Citable VICC rule arm — computed live from the SOP-strict engine (no stored codes).
+
+    Runs ``VICCPointClassifier(config='sop_strict')`` on the persisted record via
+    ``src.dashboard.vicc_arm`` (offline signals only). Codes, points and the call are
+    the engine's own output."""
+    from src.dashboard.vicc_arm import score_record
+    try:
+        arm = score_record(v)
+    except Exception as e:  # noqa: BLE001
+        st.error(f"VICC rule arm unavailable: {e}")
+        return
+    st.markdown(f"**Citable VICC rule arm (engine `{arm.config}`): {arm.call} · "
+                f"Σ = {arm.points} points**")
+    if arm.rows():
+        st.dataframe(pd.DataFrame(arm.rows()), use_container_width=True, hide_index=True)
+    else:
+        st.info("No VICC criterion fired in the SOP-strict engine (Σ = 0 → VUS).")
+    st.caption(
+        "Computed on the fly by `src/classify/vicc_rules.py` (Horak et al. 2022 point rules; "
+        "thresholds: ≥10 Oncogenic, 6–9 Likely Oncogenic, 0–5 VUS). Deterministic rule engine, "
+        "not the LLM, and separate from the two modes above. Inputs: "
+        + "; ".join(f"{k}: {val}" for k, val in arm.inputs.items())
+        + (f" · {arm.coords}" if arm.coords else ""))
 
 
 def render_grouped_evidence(bundle, cancer_type: str | None):
@@ -603,12 +638,13 @@ with st.expander("ℹ️ How to use this dashboard", expanded=False):
 retrieved evidence and **abstains** ("I cannot answer from the available evidence") when the evidence doesn't
 cover the question — that's the intended faithfulness behavior, not a bug.
 
-**Note — the citable VICC rule arm (not shown here).** Beyond the two modes above, the manuscript also
-evaluates a separate **citable VICC rule arm**: a deterministic ClinGen/CGC/VICC point-based engine
-(**not the LLM**) that carries the headline accuracy result (3-class accuracy **0.843** on the external
-**Horak-70** benchmark). That arm is scored on that external benchmark, **not run per-variant in this cohort
-view** — the cohort data shown here contains only the Generative and Deterministic modes, so there is no
-per-variant VICC column.
+**Note — the citable VICC rule arm.** Beyond the two modes above, the manuscript also evaluates a separate
+**citable VICC rule arm**: a deterministic ClinGen/CGC/VICC point-based engine (**not the LLM**,
+`src/classify/vicc_rules.py`, SOP-strict configuration) benchmarked on the external **Horak-70** set
+(results in `data/benchmark/horak_vicc.json`). The cohort output stores only the two modes, so in
+**Variant detail → ③ Criteria fired** the VICC arm is **computed on the fly** from the engine for the selected
+variant (offline signals only; gnomAD is used only where a cached VEP record exists, otherwise OP4 is
+reported as not assessed).
 
 **Tips**
 - Filter to *Clinical trial(s)* to find variants with trials; *LLM abstained only* to see honest-abstention cases.
@@ -870,6 +906,8 @@ with tab_detail:
         with st.container(border=True):
             st.subheader("③ Criteria fired")
             render_criteria_fired(v)
+            st.divider()
+            render_vicc_rule_arm(v)
 
         # ── Protein context (domain map + variant lollipop) ───────────────
         with st.container(border=True):

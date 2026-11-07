@@ -1,0 +1,103 @@
+{
+  "generated_utc": "2026-06-15T15:46:12Z",
+  "generator": "scripts/build_resource_manifest.py",
+  "note": "Aggregated from committed provenance files; versions absent upstream are recorded as snapshot + access date.",
+  "resources": [
+    {
+      "resource": "Cohort variants \u2014 TCGA PanCancer Atlas 2018",
+      "version_snapshot": "cBioPortal snapshot 2026-05-30 (5 studies, 7 samples/study)",
+      "genome_build": "GRCh37 (hg19)",
+      "source_url": "cBioPortal REST API (https://www.cbioportal.org/api)",
+      "access_date": "2026-05-30",
+      "license_notes": "TCGA open-access somatic mutations via cBioPortal; 27-gene driver panel."
+    },
+    {
+      "resource": "CIViC (clinical evidence + assertions)",
+      "version_snapshot": "nightly snapshot 2026-05-30",
+      "genome_build": "n/a (gene/variant-level assertions)",
+      "source_url": "https://civicdb.org/downloads/nightly/nightly-ClinicalEvidenceSummaries.tsv",
+      "access_date": "2026-05-30",
+      "license_notes": "CC0 1.0. 1714 evidence rows; 35 assertions (2026-05-31, https://civicdb.org/downloads/nightly/nightly-AssertionSummaries.tsv)."
+    },
+    {
+      "resource": "DGIdb (drug\u2013gene interactions)",
+      "version_snapshot": "API snapshot 2026-05-30",
+      "genome_build": "n/a (gene-level)",
+      "source_url": "https://dgidb.org/api/graphql",
+      "access_date": "2026-05-30",
+      "license_notes": "2608 gene-level interactions; gene-level drugs do not satisfy the variant-evidence contract."
+    },
+    {
+      "resource": "AlphaMissense (computational pathogenicity)",
+      "version_snapshot": "model 2023 (Cheng et al., Science 2023; Zenodo 8208688), queried per-variant via Ensembl VEP REST",
+      "genome_build": "build-aware: GRCh37 via grch37.rest.ensembl.org, GRCh38 via rest.ensembl.org (protein-level predictor; no liftover)",
+      "source_url": "https://rest.ensembl.org/vep/human/region (AlphaMissense=1)",
+      "access_date": "2026-05-30",
+      "license_notes": "Per-variant VEP cache (snapshot); thresholds pathogenic>=0.564, benign<=0.34 (Cheng 2023). CC-BY-NC."
+    },
+    {
+      "resource": "ClinicalTrials.gov (trials)",
+      "version_snapshot": "REST API v2 snapshot",
+      "genome_build": "n/a",
+      "source_url": "https://clinicaltrials.gov/api/v2/studies",
+      "access_date": "2026-05-30",
+      "license_notes": "Trial records linked from CIViC NCT ids (snapshot)."
+    },
+    {
+      "resource": "UniProt protein domains",
+      "version_snapshot": "snapshot (no upstream version recorded)",
+      "genome_build": "n/a (protein coordinates, UniProt residue numbering)",
+      "source_url": "https://rest.uniprot.org",
+      "access_date": "snapshot",
+      "license_notes": "CC-BY 4.0. Domain/region spans for 9 genes (data/knowledge/domains/uniprot_domains.json)."
+    },
+    {
+      "resource": "Horak et al. 2022 (external gold standard)",
+      "version_snapshot": "70 expert-classified variants (ClinGen/CGC/VICC)",
+      "genome_build": "GRCh38 (b38) + GRCh37 (b37) coordinates both committed (data/benchmark/horak_benchmark.tsv)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9081216/",
+      "access_date": "snapshot",
+      "license_notes": "Horak P, et al. Genet Med. 2022;24(5):986-998. VICC point-based oncogenicity standard."
+    },
+    {
+      "resource": "CancerVar (external AMP/ASCO/CAP comparator)",
+      "version_snapshot": "web server snapshot 2026-06-14 (hg38_update (GRCh38, Horak b38 coordinates))",
+      "genome_build": "GRCh38 (hg38; Horak b38 coordinates)",
+      "source_url": "https://cancervar.wglab.org/results_new.php",
+      "access_date": "2026-06-14",
+      "license_notes": "Li Q, et al. Sci Adv. 2022;8(18):eabj1624. Tiers parsed verbatim; cross-axis (actionability, not oncogenicity)."
+    },
+    {
+      "resource": "CGI (Cancer Genome Interpreter) \u2014 DEFERRED",
+      "version_snapshot": "BLOCKED (token-gated); probed 2026-06-14",
+      "genome_build": "GRCh38 (would be, per intended run)",
+      "source_url": "https://www.cancergenomeinterpreter.org/",
+      "access_date": "2026-06-14",
+      "license_notes": "Tamborero D, et al. Genome Med. 2018;10:25. No predictions obtained (auth-gated); kept out of head-to-head."
+    },
+    {
+      "resource": "Ensembl VEP REST mirrors",
+      "version_snapshot": "REST endpoints (per-variant snapshot via local caches)",
+      "genome_build": "GRCh37: grch37.rest.ensembl.org \u00b7 GRCh38: rest.ensembl.org",
+      "source_url": "https://rest.ensembl.org/vep/human/region",
+      "access_date": "2026-05-30",
+      "license_notes": "Used for VCF annotation (gene/HGVSp/consequence) and AlphaMissense lookups; results cached for offline reproducibility."
+    },
+    {
+      "resource": "LLM \u2014 gpt-4o-mini (primary) + gpt-4o (replication)",
+      "version_snapshot": "gpt-4o-mini (src/classify/llm.py MODEL); gpt-4o second-model replication",
+      "genome_build": "n/a",
+      "source_url": "https://api.openai.com",
+      "access_date": "2026-05-30",
+      "license_notes": "Self-consistency n=3 + agentic verifier; offline mock fallback when OPENAI_API_KEY unset (not a real result)."
+    },
+    {
+      "resource": "MaveDB deep-mutational-scanning (functional OS2)",
+      "version_snapshot": "snapshot (score-set urns recorded)",
+      "genome_build": "n/a (protein-level functional scores)",
+      "source_url": "https://api.mavedb.org/api/v1",
+      "access_date": "snapshot",
+      "license_notes": "urn:mavedb:00000054-a-1 (lipid phosphatase, Mighell 2018); urn:mavedb:00000013-a-1 (VAMP-seq abundance, Matreyek 2018); urn:mavedb:00001236-0-1 (naive-Bayes classifier)"
+    }
+  ]
+}

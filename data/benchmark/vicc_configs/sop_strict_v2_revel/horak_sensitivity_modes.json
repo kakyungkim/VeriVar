@@ -1,0 +1,266 @@
+{
+  "1. conservative (default)": {
+    "accuracy_3class": 0.671,
+    "sensitivity": 0.394,
+    "specificity": 1.0,
+    "ci95": {
+      "accuracy_3class": {
+        "lo": 0.557,
+        "hi": 0.771,
+        "n": 70
+      },
+      "sensitivity": {
+        "lo": 0.242,
+        "hi": 0.576,
+        "n": 33
+      },
+      "specificity": {
+        "lo": 1.0,
+        "hi": 1.0,
+        "n": 37
+      }
+    },
+    "confusion_onc_vs_rest": {
+      "tp": 13,
+      "fn": 20,
+      "tn": 37,
+      "fp": 0
+    },
+    "exact_ci95": {
+      "sensitivity": {
+        "wilson": {
+          "point": 0.394,
+          "lo": 0.247,
+          "hi": 0.563,
+          "k": 13,
+          "n": 33,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.394,
+          "lo": 0.229,
+          "hi": 0.579,
+          "k": 13,
+          "n": 33,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity": {
+        "wilson": {
+          "point": 1.0,
+          "lo": 0.906,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 1.0,
+          "lo": 0.905,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "clopper_pearson"
+        }
+      }
+    }
+  },
+  "2. + residue-hotspot OM3": {
+    "accuracy_3class": 0.686,
+    "sensitivity": 0.424,
+    "specificity": 1.0,
+    "ci95": {
+      "accuracy_3class": {
+        "lo": 0.571,
+        "hi": 0.786,
+        "n": 70
+      },
+      "sensitivity": {
+        "lo": 0.242,
+        "hi": 0.606,
+        "n": 33
+      },
+      "specificity": {
+        "lo": 1.0,
+        "hi": 1.0,
+        "n": 37
+      }
+    },
+    "confusion_onc_vs_rest": {
+      "tp": 14,
+      "fn": 19,
+      "tn": 37,
+      "fp": 0
+    },
+    "exact_ci95": {
+      "sensitivity": {
+        "wilson": {
+          "point": 0.424,
+          "lo": 0.272,
+          "hi": 0.592,
+          "k": 14,
+          "n": 33,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.424,
+          "lo": 0.255,
+          "hi": 0.608,
+          "k": 14,
+          "n": 33,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity": {
+        "wilson": {
+          "point": 1.0,
+          "lo": 0.906,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 1.0,
+          "lo": 0.905,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "clopper_pearson"
+        }
+      }
+    }
+  },
+  "3. + OS1 (ClinVar)": {
+    "accuracy_3class": 0.729,
+    "sensitivity": 0.515,
+    "specificity": 1.0,
+    "ci95": {
+      "accuracy_3class": {
+        "lo": 0.614,
+        "hi": 0.829,
+        "n": 70
+      },
+      "sensitivity": {
+        "lo": 0.333,
+        "hi": 0.697,
+        "n": 33
+      },
+      "specificity": {
+        "lo": 1.0,
+        "hi": 1.0,
+        "n": 37
+      }
+    },
+    "confusion_onc_vs_rest": {
+      "tp": 17,
+      "fn": 16,
+      "tn": 37,
+      "fp": 0
+    },
+    "exact_ci95": {
+      "sensitivity": {
+        "wilson": {
+          "point": 0.515,
+          "lo": 0.352,
+          "hi": 0.675,
+          "k": 17,
+          "n": 33,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.515,
+          "lo": 0.335,
+          "hi": 0.692,
+          "k": 17,
+          "n": 33,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity": {
+        "wilson": {
+          "point": 1.0,
+          "lo": 0.906,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 1.0,
+          "lo": 0.905,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "clopper_pearson"
+        }
+      }
+    }
+  },
+  "4. + both": {
+    "accuracy_3class": 0.729,
+    "sensitivity": 0.515,
+    "specificity": 1.0,
+    "ci95": {
+      "accuracy_3class": {
+        "lo": 0.614,
+        "hi": 0.829,
+        "n": 70
+      },
+      "sensitivity": {
+        "lo": 0.333,
+        "hi": 0.697,
+        "n": 33
+      },
+      "specificity": {
+        "lo": 1.0,
+        "hi": 1.0,
+        "n": 37
+      }
+    },
+    "confusion_onc_vs_rest": {
+      "tp": 17,
+      "fn": 16,
+      "tn": 37,
+      "fp": 0
+    },
+    "exact_ci95": {
+      "sensitivity": {
+        "wilson": {
+          "point": 0.515,
+          "lo": 0.352,
+          "hi": 0.675,
+          "k": 17,
+          "n": 33,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.515,
+          "lo": 0.335,
+          "hi": 0.692,
+          "k": 17,
+          "n": 33,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity": {
+        "wilson": {
+          "point": 1.0,
+          "lo": 0.906,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 1.0,
+          "lo": 0.905,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "clopper_pearson"
+        }
+      }
+    }
+  }
+}

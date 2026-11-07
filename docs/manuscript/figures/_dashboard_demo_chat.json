@@ -1,0 +1,22 @@
+{
+ "_provenance": {
+  "what": "Verbatim grounded-chat answers shown in Supplementary Figure S3",
+  "produced_by": "src.classify.llm.LLMClassifier.answer_question (temperature 0.0) on the persisted bundle in data/outputs/cohort_interpretation.json",
+  "model": "gpt-4o-mini",
+  "date": "2026-09-24"
+ },
+ "answers": [
+  {
+   "variant_key": "BRAF p.V600E",
+   "cancer_type": "Cutaneous Melanoma",
+   "question": "Is this variant actionable in melanoma, and on what evidence?",
+   "answer": "The BRAF p.V600E variant is actionable in melanoma. Evidence supporting this includes:\n\n1. The BRIM-3 Phase III trial demonstrated that patients with BRAF V600E mutated melanoma treated with vemurafenib had significant improvements in overall survival compared to those treated with dacarbazine [CIViC:EID1398][CIViC:EID1409].\n2. A multicenter phase 1 trial showed that treatment with PLX4032 (vemurafenib) resulted in complete or partial tumor regression in the majority of patients with the BRAF V600E mutation [CIViC:EID1749].\n3. In a phase 2 clinical trial, patients with BRAF V600E mutation treated with vemurafenib monotherapy had a favorable objective response rate [CIViC:EID3750].\n4. The combination of dabrafenib and trametinib has been shown to provide higher response rates and lower toxicity compared to chemotherapy in patients with melanoma [CIViC:EID95].\n\nThese findings indicate that the BRAF p.V600E variant is associated with effective targeted therapies in melanoma, making it actionable."
+  },
+  {
+   "variant_key": "APC p.R1450*",
+   "cancer_type": "Colorectal Adenocarcinoma",
+   "question": "Are there clinical trials for this variant?",
+   "answer": "I cannot answer from the available evidence."
+  }
+ ]
+}

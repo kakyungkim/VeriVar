@@ -1,27 +1,65 @@
 {
- "clinvar_vicc": {
-  "n": 458,
-  "accuracy": 0.5283842794759825,
-  "macro_f1": 0.4291503267973856,
-  "quadratic_kappa": null,
+ "clinvar_onc_holdout:all": {
+  "n": 712,
+  "accuracy": 0.5435393258426966,
+  "macro_f1": 0.34981428019230304,
+  "quadratic_kappa": 0.4200399429386591,
   "per_class": {
-   "VUS": {
-    "precision": 0.46194225721784776,
-    "recall": 0.9777777777777777,
-    "f1": 0.6274509803921569,
-    "support": 180
-   },
-   "BEN": {
+   "Likely Benign": {
     "precision": 0.0,
     "recall": 0.0,
     "f1": 0.0,
-    "support": 155
+    "support": 0
    },
-   "ONC": {
-    "precision": 0.8571428571428571,
-    "recall": 0.5365853658536586,
-    "f1": 0.6599999999999999,
-    "support": 123
+   "VUS": {
+    "precision": 0.56312625250501,
+    "recall": 0.9493243243243243,
+    "f1": 0.7069182389937108,
+    "support": 296
+   },
+   "Likely Oncogenic": {
+    "precision": 0.3877551020408163,
+    "recall": 0.27403846153846156,
+    "f1": 0.3211267605633803,
+    "support": 208
+   },
+   "Oncogenic": {
+    "precision": 0.875,
+    "recall": 0.23557692307692307,
+    "f1": 0.37121212121212116,
+    "support": 208
+   }
+  }
+ },
+ "clinvar_onc_holdout:panel9": {
+  "n": 236,
+  "accuracy": 0.5423728813559322,
+  "macro_f1": 0.407184126283056,
+  "quadratic_kappa": 0.531086184544276,
+  "per_class": {
+   "Likely Benign": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 0
+   },
+   "VUS": {
+    "precision": 0.390625,
+    "recall": 0.6578947368421053,
+    "f1": 0.4901960784313726,
+    "support": 38
+   },
+   "Likely Oncogenic": {
+    "precision": 0.4909090909090909,
+    "recall": 0.5934065934065934,
+    "f1": 0.5373134328358209,
+    "support": 91
+   },
+   "Oncogenic": {
+    "precision": 0.875,
+    "recall": 0.45794392523364486,
+    "f1": 0.6012269938650306,
+    "support": 107
    }
   }
  },
@@ -141,38 +179,38 @@
  },
  "horak_vicc:vicc": {
   "n": 70,
-  "accuracy": 0.6428571428571429,
-  "macro_f1": 0.5651084232319931,
-  "quadratic_kappa": 0.806201550387597,
+  "accuracy": 0.5,
+  "macro_f1": 0.4303196347031963,
+  "quadratic_kappa": 0.635036496350365,
   "per_class": {
    "Benign": {
     "precision": 1.0,
-    "recall": 0.4,
-    "f1": 0.5714285714285715,
+    "recall": 0.6,
+    "f1": 0.7499999999999999,
     "support": 5
    },
    "Likely Benign": {
-    "precision": 0.4,
+    "precision": 0.2,
     "recall": 1.0,
-    "f1": 0.5714285714285715,
+    "f1": 0.33333333333333337,
     "support": 2
    },
    "VUS": {
-    "precision": 0.7435897435897436,
-    "recall": 0.9666666666666667,
-    "f1": 0.8405797101449275,
+    "precision": 0.5813953488372093,
+    "recall": 0.8333333333333334,
+    "f1": 0.684931506849315,
     "support": 30
    },
    "Likely Oncogenic": {
-    "precision": 0.42105263157894735,
-    "recall": 0.42105263157894735,
-    "f1": 0.42105263157894735,
+    "precision": 0.3076923076923077,
+    "recall": 0.21052631578947367,
+    "f1": 0.25,
     "support": 19
    },
    "Oncogenic": {
-    "precision": 0.8,
-    "recall": 0.2857142857142857,
-    "f1": 0.4210526315789473,
+    "precision": 1.0,
+    "recall": 0.07142857142857142,
+    "f1": 0.13333333333333333,
     "support": 14
    }
   }

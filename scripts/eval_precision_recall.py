@@ -12,6 +12,12 @@ from collections import Counter, defaultdict
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 # 5단계 순서형 라벨 (quadratic weight 계산에 순서가 필요)
 ORDER = ["Benign", "Likely Benign", "VUS", "Likely Oncogenic", "Oncogenic"]
+# Horak 9개 유전자(scripts/run_clinvar_onc_holdout.py의 PANEL9와 같음)
+PANEL9 = ["BRAF", "EZH2", "FLT3", "IDH1", "KRAS", "PIK3CA", "PTEN", "RB1", "TP53"]
+# ClinVar somatic-oncogenicity 라벨 -> VICC 5단계 이름
+CLINVAR_TO_VICC = {"Oncogenic": "Oncogenic", "Likely oncogenic": "Likely Oncogenic",
+                   "Uncertain significance": "VUS", "Likely benign": "Likely Benign",
+                   "Benign": "Benign"}
 
 
 def load_pairs(path, gold_key="gold", pred_key="pred"):
@@ -102,22 +108,40 @@ def report(name, pairs):
 
 
 if __name__ == "__main__":
+    # --horak-vicc/--clinvar-rows/--out (2026-09-24): per-configuration runs of the VICC suite.
+    import argparse
+    _ap = argparse.ArgumentParser(description="per-class P/R/F1, macro-F1, quadratic kappa")
+    _ap.add_argument("--horak-vicc", default="data/benchmark/horak_vicc.json")
+    _ap.add_argument("--clinvar-rows", default="data/benchmark/clinvar_onc_holdout_rows.json")
+    _ap.add_argument("--out", default="docs/manuscript/precision_recall_report.json")
+    _args = _ap.parse_args()
     out = {}
-    src = ROOT / "data/benchmark/clinvar_vicc_rows.json"
+    # ClinVar: 재구축한 somatic-oncogenicity holdout 행을 쓴다(2026-09-24 전환).
+    # 예전 clinvar_vicc_rows.json은 Benign/VUS 정답이 germline 분류였던 폐기 세트라 읽지 않는다.
+    # holdout과 같게 Benign 키(2개)는 제외하고, ClinVar 라벨을 VICC 5단계 이름으로 맞춘다.
+    src = ROOT / _args.clinvar_rows
     if src.exists():
-        out["clinvar_vicc"] = report("ClinVar VICC rule arm", load_pairs(src))
+        rows = json.loads(src.read_text(encoding="utf-8"))
+        rows = [r for r in rows if r.get("gold") in ("ONC", "VUS")]
+        for scope, keep in (("all", lambda r: True),
+                            ("panel9", lambda r: r["gene"] in PANEL9)):
+            pairs = [(CLINVAR_TO_VICC[r["gold_label"]], r["pred"]) for r in rows
+                     if keep(r) and r.get("gold_label") in CLINVAR_TO_VICC and r.get("pred")]
+            out[f"clinvar_onc_holdout:{scope}"] = report(
+                f"ClinVar oncogenicity holdout, VICC rule arm ({scope})", pairs)
     # Horak-70: 한 파일에 세 팔(rule / RAG 있음 / RAG 없음)의 예측이 나란히 있다
     for f, pred_key, name in [
             ("data/benchmark/horak_results.json", "rule",       "Horak-70 규칙 팔"),
             ("data/benchmark/horak_results.json", "llm_rag",    "Horak-70 LLM + 검색"),
             ("data/benchmark/horak_results.json", "llm_norag",  "Horak-70 LLM, 검색 없음"),
-            ("data/benchmark/horak_vicc.json",    "vicc",       "Horak-70 VICC 규칙")]:
+            (_args.horak_vicc,                    "vicc",       "Horak-70 VICC 규칙")]:
         p = ROOT / f
         if not p.exists():
             continue
         pairs = load_pairs(p, pred_key=pred_key)
         if pairs:
-            out[f"{pathlib.Path(f).stem}:{pred_key}"] = report(name, pairs)
-    dst = ROOT / "docs/manuscript/precision_recall_report.json"
+            stem = "horak_vicc" if pred_key == "vicc" else pathlib.Path(f).stem
+            out[f"{stem}:{pred_key}"] = report(name, pairs)
+    dst = ROOT / _args.out
     dst.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"\n저장: {dst.relative_to(ROOT)}")

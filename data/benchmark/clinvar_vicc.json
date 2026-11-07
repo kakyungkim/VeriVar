@@ -1,0 +1,204 @@
+{
+  "n": 458,
+  "per_class": 20,
+  "accuracy_3class": 0.528,
+  "balanced_accuracy_3class": 0.505,
+  "per_class_recall": {
+    "ONC": 0.537,
+    "BEN": 0.0,
+    "VUS": 0.978
+  },
+  "onc_detection": {
+    "sensitivity": 0.537,
+    "specificity": 0.967,
+    "tp": 66,
+    "fp": 11,
+    "tn": 324,
+    "fn": 57,
+    "auroc": 0.902
+  },
+  "genes": [
+    "FLT3",
+    "BRAF",
+    "IDH1",
+    "KRAS",
+    "PIK3CA",
+    "PTEN",
+    "RB1",
+    "EZH2",
+    "TP53"
+  ],
+  "alphamissense": "cache-only",
+  "note": "independent, class-balanced ClinVar oncogenicity set; engine at full strength (exact-CIViC + AlphaMissense + hotspots + domains + gnomAD + DMS). 3-class benign recall is structurally limited (VICC Benign needs frequency); the ONC-vs-rest detection metric is the clinically meaningful one.",
+  "gold_dist": {
+    "BEN": 155,
+    "VUS": 180,
+    "ONC": 123
+  },
+  "pred_dist": {
+    "VUS": 381,
+    "ONC": 77
+  },
+  "fn_diagnostics": {
+    "n_fn": 57,
+    "fn_by_gene": {
+      "BRAF": 11,
+      "IDH1": 3,
+      "KRAS": 12,
+      "PIK3CA": 16,
+      "PTEN": 7,
+      "RB1": 3,
+      "EZH2": 2,
+      "TP53": 3
+    },
+    "fn_points_hist": {
+      "4": 14,
+      "3": 11,
+      "5": 20,
+      "0": 9,
+      "2": 2,
+      "-4": 1
+    },
+    "fn_with_no_onco_code": 10,
+    "fn_with_only_weak": 43,
+    "tp_strong_evidence_share": 0.939,
+    "fn_examples": [
+      {
+        "gene": "BRAF",
+        "aa": "p.G466A",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 4,
+        "codes": [
+          "OM1",
+          "OP3",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.T488S",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 3,
+        "codes": [
+          "OM1",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.N581Y",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 4,
+        "codes": [
+          "OM1",
+          "OP3",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.N581S",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 5,
+        "codes": [
+          "OM1",
+          "OM3",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.F247L",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 0,
+        "codes": []
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.E586K",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 3,
+        "codes": [
+          "OM1",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.G464V",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 3,
+        "codes": [
+          "OM1",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.G469A",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 5,
+        "codes": [
+          "OM1",
+          "OM3",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.G466A",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 4,
+        "codes": [
+          "OM1",
+          "OP3",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.T488S",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 3,
+        "codes": [
+          "OM1",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "BRAF",
+        "aa": "p.N581Y",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 4,
+        "codes": [
+          "OM1",
+          "OP3",
+          "OP4"
+        ]
+      },
+      {
+        "gene": "IDH1",
+        "aa": "p.R132G",
+        "gold": "ONC",
+        "pred": "VUS",
+        "points": 5,
+        "codes": [
+          "OM1",
+          "OM3",
+          "OP4"
+        ]
+      }
+    ]
+  }
+}

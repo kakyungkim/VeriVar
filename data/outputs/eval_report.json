@@ -1,0 +1,79 @@
+{
+  "n_variants": 56,
+  "hallucination": {
+    "n_with_citations": 46,
+    "n_hallucinating": 0,
+    "hallucination_rate": 0.0,
+    "examples": []
+  },
+  "citation_grounding": {
+    "n": 44,
+    "grounded": 44,
+    "grounding_rate": 1.0
+  },
+  "abstention": {
+    "no_evidence_variants": 10,
+    "abstained_when_no_evidence": 10,
+    "abstention_recall": 1.0,
+    "abstained_despite_evidence": 2,
+    "evidence_variants": 46
+  },
+  "directional_faithfulness": {
+    "checked": 44,
+    "faithful": 44,
+    "faithfulness_rate": 1.0,
+    "violations": []
+  },
+  "inter_mode_agreement": {
+    "oncogenicity_kappa": 0.713,
+    "tier_kappa": 0.417
+  },
+  "benchmark_civic_assertions": {
+    "n_assertions_total": 28,
+    "n_matched_cohort": 3,
+    "mode_a_tier_accuracy": 1.0,
+    "mode_b_tier_accuracy": 1.0,
+    "matches": [
+      {
+        "variant": "BRAF p.V600E",
+        "cancer": "Colorectal Adenocarcinoma",
+        "truth_tier": "Tier I",
+        "mode_a_tier": "Tier I",
+        "mode_b_tier": "Tier I"
+      },
+      {
+        "variant": "BRAF p.V600E",
+        "cancer": "Cutaneous Melanoma",
+        "truth_tier": "Tier I",
+        "mode_a_tier": "Tier I",
+        "mode_b_tier": "Tier I"
+      },
+      {
+        "variant": "EGFR p.L858R",
+        "cancer": "Lung Adenocarcinoma (NSCLC)",
+        "truth_tier": "Tier I",
+        "mode_a_tier": "Tier I",
+        "mode_b_tier": "Tier I"
+      }
+    ],
+    "note": "Small, Tier-I-skewed, shares CIViC corpus (leakage). Secondary check only."
+  },
+  "provenance": {
+    "mode_used": "live",
+    "model_name": "gpt-4o-mini",
+    "data_sources": {
+      "cohort": "cBioPortal REST (TCGA PanCancer Atlas)",
+      "civic": "CIViC nightly",
+      "dgidb": "DGIdb",
+      "alphamissense": "Ensembl VEP REST",
+      "trials": "ClinicalTrials.gov v2"
+    },
+    "timestamp": "2026-05-31T03:00:33Z",
+    "n_variants": 56,
+    "techniques": [
+      "dense-RAG",
+      "self-consistency(n=3)",
+      "agentic-verifier"
+    ]
+  }
+}

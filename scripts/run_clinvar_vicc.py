@@ -27,7 +27,8 @@ from collections import Counter, defaultdict
 
 import pandas as pd
 
-from src.classify.vicc_rules import VICCPointClassifier, parse_protein_change
+from src.classify.vicc_rules import (ONCOGENIC_CODES, STRONG_CODES, VICCPointClassifier,
+                                     civic_signal_from_rows, parse_protein_change)
 from src.knowledge.alphamissense import AlphaMissenseAnnotator
 from src.models import Variant
 
@@ -45,8 +46,6 @@ _AA3 = {"Ala": "A", "Arg": "R", "Asn": "N", "Asp": "D", "Cys": "C", "Gln": "Q",
         "Glu": "E", "Gly": "G", "His": "H", "Ile": "I", "Leu": "L", "Lys": "K",
         "Met": "M", "Phe": "F", "Pro": "P", "Ser": "S", "Thr": "T", "Trp": "W",
         "Tyr": "Y", "Val": "V", "Ter": "*"}
-_BEN_SIG = {"unaltered function", "benign", "likely benign", "negative"}
-_RANK = {"A": 3, "B": 2, "C": 1, "D": 0}
 _REGION = ("dna", "bind", "pocket", "kinase", "catalyt", "phosphatase", "set", "tensin")
 
 
@@ -155,24 +154,8 @@ def main():
         return None
 
     def civic_signal(gene, ref, pos, alt):
-        """Exact-variant CIViC matching (same faithful rule as the Horak eval)."""
-        onco = ben = 0
-        best = None
-        exact = f"{gene} {ref}{pos}{alt}"
-        for r in civ_by_gene.get(gene, []):
-            mp = str(r["molecular_profile"])
-            if not (mp.startswith(exact) and (len(mp) == len(exact) or not mp[len(exact)].isalnum())):
-                continue
-            s = str(r["significance"]).lower()
-            d = str(r["evidence_direction"]).lower()
-            if s in _BEN_SIG:
-                ben += 1
-            elif d == "supports":
-                onco += 1
-                lv = str(r["evidence_level"])
-                if best is None or _RANK.get(lv, -1) > _RANK.get(best, -1):
-                    best = lv
-        return onco, ben, best
+        """Exact-variant CIViC matching + SOP functional-only mapping (shared helper)."""
+        return civic_signal_from_rows(civ_by_gene.get(gene, []), gene, ref, pos, alt)
 
     def am_for(loc37):
         if not loc37:
@@ -193,13 +176,10 @@ def main():
     for r in rows:
         pp = parse_protein_change(r["aa"])
         vkey = f"{pp[0]}{pp[1]}{pp[2]}" if pp else ""
-        onco = ben = 0
-        best = None
-        if pp:
-            onco, ben, best = civic_signal(r["gene"], pp[0], pp[1], pp[2])
+        civ_sig = civic_signal(r["gene"], pp[0], pp[1], pp[2]) if pp else None
         res = clf.score(r["gene"], r["aa"],
                         am_pathogenicity=am_for(r.get("loc37")),
-                        civic_onco=onco, civic_benign=ben, civic_best_level=best,
+                        civic=civ_sig,
                         in_domain=domain_at(r["gene"], pp[1]) if pp else None,
                         gnomad_af=r.get("gnomad_af"),
                         functional_lof=bool(dms.get(r["gene"], {}).get(vkey)),
@@ -245,16 +225,16 @@ def main():
     # FN diagnostics: among oncogenic-gold variants we MISSED, what evidence fired?
     fn = [d for d in detail if d["gold"] == "ONC" and d["pred"] != "ONC"]
     tp_rows = [d for d in detail if d["gold"] == "ONC" and d["pred"] == "ONC"]
-    onco_codes = {"OVS1", "OS1", "OS2", "OS3", "OM1", "OM3", "OM4", "OP1", "OP3", "OP4"}
+    onco_codes = set(ONCOGENIC_CODES)
     report["fn_diagnostics"] = {
         "n_fn": len(fn),
         "fn_by_gene": dict(Counter(d["gene"] for d in fn)),
         "fn_points_hist": dict(Counter(d["points"] for d in fn)),
         "fn_with_no_onco_code": sum(1 for d in fn if not (set(d["codes"]) & onco_codes)),
         "fn_with_only_weak": sum(1 for d in fn if set(d["codes"]) & onco_codes
-                                 and not (set(d["codes"]) & {"OVS1", "OS2", "OS3"})),
+                                 and not (set(d["codes"]) & STRONG_CODES)),
         "tp_strong_evidence_share": round(
-            sum(1 for d in tp_rows if set(d["codes"]) & {"OVS1", "OS2", "OS3"}) / len(tp_rows), 3)
+            sum(1 for d in tp_rows if set(d["codes"]) & STRONG_CODES) / len(tp_rows), 3)
         if tp_rows else None,
         "fn_examples": fn[:12]}
     json.dump(detail, open(os.path.join(BENCH, "clinvar_vicc_rows.json"), "w"), indent=2)

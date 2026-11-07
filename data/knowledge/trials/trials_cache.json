@@ -1,0 +1,569 @@
+{
+  "NCT00076388": {
+    "nct_id": "NCT00076388",
+    "title": "Iressa Versus Docetaxel (Taxotere)",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Non-Small-Cell Lung Carcinoma"
+    ],
+    "interventions": [
+      "Gefitinib",
+      "Docetaxel"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00076388"
+  },
+  "NCT00113763": {
+    "nct_id": "NCT00113763",
+    "title": "Evaluating Panitumumab (ABX-EGF) Plus Best Supportive Care Versus Best Supportive Care in Patients With Metastatic Colorectal Cancer",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Colorectal Cancer",
+      "Metastases"
+    ],
+    "interventions": [
+      "Best supportive care",
+      "Panitumumab"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00113763"
+  },
+  "NCT00113776": {
+    "nct_id": "NCT00113776",
+    "title": "Evaluating ABX-EGF Extended Therapy in Subjects With MetastaticColorectal Cancer",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Colorectal Cancer"
+    ],
+    "interventions": [
+      "ABX-EGF"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00113776"
+  },
+  "NCT00339586": {
+    "nct_id": "NCT00339586",
+    "title": "First-Line EGFR-1 Tyrosine Kinase Inhibition in Patients With NSCLC With Mutant EGFR Gene",
+    "status": "UNKNOWN",
+    "phase": "PHASE2",
+    "conditions": [
+      "Lung Neoplasms",
+      "Non-Small Cell Lung Cancer",
+      "Adenocarcinoma, Bronchiolo-Alveolar"
+    ],
+    "interventions": [
+      "Erlotinib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00339586"
+  },
+  "NCT00405587": {
+    "nct_id": "NCT00405587",
+    "title": "Safety Study of PLX4032 in Patients With Solid Tumors",
+    "status": "COMPLETED",
+    "phase": "PHASE1",
+    "conditions": [
+      "Malignant Melanoma",
+      "Colorectal Carcinoma"
+    ],
+    "interventions": [
+      "PLX4032"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00405587"
+  },
+  "NCT00446225": {
+    "nct_id": "NCT00446225",
+    "title": "Phase III Study (Tarceva\u00ae) vs Chemotherapy to Treat Advanced Non-Small Cell Lung Cancer in Patients With Mutations in the TK Domain of EGFR",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Non-Small Cell Lung Cancer"
+    ],
+    "interventions": [
+      "Erlotinib",
+      "Carboplatin",
+      "Gemcitabin",
+      "Docetaxel",
+      "Cisplatin"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00446225"
+  },
+  "NCT00525148": {
+    "nct_id": "NCT00525148",
+    "title": "LUX Lung 2 Phase II Single Arm BIBW 2992 \"Afatinib\" in NSCLC With EGFR Activating Mutations",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Carcinoma, Non-Small-Cell Lung"
+    ],
+    "interventions": [
+      "BIBW 2992"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00525148"
+  },
+  "NCT00769067": {
+    "nct_id": "NCT00769067",
+    "title": "A Randomized Trial Of PF-00299804 Taken Orally Versus Erlotinib Taken Orally For Treatment Of Advanced Non-Small Cell Lung Cancer That Has Progressed After One Or Two Prior Chemotherapy Regimen",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Non-small Cell Lung Cancer"
+    ],
+    "interventions": [
+      "Erlotinib",
+      "PF-00299804"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00769067"
+  },
+  "NCT00880321": {
+    "nct_id": "NCT00880321",
+    "title": "A Phase I Study to Investigate the Safety, Pharmacokinetics, and Pharmacodynamics of GSK2118436 in Subjects With Solid Tumors",
+    "status": "COMPLETED",
+    "phase": "PHASE1",
+    "conditions": [
+      "Cancer"
+    ],
+    "interventions": [
+      "GSK2118436",
+      "GSK2118436",
+      "Midazolam"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00880321"
+  },
+  "NCT00890825": {
+    "nct_id": "NCT00890825",
+    "title": "AZD6244 in Combination With Docetaxel Versus Docetaxel Alone in KRAS Mutation Positive NSCLC Patients",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Non Small Cell Lung Cancer"
+    ],
+    "interventions": [
+      "AZD6244",
+      "docetaxel",
+      "Placebo"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00890825"
+  },
+  "NCT00949650": {
+    "nct_id": "NCT00949650",
+    "title": "BIBW 2992 (Afatinib) Versus Chemotherapy as First Line Treatment in NSCLC With EGFR Mutation",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Carcinoma, Non-Small-Cell Lung",
+      "Adenocarcinoma"
+    ],
+    "interventions": [
+      "Pemetrexed",
+      "BIBW 2992",
+      "Cisplatin"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00949650"
+  },
+  "NCT00949702": {
+    "nct_id": "NCT00949702",
+    "title": "A Study of Vemurafenib in Previously Treated Patients With Metastatic Melanoma",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Malignant Melanoma"
+    ],
+    "interventions": [
+      "vemurafenib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT00949702"
+  },
+  "NCT01006980": {
+    "nct_id": "NCT01006980",
+    "title": "A Study of Vemurafenib (RO5185426) in Comparison With Dacarbazine in Previously Untreated Patients With Metastatic Melanoma (BRIM 3)",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Malignant Melanoma"
+    ],
+    "interventions": [
+      "Vemurafenib",
+      "Dacarbazine"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01006980"
+  },
+  "NCT01072175": {
+    "nct_id": "NCT01072175",
+    "title": "Investigate Safety, Pharmacokinetics and Pharmacodynamics of GSK2118436 & GSK1120212",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Cancer"
+    ],
+    "interventions": [
+      "GSK2118436",
+      "GSK1120212"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01072175"
+  },
+  "NCT01121393": {
+    "nct_id": "NCT01121393",
+    "title": "BIBW 2992 (Afatinib) vs Gemcitabine-cisplatin in 1st Line Non-small Cell Lung Cancer (NSCLC)",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Carcinoma, Non-Small-Cell Lung",
+      "Adenocarcinoma"
+    ],
+    "interventions": [
+      "Gemcitabine+Cisplatin",
+      "BIBW 2992"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01121393"
+  },
+  "NCT01245062": {
+    "nct_id": "NCT01245062",
+    "title": "GSK1120212 vs Chemotherapy in Advanced or Metastatic BRAF V600E/K Mutation-positive Melanoma",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Melanoma"
+    ],
+    "interventions": [
+      "GSK1120212",
+      "Chemotherapy"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01245062"
+  },
+  "NCT01286753": {
+    "nct_id": "NCT01286753",
+    "title": "A Study of Vemurafenib (RO5185426) in Participants With Metastatic or Unresectable Papillary Thyroid Cancer Positive for the BRAF V600 Mutation",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Neoplasms"
+    ],
+    "interventions": [
+      "Vemurafenib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01286753"
+  },
+  "NCT01336634": {
+    "nct_id": "NCT01336634",
+    "title": "Study of Selective BRAF Kinase Inhibitor Dabrafenib Monotherapy Twice Daily and in Combination With Dabrafenib Twice Daily and Trametinib Once Daily in Combination Therapy in Subjects With BRAF V600E Mutation Positive Metastatic (Stage IV) Non-small Cell Lung Cancer.",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Cancer"
+    ],
+    "interventions": [
+      "Dabrafenib",
+      "Trametinib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01336634"
+  },
+  "NCT01360554": {
+    "nct_id": "NCT01360554",
+    "title": "ARCHER 1009 : A Study Of Dacomitinib (PF-00299804) Vs. Erlotinib In The Treatment Of Advanced Non-Small Cell Lung Cancer",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Non-Small Cell Lung Cancer"
+    ],
+    "interventions": [
+      "Dacomitinib (PF-00299804)",
+      "Active Comparator (erlotinib)",
+      "Placebo erlotinib",
+      "Placebo PF00299804"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01360554"
+  },
+  "NCT01524978": {
+    "nct_id": "NCT01524978",
+    "title": "A Study of Vemurafenib in Participants With BRAF V600 Mutation-Positive Cancers",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Multiple Myeloma, Neoplasms"
+    ],
+    "interventions": [
+      "cetuximab",
+      "vemurafenib",
+      "vemurafenib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01524978"
+  },
+  "NCT01584648": {
+    "nct_id": "NCT01584648",
+    "title": "A Study Comparing Trametinib and Dabrafenib Combination Therapy to Dabrafenib Monotherapy in Subjects With BRAF-mutant Melanoma",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Melanoma"
+    ],
+    "interventions": [
+      "Dabrafenib",
+      "Trametinib",
+      "Trametinib placebo"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01584648"
+  },
+  "NCT01597908": {
+    "nct_id": "NCT01597908",
+    "title": "Dabrafenib Plus Trametinib vs Vemurafenib Alone in Unresectable or Metastatic BRAF V600E/K Cutaneous Melanoma",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Melanoma"
+    ],
+    "interventions": [
+      "Dabrafenib",
+      "Vemurafenib",
+      "Trametinib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01597908"
+  },
+  "NCT01682083": {
+    "nct_id": "NCT01682083",
+    "title": "Dabrafenib With Trametinib in the Adjuvant Treatment of High-risk BRAF V600 Mutation-positive Melanoma (COMBI-AD).",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Melanoma"
+    ],
+    "interventions": [
+      "Dabrafenib",
+      "Trametinib",
+      "Placebos"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01682083"
+  },
+  "NCT01689519": {
+    "nct_id": "NCT01689519",
+    "title": "A Study Comparing Vemurafenib Versus Vemurafenib Plus Cobimetinib in Participants With Metastatic Melanoma",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Malignant Melanoma"
+    ],
+    "interventions": [
+      "Placebo",
+      "Vemurafenib",
+      "Cobimetinib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01689519"
+  },
+  "NCT01711632": {
+    "nct_id": "NCT01711632",
+    "title": "BRAF Inhibitor, Vemurafenib, in Patients With Relapsed or Refractory Hairy Cell Leukemia",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Hairy Cell Leukemia"
+    ],
+    "interventions": [
+      "Vemurafenib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01711632"
+  },
+  "NCT01748149": {
+    "nct_id": "NCT01748149",
+    "title": "Vemurafenib in Children With Recurrent/Refractory BRAF Gene V600E (BRAFV600E)-Mutant Gliomas",
+    "status": "COMPLETED",
+    "phase": "EARLY_PHASE1",
+    "conditions": [
+      "Pediatric Recurrent/Refractory BRAFV600E-mutant Gliomas"
+    ],
+    "interventions": [
+      "Vemurafenib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01748149"
+  },
+  "NCT01774721": {
+    "nct_id": "NCT01774721",
+    "title": "ARCHER1050: A Study of Dacomitinib vs. Gefitinib in 1st-Line Treatment Of Advanced NSCLC.",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Non-small Cell Lung Cancer With EGFR-Activating Mutations"
+    ],
+    "interventions": [
+      "Dacomitinib (PF-00299804)",
+      "Gefitinib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01774721"
+  },
+  "NCT01787500": {
+    "nct_id": "NCT01787500",
+    "title": "Vemurafenib, Cetuximab, and Irinotecan Hydrochloride in Treating Patients With Solid Tumors That Are Metastatic or That Cannot Be Removed by Surgery",
+    "status": "COMPLETED",
+    "phase": "PHASE1",
+    "conditions": [
+      "BRAF NP_004324.2:p.V600X",
+      "KRAS wt Allele",
+      "Metastatic Malignant Solid Neoplasm",
+      "Stage IV Colorectal Cancer AJCC v7",
+      "Stage IVA Colorectal Cancer AJCC v7",
+      "Stage IVB Colorectal Cancer AJCC v7",
+      "Unresectable Solid Neoplasm"
+    ],
+    "interventions": [
+      "Cetuximab",
+      "Irinotecan Hydrochloride",
+      "Laboratory Biomarker Analysis",
+      "Pharmacological Study",
+      "Vemurafenib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT01787500"
+  },
+  "NCT02034110": {
+    "nct_id": "NCT02034110",
+    "title": "Efficacy and Safety of the Combination Therapy of Dabrafenib and Trametinib in Subjects With BRAF V600E- Mutated Rare Cancers",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Cancer"
+    ],
+    "interventions": [
+      "Dabrafenib",
+      "Trametinib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT02034110"
+  },
+  "NCT02091141": {
+    "nct_id": "NCT02091141",
+    "title": "My Pathway: A Study Evaluating Herceptin/Perjeta, Tarceva, Zelboraf/Cotellic, Erivedge, Alecensa, and Tecentriq Treatment Targeted Against Certain Molecular Alterations in Participants With Advanced Solid Tumors",
+    "status": "COMPLETED",
+    "phase": "PHASE2",
+    "conditions": [
+      "Neoplasms",
+      "Solid Tumors",
+      "Biliary Cancer",
+      "Salivary Cancer",
+      "Bladder Cancer"
+    ],
+    "interventions": [
+      "Trastuzumab",
+      "Pertuzumab",
+      "Erlotinib",
+      "Vemurafenib",
+      "Cobimetinib",
+      "Vismodegib",
+      "Alectinib",
+      "Atezolizumab"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT02091141"
+  },
+  "NCT02124772": {
+    "nct_id": "NCT02124772",
+    "title": "Study to Investigate Safety, Pharmacokinetic (PK), Pharmacodynamic (PD) and Clinical Activity of Trametinib in Subjects With Cancer or Plexiform Neurofibromas and Trametinib in Combination With Dabrafenib in Subjects With Cancers Harboring V600 Mutations",
+    "status": "COMPLETED",
+    "phase": "PHASE1, PHASE2",
+    "conditions": [
+      "Cancer"
+    ],
+    "interventions": [
+      "Trametinib",
+      "Dabrafenib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT02124772"
+  },
+  "NCT02928224": {
+    "nct_id": "NCT02928224",
+    "title": "Study of Encorafenib + Cetuximab Plus or Minus Binimetinib vs. Irinotecan/Cetuximab or Infusional 5-Fluorouracil (5-FU)/Folinic Acid (FA)/Irinotecan (FOLFIRI)/Cetuximab With a Safety Lead-in of Encorafenib + Binimetinib + Cetuximab in Patients With BRAF V600E-mutant Metastatic Colorectal Cancer",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "BRAF V600E-mutant Metastatic Colorectal Cancer"
+    ],
+    "interventions": [
+      "Encorafenib",
+      "Binimetinib",
+      "Cetuximab",
+      "Irinotecan",
+      "Folinic Acid",
+      "5-Fluorouracil"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT02928224"
+  },
+  "NCT03600883": {
+    "nct_id": "NCT03600883",
+    "title": "A Phase 1/2, Study Evaluating the Safety, Tolerability, PK, and Efficacy of Sotorasib (AMG 510) in Subjects With Solid Tumors With a Specific KRAS Mutation (CodeBreaK 100)",
+    "status": "ACTIVE_NOT_RECRUITING",
+    "phase": "PHASE1, PHASE2",
+    "conditions": [
+      "KRAS p.G12C Mutant Advanced Solid Tumors"
+    ],
+    "interventions": [
+      "sotorasib",
+      "Anti PD-1/L1",
+      "Midazolam"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT03600883"
+  },
+  "NCT03785249": {
+    "nct_id": "NCT03785249",
+    "title": "Phase 1/2 Study of MRTX849 in Patients With Cancer Having a KRAS G12C Mutation KRYSTAL-1",
+    "status": "ACTIVE_NOT_RECRUITING",
+    "phase": "PHASE1, PHASE2",
+    "conditions": [
+      "Advanced Cancer",
+      "Metastatic Cancer",
+      "Malignant Neoplastic Disease"
+    ],
+    "interventions": [
+      "MRTX849",
+      "Pembrolizumab",
+      "Cetuximab",
+      "Afatinib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT03785249"
+  },
+  "NCT04305496": {
+    "nct_id": "NCT04305496",
+    "title": "Capivasertib+Fulvestrant vs Placebo+Fulvestrant as Treatment for Locally Advanced (Inoperable) or Metastatic HR+/HER2- Breast Cancer",
+    "status": "ACTIVE_NOT_RECRUITING",
+    "phase": "PHASE3",
+    "conditions": [
+      "Locally Advanced (Inoperable) or Metastatic Breast Cancer"
+    ],
+    "interventions": [
+      "Fulvestrant",
+      "Capivasertib",
+      "Placebo"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT04305496"
+  },
+  "NCT04449874": {
+    "nct_id": "NCT04449874",
+    "title": "A Study to Evaluate the Safety, Pharmacokinetics, and Activity of GDC-6036 Alone or in Combination in Participants With Advanced or Metastatic Solid Tumors With a KRAS G12C Mutation",
+    "status": "ACTIVE_NOT_RECRUITING",
+    "phase": "PHASE1",
+    "conditions": [
+      "Non-Small Cell Lung Cancer",
+      "Colorectal Cancer",
+      "Advanced Solid Tumors"
+    ],
+    "interventions": [
+      "GDC-6036",
+      "Atezolizumab",
+      "Cetuximab",
+      "Bevacizumab",
+      "Erlotinib",
+      "GDC-1971",
+      "Inavolisib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT04449874"
+  },
+  "NCT05198934": {
+    "nct_id": "NCT05198934",
+    "title": "Sotorasib and Panitumumab Versus Investigator's Choice for Participants With Kirsten Rat Sarcoma (KRAS) p.G12C Mutation",
+    "status": "COMPLETED",
+    "phase": "PHASE3",
+    "conditions": [
+      "Colorectal Cancer (CRC)"
+    ],
+    "interventions": [
+      "Sotorasib",
+      "Panitumumab",
+      "Trifluridine and Tipiracil",
+      "Regorafenib"
+    ],
+    "url": "https://clinicaltrials.gov/study/NCT05198934"
+  }
+}

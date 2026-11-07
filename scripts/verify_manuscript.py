@@ -34,6 +34,7 @@ OUT = ROOT / "data" / "outputs"
 BENCH = ROOT / "data" / "benchmark"
 
 PREPRINT = ROOT / "docs" / "manuscript" / "preprint.md"
+PREPRINT_KO = ROOT / "docs" / "manuscript" / "preprint_ko.md"
 SUMMARY = ROOT / "docs" / "STUDY_SUMMARY.md"
 WORKSHEET = ROOT / "notes" / "expert_adjudication_worksheet.md"
 
@@ -48,22 +49,38 @@ class Report:
         self.checks: list[dict] = []
 
     def add(self, name: str, ok: bool, detail: str = "") -> None:
-        self.checks.append({"check": name, "ok": bool(ok), "detail": detail})
+        self.checks.append({"check": name, "ok": bool(ok), "skipped": False, "detail": detail})
+
+    def skip(self, name: str, detail: str = "") -> None:
+        """Record a check that could not run (input absent). Neither PASS nor FAIL.
+
+        A check whose input is missing must not report PASS: in a public clone the
+        private worksheet is absent, and a vacuous PASS would claim a verification
+        that never happened.
+        """
+        self.checks.append({"check": name, "ok": True, "skipped": True, "detail": detail})
 
     @property
     def failed(self) -> list[dict]:
         return [c for c in self.checks if not c["ok"]]
 
+    @property
+    def skipped(self) -> list[dict]:
+        return [c for c in self.checks if c.get("skipped")]
+
     def print(self) -> None:
         for c in self.checks:
-            mark = "PASS" if c["ok"] else "FAIL"
+            mark = "SKIP" if c.get("skipped") else ("PASS" if c["ok"] else "FAIL")
             line = f"[{mark}] {c['check']}"
             if c["detail"]:
                 line += f" — {c['detail']}"
             print(line)
-        n, f = len(self.checks), len(self.failed)
+        n, f, s = len(self.checks), len(self.failed), len(self.skipped)
+        ran = n - s
         print("-" * 64)
-        print(f"{n - f}/{n} checks passed" + (f"; {f} FAILED" if f else " — all good"))
+        print(f"{ran - f}/{ran} checks passed"
+              + (f"; {s} skipped" if s else "")
+              + (f"; {f} FAILED" if f else " — all good"))
 
 
 def load(path: Path) -> dict:
@@ -143,13 +160,34 @@ def check_numbers(rep: Report, docs: dict[str, str]) -> None:
         f"keys={list(acc_ci) if isinstance(acc_ci, dict) else acc_ci}",
     )
 
-    # --- the no-RAG fabrication CI excludes zero (the headline robustness claim)
-    fab_ci = stats["norag_citation_fabrication_ci"]
-    lo = _first_num(fab_ci, prefer=("lo", "low", "lower", "ci_low"))
+    # --- the headline citation-existence endpoint (2026-09-27 taxonomy), both arms
+    #     scored by one rule. stats_report's older norag_citation_fabrication_ci is the
+    #     retired endpoint and is deliberately NOT asserted here.
+    tax = load(OUT / "citation_taxonomy.json")["headline"]["arms"]
+    norag = tax["no_retrieval_E_empty_bundle"]["variant_any_fabricated_or_misattributed"]
     rep.add(
-        "no-RAG fabrication CI lower bound > 0 (excludes zero)",
-        lo is not None and lo > 0,
-        f"ci={fab_ci}",
+        "no-retrieval fabricated-or-misattributed CI excludes zero",
+        norag["wilson_95"][0] > 0,
+        f"{norag['k']}/{norag['n']} = {norag['rate']}, Wilson {norag['wilson_95']}",
+    )
+    for arm in ("retrieval_gpt4o_mini_106", "primary_pipeline_postgate"):
+        ids = tax[arm]["identifier_tokens_out_of_bundle"]
+        rep.add(
+            f"{arm}: no identifier citation outside the bundle",
+            ids["k"] == 0,
+            f"{ids['k']}/{ids['n']}",
+        )
+    prose_pairs = [
+        (f"{norag['k']} of {norag['n']}", "no-retrieval variant count"),
+        (f"{norag['rate']:.3f}", "no-retrieval rate"),
+        (f"0 of {tax['retrieval_gpt4o_mini_106']['identifier_tokens_out_of_bundle']['n']}",
+         "retrieval identifier count"),
+    ]
+    missing = [label for txt, label in prose_pairs if txt not in docs["preprint"]]
+    rep.add(
+        "preprint quotes the taxonomy endpoint verbatim",
+        not missing,
+        "all present" if not missing else f"missing: {missing}",
     )
 
     # --- Horak oncogenic recall sanity (prose says 0.79)
@@ -209,29 +247,23 @@ GENE_STOPWORDS = {
 }
 
 
-def check_variants(rep: Report) -> None:
-    ci = load(OUT / "cohort_interpretation.json")
-    cohort_keys = {v["variant_key"] for v in ci["variants"]}
-    # normalised set: gene + protein, no "p."
-    cohort_norm = set()
-    cohort_by_pair = {}
-    for v in ci["variants"]:
-        g = v["variant_key"].split()[0]
-        prot = v["variant_key"].split("p.")[-1] if "p." in v["variant_key"] else v["variant_key"].split()[-1]
-        cohort_norm.add((g, prot))
-        cohort_by_pair.setdefault((g, prot), v["cancer_type"])
+def check_worksheet(rep: Report, known: set[tuple[str, str]], worksheet: Path) -> None:
+    """Variant-existence checks on the expert-adjudication worksheet.
 
-    # Horak benchmark variants (also legitimately citable)
-    horak = load(BENCH / "horak_results.json")
-    horak_norm = set()
-    for r in horak.get("rows", []):
-        g = r.get("gene") or ""
-        p = (r.get("protein") or r.get("hgvsp") or "").replace("p.", "")
-        if g and p:
-            horak_norm.add((g, p))
-
-    known = cohort_norm | horak_norm
-    ws_lines = text(WORKSHEET).splitlines()
+    The worksheet lives in notes/, which is not shipped. When it is absent both
+    checks are reported as SKIP rather than PASS (an empty file would otherwise
+    pass vacuously); locally they keep their PASS/FAIL behaviour.
+    """
+    names = (
+        "worksheet TABLE variants all exist in cohort/benchmark data",
+        "worksheet prose external-variant mentions (review-only, never fails)",
+    )
+    if not worksheet.exists():
+        shown = worksheet.relative_to(ROOT) if worksheet.is_relative_to(ROOT) else worksheet
+        for name in names:
+            rep.skip(name, f"{shown} not present (private notes/, not shipped); not verified")
+        return
+    ws_lines = worksheet.read_text().splitlines()
 
     # HARD check: variants quoted in MARKDOWN TABLE ROWS are presented as OUR
     # system's results — every one must exist in the cohort/benchmark data. This
@@ -282,8 +314,32 @@ def check_variants(rep: Report) -> None:
         ("eyeball these external refs: " + ", ".join(prose_unknown[:20])) if prose_unknown else "none",
     )
 
+
+def check_variants(rep: Report) -> None:
+    ci = load(OUT / "cohort_interpretation.json")
+    cohort_keys = {v["variant_key"] for v in ci["variants"]}
+    # normalised set: gene + protein, no "p."
+    cohort_norm = set()
+    cohort_by_pair = {}
+    for v in ci["variants"]:
+        g = v["variant_key"].split()[0]
+        prot = v["variant_key"].split("p.")[-1] if "p." in v["variant_key"] else v["variant_key"].split()[-1]
+        cohort_norm.add((g, prot))
+        cohort_by_pair.setdefault((g, prot), v["cancer_type"])
+
+    # Horak benchmark variants (also legitimately citable)
+    horak = load(BENCH / "horak_results.json")
+    horak_norm = set()
+    for r in horak.get("rows", []):
+        g = r.get("gene") or ""
+        p = (r.get("protein") or r.get("hgvsp") or "").replace("p.", "")
+        if g and p:
+            horak_norm.add((g, p))
+
+    known = cohort_norm | horak_norm
+    check_worksheet(rep, known, WORKSHEET)
+
     # cancer-type cross-check for the three beyond-rules variants quoted in worksheet
-    ws = text(WORKSHEET)
     expectations = {
         ("PIK3CA", "R88Q"): "Colorectal",
         ("PTEN", "R130*"): "Melanoma",
@@ -443,6 +499,231 @@ def check_tags(rep: Report, docs: dict[str, str]) -> None:
 
 
 # --------------------------------------------------------------------------- #
+# E. SOP-strict rule arm, ClinVar holdout, HemaGuide, NLI support (added 2026-09-24)
+# --------------------------------------------------------------------------- #
+def _fmt3(x: float) -> str:
+    return f"{x:.3f}"
+
+
+def check_rule_arm_and_audits(rep: Report, docs: dict[str, str]) -> None:
+    """Headline numbers introduced with the SOP-strict rule arm and the Type II audit.
+
+    Each value is read from its result JSON and must appear verbatim in the preprint.
+    A missing input (public clone before the data bundle lands) is a SKIP, not a PASS.
+    """
+    pre = docs["preprint"]
+
+    def need(path: Path, name: str):
+        if not path.exists():
+            rep.skip(name, f"{path.relative_to(ROOT)} absent; not verified")
+            return None
+        return load(path)
+
+    hv = need(BENCH / "horak_vicc.json", "rule arm (SOP-strict) headline in prose")
+    if hv is not None:
+        ci = hv["accuracy_3class_ci"]
+        strs = [_fmt3(hv["accuracy_3class"]), f"{_fmt3(ci['lo'])}–{_fmt3(ci['hi'])}",
+                _fmt3(hv["specificity_onc"]), _fmt3(hv["sensitivity_onc"]), _fmt3(hv["auroc_onc"])]
+        missing = [x for x in strs if x not in pre]
+        rep.add("rule arm (SOP-strict) headline in prose",
+                hv.get("config") == "sop_strict" and not missing,
+                f"config={hv.get('config')}; acc {strs[0]} [{strs[1]}], spec {strs[2]}, sens {strs[3]}, "
+                f"AUROC {strs[4]}" + (f"; missing: {missing}" if missing else ""))
+
+    hh = need(BENCH / "oncovi_headtohead.json", "OncoVI head-to-head (SOP-strict) in prose")
+    if hh is not None:
+        p = hh["paired_mcnemar_3class"]["p_two_sided"]
+        strs = [_fmt3(hh["ours"]["accuracy_3class"]), _fmt3(hh["oncovi"]["accuracy_3class"]), f"p = {_fmt3(p)}"]
+        missing = [x for x in strs if x not in pre]
+        rep.add("OncoVI head-to-head (SOP-strict) in prose", p > 0.05 and not missing,
+                f"ours {strs[0]} vs OncoVI {strs[1]}, {strs[2]} (non-significant required)"
+                + (f"; missing: {missing}" if missing else ""))
+
+    hg = need(BENCH / "hemaguide_headtohead.json", "HemaGuide head-to-head in prose")
+    if hg is not None:
+        p = hg["paired_mcnemar_3class"]["p_two_sided"]
+        ci = hg["hemaguide"]["accuracy_3class_ci"]
+        strs = [_fmt3(hg["hemaguide"]["accuracy_3class"]), f"{_fmt3(ci['lo'])}–{_fmt3(ci['hi'])}",
+                _fmt3(hg["hemaguide"]["sensitivity_onc"]), _fmt3(hg["hemaguide"]["specificity_onc"]),
+                f"p = {_fmt3(p)}"]
+        missing = [x for x in strs if x not in pre]
+        rep.add("HemaGuide head-to-head in prose", p > 0.05 and not missing,
+                f"HemaGuide {strs[0]} [{strs[1]}], sens {strs[2]}, spec {strs[3]}, {strs[4]}"
+                + (f"; missing: {missing}" if missing else ""))
+
+    cv = need(BENCH / "clinvar_onc_holdout.json", "ClinVar oncogenicity holdout in prose")
+    if cv is not None:
+        strs = []
+        for scope in ("all", "panel9"):
+            d = cv["scopes"][scope]["detection"]
+            for key in ("sensitivity", "specificity_on_gold_vus", "auroc_points"):
+                c = d[key]
+                strs += [_fmt3(c["point"]), f"{_fmt3(c['lo'])}–{_fmt3(c['hi'])}"]
+        n_all = cv["scopes"]["all"]["detection"]["n"]
+        strs.append(f"{n_all} ")
+        missing = [x for x in strs if x not in pre]
+        rep.add("ClinVar oncogenicity holdout in prose",
+                cv["rule_arm_config"]["config"] == "sop_strict"
+                and cv["rule_arm_config"]["OS1_known_oncogenic"] is False and not missing,
+                f"all n={n_all}; config={cv['rule_arm_config']['config']}; OS1 off"
+                + (f"; missing: {missing}" if missing else ""))
+
+    nli = need(OUT / "nli_attribution_report.json", "NLI citation-support audit in prose")
+    if nli is not None:
+        sup = nli["arms"]["pipeline_rationale_arm"]["aggregate"]["citation_level"]["supported"]["iid"]
+        kap = nli["arms"]["label_only_106_arm"]["imprecision_crosstab"]["cohens_kappa"]
+        mt = nli["arms"]["label_only_106_arm"]["match_types"]
+        strs = [_fmt3(sup["point"]), f"{_fmt3(sup['lo'])}–{_fmt3(sup['hi'])}", f"κ {_fmt3(kap)}",
+                f"{sup['n']} citations"]
+        missing = [x for x in strs if x not in pre]
+        comp_ok = mt.get("bare_source") == 15 and mt.get("unresolvable") == 5
+        rep.add("NLI citation-support audit in prose", comp_ok and not missing,
+                f"supported {strs[0]} [{strs[1]}] of {sup['n']}; {strs[2]}; imprecision = "
+                f"{mt.get('bare_source')} bare source + {mt.get('unresolvable')} non-identifier"
+                + (f"; missing: {missing}" if missing else ""))
+
+
+# --------------------------------------------------------------------------- #
+# F. stale-number guard: withdrawn values may appear only in the correction note
+# --------------------------------------------------------------------------- #
+# Values withdrawn on 2026-09-24 (original rule-arm configuration and the retired
+# ClinVar holdout). They are allowed only inside the correction-note section, which
+# carries the sensitivity table (Table 3).
+# A value directly after a dash is the upper bound of an interval ("0.650–0.902"),
+# not a point estimate, so the lookbehind also excludes en dash and hyphen.
+STALE_PATTERNS = {
+    "0.843 (original rule-arm accuracy)": r"(?<![\d.\u2013-])0\.843(?![\d])",
+    "0.902 (retired ClinVar AUROC)": r"(?<![\d.\u2013-])0\.902(?![\d])",
+    "0.967 (retired ClinVar specificity)": r"(?<![\d.\u2013-])0\.967(?![\d])",
+    "n = 458 (retired ClinVar holdout)": r"n\s*=\s*458\b",
+    "0.464 (retired no-retrieval fabrication rate)": r"(?<![\d.\u2013-])0\.464(?![\d])",
+    "46.4% (retired no-retrieval fabrication rate)": r"(?<![\d.])46\.4\s*(?:%|퍼센트)",
+    "26 of 56 (retired no-retrieval variant count)": r"26\s*(?:of|/)\s*56\b|56개 중 26개",
+    "p = 0.011 (withdrawn CancerVar test)": r"p\s*=\s*0\.011(?![\d])",
+}
+CORRECTION_HEADINGS = ("### Correction note", "### 정정 노트")
+
+
+def strip_correction_note(text: str) -> tuple[str, bool]:
+    """Remove every correction-note section (heading to the next ##/### heading)."""
+    out, found = [], False
+    lines = text.split("\n")
+    skipping = False
+    for line in lines:
+        if any(line.startswith(h) for h in CORRECTION_HEADINGS):
+            skipping, found = True, True
+            continue
+        if skipping and (line.startswith("## ") or line.startswith("### ")):
+            skipping = False
+        if not skipping:
+            out.append(line)
+    return "\n".join(out), found
+
+
+def stale_hits(text: str) -> list[str]:
+    body = re.split(r"\n## References", text)[0]
+    body = re.sub(r"```.*?```", "", body, flags=re.S)
+    body, _ = strip_correction_note(body)
+    hits = []
+    for label, pat in STALE_PATTERNS.items():
+        for m in re.finditer(pat, body):
+            ctx = body[max(0, m.start() - 40): m.end() + 20].replace("\n", " ")
+            hits.append(f"{label}: ...{ctx}...")
+    return hits
+
+
+# --------------------------------------------------------------------------- #
+# G. Supplementary Table S3 (pre-specified improvement round) against its JSON
+# --------------------------------------------------------------------------- #
+# Added 2026-11-07 after a re-review found a wrong specificity cell in this table
+# that every other check passed over. The truth values sit in the repository, so
+# the table is checked cell by cell instead of being left to review.
+def _s3_section(text: str, heading: str) -> str:
+    i = text.find(heading)
+    if i < 0:
+        return ""
+    j = text.find("\n## ", i + 1)
+    k = text.find("\n### ", i + 1)
+    ends = [e for e in (j, k) if e > 0]
+    return text[i: min(ends) if ends else len(text)]
+
+
+def _ci(d: dict) -> str:
+    return f"{d['point']:.3f} [{d['lo']:.3f}\u2013{d['hi']:.3f}]"
+
+
+def check_table_s3(rep: Report, docs: dict[str, str]) -> None:
+    path = BENCH / "vicc_config_comparison.json"
+    if not path.exists():
+        rep.skip("Supplementary Table S3 vs vicc_config_comparison.json", "file absent")
+        return
+    res = load(path)["results"]
+    a, b = res["sop_strict"], res["sop_strict_v2"]
+    vs = b["vs_sop_strict"]
+
+    def mc(key: str) -> str:
+        d = vs[key]
+        p = d["p_value"]
+        ptxt = "p < 0.001" if p < 0.001 else f"p = {p:.3f}" if p < 1 else "p = 1.0"
+        return ptxt, f"{d['discordant_pairs']} discordant"
+
+    ca, cb = a["clinvar_holdout"], b["clinvar_holdout"]
+    expected = {
+        "three-class accuracy": [f"{a['horak']['accuracy_3class']:.3f}",
+                                 f"{b['horak']['accuracy_3class']:.3f}", *mc("horak_3class")],
+        "oncogenic sensitivity": [f"{a['horak']['sensitivity_onc']:.3f}",
+                                  f"{b['horak']['sensitivity_onc']:.3f}"],
+        "oncogenic specificity": [f"{a['horak']['specificity_onc']:.3f}",
+                                  f"{b['horak']['specificity_onc']:.3f}"],
+        "AUROC": [f"{a['horak']['auroc_onc']:.3f}", f"{b['horak']['auroc_onc']:.3f}"],
+        "panel (n = 236), sensitivity": [_ci(ca["panel9"]["sensitivity"]),
+                                         _ci(cb["panel9"]["sensitivity"]), *mc("clinvar_panel9_binary")],
+        "all genes (n = 712), sensitivity": [_ci(ca["all"]["sensitivity"]),
+                                             _ci(cb["all"]["sensitivity"]), *mc("clinvar_all_binary")],
+        "panel (n = 236), specificity": [f"{ca['panel9']['specificity_on_gold_vus']['point']:.3f}",
+                                         f"{cb['panel9']['specificity_on_gold_vus']['point']:.3f}"],
+        "all genes (n = 712), specificity": [f"{ca['all']['specificity_on_gold_vus']['point']:.3f}",
+                                             f"{cb['all']['specificity_on_gold_vus']['point']:.3f}"],
+    }
+    sec = _s3_section(docs["preprint"], "### Supplementary Table S3")
+    rows = [ln for ln in sec.split("\n") if ln.startswith("| ")]
+    problems = []
+    for label, want in expected.items():
+        row = next((r for r in rows if label in r), None)
+        if row is None:
+            problems.append(f"no row for '{label}'")
+            continue
+        missing = [w for w in want if w not in row]
+        if missing:
+            problems.append(f"'{label}' lacks {missing}")
+    rep.add("Supplementary Table S3 matches vicc_config_comparison.json (EN)",
+            bool(sec) and not problems,
+            "; ".join(problems[:4]) if problems else f"{len(expected)} rows match")
+
+    # the Korean table must carry the same numbers as the English one
+    if PREPRINT_KO.exists():
+        ko = _s3_section(PREPRINT_KO.read_text(), "### 보충 표 S3")
+        num = lambda t: sorted(re.findall(r"\d+\.\d+", "\n".join(l for l in t.split("\n") if l.startswith("|"))))
+        rep.add("Supplementary Table S3 numbers identical in KO",
+                bool(ko) and num(ko) == num(sec),
+                "match" if ko and num(ko) == num(sec) else "KO table differs from EN")
+
+
+def check_stale_numbers(rep: Report) -> None:
+    for path in (PREPRINT, PREPRINT_KO):
+        if not path.exists():
+            rep.skip(f"stale-number guard ({path.name})", "file absent")
+            continue
+        t = path.read_text()
+        _, found = strip_correction_note(t)
+        hits = stale_hits(t)
+        rep.add(f"stale-number guard ({path.name}): withdrawn values only in correction note",
+                found and not hits,
+                ("correction note missing; " if not found else "")
+                + ("; ".join(hits[:6]) if hits else "no withdrawn value outside the correction note"))
+
+
+# --------------------------------------------------------------------------- #
 # D. DOI resolution (online, optional)
 # --------------------------------------------------------------------------- #
 DOI_RE = re.compile(r"10\.\d{4,}/[^\s)\"'}]+")  # stop before } (BibTeX), ) and quotes
@@ -490,6 +771,9 @@ def main() -> int:
         check_variants(rep)
         check_context_ablation(rep, docs)
         check_tags(rep, docs)
+        check_rule_arm_and_audits(rep, docs)
+        check_stale_numbers(rep)
+        check_table_s3(rep, docs)
         check_dois(rep, docs, args.online)
 
     rep.print()

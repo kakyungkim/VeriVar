@@ -1,0 +1,1371 @@
+{
+  "summary": {
+    "backend": "hosted",
+    "models": [
+      "gpt-4o-mini"
+    ],
+    "n_variants": 56,
+    "abstain_threshold": 0.66,
+    "abstained": 18,
+    "abstention_rate": 0.321,
+    "mean_agreement": 1.0,
+    "nli_enabled": false
+  },
+  "results": [
+    {
+      "variant_key": "BRAF p.G469E",
+      "gene": "BRAF",
+      "hgvsp": "p.G469E",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 3,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "7:140481402C>T",
+        "EID6003",
+        "EID6004"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "EID6003",
+            "EID6004",
+            "7:140481402C>T"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "BRAF p.V600E",
+      "gene": "BRAF",
+      "hgvsp": "p.V600E",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 96,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "CIViC:EID103",
+        "CIViC:EID126",
+        "CIViC:EID89"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID89",
+            "CIViC:EID103",
+            "CIViC:EID126"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "BRAF p.V600E",
+      "gene": "BRAF",
+      "hgvsp": "p.V600E",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 97,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "CIViC:EID104",
+        "CIViC:EID86",
+        "CIViC:EID95"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID104",
+            "CIViC:EID95",
+            "CIViC:EID86"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "EGFR p.E114K",
+      "gene": "EGFR",
+      "hgvsp": "p.E114K",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 2,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [
+        "AlphaMissense:7:55211097G>A",
+        "CIViC:EID9584"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": [
+            "CIViC:EID9584",
+            "AlphaMissense:7:55211097G>A"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "EGFR p.L858R",
+      "gene": "EGFR",
+      "hgvsp": "p.L858R",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 38,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "CIViC:EID1665",
+        "CIViC:EID2624",
+        "CIViC:EID2634",
+        "CIViC:EID275",
+        "CIViC:EID276",
+        "CIViC:EID347",
+        "CIViC:EID879"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID275",
+            "CIViC:EID276",
+            "CIViC:EID347",
+            "CIViC:EID879",
+            "CIViC:EID1665",
+            "CIViC:EID2624",
+            "CIViC:EID2634"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ERBB2 p.V842I",
+      "gene": "ERBB2",
+      "hgvsp": "p.V842I",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 3,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "EID1174",
+        "EID289"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "EID289",
+            "EID1174"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "KRAS p.G12A",
+      "gene": "KRAS",
+      "hgvsp": "p.G12A",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 10,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense",
+        "CIViC:EID3710"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "CIViC:EID3710",
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "KRAS p.G12C",
+      "gene": "KRAS",
+      "hgvsp": "p.G12C",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 19,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense",
+        "EID11652",
+        "EID7572",
+        "EID9431"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "EID9431",
+            "EID11652",
+            "EID7572",
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "KRAS p.G12D",
+      "gene": "KRAS",
+      "hgvsp": "p.G12D",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 22,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "CIViC:EID1215",
+        "CIViC:EID2207",
+        "CIViC:EID3946"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID1215",
+            "CIViC:EID3946",
+            "CIViC:EID2207"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "KRAS p.G12D",
+      "gene": "KRAS",
+      "hgvsp": "p.G12D",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 22,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "CIViC:EID1300",
+        "CIViC:EID1311",
+        "CIViC:EID937"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID1300",
+            "CIViC:EID1311",
+            "CIViC:EID937"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "KRAS p.G12R",
+      "gene": "KRAS",
+      "hgvsp": "p.G12R",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 6,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense",
+        "EID1298",
+        "EID2264",
+        "EID3987",
+        "EID3989",
+        "EID3991"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "EID1298",
+            "EID2264",
+            "EID3987",
+            "EID3989",
+            "EID3991",
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "KRAS p.G12V",
+      "gene": "KRAS",
+      "hgvsp": "p.G12V",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 13,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense:12:25398284C>A",
+        "CIViC:EID136",
+        "CIViC:EID2219",
+        "CIViC:EID3924"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID136",
+            "CIViC:EID2219",
+            "CIViC:EID3924",
+            "AlphaMissense:12:25398284C>A"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "KRAS p.G12V",
+      "gene": "KRAS",
+      "hgvsp": "p.G12V",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 13,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense:12:25398284C>A",
+        "CIViC:EID1143",
+        "CIViC:EID136",
+        "CIViC:EID1715",
+        "CIViC:EID2001",
+        "CIViC:EID2219",
+        "CIViC:EID2232",
+        "CIViC:EID2268",
+        "CIViC:EID3824",
+        "CIViC:EID3924",
+        "CIViC:EID795",
+        "CIViC:EID987"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID136",
+            "CIViC:EID795",
+            "CIViC:EID987",
+            "CIViC:EID1143",
+            "CIViC:EID1715",
+            "CIViC:EID2001",
+            "CIViC:EID2219",
+            "CIViC:EID2232",
+            "CIViC:EID2268",
+            "CIViC:EID3824",
+            "CIViC:EID3924",
+            "AlphaMissense:12:25398284C>A"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "NRAS p.Q61K",
+      "gene": "NRAS",
+      "hgvsp": "p.Q61K",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 8,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense:1:115256530G>T",
+        "EID1002",
+        "EID1474",
+        "EID1475",
+        "EID8933"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "EID1474",
+            "EID1475",
+            "EID1002",
+            "EID8933",
+            "AlphaMissense:1:115256530G>T"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "NRAS p.Q61R",
+      "gene": "NRAS",
+      "hgvsp": "p.Q61R",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 3,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "1",
+        "EID2184",
+        "EID23"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "EID23",
+            "EID2184",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "PIK3CA p.E545K",
+      "gene": "PIK3CA",
+      "hgvsp": "p.E545K",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 26,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "CIViC:EID1171",
+        "CIViC:EID2040"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID1171",
+            "CIViC:EID2040"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "PIK3CA p.H1047R",
+      "gene": "PIK3CA",
+      "hgvsp": "p.H1047R",
+      "cancer_type": "Breast Carcinoma",
+      "n_evidence": 28,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "CIViC:EID1505",
+        "CIViC:EID2097",
+        "CIViC:EID2100",
+        "CIViC:EID314"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID314",
+            "CIViC:EID1505",
+            "CIViC:EID2097",
+            "CIViC:EID2100"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "PIK3CA p.R88Q",
+      "gene": "PIK3CA",
+      "hgvsp": "p.R88Q",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 3,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "3",
+        "EID12034",
+        "EID3832"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "EID3832",
+            "EID12034",
+            "3"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "PTEN p.R130*",
+      "gene": "PTEN",
+      "hgvsp": "p.R130*",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 1,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "TP53 p.D281E",
+      "gene": "TP53",
+      "hgvsp": "p.D281E",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 2,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense:17:7577095G>T",
+        "CIViC:EID10260"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID10260",
+            "AlphaMissense:17:7577095G>T"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "TP53 p.P152L",
+      "gene": "TP53",
+      "hgvsp": "p.P152L",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 3,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "TP53 p.R175H",
+      "gene": "TP53",
+      "hgvsp": "p.R175H",
+      "cancer_type": "Breast Carcinoma",
+      "n_evidence": 7,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense",
+        "EID10527",
+        "EID319",
+        "EID389"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "EID319",
+            "EID389",
+            "EID10527",
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "TP53 p.R273H",
+      "gene": "TP53",
+      "hgvsp": "p.R273H",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 6,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "EID397",
+        "EID398",
+        "EID4882",
+        "EID7430",
+        "EID7530"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "EID397",
+            "EID398",
+            "EID4882",
+            "EID7430",
+            "EID7530"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "TP53 p.R273H",
+      "gene": "TP53",
+      "hgvsp": "p.R273H",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 6,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "EID397",
+        "EID398",
+        "EID4882",
+        "EID7430",
+        "EID7530"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "EID397",
+            "EID398",
+            "EID4882",
+            "EID7430",
+            "EID7530"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "TP53 p.R273L",
+      "gene": "TP53",
+      "hgvsp": "p.R273L",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 2,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense:17:7577120C>A",
+        "CIViC:EID2286"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "CIViC:EID2286",
+            "AlphaMissense:17:7577120C>A"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "TP53 p.V272G",
+      "gene": "TP53",
+      "hgvsp": "p.V272G",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 2,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "17:7577123A>C",
+        "EID10577"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "EID10577",
+            "17:7577123A>C"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ESR1 p.E247K",
+      "gene": "ESR1",
+      "hgvsp": "p.E247K",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "AKT1 p.V192M",
+      "gene": "AKT1",
+      "hgvsp": "p.V192M",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.F539C",
+      "gene": "ALK",
+      "hgvsp": "p.F539C",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "OP1"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "OP1"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.R291C",
+      "gene": "ALK",
+      "hgvsp": "p.R291C",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.E576Q",
+      "gene": "ALK",
+      "hgvsp": "p.E576Q",
+      "cancer_type": "Breast Carcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "BEN",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Benign",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.G1121D",
+      "gene": "ALK",
+      "hgvsp": "p.G1121D",
+      "cancer_type": "Breast Carcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.R1209P",
+      "gene": "ALK",
+      "hgvsp": "p.R1209P",
+      "cancer_type": "Breast Carcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Oncogenic",
+          "tier": "Tier I",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "APC p.A1366V",
+      "gene": "APC",
+      "hgvsp": "p.A1366V",
+      "cancer_type": "Breast Carcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "BEN",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "5"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Benign",
+          "tier": "Tier II",
+          "cited_ids": [
+            "5"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "BRAF p.H725Y",
+      "gene": "BRAF",
+      "hgvsp": "p.H725Y",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 1,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ROS1 p.P1539S",
+      "gene": "ROS1",
+      "hgvsp": "p.P1539S",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 1,
+      "ensemble_call": "BEN",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Benign",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.G1494E",
+      "gene": "ALK",
+      "hgvsp": "p.G1494E",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 1,
+      "ensemble_call": "BEN",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Benign",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.G391E",
+      "gene": "ALK",
+      "hgvsp": "p.G391E",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 1,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense:2:29606708C>T"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense:2:29606708C>T"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.G263V",
+      "gene": "ALK",
+      "hgvsp": "p.G263V",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 1,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.V349F",
+      "gene": "ALK",
+      "hgvsp": "p.V349F",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 1,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "APC p.D1562N",
+      "gene": "APC",
+      "hgvsp": "p.D1562N",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 1,
+      "ensemble_call": "BEN",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Benign",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "BRAF p.A762E",
+      "gene": "BRAF",
+      "hgvsp": "p.A762E",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 1,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.R1212H",
+      "gene": "ALK",
+      "hgvsp": "p.R1212H",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "2"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "2"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.R200K",
+      "gene": "ALK",
+      "hgvsp": "p.R200K",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "APC p.P1613H",
+      "gene": "APC",
+      "hgvsp": "p.P1613H",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "ONC",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Oncogenic",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "APC p.R230C",
+      "gene": "APC",
+      "hgvsp": "p.R230C",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 1,
+      "ensemble_call": "BEN",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": false,
+      "shared_citations": [
+        "AlphaMissense"
+      ],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "Likely Benign",
+          "tier": "Tier II",
+          "cited_ids": [
+            "AlphaMissense"
+          ]
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.R401*",
+      "gene": "ALK",
+      "hgvsp": "p.R401*",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "APC p.R1450*",
+      "gene": "APC",
+      "hgvsp": "p.R1450*",
+      "cancer_type": "Colorectal Adenocarcinoma",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "ALK p.X263_splice",
+      "gene": "ALK",
+      "hgvsp": "p.X263_splice",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "BRAF p.X565_splice",
+      "gene": "BRAF",
+      "hgvsp": "p.X565_splice",
+      "cancer_type": "Lung Adenocarcinoma (NSCLC)",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "APC p.E109*",
+      "gene": "APC",
+      "hgvsp": "p.E109*",
+      "cancer_type": "Breast Carcinoma",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "APC p.S2223*",
+      "gene": "APC",
+      "hgvsp": "p.S2223*",
+      "cancer_type": "Breast Carcinoma",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "BRAF p.L485*",
+      "gene": "BRAF",
+      "hgvsp": "p.L485*",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "CDKN2A p.R58*",
+      "gene": "CDKN2A",
+      "hgvsp": "p.R58*",
+      "cancer_type": "Cutaneous Melanoma",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "BRCA2 p.N1784Kfs*3",
+      "gene": "BRCA2",
+      "hgvsp": "p.N1784Kfs*3",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    },
+    {
+      "variant_key": "CDKN2A p.E69Afs*74",
+      "gene": "CDKN2A",
+      "hgvsp": "p.E69Afs*74",
+      "cancer_type": "Pancreatic Adenocarcinoma",
+      "n_evidence": 0,
+      "ensemble_call": "VUS",
+      "agreement": 1.0,
+      "confidence": 1.0,
+      "abstained": true,
+      "shared_citations": [],
+      "per_model": {
+        "gpt-4o-mini": {
+          "oncogenicity": "VUS",
+          "tier": "Tier III",
+          "cited_ids": []
+        }
+      }
+    }
+  ],
+  "risk_coverage": null
+}

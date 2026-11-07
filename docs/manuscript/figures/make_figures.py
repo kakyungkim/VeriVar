@@ -8,13 +8,14 @@ data/benchmark/*.json — nothing hard-coded from memory.
 
 Main figures
   fig1  System architecture & citation grounding   (schematic + retrieval table + scorecard)
-  fig2  Faithfulness is enforced, not emergent      (ablation + over-call waffle + contract)
+  fig2  Citation existence: measured pre-gate, enforced post-gate (taxonomy + waffle + contract)
   fig3  Citable VICC rule arm  [FLAGSHIP]           (head-to-head + ROC/OOD + error-asym + dial)
   fig4  Classification & dual-mode discordance      (confusion + discordance bars + KRAS ledger)
   fig5  Positioning                                 (quantitative capability matrix)
 Supplementary
-  figS1 leakage controls & robustness · figS2 multi-model PoC · figS4 input-context ablation
-  (figS3, the dashboard screenshot, is built by make_dashboard_figure.sh)
+  figS2 leakage controls & robustness · figS3 input-context ablation · figS4 multi-model PoC
+  (figS1, the dashboard screenshot, is built by make_dashboard_figure.sh)
+  Supplementary numbers follow first mention in docs/manuscript/preprint.md.
 
 Style: Helvetica/Arial, Okabe-Ito + navy/teal brand (colourblind-safe, redundant hatch),
 Nature widths (single 89 mm, double 183 mm), 600-dpi PNG + vector PDF (pdf.fonttype 42),
@@ -148,36 +149,55 @@ def fig1():
     axB = fig.add_subplot(right[1, 0])
 
     # --- 1a swimlane schematic (left→right) ---
+    # Two parallel branches from the same variant: the LLM pipeline (retrieval →
+    # bundle → contract → two LLM modes) and the rule arm (its own sources, no LLM,
+    # oncogenicity only). The rule arm does NOT sit downstream of the bundle or the
+    # contract (critic 2026-09-24, P1-9).
     axS.text(0.02, 0.965, "Somatic variant  ·  gene · HGVSp · cancer type",
              fontsize=7.4, fontweight="bold", ha="left", va="center", color=INK)
-    # retrieval lanes
+    # retrieval lanes (LLM branch)
     lanes = [("Structured\nCIViC · DGIdb · AM", 0.80),
              ("Dense\nBM25 + Chroma · RRF", 0.67),
              ("Graph\ngene–variant–drug", 0.54)]
     for txt, yy in lanes:
-        _box(axS, 0.02, yy, 0.40, 0.095, txt, T_NAVY, NAVY, fs=6.8)
-        _arrow(axS, 0.42, yy + 0.048, 0.52, 0.515 + 0.048)
-    _box(axS, 0.52, 0.515, 0.34, 0.105,
-         "Evidence bundle\nevery item = citable ID", T_GREEN, GREEN, fs=6.6, fw="bold")
-    _arrow(axS, 0.69, 0.515, 0.69, 0.455)
-    _box(axS, 0.40, 0.345, 0.56, 0.105,
+        _box(axS, 0.02, yy, 0.30, 0.095, txt, T_NAVY, NAVY, fs=5.9)
+        _arrow(axS, 0.32, yy + 0.048, 0.38, 0.515 + 0.048)
+    _box(axS, 0.38, 0.515, 0.27, 0.105,
+         "Evidence bundle\nevery item =\ncitable ID", T_GREEN, GREEN, fs=6.0, fw="bold")
+    _arrow(axS, 0.515, 0.515, 0.515, 0.455)
+    _box(axS, 0.20, 0.345, 0.45, 0.105,
          "Faithfulness contract\ncite only retrieved IDs ·\nabstain when no evidence",
-         T_AMBER, AMBER, fs=6.5, fw="bold")
-    # three arms
-    _box(axS, 0.01, 0.165, 0.30, 0.115,
-         "Generative\nLLM assigns label\n(voting + verifier)", T_NAVY, NAVY, fs=6.4)
-    _box(axS, 0.35, 0.165, 0.30, 0.115,
-         "Deterministic\nrule assigns label;\nLLM writes rationale", T_PUR, PURPLE, fs=6.4)
-    _box(axS, 0.69, 0.165, 0.30, 0.115,
-         "VeriVar (rule arm)\nVICC point-based; not LLM\n3-class acc 0.843", T_GREEN, TEAL, fs=6.0, fw="bold")
-    for cx, sx in [(0.52, 0.16), (0.69, 0.50), (0.84, 0.84)]:
+         T_AMBER, AMBER, fs=6.3, fw="bold")
+    # two LLM modes
+    _box(axS, 0.02, 0.165, 0.29, 0.115,
+         "Generative\nLLM assigns label\n(voting + verifier)", T_NAVY, NAVY, fs=6.2)
+    _box(axS, 0.35, 0.165, 0.29, 0.115,
+         "Deterministic\nrule assigns label;\nLLM writes rationale", T_PUR, PURPLE, fs=6.2)
+    for cx, sx in [(0.34, 0.165), (0.50, 0.495)]:
         _arrow(axS, cx, 0.345, sx, 0.282)
-    _arrow(axS, 0.16, 0.165, 0.42, 0.120)
-    _arrow(axS, 0.50, 0.165, 0.50, 0.120)
-    _arrow(axS, 0.84, 0.165, 0.58, 0.120)
-    _box(axS, 0.12, 0.020, 0.76, 0.090,
-         "Three-class call\nVICC oncogenicity + AMP/ASCO/CAP tier", GREY_F, GREY_E,
-         fs=6.6, fw="bold")
+    _arrow(axS, 0.165, 0.165, 0.30, 0.112)
+    _arrow(axS, 0.495, 0.165, 0.40, 0.112)
+    _box(axS, 0.06, 0.020, 0.56, 0.085,
+         "VICC oncogenicity (5-class)\n+ AMP/ASCO/CAP tier", GREY_F, GREY_E,
+         fs=6.3, fw="bold")
+    # rule-arm branch (parallel, from the variant, own sources, no LLM)
+    axS.plot([0.845, 0.845], [0.935, 0.905], color="#6b6f73", lw=0.9)
+    _arrow(axS, 0.845, 0.935, 0.845, 0.905)
+    _box(axS, 0.70, 0.735, 0.29, 0.165,
+         "Rule-arm sources\ncancerhotspots · gnomAD\nMaveDB · UniProt\nCIViC functional · AM",
+         T_GREEN, TEAL, fs=5.2)
+    _arrow(axS, 0.845, 0.735, 0.845, 0.625)
+    _box(axS, 0.70, 0.455, 0.29, 0.165,
+         "VeriVar rule arm\nSOP-strict\nVICC points;\nno LLM call;\nevery code citable",
+         T_GREEN, TEAL, fs=5.7, fw="bold")
+    _arrow(axS, 0.845, 0.455, 0.845, 0.285)
+    _box(axS, 0.70, 0.165, 0.29, 0.115,
+         "VICC oncogenicity\n(5-class)\nno tier", GREY_F, TEAL, fs=6.0)
+    axS.plot([0.675, 0.675], [0.02, 0.935], color="0.85", lw=0.6, ls=(0, (3, 2)))
+    axS.text(0.50, 0.925, "LLM branch", fontsize=5.6, color=MUT, ha="center", va="center",
+             fontstyle="italic")
+    axS.text(0.845, 0.955, "rule branch", fontsize=5.6, color=MUT, ha="center", va="center",
+             fontstyle="italic")
     plabel(axS, "a", x=0.0, y=0.99)
 
     # --- 1b retrieval-arm summary ---
@@ -203,10 +223,15 @@ def fig1():
         axT.plot([0, 1], [yln, yln], color="0.9", lw=0.4)
 
     # --- 1c faithfulness scorecard ---
+    # The out-of-bundle row is read from the citation taxonomy (identifier tokens of
+    # the post-gate primary run), not from the older eval_report variant count.
+    tax = load(os.path.join(OUT, "citation_taxonomy.json"))["headline"]["arms"]
+    post = tax["primary_pipeline_postgate"]["identifier_tokens_out_of_bundle"]
+    pre = tax["retrieval_gpt4o_mini_106"]["identifier_tokens_out_of_bundle"]
     gden = ev["citation_grounding"]["n"]
     rows = [
-        ("Hallucination", ev["hallucination"]["hallucination_rate"], VERM,
-         f"0/{ev['hallucination']['n_with_citations']}"),
+        ("Out-of-bundle\ncitation", post["k"] / post["n"], VERM,
+         f"{post['k']}/{post['n']} identifiers"),
         ("Grounding", ev["citation_grounding"]["grounding_rate"], GREEN,
          f"{ev['citation_grounding']['grounded']}/{gden}"),
         ("Directional", ev["directional_faithfulness"]["faithfulness_rate"], GREEN,
@@ -223,13 +248,12 @@ def fig1():
                  va="center", ha="right" if val > 0.5 else "left", fontsize=6,
                  fontweight="bold", color="white" if val > 0.5 else col, zorder=3)
         axB.text(1.03, y, frac, va="center", ha="left", fontsize=5.6, color=MUT)
-    # flag the empirical, falsifiable result (0.00 hallucination) vs enforced 1.0 rows
+    # the enforced 0 row vs the falsifiable pre-gate measurement (Fig 2a); the note sits
+    # to the right of the value label so the two never overlap
     y_hall = ys[0]
-    axB.annotate("measured (cf. Fig 2a)",
-                 xy=(0.06, y_hall), xytext=(0.30, y_hall - 0.02),
-                 fontsize=5.0, color=VERM, va="center", ha="left", linespacing=1.05,
-                 arrowprops=dict(arrowstyle="-|>", color=VERM, lw=0.6))
-    axB.set_yticks(ys); axB.set_yticklabels([r[0] for r in rows], fontsize=6.8)
+    axB.text(0.30, y_hall, f"measured before the gate: {pre['k']}/{pre['n']} (Fig 2a)",
+             fontsize=5.0, color=VERM, va="center", ha="left")
+    axB.set_yticks(ys); axB.set_yticklabels([r[0] for r in rows], fontsize=6.4)
     axB.set_xlim(0, 1.0); axB.set_xticks([0, 0.5, 1.0]); axB.set_xlabel("rate", fontsize=6.5)
     axB.tick_params(axis="y", length=0)
     axB.set_title("Contract guarantees (enforced by construction, n=56)",
@@ -239,33 +263,55 @@ def fig1():
 
 
 # ===========================================================================
-# FIG 2 — Faithfulness is enforced, not emergent
+# FIG 2 — Citation existence: measured before the gate, enforced after it
 # ===========================================================================
 def fig2():
-    stats = load(os.path.join(OUT, "stats_report.json"))
+    # Citation existence is read from the citation taxonomy (2026-09-27 endpoint): the
+    # variant-level rate of a fabricated or misattributed identifier, scored with one
+    # rule for both arms. The retired stats_report "fabrication" field is not used.
+    tax = load(os.path.join(OUT, "citation_taxonomy.json"))
     ev = load(os.path.join(OUT, "eval_report.json"))
-    fab = stats["norag_citation_fabrication_ci"]
+    arms = tax["headline"]["arms"]
+    no = arms["no_retrieval_E_empty_bundle"]["variant_any_fabricated_or_misattributed"]
+    no_fab = arms["no_retrieval_E_empty_bundle"]["variant_any_fabricated_identifier"]
+    yes = arms["retrieval_gpt4o_mini_106"]["variant_any_fabricated_or_misattributed"]
+    ids = arms["retrieval_gpt4o_mini_106"]["identifier_tokens_out_of_bundle"]
+    p_mc = tax["paired_contrasts_variant_level"][
+        "no_retrieval_E_empty_bundle_vs_retrieval_gpt4o_mini_106"][
+        "any_fabricated_or_misattributed"]["mcnemar"]["p_value_exact"]
 
     fig = plt.figure(figsize=(W2, 2.9))
     gs = fig.add_gridspec(1, 3, width_ratios=[1.0, 1.25, 1.0], wspace=0.42,
                           left=0.07, right=0.985, top=0.86, bottom=0.17)
     axA, axB, axC = (fig.add_subplot(gs[0, i]) for i in range(3))
 
-    # 2a ablation bars
-    axA.bar(0, fab["point"], color=VERM, width=0.62, edgecolor="white", linewidth=0.5)
-    axA.errorbar(0, fab["point"], yerr=[[fab["point"] - fab["lo"]], [fab["hi"] - fab["point"]]],
-                 fmt="none", ecolor=INK, capsize=3, lw=0.8)
-    axA.bar(1, 0.0, color=NAVY, width=0.62)
-    axA.text(0, fab["hi"] + 0.04, f"{fab['point']:.2f}\n[{fab['lo']:.2f}–{fab['hi']:.2f}]",
-             ha="center", va="bottom", fontsize=5.8, fontweight="bold", color=VERM)
-    axA.text(1, 0.03, "0.00", ha="center", va="bottom", fontsize=6, fontweight="bold", color=NAVY)
-    axA.annotate("retrieval\neliminates\nfabrication", xy=(1, 0.0), xytext=(0.62, 0.36),
-                 fontsize=5.4, color=MUT, ha="center",
-                 arrowprops=dict(arrowstyle="-|>", color=GREY_E, lw=0.7))
+    # 2a citation existence, variant level, both arms under one rule
+    for x, d, col in ((0, no, VERM), (1, yes, NAVY)):
+        lo, hi = d["wilson_95"]
+        axA.bar(x, d["rate"], color=col, width=0.62, edgecolor="white", linewidth=0.5)
+        if x == 0:
+            # the hatched part is the subset whose identifier was fabricated outright
+            axA.bar(x, no_fab["rate"], color=col, width=0.62, hatch="///",
+                    edgecolor="white", linewidth=0.5)
+            from matplotlib import patheffects
+            axA.text(x, no_fab["rate"] / 2, f"fabricated\n{no_fab['k']}/{no_fab['n']}",
+                     ha="center", va="center", fontsize=5.2, color="white", fontweight="bold",
+                     linespacing=1.05,
+                     path_effects=[patheffects.withStroke(linewidth=1.6, foreground="#7A3500")])
+        axA.errorbar(x, d["rate"], yerr=[[d["rate"] - lo], [hi - d["rate"]]],
+                     fmt="none", ecolor=INK, capsize=3, lw=0.8)
+        axA.text(x, hi + 0.04, f"{d['k']}/{d['n']}\n{d['rate']:.3f}\n[{lo:.3f}–{hi:.3f}]",
+                 ha="center", va="bottom", fontsize=5.4, fontweight="bold", color=col,
+                 linespacing=1.05)
+    axA.text(0.5, 0.86, f"McNemar p = {p_mc:.1e}", ha="center", va="center", fontsize=5.4,
+             color=MUT)
+    axA.text(0.5, 0.74, f"{ids['k']} of {ids['n']} identifier citations\noutside the bundle",
+             ha="center", va="center", fontsize=5.2, color=NAVY, linespacing=1.05)
     axA.set_xticks([0, 1]); axA.set_xticklabels(["no-\nretrieval", "+\nretrieval"], fontsize=6)
-    axA.set_ylim(0, 0.92); axA.set_yticks([0, 0.25, 0.5, 0.75])
-    axA.set_ylabel("fabricated-citation rate", fontsize=6.4); ygrid(axA)
-    axA.set_title("Fabrication", fontsize=6.8); plabel(axA, "a")
+    axA.set_ylim(0, 0.95); axA.set_yticks([0, 0.25, 0.5, 0.75])
+    axA.set_ylabel("variants with a fabricated or\nmisattributed identifier", fontsize=6.0)
+    ygrid(axA)
+    axA.set_title("Citation existence (pre-gate)", fontsize=6.8); plabel(axA, "a")
 
     # 2b over-call waffle (12 / 56)
     axB.set_aspect("equal"); axB.axis("off")
@@ -308,149 +354,174 @@ def fig2():
 # ===========================================================================
 # FIG 3 — Citable VICC rule arm (FLAGSHIP)
 # ===========================================================================
+def _count_ci(k, n, n_boot=5000, seed=0):
+    """95% percentile-bootstrap CI for a proportion k/n (used only where the JSON gives counts, not a CI)."""
+    if n == 0:
+        return (float("nan"), float("nan"))
+    v = np.r_[np.ones(k), np.zeros(n - k)]
+    _, lo, hi = boot_ci(v, n_boot=n_boot, seed=seed)
+    return lo, hi
+
+
 def fig3():
+    """Rule arm (SOP-strict). Every number is read from the benchmark JSONs; nothing is hard-coded."""
     hv = load(os.path.join(BENCH, "horak_vicc.json"))
     hh = load(os.path.join(BENCH, "oncovi_headtohead.json"))
-    cv = load(os.path.join(BENCH, "clinvar_vicc.json"))
+    hg = load(os.path.join(BENCH, "hemaguide_headtohead.json"))
+    cv = load(os.path.join(BENCH, "clinvar_onc_holdout.json"))
     dial = load(os.path.join(BENCH, "horak_sensitivity_modes.json"))
 
-    fig = plt.figure(figsize=(W2, 5.9))
-    gs = fig.add_gridspec(2, 2, wspace=0.30, hspace=0.40,
-                          left=0.09, right=0.975, top=0.93, bottom=0.085)
+    fig = plt.figure(figsize=(W2, 6.2))
+    gs = fig.add_gridspec(2, 2, wspace=0.34, hspace=0.45,
+                          left=0.085, right=0.975, top=0.93, bottom=0.10)
     axA, axB = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
     axC, axD = fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1])
 
-    # 3a head-to-head
-    mets = [("accuracy", "accuracy_3class"), ("specificity", "specificity_onc"),
-            ("sensitivity", "sensitivity_onc")]
-    x = np.arange(len(mets)); w = 0.36
-    ov = [hh["ours"][k] for _, k in mets]
-    on = [hh["oncovi"][k] for _, k in mets]
-    axA.bar(x - w / 2, ov, w, color=NAVY, edgecolor="white", linewidth=0.5, label="VeriVar (rule arm)")
-    axA.bar(x + w / 2, on, w, color=VERM, hatch="///", edgecolor="white", linewidth=0.5,
-            label="OncoVI")
-    for xi, v in zip(x - w / 2, ov):
-        axA.text(xi, v + 0.02, f"{v:.3f}", ha="center", va="bottom", fontsize=5.4,
-                 fontweight="bold", color=NAVY)
-    for xi, v in zip(x + w / 2, on):
-        axA.text(xi, v + 0.02, f"{v:.3f}", ha="center", va="bottom", fontsize=5.4, color=VERM)
-    axA.text(1, max(ov[1], on[1]) + 0.17, "+specificity", fontsize=5.4, color=TEAL,
-             ha="center", fontweight="bold")
-    axA.set_xticks(x); axA.set_xticklabels([m[0] for m in mets], fontsize=6)
-    axA.set_ylim(0, 1.30); axA.set_yticks([0, 0.5, 1.0]); axA.set_ylabel("score", fontsize=6.4)
-    axA.legend(loc="upper left", ncol=1, framealpha=0, fontsize=5.2,
-               handlelength=1.0, bbox_to_anchor=(-0.02, 1.0))
-    ygrid(axA)
-    axA.set_title(f"Head-to-head, 69 shared variants  (McNemar p={hh['paired_mcnemar_3class']['p_two_sided']:.2f})",
-                  fontsize=6.4); plabel(axA, "a")
+    # ---- 3a: three rule engines on identical Horak variants, 95% CIs on every bar
+    ours = hg["ours"]; hgd = hg["hemaguide"]; onc = hh["oncovi"]
+    gold69 = hh["pred_dist"]["gold"]
+    n_pos69 = gold69["ONC"]; n_neg69 = gold69["VUS"] + gold69["BEN"]
 
-    # 3b ROC from Horak points + ClinVar operating point
+    def ci_pair(c):
+        return (c["lo"], c["hi"]) if isinstance(c, dict) else tuple(c)
+    def wilson(block, which):
+        """Wilson score interval for a proportion (bootstrap CIs collapse at 0 and 1)."""
+        w = block["onc_exact_ci95"][which]["wilson"]
+        return (w["lo"], w["hi"])
+    engines = [
+        ("VeriVar rule arm (70)", NAVY, None, [
+            (ours["accuracy_3class"], ci_pair(ours["accuracy_3class_ci"])),
+            (ours["specificity_onc"], wilson(ours, "specificity")),
+            (ours["sensitivity_onc"], wilson(ours, "sensitivity"))]),
+        ("OncoVI (69 shared)", VERM, "///", [
+            (onc["accuracy_3class"], ci_pair(onc["accuracy_3class_ci"])),
+            (onc["specificity_onc"], wilson(onc, "specificity")),
+            (onc["sensitivity_onc"], wilson(onc, "sensitivity"))]),
+        ("HemaGuide (70)", AMBER, "..", [
+            (hgd["accuracy_3class"], ci_pair(hgd["accuracy_3class_ci"])),
+            (hgd["specificity_onc"], wilson(hgd, "specificity")),
+            (hgd["sensitivity_onc"], wilson(hgd, "sensitivity"))]),
+    ]
+    mets = ["accuracy", "specificity", "sensitivity"]
+    x = np.arange(len(mets)); w = 0.26
+    for i, (lab, col, hatch, vals) in enumerate(engines):
+        xs = x + (i - 1) * w
+        v = np.array([a for a, _ in vals]); lo = np.array([c[0] for _, c in vals]); hi = np.array([c[1] for _, c in vals])
+        axA.bar(xs, v, w * 0.92, color=col, hatch=hatch, edgecolor="white", linewidth=0.5, label=lab)
+        axA.errorbar(xs, v, yerr=[v - lo, hi - v], fmt="none", ecolor=INK, elinewidth=0.6, capsize=1.6)
+        for xi, vi, hii in zip(xs, v, hi):
+            axA.text(xi, hii + 0.025, f"{vi:.2f}", ha="center", va="bottom", fontsize=4.8, color=col,
+                     fontweight="bold" if i == 0 else "normal")
+    axA.set_xticks(x); axA.set_xticklabels(mets, fontsize=6)
+    # cap at 1.05 (critic P2): the legend moves above the axes instead of into the headroom
+    axA.set_ylim(0, 1.05); axA.set_yticks([0, 0.25, 0.5, 0.75, 1.0]); axA.set_ylabel("score (95% CI)", fontsize=6.2)
+    axA.legend(loc="lower left", ncol=3, framealpha=0, fontsize=5.0, handlelength=1.0,
+               columnspacing=0.8, bbox_to_anchor=(0.0, 1.00), borderaxespad=0.1)
+    ygrid(axA)
+    p_on = hh["paired_mcnemar_3class"]["p_two_sided"]; p_hg = hg["paired_mcnemar_3class"]["p_two_sided"]
+    # the legend sits between the axes and the title (title pad leaves room for it)
+    axA.set_title(f"Rule engines on Horak variants (accuracy McNemar p: OncoVI {p_on:.3f}, HemaGuide {p_hg:.3f})",
+                  fontsize=6.0, pad=13)
+    plabel(axA, "a")
+
+    # ---- 3b: ROC from Horak points + ClinVar holdout operating points (with CIs)
     rows = hv["rows"]
     scores = np.array([r["points"] for r in rows], float)
     pos = np.array([collapse3(r["gold"]) == "ONC" for r in rows])
-    thr = np.unique(scores)
-    tpr, fpr = [1.0], [1.0]
-    for t in np.sort(thr):
+    # proper empirical ROC: thresholds from high to low, starting at (0, 0); ties move diagonally
+    P, N = pos.sum(), (~pos).sum()
+    tpr, fpr = [0.0], [0.0]
+    for t in np.sort(np.unique(scores))[::-1]:
         pred = scores >= t
-        tp = np.sum(pred & pos); fn = np.sum(~pred & pos)
-        fp = np.sum(pred & ~pos); tn = np.sum(~pred & ~pos)
-        tpr.append(tp / (tp + fn)); fpr.append(fp / (fp + tn))
-    tpr.append(0.0); fpr.append(0.0)
-    order = np.argsort(fpr)
-    fpr, tpr = np.array(fpr)[order], np.array(tpr)[order]
+        tpr.append(np.sum(pred & pos) / P); fpr.append(np.sum(pred & ~pos) / N)
+    tpr.append(1.0); fpr.append(1.0)
+    fpr, tpr = np.array(fpr), np.array(tpr)
     axB.plot([0, 1], [0, 1], color="0.75", lw=0.6, ls=(0, (3, 3)))
-    axB.plot(fpr, tpr, "-", color=NAVY, lw=1.4,
-             label=f"Horak-70  AUROC {hv['auroc_onc']:.3f}")
+    axB.plot(fpr, tpr, "-", color=NAVY, lw=1.4, label=f"Horak-70 ROC, AUROC {hv['auroc_onc']:.3f}")
     axB.plot(1 - hv["specificity_onc"], hv["sensitivity_onc"], "o", color=TEAL, ms=6,
-             mec="white", mew=0.8, zorder=5)
-    axB.annotate(f"operating point\nspec {hv['specificity_onc']:.3f}",
-                 xy=(1 - hv["specificity_onc"], hv["sensitivity_onc"]),
-                 xytext=(0.30, 0.55), fontsize=5.2, color=TEAL,
-                 arrowprops=dict(arrowstyle="-|>", color=TEAL, lw=0.7))
-    od = cv["onc_detection"]
-    axB.plot(1 - od["specificity"], od["sensitivity"], "D", color=VERM, ms=5, mec="white",
-             mew=0.7, label=f"ClinVar OOD  AUROC {od['auroc']:.3f}")
+             mec="white", mew=0.8, zorder=5, label=f"Horak default (spec {hv['specificity_onc']:.3f})")
+    for scope, mk, col, lab in (("all", "D", VERM, "ClinVar all genes"), ("panel9", "s", PURPLE, "ClinVar 9 Horak genes")):
+        d = cv["scopes"][scope]["detection"]
+        se, sp, au = d["sensitivity"], d["specificity_on_gold_vus"], d["auroc_points"]
+        xpt, ypt = 1 - sp["point"], se["point"]
+        axB.errorbar(xpt, ypt, xerr=[[xpt - (1 - sp["hi"])], [(1 - sp["lo"]) - xpt]],
+                     yerr=[[ypt - se["lo"]], [se["hi"] - ypt]], fmt=mk, color=col, ms=4.5,
+                     mec="white", mew=0.6, elinewidth=0.7, capsize=1.5, zorder=6,
+                     label=f"{lab} (n={d['n']}), AUROC {au['point']:.3f}")
     axB.set_aspect("equal"); axB.set_xlim(-0.02, 1.02); axB.set_ylim(-0.02, 1.02)
     axB.set_xlabel("1 − specificity", fontsize=6.4); axB.set_ylabel("sensitivity", fontsize=6.4)
-    axB.legend(loc="lower right", framealpha=0, fontsize=5.2, handlelength=1.4)
-    axB.set_title("Discrimination + out-of-distribution", fontsize=6.6); plabel(axB, "b")
+    axB.legend(loc="lower right", framealpha=0.85, edgecolor="none", fontsize=4.8, handlelength=1.2)
+    axB.set_title("Discrimination: Horak-70 and ClinVar holdout", fontsize=6.4); plabel(axB, "b")
 
-    # 3c error-type asymmetry — read every count from the head-to-head JSON, not hardcoded.
-    # Ours errors: all honest ONC->VUS abstentions. OncoVI errors: confident over-calls on
-    # gold-VUS (->Onc and ->Benign) plus miss-type errors. Bars are intentionally ASYMMETRIC
-    # to match oncovi_headtohead.json (ours 9 errors vs OncoVI 12; over-calls the dominant mode).
-    def _c3(l):
-        if l in {"Oncogenic", "Likely Oncogenic"}:
-            return "ONC"
-        if l in {"Benign", "Likely Benign"}:
-            return "BEN"
-        return "VUS"
+    # ---- 3c: error types among the OncoVI disagreements (counts from JSON)
     from collections import Counter
     ov_err, ours_err = Counter(), Counter()
     for d in hh["disagreements"]:
-        g, ov, ou = _c3(d["gold"]), _c3(d["oncovi"]), _c3(d["ours"])
-        if ov != g:
-            ov_err[(g, ov)] += 1
-        if ou != g:
-            ours_err[(g, ou)] += 1
-    ov_overcall_onc = ov_err[("VUS", "ONC")]            # confident VUS -> Oncogenic
-    ov_overcall_ben = ov_err[("VUS", "BEN")]            # confident VUS -> Benign
-    ours_abst = ours_err[("ONC", "VUS")]               # honest abstentions on true-oncogenic
-    ours_total = sum(ours_err.values())
-    ov_total = sum(ov_err.values())
-    ov_overcall = ov_overcall_onc + ov_overcall_ben     # all confident over-calls on gold-VUS
-    ov_other = ov_total - ov_overcall                   # remaining (miss-type) errors, so bar sums to ov_total
-    # Ours (top row, left = honest abstentions, green); OncoVI (bottom row, right = errors)
-    axC.barh(1, -ours_abst, color=GREEN, height=0.5, edgecolor="white", linewidth=0.5)
-    axC.barh(0, ov_overcall_onc, color=VERM, hatch="///", height=0.5,
-             edgecolor="white", linewidth=0.5)
-    axC.barh(0, ov_overcall_ben, left=ov_overcall_onc, color=AMBER, hatch="xx", height=0.5,
-             edgecolor="white", linewidth=0.5)
-    axC.barh(0, ov_other, left=ov_overcall, color=GREY, height=0.5,
-             edgecolor="white", linewidth=0.5)
-    axC.axvline(0, color=INK, lw=0.6)
-    axC.text(-ours_abst - 0.4, 1, str(ours_abst), ha="right", va="center",
-             fontsize=7, fontweight="bold", color=GREEN)
-    axC.text(ov_overcall_onc / 2, 0, str(ov_overcall_onc), ha="center", va="center",
-             fontsize=6, fontweight="bold", color="white")
-    axC.text(ov_overcall_onc + ov_overcall_ben / 2, 0, str(ov_overcall_ben), ha="center",
-             va="center", fontsize=5.5, fontweight="bold", color=INK)
-    axC.text(ov_total + 0.4, 0, str(ov_total), ha="left", va="center",
-             fontsize=7, fontweight="bold", color=VERM)
-    axC.text(ov_overcall + ov_other / 2, 0, str(ov_other), ha="center",
-             va="center", fontsize=5.5, fontweight="bold", color="white")
-    # mini legend for OncoVI error composition
-    axC.text(0.2, -0.66, "VUS>Onc", fontsize=6.0, color=VERM, ha="left")
-    axC.text(4.7, -0.66, "VUS>Ben", fontsize=6.0, color=AMBER, ha="left")
-    axC.text(9.2, -0.66, "other miss", fontsize=6.0, color=MUT, ha="left")
-    axC.set_yticks([1, 0])
-    axC.set_yticklabels([f"VeriVar:\n{ours_total} honest\nVUS abst.",
-                         f"OncoVI:\n{ov_total} errors\n({ov_overcall} over-calls)"],
-                        fontsize=5.4)
-    axC.set_xlim(-13, 13)
-    axC.set_xticks([-ours_abst, 0, ov_total])
-    axC.set_xticklabels([str(ours_abst), "0", str(ov_total)], fontsize=6)
-    axC.set_xlabel(f"errors among 21 disagreements (VeriVar {ours_total} vs OncoVI {ov_total})",
-                   fontsize=5.5)
+        g, ovl, oul = collapse3(d["gold"]), collapse3(d["oncovi"]), collapse3(d["ours"])
+        if ovl != g:
+            ov_err[(g, ovl)] += 1
+        if oul != g:
+            ours_err[(g, oul)] += 1
+    n_dis = len(hh["disagreements"])
+    ours_abst = ours_err[("ONC", "VUS")]
+    ours_ben = sum(v for (g, p), v in ours_err.items() if p == "BEN")
+    ours_other = sum(ours_err.values()) - ours_abst - ours_ben
+    ov_over = sum(v for (g, p), v in ov_err.items() if p == "ONC" and g != "ONC")
+    ov_other = sum(ov_err.values()) - ov_over
+    segs = [  # (row, value, colour, hatch, legend label)
+        (1, ours_abst, GREEN, None, "oncogenic left at VUS (abstention)"),
+        (1, ours_ben, "#8c6d31", "\\\\\\", "benign-direction call"),
+        (1, ours_other, GREY, None, None),
+        (0, ov_over, VERM, "///", "oncogenic over-call on gold-VUS"),
+        (0, ov_other, "#b0b3b8", None, "other error"),
+    ]
+    left = {0: 0, 1: 0}; seen = set()
+    for row, val, col, hatch, lab in segs:
+        if val <= 0:
+            continue
+        axC.barh(row, val, left=left[row], color=col, hatch=hatch, height=0.5, edgecolor="white",
+                 linewidth=0.5, label=lab if lab and lab not in seen else None)
+        if lab:
+            seen.add(lab)
+        axC.text(left[row] + val / 2, row, str(val), ha="center", va="center", fontsize=6,
+                 fontweight="bold", color=INK,
+                 bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor="none", alpha=0.9))
+        left[row] += val
+    ours_total, ov_total = left[1], left[0]
+    for row, tot, col in ((1, ours_total, NAVY), (0, ov_total, VERM)):
+        axC.text(tot + 0.3, row, f"{tot}", ha="left", va="center", fontsize=6.5, fontweight="bold", color=col)
+    axC.set_yticks([1, 0]); axC.set_yticklabels(["VeriVar\nrule arm", "OncoVI"], fontsize=6)
+    xmax = max(ours_total, ov_total)
+    axC.set_xlim(0, xmax * 1.15 + 1); axC.set_ylim(-0.6, 1.9)
+    axC.set_xlabel(f"errors among the {n_dis} disagreements (69 shared variants)", fontsize=5.8)
+    axC.legend(loc="upper center", bbox_to_anchor=(0.5, 1.0), ncol=2, framealpha=0, fontsize=4.9,
+               handlelength=1.1, columnspacing=0.9)
     axC.spines["left"].set_visible(False); axC.tick_params(axis="y", length=0)
-    axC.set_title("Same accuracy, safer & fewer errors", fontsize=6.4); plabel(axC, "c", x=-0.22)
+    axC.set_title(f"Opposite error directions ({ours_total} vs {ov_total} errors)", fontsize=6.4)
+    plabel(axC, "c", x=-0.14)
 
-    # 3d sensitivity dial
+    # ---- 3d: sensitivity dial with 95% CIs
     keys = list(dial.keys())
-    sens = [dial[k]["sensitivity"] for k in keys]
-    spec = [dial[k]["specificity"] for k in keys]
+    sens = np.array([dial[k]["sensitivity"] for k in keys]); spec = np.array([dial[k]["specificity"] for k in keys])
+    s_lo = np.array([dial[k]["ci95"]["sensitivity"]["lo"] for k in keys]); s_hi = np.array([dial[k]["ci95"]["sensitivity"]["hi"] for k in keys])
+    p_lo = np.array([dial[k]["ci95"]["specificity"]["lo"] for k in keys]); p_hi = np.array([dial[k]["ci95"]["specificity"]["hi"] for k in keys])
     xs = np.arange(len(keys))
-    axD.plot(xs, sens, "-o", color=NAVY, ms=4, mfc="white", mew=1.0, label="sensitivity")
-    axD.plot(xs, spec, "-s", color=TEAL, ms=4, mfc="white", mew=1.0, label="specificity")
+    axD.errorbar(xs - 0.06, sens, yerr=[sens - s_lo, s_hi - sens], fmt="-o", color=NAVY, ms=4, mfc="white",
+                 mew=1.0, elinewidth=0.6, capsize=1.6, label="sensitivity")
+    axD.errorbar(xs + 0.06, spec, yerr=[spec - p_lo, p_hi - spec], fmt="-s", color=TEAL, ms=4, mfc="white",
+                 mew=1.0, elinewidth=0.6, capsize=1.6, label="specificity")
     for xi, v in zip(xs, sens):
-        axD.text(xi, v - 0.03, f"{v:.3f}", ha="center", va="top", fontsize=5.0, color=NAVY)
-    axD.scatter([0], [sens[0]], s=80, facecolor="none", edgecolor=AMBER, lw=1.2, zorder=6)
-    axD.text(0, sens[0] + 0.05, "default", fontsize=5.2, color=AMBER, ha="center", fontweight="bold")
+        axD.text(xi + 0.10, v - 0.03, f"{v:.3f}", ha="left", va="top", fontsize=5.0, color=NAVY)
+    for xi, v in zip(xs, spec):
+        axD.text(xi + 0.12, v + 0.035, f"{v:.3f}", ha="left", va="bottom", fontsize=5.0, color=TEAL)
     axD.set_xticks(xs)
-    axD.set_xticklabels(["conserv.", "+OM3", "+OS1", "+both"], fontsize=5.6)
-    axD.set_ylim(0.55, 1.02); axD.set_ylabel("rate", fontsize=6.4)
-    axD.legend(loc="lower left", framealpha=0, fontsize=5.4, handlelength=1.4); ygrid(axD)
-    axD.set_title("Sensitivity dial (deliberate operating point)", fontsize=6.2)
+    axD.set_xticklabels(["SOP-strict\n(default)", "+residue\ntiering", "+OS1\n(ClinVar)", "+both"], fontsize=5.6)
+    lo_all = min(s_lo.min(), p_lo.min())
+    axD.set_ylim(max(0.0, np.floor((lo_all - 0.05) * 10) / 10), 1.12)
+    axD.set_xlim(-0.4, len(keys) - 0.4)
+    axD.set_ylabel("rate (95% CI)", fontsize=6.2)
+    axD.legend(loc="lower right", framealpha=0.85, edgecolor="none", fontsize=5.2, handlelength=1.4); ygrid(axD)
+    axD.set_title("Sensitivity dial (settings 2–4 add non-SOP levers)", fontsize=6.2)
     plabel(axD, "d")
     save(fig, "fig3")
 
@@ -506,6 +577,7 @@ def fig4():
     axM.text(-0.62, 2.72, "prec.", ha="center", fontsize=5.6, color=NAVY)
     axM.text(2.72, 2.72, f"{acc:.2f}", ha="center", va="center", fontsize=8,
              fontweight="bold", color=INK)
+    axM.text(2.72, 3.12, "acc.", ha="center", va="center", fontsize=5.6, color=INK)
     axM.set_xlim(-0.65, 3.3); axM.set_ylim(3.3, -0.7)
     axM.set_title("Three-class accuracy (generative arm)", fontsize=6.6, pad=4)
     plabel(axM, "a", x=-0.20)
@@ -557,25 +629,44 @@ def fig4():
 # FIG 5 — Positioning (quantitative capability matrix)
 # ===========================================================================
 def fig5():
-    fig, ax = plt.subplots(figsize=(W2, 3.0))
-    fig.subplots_adjust(left=0.225, right=0.99, top=0.84, bottom=0.04)
-    methods = ["VeriVar", "OncoVI", "CancerVar*", "OncoKB", "CIViC-Fact (verifier)",
-               "Autonomous agent (Ferber)", "raw LLM (no retrieval)"]
+    # Rule-engine accuracy/specificity cells are read from the benchmark JSONs (same gold, this study).
+    hv = load(os.path.join(BENCH, "horak_vicc.json"))
+    hh = load(os.path.join(BENCH, "oncovi_headtohead.json"))
+    hg = load(os.path.join(BENCH, "hemaguide_headtohead.json"))
+    cvh = load(os.path.join(BENCH, "cancervar_headtohead.json"))
+    st = load(os.path.join(OUT, "stats_report.json"))
+    fig, ax = plt.subplots(figsize=(W2, 3.6))
+    fig.subplots_adjust(left=0.225, right=0.99, top=0.86, bottom=0.04)
+    # The two VeriVar arms are separate rows (critic 2026-09-24, P1-10): the leakage
+    # controls and the citation measurements were run on the generative arm, the Horak
+    # rule-engine numbers come from the rule arm. "honest abstention" = abstention forced
+    # by the absence of variant-specific evidence (defined in the caption); tools whose
+    # VUS/Tier III output is not forced that way are marked "–", not "x".
+    methods = ["VeriVar generative arm", "VeriVar rule arm", "OncoVI",
+               "HemaGuide (molecular mode)", "CancerVar*", "OncoKB",
+               "CIViC-Fact (verifier)", "Autonomous agent (Ferber)", "raw LLM (no retrieval)"]
     cols = ["citation\ngrounded", "honest\nabstention", "auditable\ncriteria",
-            "faithfulness\nreported", "leakage-\ncontrolled eval", "3-class acc\n(rule arm)",
+            "faithfulness\nreported", "leakage-\ncontrolled eval", "3-class acc\n(Horak-70)",
             "specificity\n(onc-vs-rest)", "citation\naccuracy"]
-    # c=check, x=cross, na=dash, ('v',value)
+    # c=check, x=cross, na=dash, ('v',value), ('t',text), ('e',enforced)
     # CancerVar row: actionability tier tool (cross-axis); NO oncogenicity-accuracy
     # cell (its 0.614 is a cross-axis artifact, deliberately left "na"). The onc-vs-rest
     # specificity 0.432 is its measured behaviour re-graded on the VICC gold (§3.6).
+    # The raw-LLM "citation accuracy" cell was dropped: 1 − (variant-level rate) is not a
+    # citation-level score and was not comparable with Ferber's human-judged value.
+    gen_acc = st["horak_3class_accuracy_ci"]["llm_rag"]["point"]
     grid = [
-        ["c", "c", "c", "c", "c", ("v", 0.843), ("v", 0.973), ("e", 1.00)],
-        ["x", "x", "c", "x", "x", ("v", 0.797), ("v", 0.806), "na"],
-        ["x", "x", "c", "x", "x", "na", ("v", 0.432), "na"],
-        ["x", "x", "c", "x", "x", "na", "na", "na"],
+        ["c", "c", "c", "c", "c", ("v", gen_acc), "na", ("e", 1.00)],
+        ["c", "c", "c", "na", "x", ("v", hv["accuracy_3class"]), ("v", hv["specificity_onc"]), "na"],
+        [("t", "per criterion"), "na", "c", "x", "x", ("v", hh["oncovi"]["accuracy_3class"]),
+         ("v", hh["oncovi"]["specificity_onc"]), "na"],
+        ["na", "na", "c", ("t", "per case"), "x", ("v", hg["hemaguide"]["accuracy_3class"]),
+         ("v", hg["hemaguide"]["specificity_onc"]), "na"],
+        ["x", "na", "c", "x", "x", "na", ("v", cvh["cancervar"]["specificity_onc"]), "na"],
+        [("t", "per assertion"), "na", "c", "x", "x", "na", "na", "na"],
         ["c", "x", "c", "x", "x", "na", "na", "na"],
-        ["x", "x", "x", "x", "x", "na", "na", ("v", 0.755)],
-        ["x", "x", "x", "x", "x", "na", "na", ("v", 0.536)],
+        [("t", "self-reported"), "x", "x", "x", "x", "na", "na", ("v", 0.755)],
+        ["x", "x", "x", "x", "x", ("v", st["horak_3class_accuracy_ci"]["llm_norag"]["point"]), "na", "na"],
     ]
     nC, nR = len(cols), len(methods)
     for j, c in enumerate(cols):
@@ -584,7 +675,7 @@ def fig5():
     for i, m in enumerate(methods):
         yy = nR - 1 - i
         ax.text(-0.08, yy + 0.5, m, ha="right", va="center", fontsize=6.0,
-                fontweight="bold" if i == 0 else "normal", color=NAVY if i == 0 else INK)
+                fontweight="bold" if i < 2 else "normal", color=NAVY if i < 2 else INK)
         for j in range(nC):
             cell = grid[i][j]; cx, cyc = j + 0.5, yy + 0.5
             if cell == "c":
@@ -594,6 +685,9 @@ def fig5():
                 ax.text(cx, cyc, r"$\times$", ha="center", va="center", fontsize=8, color=VERM)
             elif cell == "na":
                 ax.text(cx, cyc, "–", ha="center", va="center", fontsize=7, color=GREY)
+            elif cell[0] == "t":
+                ax.text(cx, cyc, cell[1], ha="center", va="center", fontsize=5.0,
+                        fontstyle="italic", color=MUT)
             elif cell[0] == "e":
                 # by-construction contract guarantee (NOT a measured/comparable score)
                 ax.add_patch(Rectangle((j + 0.07, yy + 0.07), 0.86, 0.86, facecolor=TEAL,
@@ -607,7 +701,7 @@ def fig5():
                 v = cell[1]
                 ax.add_patch(Rectangle((j + 0.07, yy + 0.07), 0.86, 0.86, facecolor=NAVY,
                              alpha=0.12 + 0.6 * max(0.0, v - 0.5), edgecolor="none"))
-                ax.text(cx, cyc, "1.00" if v >= 1 else f"{v:.3f}", ha="center", va="center",
+                ax.text(cx, cyc, f"{v:.3f}", ha="center", va="center",
                         fontsize=5.7, fontweight="bold", color=INK)
     for j in range(nC + 1):
         ax.plot([j, j], [0, nR], color="0.88", lw=0.4)
@@ -625,7 +719,7 @@ def fig5():
 # ===========================================================================
 # Supplementary
 # ===========================================================================
-def figS1_robustness():
+def figS2_robustness():
     """Leakage controls & robustness composite: temporal · LOVO · embedding · second model."""
     temp = load(os.path.join(BENCH, "horak_temporal.json"))["results"]
     horak = load(os.path.join(BENCH, "horak_results.json"))
@@ -657,7 +751,9 @@ def figS1_robustness():
     axA.axhline(floor, color=VERM, ls=(0, (4, 3)), lw=1.1, label=f"no-retrieval floor ({floor:.3f})")
     axA.set_xticks(x); axA.set_xticklabels([xlab[k] for k in order], fontsize=5.6)
     axA.set_xlabel("retrieval-corpus cutoff (yr; n items)", fontsize=6)
-    axA.set_ylabel("3-class accuracy", fontsize=6); axA.set_ylim(0.45, 0.74)
+    # the y-range covers the full CI band (critic P2: the band was clipped at 0.74)
+    axA.set_ylabel("3-class accuracy", fontsize=6)
+    axA.set_ylim(min(0.45, min(acc) - hw - 0.02), max(acc) + hw + 0.05)
     axA.legend(loc="lower left", framealpha=0, handlelength=1.3, fontsize=5.0); ygrid(axA)
     axA.set_title("Temporal corpus holdout", fontsize=6.6); plabel(axA, "a")
 
@@ -697,11 +793,11 @@ def figS1_robustness():
     axD.set_xticks(xs); axD.set_xticklabels(["gpt-4o-mini\n(primary)", "gpt-4o"], fontsize=5.6)
     axD.set_ylim(0, 1.0); axD.set_ylabel("3-class accuracy", fontsize=6); ygrid(axD)
     axD.text(0.5, 0.92, "McNemar p = 0.21", transform=axD.transAxes, ha="center", fontsize=5.4, color=MUT)
-    axD.set_title("Model-substitution equivalence (gpt-4o)", fontsize=6.6); plabel(axD, "d")
-    save(fig, "figS1_robustness")
+    axD.set_title("Model-substitution check (gpt-4o)", fontsize=6.6); plabel(axD, "d")
+    save(fig, "figS2_robustness")
 
 
-def figS2_multimodel():
+def figS4_multimodel():
     mm = load(os.path.join(OUT, "multimodel_faithfulness_poc.json"))
     res = mm["results"]; s = mm["summary"]
     ag = np.array([r["agreement"] for r in res])
@@ -749,10 +845,10 @@ def figS2_multimodel():
     axC.set_ylabel("variants", fontsize=6)
     axC.legend(fontsize=5.0, framealpha=0, ncol=3, loc="upper center", bbox_to_anchor=(0.5, 1.20))
     axC.set_title("Per-model call distribution", fontsize=6.2); plabel(axC, "c")
-    save(fig, "figS2_multimodel")
+    save(fig, "figS4_multimodel")
 
 
-def figS4_context_ablation():
+def figS3_context_ablation():
     """Input-context ablation: what survives when the variant is written differently."""
     rep = load(os.path.join(OUT, "context_ablation.json"))
     s = rep["summary"]
@@ -813,15 +909,18 @@ def figS4_context_ablation():
     xs = np.arange(len(lost_arms))
     safe = np.array([s["arms"][k].get("safe_downgrades_after_clinical_loss", 0) for k, _ in lost_arms], float)
     drv = np.array([s["arms"][k].get("driver_calls_after_clinical_loss", 0) for k, _ in lost_arms], float)
+    # "non-driver" rather than "safe": 3 of the 4 were already VUS at baseline, so the
+    # bar is not evidence that the loss was handled safely (see the caption).
     axC.bar(xs, safe, color=GREEN, width=0.62, edgecolor="white", linewidth=0.4,
-            label="abstained / non-driver (safe)", zorder=3)
+            label="abstained / non-driver call", zorder=3)
     axC.bar(xs, drv, bottom=safe, color=VERM, width=0.62, edgecolor="white", linewidth=0.4,
             hatch="///", label="still called a driver", zorder=3)
+    # value labels sit above each bar in ink (white-on-hatch was unreadable at print size,
+    # critic P2); one-variant bars get a label too
     for x, (sv, dv) in enumerate(zip(safe, drv)):
-        if sv:
-            axC.text(x, sv / 2, f"{int(sv)}", ha="center", va="center", fontsize=5.6, color="white")
-        if dv:
-            axC.text(x, sv + dv / 2, f"{int(dv)}", ha="center", va="center", fontsize=5.6, color="white")
+        lab = f"{int(dv)} driver\n{int(sv)} non-driver" if dv else f"{int(sv)} non-driver"
+        axC.text(x, sv + dv + 0.6, lab, ha="center", va="bottom", fontsize=4.8, color=INK,
+                 linespacing=1.05)
     axC.set_xticks(xs); axC.set_xticklabels([lab for _, lab in lost_arms], fontsize=5.0)
     axC.set_ylabel("variants losing all curated evidence", fontsize=6)
     # Headroom for an in-axes legend: anchoring it above the axes collided with
@@ -831,17 +930,17 @@ def figS4_context_ablation():
     ygrid(axC)
     axC.set_title("Behaviour after evidence loss", fontsize=6.6); plabel(axC, "c")
 
-    save(fig, "figS4_context_ablation")
+    save(fig, "figS3_context_ablation")
 
 
 if __name__ == "__main__":
     fig1(); fig2(); fig3(); fig4(); fig5()
-    figS1_robustness(); figS2_multimodel()
+    figS2_robustness(); figS4_multimodel()
     if os.path.exists(os.path.join(OUT, "context_ablation.json")):
-        figS4_context_ablation()
-        print("Main figs (fig1-5) + Supp (figS1 robustness, figS2 multimodel, "
-              "figS4 context ablation) written to", HERE)
+        figS3_context_ablation()
+        print("Main figs (fig1-5) + Supp (figS2 robustness, figS3 context ablation, "
+              "figS4 multimodel) written to", HERE)
     else:
-        print("Main figs (fig1-5) + Supp (figS1 robustness, figS2 multimodel) written to", HERE)
-        print("[!] skipped figS4: run `python -m scripts.run_context_ablation` first")
-    print("Supp dashboard: F6_dashboard.png via ./make_dashboard_figure.sh")
+        print("Main figs (fig1-5) + Supp (figS2 robustness, figS4 multimodel) written to", HERE)
+        print("[!] skipped figS3: run `python -m scripts.run_context_ablation` first")
+    print("Supp dashboard: figS1_dashboard.png via ./make_dashboard_figure.sh")

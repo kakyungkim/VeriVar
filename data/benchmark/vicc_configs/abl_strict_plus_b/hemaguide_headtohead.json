@@ -1,0 +1,832 @@
+{
+  "n_shared_variants": 70,
+  "comparator": "HemaGuide molecular mode (Zoller et al., Nat Med 2026)",
+  "provenance": {
+    "tool": "HemaGuide molecular mode (Zoller et al.)",
+    "citation": "Zoller et al. HemaGuide. Nat Med 2026;32(9):3224-3234. doi:10.1038/s41591-026-04494-4. PMC13577921.",
+    "source_table": "Supplementary Table 6 (sheet 'Supplementary Table 6' of MOESM4_ESM.xlsx)",
+    "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41591-026-04494-4/MediaObjects/41591_2026_4494_MOESM4_ESM.xlsx",
+    "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+    "accessed": "2026-09-24",
+    "xlsx_sha256": "9bf1a0bf59fabc1181907ee290cefc9533c6cd13d905149a7300490a6b056afa",
+    "xlsx_md5_matches_pmc_suppdata": "0083985b2fcffc217cb202623f87e75b",
+    "extracted_by": "scripts/fetch_hemaguide.py",
+    "csv": "data/benchmark/hemaguide/hemaguide_st6.csv",
+    "csv_sha256": "b1c999f5f63ec4cc68e5a114ab94f20da23c10766b16af7af5e37122654659ff"
+  },
+  "ours_source": "data/benchmark/vicc_configs/abl_strict_plus_b/horak_vicc.json",
+  "gold_source": "data/benchmark/horak_benchmark.tsv",
+  "join_check": "all 70 ST6 rows matched gold on gene + protein change; ST6 reference decision and points equal our gold for every variant",
+  "decision_to_3class_map": {
+    "LO/O": "ONC",
+    "VUS": "VUS",
+    "LB/B": "BEN"
+  },
+  "hemaguide_published": {
+    "concordant": 56,
+    "n": 70,
+    "accuracy": 0.8,
+    "sensitivity_onc": 0.88,
+    "specificity_onc": 0.84,
+    "source": "Zoller et al. Nat Med 2026, Results + Fig. 3b"
+  },
+  "notes": [
+    "Rule arm vs rule engine: compare with the OncoVI/CancerVar head-to-heads, not with the generative arm.",
+    "HemaGuide's 5-class accuracy is derived from its published points via the Horak thresholds (ST6 lists only the 3-bin decision); treat it as secondary.",
+    "Accuracy difference is not significant at n = 70 (see paired McNemar); the defensible contrast is the error shape (over-calls vs misses)."
+  ],
+  "ours": {
+    "n_correct_3class": 46,
+    "accuracy_3class": 0.657,
+    "accuracy_3class_ci": {
+      "point": 0.657,
+      "lo": 0.543,
+      "hi": 0.771,
+      "n": 70
+    },
+    "accuracy_5class": 0.5,
+    "sensitivity_onc": 0.424,
+    "sensitivity_onc_ci": [
+      0.25,
+      0.595
+    ],
+    "specificity_onc": 1.0,
+    "specificity_onc_ci": [
+      1.0,
+      1.0
+    ],
+    "onc_exact_ci95": {
+      "sensitivity": {
+        "wilson": {
+          "point": 0.424,
+          "lo": 0.272,
+          "hi": 0.592,
+          "k": 14,
+          "n": 33,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.424,
+          "lo": 0.255,
+          "hi": 0.608,
+          "k": 14,
+          "n": 33,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity": {
+        "wilson": {
+          "point": 1.0,
+          "lo": 0.906,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 1.0,
+          "lo": 0.905,
+          "hi": 1.0,
+          "k": 37,
+          "n": 37,
+          "method": "clopper_pearson"
+        }
+      }
+    },
+    "over_calls": 0,
+    "misses": 19,
+    "onc_called_benign": 1,
+    "error_breakdown_vs_gold": {
+      "miss": 19,
+      "correct": 46,
+      "other": 5
+    }
+  },
+  "hemaguide": {
+    "n_correct_3class": 56,
+    "accuracy_3class": 0.8,
+    "accuracy_3class_ci": {
+      "point": 0.8,
+      "lo": 0.7,
+      "hi": 0.886,
+      "n": 70
+    },
+    "accuracy_5class": 0.7,
+    "sensitivity_onc": 0.879,
+    "sensitivity_onc_ci": [
+      0.75,
+      0.973
+    ],
+    "specificity_onc": 0.838,
+    "specificity_onc_ci": [
+      0.706,
+      0.943
+    ],
+    "onc_exact_ci95": {
+      "sensitivity": {
+        "wilson": {
+          "point": 0.879,
+          "lo": 0.727,
+          "hi": 0.952,
+          "k": 29,
+          "n": 33,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.879,
+          "lo": 0.718,
+          "hi": 0.966,
+          "k": 29,
+          "n": 33,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity": {
+        "wilson": {
+          "point": 0.838,
+          "lo": 0.689,
+          "hi": 0.923,
+          "k": 31,
+          "n": 37,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.838,
+          "lo": 0.68,
+          "hi": 0.938,
+          "k": 31,
+          "n": 37,
+          "method": "clopper_pearson"
+        }
+      }
+    },
+    "over_calls": 6,
+    "misses": 4,
+    "onc_called_benign": 0,
+    "error_breakdown_vs_gold": {
+      "correct": 56,
+      "miss": 4,
+      "over_call": 6,
+      "other": 4
+    }
+  },
+  "paired_mcnemar_3class": {
+    "p_two_sided": 0.087,
+    "ours_only_correct": 9,
+    "hemaguide_only_correct": 19,
+    "note": "exact, two-sided, paired on 3-class correctness vs the same gold"
+  },
+  "pred_dist_3class": {
+    "gold": {
+      "ONC": 33,
+      "VUS": 30,
+      "BEN": 7
+    },
+    "ours": {
+      "VUS": 43,
+      "ONC": 14,
+      "BEN": 13
+    },
+    "hemaguide": {
+      "ONC": 35,
+      "VUS": 32,
+      "BEN": 3
+    }
+  },
+  "n_disagreements_3class": 29,
+  "disagreements": [
+    {
+      "variant": "FLT3 p.D835Y",
+      "gold": "Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 4,
+      "ours_codes": [
+        "OM3",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 8,
+      "hemaguide_codes": "OP4, OM3, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.D835E",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 3,
+      "ours_codes": [
+        "OP3",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 7,
+      "hemaguide_codes": "OP4, OP3, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.D835H",
+      "gold": "Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 3,
+      "ours_codes": [
+        "OP3",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 7,
+      "hemaguide_codes": "OP4, OP3, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.D835V",
+      "gold": "Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 3,
+      "ours_codes": [
+        "OP3",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 7,
+      "hemaguide_codes": "OP4, OP3, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "FLT3 p.Y842C",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 2,
+      "ours_codes": [
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "BRAF p.K601E",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 4,
+      "ours_codes": [
+        "OM3",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 7,
+      "hemaguide_codes": "OP4, OM3, OS2",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "BRAF p.G469E",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 5,
+      "ours_codes": [
+        "OM1",
+        "OP3",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OP3, OS2",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "BRAF p.A31G",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "ours_points": -1,
+      "ours_codes": [
+        "SBP1"
+      ],
+      "hemaguide3": "VUS",
+      "hemaguide_points": 2,
+      "hemaguide_codes": "OP4, OM1, SBP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "other",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "IDH1 p.F32V",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "ours_points": -1,
+      "ours_codes": [
+        "SBP1"
+      ],
+      "hemaguide3": "VUS",
+      "hemaguide_points": 0,
+      "hemaguide_codes": "-",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "other",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "KRAS p.R164Q",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "ours_points": -1,
+      "ours_codes": [
+        "SBS2_Moderate",
+        "OP4"
+      ],
+      "hemaguide3": "VUS",
+      "hemaguide_points": 2,
+      "hemaguide_codes": "OP4, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "other",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "KRAS p.S65I",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 2,
+      "ours_codes": [
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": true,
+      "hemaguide_correct": false,
+      "ours_error": "correct",
+      "hemaguide_error": "over_call"
+    },
+    {
+      "variant": "PIK3CA p.H1047R",
+      "gold": "Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 5,
+      "ours_codes": [
+        "OS3",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 9,
+      "hemaguide_codes": "OP4, OS3, OS2",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "PIK3CA p.H1047Q",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 3,
+      "ours_codes": [
+        "OP3",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OP3, OS2",
+      "ours_correct": true,
+      "hemaguide_correct": false,
+      "ours_error": "correct",
+      "hemaguide_error": "over_call"
+    },
+    {
+      "variant": "PIK3CA p.K733R",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "ours_points": -1,
+      "ours_codes": [
+        "SBP1"
+      ],
+      "hemaguide3": "VUS",
+      "hemaguide_points": 0,
+      "hemaguide_codes": "-",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "other",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "PIK3CA p.E453K",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 4,
+      "ours_codes": [
+        "OM3",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 7,
+      "hemaguide_codes": "OP4, OM3, OS2",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "PTEN p.T131I",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 2,
+      "ours_codes": [
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "RB1 p.S567L",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 2,
+      "ours_codes": [
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": true,
+      "hemaguide_correct": false,
+      "ours_error": "correct",
+      "hemaguide_error": "over_call"
+    },
+    {
+      "variant": "RB1 p.R661W",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 2,
+      "ours_codes": [
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "EZH2 p.A682G",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 4,
+      "ours_codes": [
+        "OS2_Moderate",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "EZH2 p.A682V",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 2,
+      "ours_codes": [
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": true,
+      "hemaguide_correct": false,
+      "ours_error": "correct",
+      "hemaguide_error": "over_call"
+    },
+    {
+      "variant": "EZH2 p.R690H",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 2,
+      "ours_codes": [
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "EZH2 p.Y731F",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 2,
+      "ours_codes": [
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "EZH2 p.Y731H",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "VUS",
+      "ours": "VUS",
+      "ours_points": 2,
+      "ours_codes": [
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": true,
+      "hemaguide_correct": false,
+      "ours_error": "correct",
+      "hemaguide_error": "over_call"
+    },
+    {
+      "variant": "TP53 p.P47S",
+      "gold": "Benign",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Benign",
+      "ours_points": -8,
+      "ours_codes": [
+        "SBS2",
+        "SBS1"
+      ],
+      "hemaguide3": "VUS",
+      "hemaguide_points": 0,
+      "hemaguide_codes": "-",
+      "ours_correct": true,
+      "hemaguide_correct": false,
+      "ours_error": "correct",
+      "hemaguide_error": "other"
+    },
+    {
+      "variant": "TP53 p.V73M",
+      "gold": "Benign",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "ours_points": -5,
+      "ours_codes": [
+        "SBS2",
+        "SBP1"
+      ],
+      "hemaguide3": "VUS",
+      "hemaguide_points": 1,
+      "hemaguide_codes": "OP4",
+      "ours_correct": true,
+      "hemaguide_correct": false,
+      "ours_error": "correct",
+      "hemaguide_error": "other"
+    },
+    {
+      "variant": "TP53 p.E298K",
+      "gold": "Likely Benign",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "ours_points": -4,
+      "ours_codes": [
+        "SBS2",
+        "OP3",
+        "SBP1"
+      ],
+      "hemaguide3": "VUS",
+      "hemaguide_points": 1,
+      "hemaguide_codes": "OP4, OP3, SBP1",
+      "ours_correct": true,
+      "hemaguide_correct": false,
+      "ours_error": "correct",
+      "hemaguide_error": "other"
+    },
+    {
+      "variant": "TP53 p.G334R",
+      "gold": "VUS",
+      "gold3": "VUS",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "ours_points": -3,
+      "ours_codes": [
+        "SBS2",
+        "OP1"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": false,
+      "ours_error": "other",
+      "hemaguide_error": "over_call"
+    },
+    {
+      "variant": "TP53 p.A347D",
+      "gold": "Likely Oncogenic",
+      "gold3": "ONC",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "ours_points": -2,
+      "ours_codes": [
+        "SBS2",
+        "OP1",
+        "OP4"
+      ],
+      "hemaguide3": "ONC",
+      "hemaguide_points": 6,
+      "hemaguide_codes": "OP4, OS2, OP1",
+      "ours_correct": false,
+      "hemaguide_correct": true,
+      "ours_error": "miss",
+      "hemaguide_error": "correct"
+    },
+    {
+      "variant": "TP53 p.H365Y",
+      "gold": "Likely Benign",
+      "gold3": "BEN",
+      "ours3": "BEN",
+      "ours": "Likely Benign",
+      "ours_points": -4,
+      "ours_codes": [
+        "SBS2",
+        "SBP1",
+        "OP4"
+      ],
+      "hemaguide3": "VUS",
+      "hemaguide_points": 1,
+      "hemaguide_codes": "OP4",
+      "ours_correct": true,
+      "hemaguide_correct": false,
+      "ours_error": "correct",
+      "hemaguide_error": "other"
+    }
+  ],
+  "variants_compared": [
+    "FLT3 p.D835Y",
+    "FLT3 p.D835E",
+    "FLT3 p.D835H",
+    "FLT3 p.D835V",
+    "FLT3 p.N676K",
+    "FLT3 p.Y842C",
+    "FLT3 p.F691L",
+    "FLT3 p.Y693C",
+    "FLT3 p.Y693N",
+    "BRAF p.K601E",
+    "BRAF p.D594N",
+    "BRAF p.G469A",
+    "BRAF p.G469E",
+    "BRAF p.P14R",
+    "BRAF p.A31G",
+    "BRAF p.D445H",
+    "IDH1 p.R132H",
+    "IDH1 p.R132C",
+    "IDH1 p.R132S",
+    "IDH1 p.V178I",
+    "IDH1 p.D220G",
+    "IDH1 p.E262K",
+    "IDH1 p.F32V",
+    "IDH1 p.V71I",
+    "KRAS p.G12A",
+    "KRAS p.R164Q",
+    "KRAS p.S65I",
+    "KRAS p.Q61K",
+    "PIK3CA p.H1047R",
+    "PIK3CA p.H1047Q",
+    "PIK3CA p.H1065Y",
+    "PIK3CA p.K733R",
+    "PIK3CA p.E545A",
+    "PIK3CA p.E453K",
+    "PIK3CA p.E418K",
+    "PIK3CA p.I391M",
+    "PIK3CA p.M1?",
+    "PTEN p.R130Q",
+    "PTEN p.T131I",
+    "PTEN p.H123R",
+    "PTEN p.P204A",
+    "PTEN p.L182S",
+    "PTEN p.P354L",
+    "RB1 p.Q689H",
+    "RB1 p.S567L",
+    "RB1 p.W563L",
+    "RB1 p.R661W",
+    "RB1 p.E554K",
+    "RB1 p.Y606C",
+    "EZH2 p.Y646F",
+    "EZH2 p.D136V",
+    "EZH2 p.D233G",
+    "EZH2 p.V626M",
+    "EZH2 p.R658T",
+    "EZH2 p.A682G",
+    "EZH2 p.A682V",
+    "EZH2 p.R684C",
+    "EZH2 p.R690H",
+    "EZH2 p.S695L",
+    "EZH2 p.Y731F",
+    "EZH2 p.Y731H",
+    "TP53 p.P47S",
+    "TP53 p.V73M",
+    "TP53 p.C135G",
+    "TP53 p.V173M",
+    "TP53 p.E180K",
+    "TP53 p.E298K",
+    "TP53 p.G334R",
+    "TP53 p.A347D",
+    "TP53 p.H365Y"
+  ]
+}

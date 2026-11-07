@@ -1,0 +1,3155 @@
+{
+  "title": "ClinVar somatic-oncogenicity holdout (rebuilt 2026-09-24), VICC rule arm",
+  "task": "ONC (Oncogenic+Likely oncogenic) vs VUS detection; operating point points >= 6; AUROC over raw VICC points",
+  "why_rebuilt": "clinvar_vicc.json (n=458) took gold = E-utilities search term; the [Oncogenicity Classification] qualifier does not restrict Benign / Likely benign / Uncertain significance to oncogenicity records, so those gold labels were mostly germline classifications.",
+  "rule_arm_config": {
+    "engine": "src.classify.vicc_rules.VICCPointClassifier(config='original')",
+    "config": "original",
+    "config_description": "Sensitivity analysis: engine as published before 2026-09-24 (any direction-supporting CIViC item -> OS2 if level A/B else legacy 'OM4').",
+    "OS1_known_oncogenic": false,
+    "clinvar_derived_inputs": "none (label source only)",
+    "evidence": [
+      "cancerhotspots (OS3/OM3/OP3)",
+      "UniProt domains (OM1; 9 genes only)",
+      "MaveDB DMS (OS2/SBS2; TP53, PTEN)",
+      "CIViC exact-variant, functional evidence only (OS2/OS2_Moderate vs SBS2/SBS2_Moderate; snapshot genes)",
+      "AlphaMissense via VEP GRCh38 (OP1/SBP1)",
+      "gnomAD AF via VEP GRCh38 (SBVS1/SBS1/OP4)"
+    ],
+    "civic_genes": [
+      "AKT1",
+      "ALK",
+      "APC",
+      "BRAF",
+      "BRCA1",
+      "BRCA2",
+      "CDH1",
+      "CDKN2A",
+      "EGFR",
+      "ERBB2",
+      "ESR1",
+      "EZH2",
+      "FBXW7",
+      "FLT3",
+      "IDH1",
+      "KEAP1",
+      "KIT",
+      "KRAS",
+      "MET",
+      "NF1",
+      "NRAS",
+      "PIK3CA",
+      "PTEN",
+      "RB1",
+      "RET",
+      "ROS1",
+      "SMAD4",
+      "STK11",
+      "TP53"
+    ],
+    "panel9": [
+      "BRAF",
+      "EZH2",
+      "FLT3",
+      "IDH1",
+      "KRAS",
+      "PIK3CA",
+      "PTEN",
+      "RB1",
+      "TP53"
+    ]
+  },
+  "funnel": {
+    "snapshot_rows": 737,
+    "dropped_aggregate_conflicting": 2,
+    "dropped_horak70_overlap_rows": 16,
+    "horak70_overlap_keys": 16,
+    "unique_gene_aa_keys": 714,
+    "keys_with_multiple_nucleotide_variants": 5,
+    "dropped_keys_conflicting_labels": 0,
+    "final_keys": 714,
+    "conflicting_examples": []
+  },
+  "benign_keys_excluded_from_binary_task": [
+    {
+      "key": "FLT3 p.T227M",
+      "label": "Benign"
+    },
+    {
+      "key": "TP53 p.P72R",
+      "label": "Benign"
+    }
+  ],
+  "scopes": {
+    "panel9": {
+      "class_dist": {
+        "VUS": 38,
+        "ONC": 198,
+        "BEN": 2
+      },
+      "detection": {
+        "n": 236,
+        "n_onc": 198,
+        "n_vus": 38,
+        "tp": 169,
+        "fn": 29,
+        "tn": 29,
+        "fp": 9,
+        "sensitivity": {
+          "point": 0.854,
+          "lo": 0.803,
+          "hi": 0.899,
+          "n": 198
+        },
+        "specificity_on_gold_vus": {
+          "point": 0.763,
+          "lo": 0.632,
+          "hi": 0.895,
+          "n": 38
+        },
+        "ppv": 0.949,
+        "ppv_exact_ci": {
+          "wilson": {
+            "point": 0.949,
+            "lo": 0.907,
+            "hi": 0.973,
+            "k": 169,
+            "n": 178,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.949,
+            "lo": 0.906,
+            "hi": 0.977,
+            "k": 169,
+            "n": 178,
+            "method": "clopper_pearson"
+          }
+        },
+        "sensitivity_exact_ci": {
+          "wilson": {
+            "point": 0.854,
+            "lo": 0.798,
+            "hi": 0.896,
+            "k": 169,
+            "n": 198,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.854,
+            "lo": 0.796,
+            "hi": 0.9,
+            "k": 169,
+            "n": 198,
+            "method": "clopper_pearson"
+          }
+        },
+        "specificity_on_gold_vus_exact_ci": {
+          "wilson": {
+            "point": 0.763,
+            "lo": 0.608,
+            "hi": 0.87,
+            "k": 29,
+            "n": 38,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.763,
+            "lo": 0.598,
+            "hi": 0.886,
+            "k": 29,
+            "n": 38,
+            "method": "clopper_pearson"
+          }
+        },
+        "auroc_points": {
+          "point": 0.845,
+          "lo": 0.769,
+          "hi": 0.913,
+          "n_pos": 198,
+          "n_neg": 38
+        },
+        "pred_dist_5class": {
+          "VUS": 56,
+          "Oncogenic": 38,
+          "Likely Oncogenic": 140,
+          "Likely Benign": 2
+        }
+      },
+      "per_gene": {
+        "TP53": {
+          "n": 130,
+          "n_onc": 117,
+          "n_vus": 13,
+          "sensitivity": 0.974,
+          "specificity": 0.538,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.974,
+              "lo": 0.927,
+              "hi": 0.991,
+              "k": 114,
+              "n": 117,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.974,
+              "lo": 0.927,
+              "hi": 0.995,
+              "k": 114,
+              "n": 117,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.538,
+              "lo": 0.291,
+              "hi": 0.768,
+              "k": 7,
+              "n": 13,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.538,
+              "lo": 0.251,
+              "hi": 0.808,
+              "k": 7,
+              "n": 13,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.781
+        },
+        "PTEN": {
+          "n": 41,
+          "n_onc": 31,
+          "n_vus": 10,
+          "sensitivity": 0.71,
+          "specificity": 0.8,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.71,
+              "lo": 0.534,
+              "hi": 0.839,
+              "k": 22,
+              "n": 31,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.71,
+              "lo": 0.52,
+              "hi": 0.858,
+              "k": 22,
+              "n": 31,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.8,
+              "lo": 0.49,
+              "hi": 0.943,
+              "k": 8,
+              "n": 10,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.8,
+              "lo": 0.444,
+              "hi": 0.975,
+              "k": 8,
+              "n": 10,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.832
+        },
+        "PIK3CA": {
+          "n": 30,
+          "n_onc": 24,
+          "n_vus": 6,
+          "sensitivity": 0.708,
+          "specificity": 0.833,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.708,
+              "lo": 0.508,
+              "hi": 0.851,
+              "k": 17,
+              "n": 24,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.708,
+              "lo": 0.489,
+              "hi": 0.874,
+              "k": 17,
+              "n": 24,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.833,
+              "lo": 0.436,
+              "hi": 0.97,
+              "k": 5,
+              "n": 6,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.833,
+              "lo": 0.359,
+              "hi": 0.996,
+              "k": 5,
+              "n": 6,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.844
+        },
+        "KRAS": {
+          "n": 17,
+          "n_onc": 14,
+          "n_vus": 3,
+          "sensitivity": 0.714,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.714,
+              "lo": 0.454,
+              "hi": 0.883,
+              "k": 10,
+              "n": 14,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.714,
+              "lo": 0.419,
+              "hi": 0.916,
+              "k": 10,
+              "n": 14,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.439,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.292,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.952
+        },
+        "BRAF": {
+          "n": 11,
+          "n_onc": 7,
+          "n_vus": 4,
+          "sensitivity": 0.429,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.429,
+              "lo": 0.158,
+              "hi": 0.75,
+              "k": 3,
+              "n": 7,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.429,
+              "lo": 0.099,
+              "hi": 0.816,
+              "k": 3,
+              "n": 7,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.51,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.398,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.786
+        }
+      }
+    },
+    "civic_or_panel_genes": {
+      "class_dist": {
+        "ONC": 266,
+        "VUS": 88,
+        "BEN": 2
+      },
+      "detection": {
+        "n": 354,
+        "n_onc": 266,
+        "n_vus": 88,
+        "tp": 196,
+        "fn": 70,
+        "tn": 77,
+        "fp": 11,
+        "sensitivity": {
+          "point": 0.737,
+          "lo": 0.684,
+          "hi": 0.789,
+          "n": 266
+        },
+        "specificity_on_gold_vus": {
+          "point": 0.875,
+          "lo": 0.807,
+          "hi": 0.943,
+          "n": 88
+        },
+        "ppv": 0.947,
+        "ppv_exact_ci": {
+          "wilson": {
+            "point": 0.947,
+            "lo": 0.907,
+            "hi": 0.97,
+            "k": 196,
+            "n": 207,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.947,
+            "lo": 0.907,
+            "hi": 0.973,
+            "k": 196,
+            "n": 207,
+            "method": "clopper_pearson"
+          }
+        },
+        "sensitivity_exact_ci": {
+          "wilson": {
+            "point": 0.737,
+            "lo": 0.681,
+            "hi": 0.786,
+            "k": 196,
+            "n": 266,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.737,
+            "lo": 0.68,
+            "hi": 0.789,
+            "k": 196,
+            "n": 266,
+            "method": "clopper_pearson"
+          }
+        },
+        "specificity_on_gold_vus_exact_ci": {
+          "wilson": {
+            "point": 0.875,
+            "lo": 0.79,
+            "hi": 0.929,
+            "k": 77,
+            "n": 88,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.875,
+            "lo": 0.787,
+            "hi": 0.936,
+            "k": 77,
+            "n": 88,
+            "method": "clopper_pearson"
+          }
+        },
+        "auroc_points": {
+          "point": 0.861,
+          "lo": 0.813,
+          "hi": 0.905,
+          "n_pos": 266,
+          "n_neg": 88
+        },
+        "pred_dist_5class": {
+          "VUS": 145,
+          "Oncogenic": 42,
+          "Likely Oncogenic": 165,
+          "Likely Benign": 2
+        }
+      },
+      "per_gene": {
+        "TP53": {
+          "n": 130,
+          "n_onc": 117,
+          "n_vus": 13,
+          "sensitivity": 0.974,
+          "specificity": 0.538,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.974,
+              "lo": 0.927,
+              "hi": 0.991,
+              "k": 114,
+              "n": 117,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.974,
+              "lo": 0.927,
+              "hi": 0.995,
+              "k": 114,
+              "n": 117,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.538,
+              "lo": 0.291,
+              "hi": 0.768,
+              "k": 7,
+              "n": 13,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.538,
+              "lo": 0.251,
+              "hi": 0.808,
+              "k": 7,
+              "n": 13,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.781
+        },
+        "PTEN": {
+          "n": 41,
+          "n_onc": 31,
+          "n_vus": 10,
+          "sensitivity": 0.71,
+          "specificity": 0.8,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.71,
+              "lo": 0.534,
+              "hi": 0.839,
+              "k": 22,
+              "n": 31,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.71,
+              "lo": 0.52,
+              "hi": 0.858,
+              "k": 22,
+              "n": 31,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.8,
+              "lo": 0.49,
+              "hi": 0.943,
+              "k": 8,
+              "n": 10,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.8,
+              "lo": 0.444,
+              "hi": 0.975,
+              "k": 8,
+              "n": 10,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.832
+        },
+        "EGFR": {
+          "n": 31,
+          "n_onc": 17,
+          "n_vus": 14,
+          "sensitivity": 0.471,
+          "specificity": 0.929,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.471,
+              "lo": 0.262,
+              "hi": 0.69,
+              "k": 8,
+              "n": 17,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.471,
+              "lo": 0.23,
+              "hi": 0.722,
+              "k": 8,
+              "n": 17,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.929,
+              "lo": 0.685,
+              "hi": 0.987,
+              "k": 13,
+              "n": 14,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.929,
+              "lo": 0.661,
+              "hi": 0.998,
+              "k": 13,
+              "n": 14,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.912
+        },
+        "PIK3CA": {
+          "n": 30,
+          "n_onc": 24,
+          "n_vus": 6,
+          "sensitivity": 0.708,
+          "specificity": 0.833,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.708,
+              "lo": 0.508,
+              "hi": 0.851,
+              "k": 17,
+              "n": 24,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.708,
+              "lo": 0.489,
+              "hi": 0.874,
+              "k": 17,
+              "n": 24,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.833,
+              "lo": 0.436,
+              "hi": 0.97,
+              "k": 5,
+              "n": 6,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.833,
+              "lo": 0.359,
+              "hi": 0.996,
+              "k": 5,
+              "n": 6,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.844
+        },
+        "KRAS": {
+          "n": 17,
+          "n_onc": 14,
+          "n_vus": 3,
+          "sensitivity": 0.714,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.714,
+              "lo": 0.454,
+              "hi": 0.883,
+              "k": 10,
+              "n": 14,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.714,
+              "lo": 0.419,
+              "hi": 0.916,
+              "k": 10,
+              "n": 14,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.439,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.292,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.952
+        },
+        "NRAS": {
+          "n": 15,
+          "n_onc": 15,
+          "n_vus": 0,
+          "sensitivity": 0.4,
+          "specificity": null,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.4,
+              "lo": 0.198,
+              "hi": 0.643,
+              "k": 6,
+              "n": 15,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.4,
+              "lo": 0.163,
+              "hi": 0.677,
+              "k": 6,
+              "n": 15,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": null,
+          "auroc": null
+        },
+        "SMAD4": {
+          "n": 13,
+          "n_onc": 4,
+          "n_vus": 9,
+          "sensitivity": 0.5,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.5,
+              "lo": 0.15,
+              "hi": 0.85,
+              "k": 2,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.5,
+              "lo": 0.068,
+              "hi": 0.932,
+              "k": 2,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.701,
+              "hi": 1.0,
+              "k": 9,
+              "n": 9,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.664,
+              "hi": 1.0,
+              "k": 9,
+              "n": 9,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.75
+        },
+        "BRAF": {
+          "n": 11,
+          "n_onc": 7,
+          "n_vus": 4,
+          "sensitivity": 0.429,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.429,
+              "lo": 0.158,
+              "hi": 0.75,
+              "k": 3,
+              "n": 7,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.429,
+              "lo": 0.099,
+              "hi": 0.816,
+              "k": 3,
+              "n": 7,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.51,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.398,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.786
+        },
+        "ESR1": {
+          "n": 8,
+          "n_onc": 5,
+          "n_vus": 3,
+          "sensitivity": 0.8,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.8,
+              "lo": 0.376,
+              "hi": 0.964,
+              "k": 4,
+              "n": 5,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.8,
+              "lo": 0.284,
+              "hi": 0.995,
+              "k": 4,
+              "n": 5,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.439,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.292,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 1.0
+        },
+        "ALK": {
+          "n": 7,
+          "n_onc": 3,
+          "n_vus": 4,
+          "sensitivity": 0.333,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.333,
+              "lo": 0.061,
+              "hi": 0.792,
+              "k": 1,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.333,
+              "lo": 0.008,
+              "hi": 0.906,
+              "k": 1,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.51,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.398,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.75
+        },
+        "ERBB2": {
+          "n": 7,
+          "n_onc": 6,
+          "n_vus": 1,
+          "sensitivity": 0.5,
+          "specificity": 0.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.5,
+              "lo": 0.188,
+              "hi": 0.812,
+              "k": 3,
+              "n": 6,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.5,
+              "lo": 0.118,
+              "hi": 0.882,
+              "k": 3,
+              "n": 6,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.793,
+              "k": 0,
+              "n": 1,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.975,
+              "k": 0,
+              "n": 1,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.333
+        },
+        "FBXW7": {
+          "n": 6,
+          "n_onc": 3,
+          "n_vus": 3,
+          "sensitivity": 0.667,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.667,
+              "lo": 0.208,
+              "hi": 0.939,
+              "k": 2,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.667,
+              "lo": 0.094,
+              "hi": 0.992,
+              "k": 2,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.439,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.292,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.944
+        },
+        "NF1": {
+          "n": 6,
+          "n_onc": 2,
+          "n_vus": 4,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.658,
+              "k": 0,
+              "n": 2,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.842,
+              "k": 0,
+              "n": 2,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.51,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.398,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.375
+        },
+        "RET": {
+          "n": 5,
+          "n_onc": 1,
+          "n_vus": 4,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.793,
+              "k": 0,
+              "n": 1,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.975,
+              "k": 0,
+              "n": 1,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.51,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.398,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.875
+        }
+      }
+    },
+    "all": {
+      "class_dist": {
+        "VUS": 296,
+        "ONC": 416,
+        "BEN": 2
+      },
+      "detection": {
+        "n": 712,
+        "n_onc": 416,
+        "n_vus": 296,
+        "tp": 204,
+        "fn": 212,
+        "tn": 285,
+        "fp": 11,
+        "sensitivity": {
+          "point": 0.49,
+          "lo": 0.442,
+          "hi": 0.538,
+          "n": 416
+        },
+        "specificity_on_gold_vus": {
+          "point": 0.963,
+          "lo": 0.939,
+          "hi": 0.983,
+          "n": 296
+        },
+        "ppv": 0.949,
+        "ppv_exact_ci": {
+          "wilson": {
+            "point": 0.949,
+            "lo": 0.911,
+            "hi": 0.971,
+            "k": 204,
+            "n": 215,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.949,
+            "lo": 0.91,
+            "hi": 0.974,
+            "k": 204,
+            "n": 215,
+            "method": "clopper_pearson"
+          }
+        },
+        "sensitivity_exact_ci": {
+          "wilson": {
+            "point": 0.49,
+            "lo": 0.443,
+            "hi": 0.538,
+            "k": 204,
+            "n": 416,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.49,
+            "lo": 0.441,
+            "hi": 0.54,
+            "k": 204,
+            "n": 416,
+            "method": "clopper_pearson"
+          }
+        },
+        "specificity_on_gold_vus_exact_ci": {
+          "wilson": {
+            "point": 0.963,
+            "lo": 0.935,
+            "hi": 0.979,
+            "k": 285,
+            "n": 296,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.963,
+            "lo": 0.934,
+            "hi": 0.981,
+            "k": 285,
+            "n": 296,
+            "method": "clopper_pearson"
+          }
+        },
+        "auroc_points": {
+          "point": 0.857,
+          "lo": 0.831,
+          "hi": 0.884,
+          "n_pos": 416,
+          "n_neg": 296
+        },
+        "pred_dist_5class": {
+          "VUS": 495,
+          "Oncogenic": 42,
+          "Likely Oncogenic": 173,
+          "Likely Benign": 2
+        }
+      },
+      "per_gene": {
+        "TP53": {
+          "n": 130,
+          "n_onc": 117,
+          "n_vus": 13,
+          "sensitivity": 0.974,
+          "specificity": 0.538,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.974,
+              "lo": 0.927,
+              "hi": 0.991,
+              "k": 114,
+              "n": 117,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.974,
+              "lo": 0.927,
+              "hi": 0.995,
+              "k": 114,
+              "n": 117,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.538,
+              "lo": 0.291,
+              "hi": 0.768,
+              "k": 7,
+              "n": 13,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.538,
+              "lo": 0.251,
+              "hi": 0.808,
+              "k": 7,
+              "n": 13,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.781
+        },
+        "PTEN": {
+          "n": 41,
+          "n_onc": 31,
+          "n_vus": 10,
+          "sensitivity": 0.71,
+          "specificity": 0.8,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.71,
+              "lo": 0.534,
+              "hi": 0.839,
+              "k": 22,
+              "n": 31,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.71,
+              "lo": 0.52,
+              "hi": 0.858,
+              "k": 22,
+              "n": 31,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.8,
+              "lo": 0.49,
+              "hi": 0.943,
+              "k": 8,
+              "n": 10,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.8,
+              "lo": 0.444,
+              "hi": 0.975,
+              "k": 8,
+              "n": 10,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.832
+        },
+        "EGFR": {
+          "n": 31,
+          "n_onc": 17,
+          "n_vus": 14,
+          "sensitivity": 0.471,
+          "specificity": 0.929,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.471,
+              "lo": 0.262,
+              "hi": 0.69,
+              "k": 8,
+              "n": 17,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.471,
+              "lo": 0.23,
+              "hi": 0.722,
+              "k": 8,
+              "n": 17,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.929,
+              "lo": 0.685,
+              "hi": 0.987,
+              "k": 13,
+              "n": 14,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.929,
+              "lo": 0.661,
+              "hi": 0.998,
+              "k": 13,
+              "n": 14,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.912
+        },
+        "PIK3CA": {
+          "n": 30,
+          "n_onc": 24,
+          "n_vus": 6,
+          "sensitivity": 0.708,
+          "specificity": 0.833,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.708,
+              "lo": 0.508,
+              "hi": 0.851,
+              "k": 17,
+              "n": 24,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.708,
+              "lo": 0.489,
+              "hi": 0.874,
+              "k": 17,
+              "n": 24,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.833,
+              "lo": 0.436,
+              "hi": 0.97,
+              "k": 5,
+              "n": 6,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.833,
+              "lo": 0.359,
+              "hi": 0.996,
+              "k": 5,
+              "n": 6,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.844
+        },
+        "KRAS": {
+          "n": 17,
+          "n_onc": 14,
+          "n_vus": 3,
+          "sensitivity": 0.714,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.714,
+              "lo": 0.454,
+              "hi": 0.883,
+              "k": 10,
+              "n": 14,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.714,
+              "lo": 0.419,
+              "hi": 0.916,
+              "k": 10,
+              "n": 14,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.439,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.292,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.952
+        },
+        "NRAS": {
+          "n": 15,
+          "n_onc": 15,
+          "n_vus": 0,
+          "sensitivity": 0.4,
+          "specificity": null,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.4,
+              "lo": 0.198,
+              "hi": 0.643,
+              "k": 6,
+              "n": 15,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.4,
+              "lo": 0.163,
+              "hi": 0.677,
+              "k": 6,
+              "n": 15,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": null,
+          "auroc": null
+        },
+        "SMAD4": {
+          "n": 13,
+          "n_onc": 4,
+          "n_vus": 9,
+          "sensitivity": 0.5,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.5,
+              "lo": 0.15,
+              "hi": 0.85,
+              "k": 2,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.5,
+              "lo": 0.068,
+              "hi": 0.932,
+              "k": 2,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.701,
+              "hi": 1.0,
+              "k": 9,
+              "n": 9,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.664,
+              "hi": 1.0,
+              "k": 9,
+              "n": 9,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.75
+        },
+        "ATM": {
+          "n": 12,
+          "n_onc": 2,
+          "n_vus": 10,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.658,
+              "k": 0,
+              "n": 2,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.842,
+              "k": 0,
+              "n": 2,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.722,
+              "hi": 1.0,
+              "k": 10,
+              "n": 10,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.692,
+              "hi": 1.0,
+              "k": 10,
+              "n": 10,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.5
+        },
+        "BRAF": {
+          "n": 11,
+          "n_onc": 7,
+          "n_vus": 4,
+          "sensitivity": 0.429,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.429,
+              "lo": 0.158,
+              "hi": 0.75,
+              "k": 3,
+              "n": 7,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.429,
+              "lo": 0.099,
+              "hi": 0.816,
+              "k": 3,
+              "n": 7,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.51,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.398,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.786
+        },
+        "CTNNB1": {
+          "n": 9,
+          "n_onc": 9,
+          "n_vus": 0,
+          "sensitivity": 0.111,
+          "specificity": null,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.111,
+              "lo": 0.02,
+              "hi": 0.435,
+              "k": 1,
+              "n": 9,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.111,
+              "lo": 0.003,
+              "hi": 0.482,
+              "k": 1,
+              "n": 9,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": null,
+          "auroc": null
+        },
+        "MYC": {
+          "n": 9,
+          "n_onc": 3,
+          "n_vus": 6,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.561,
+              "k": 0,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.708,
+              "k": 0,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.61,
+              "hi": 1.0,
+              "k": 6,
+              "n": 6,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.541,
+              "hi": 1.0,
+              "k": 6,
+              "n": 6,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 1.0
+        },
+        "CREBBP": {
+          "n": 8,
+          "n_onc": 6,
+          "n_vus": 2,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.39,
+              "k": 0,
+              "n": 6,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.459,
+              "k": 0,
+              "n": 6,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.342,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.158,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 1.0
+        },
+        "ESR1": {
+          "n": 8,
+          "n_onc": 5,
+          "n_vus": 3,
+          "sensitivity": 0.8,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.8,
+              "lo": 0.376,
+              "hi": 0.964,
+              "k": 4,
+              "n": 5,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.8,
+              "lo": 0.284,
+              "hi": 0.995,
+              "k": 4,
+              "n": 5,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.439,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.292,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 1.0
+        },
+        "SPOP": {
+          "n": 8,
+          "n_onc": 6,
+          "n_vus": 2,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.39,
+              "k": 0,
+              "n": 6,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.459,
+              "k": 0,
+              "n": 6,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.342,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.158,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.583
+        },
+        "ALK": {
+          "n": 7,
+          "n_onc": 3,
+          "n_vus": 4,
+          "sensitivity": 0.333,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.333,
+              "lo": 0.061,
+              "hi": 0.792,
+              "k": 1,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.333,
+              "lo": 0.008,
+              "hi": 0.906,
+              "k": 1,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.51,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.398,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.75
+        },
+        "AR": {
+          "n": 7,
+          "n_onc": 4,
+          "n_vus": 3,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.49,
+              "k": 0,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.602,
+              "k": 0,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.439,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.292,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.917
+        },
+        "ERBB2": {
+          "n": 7,
+          "n_onc": 6,
+          "n_vus": 1,
+          "sensitivity": 0.5,
+          "specificity": 0.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.5,
+              "lo": 0.188,
+              "hi": 0.812,
+              "k": 3,
+              "n": 6,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.5,
+              "lo": 0.118,
+              "hi": 0.882,
+              "k": 3,
+              "n": 6,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.793,
+              "k": 0,
+              "n": 1,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.975,
+              "k": 0,
+              "n": 1,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.333
+        },
+        "EP300": {
+          "n": 6,
+          "n_onc": 1,
+          "n_vus": 5,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.793,
+              "k": 0,
+              "n": 1,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.975,
+              "k": 0,
+              "n": 1,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.566,
+              "hi": 1.0,
+              "k": 5,
+              "n": 5,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.478,
+              "hi": 1.0,
+              "k": 5,
+              "n": 5,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 1.0
+        },
+        "ERBB3": {
+          "n": 6,
+          "n_onc": 4,
+          "n_vus": 2,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.49,
+              "k": 0,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.602,
+              "k": 0,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.342,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.158,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.625
+        },
+        "FBXW7": {
+          "n": 6,
+          "n_onc": 3,
+          "n_vus": 3,
+          "sensitivity": 0.667,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.667,
+              "lo": 0.208,
+              "hi": 0.939,
+              "k": 2,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.667,
+              "lo": 0.094,
+              "hi": 0.992,
+              "k": 2,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.439,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.292,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.944
+        },
+        "NF1": {
+          "n": 6,
+          "n_onc": 2,
+          "n_vus": 4,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.658,
+              "k": 0,
+              "n": 2,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.842,
+              "k": 0,
+              "n": 2,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.51,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.398,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.375
+        },
+        "TRAF7": {
+          "n": 6,
+          "n_onc": 3,
+          "n_vus": 3,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.561,
+              "k": 0,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.708,
+              "k": 0,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.439,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.292,
+              "hi": 1.0,
+              "k": 3,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.667
+        },
+        "B2M": {
+          "n": 5,
+          "n_onc": 3,
+          "n_vus": 2,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.561,
+              "k": 0,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.708,
+              "k": 0,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.342,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.158,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.583
+        },
+        "FGFR2": {
+          "n": 5,
+          "n_onc": 3,
+          "n_vus": 2,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.561,
+              "k": 0,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.708,
+              "k": 0,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.342,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.158,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 1.0
+        },
+        "JAK3": {
+          "n": 5,
+          "n_onc": 0,
+          "n_vus": 5,
+          "sensitivity": null,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": null,
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.566,
+              "hi": 1.0,
+              "k": 5,
+              "n": 5,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.478,
+              "hi": 1.0,
+              "k": 5,
+              "n": 5,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": null
+        },
+        "MAP2K1": {
+          "n": 5,
+          "n_onc": 5,
+          "n_vus": 0,
+          "sensitivity": 0.0,
+          "specificity": null,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.434,
+              "k": 0,
+              "n": 5,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.522,
+              "k": 0,
+              "n": 5,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": null,
+          "auroc": null
+        },
+        "NOTCH1": {
+          "n": 5,
+          "n_onc": 3,
+          "n_vus": 2,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.561,
+              "k": 0,
+              "n": 3,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.708,
+              "k": 0,
+              "n": 3,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.342,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.158,
+              "hi": 1.0,
+              "k": 2,
+              "n": 2,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.5
+        },
+        "RET": {
+          "n": 5,
+          "n_onc": 1,
+          "n_vus": 4,
+          "sensitivity": 0.0,
+          "specificity": 1.0,
+          "sensitivity_exact_ci": {
+            "wilson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.793,
+              "k": 0,
+              "n": 1,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.975,
+              "k": 0,
+              "n": 1,
+              "method": "clopper_pearson"
+            }
+          },
+          "specificity_exact_ci": {
+            "wilson": {
+              "point": 1.0,
+              "lo": 0.51,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "wilson"
+            },
+            "clopper_pearson": {
+              "point": 1.0,
+              "lo": 0.398,
+              "hi": 1.0,
+              "k": 4,
+              "n": 4,
+              "method": "clopper_pearson"
+            }
+          },
+          "auroc": 0.875
+        }
+      }
+    }
+  },
+  "tp53_pten_os2": {
+    "TP53": {
+      "dms_on": {
+        "n": 130,
+        "n_onc": 117,
+        "n_vus": 13,
+        "tp": 114,
+        "fn": 3,
+        "tn": 7,
+        "fp": 6,
+        "sensitivity": {
+          "point": 0.974,
+          "lo": 0.94,
+          "hi": 1.0,
+          "n": 117
+        },
+        "specificity_on_gold_vus": {
+          "point": 0.538,
+          "lo": 0.231,
+          "hi": 0.769,
+          "n": 13
+        },
+        "ppv": 0.95,
+        "ppv_exact_ci": {
+          "wilson": {
+            "point": 0.95,
+            "lo": 0.895,
+            "hi": 0.977,
+            "k": 114,
+            "n": 120,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.95,
+            "lo": 0.894,
+            "hi": 0.981,
+            "k": 114,
+            "n": 120,
+            "method": "clopper_pearson"
+          }
+        },
+        "sensitivity_exact_ci": {
+          "wilson": {
+            "point": 0.974,
+            "lo": 0.927,
+            "hi": 0.991,
+            "k": 114,
+            "n": 117,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.974,
+            "lo": 0.927,
+            "hi": 0.995,
+            "k": 114,
+            "n": 117,
+            "method": "clopper_pearson"
+          }
+        },
+        "specificity_on_gold_vus_exact_ci": {
+          "wilson": {
+            "point": 0.538,
+            "lo": 0.291,
+            "hi": 0.768,
+            "k": 7,
+            "n": 13,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.538,
+            "lo": 0.251,
+            "hi": 0.808,
+            "k": 7,
+            "n": 13,
+            "method": "clopper_pearson"
+          }
+        },
+        "auroc_points": {
+          "point": 0.781,
+          "lo": 0.605,
+          "hi": 0.939,
+          "n_pos": 117,
+          "n_neg": 13
+        },
+        "pred_dist_5class": {
+          "Likely Oncogenic": 97,
+          "VUS": 8,
+          "Oncogenic": 23,
+          "Likely Benign": 2
+        }
+      },
+      "dms_off": {
+        "n": 130,
+        "n_onc": 117,
+        "n_vus": 13,
+        "tp": 31,
+        "fn": 86,
+        "tn": 13,
+        "fp": 0,
+        "sensitivity": {
+          "point": 0.265,
+          "lo": 0.188,
+          "hi": 0.35,
+          "n": 117
+        },
+        "specificity_on_gold_vus": {
+          "point": 1.0,
+          "lo": 1.0,
+          "hi": 1.0,
+          "n": 13
+        },
+        "ppv": 1.0,
+        "ppv_exact_ci": {
+          "wilson": {
+            "point": 1.0,
+            "lo": 0.89,
+            "hi": 1.0,
+            "k": 31,
+            "n": 31,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 1.0,
+            "lo": 0.888,
+            "hi": 1.0,
+            "k": 31,
+            "n": 31,
+            "method": "clopper_pearson"
+          }
+        },
+        "sensitivity_exact_ci": {
+          "wilson": {
+            "point": 0.265,
+            "lo": 0.193,
+            "hi": 0.351,
+            "k": 31,
+            "n": 117,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.265,
+            "lo": 0.188,
+            "hi": 0.355,
+            "k": 31,
+            "n": 117,
+            "method": "clopper_pearson"
+          }
+        },
+        "specificity_on_gold_vus_exact_ci": {
+          "wilson": {
+            "point": 1.0,
+            "lo": 0.772,
+            "hi": 1.0,
+            "k": 13,
+            "n": 13,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 1.0,
+            "lo": 0.753,
+            "hi": 1.0,
+            "k": 13,
+            "n": 13,
+            "method": "clopper_pearson"
+          }
+        },
+        "auroc_points": {
+          "point": 0.773,
+          "lo": 0.624,
+          "hi": 0.907,
+          "n_pos": 117,
+          "n_neg": 13
+        },
+        "pred_dist_5class": {
+          "VUS": 99,
+          "Likely Oncogenic": 24,
+          "Oncogenic": 7
+        }
+      },
+      "n_os2_dms_fired": 115
+    },
+    "PTEN": {
+      "dms_on": {
+        "n": 41,
+        "n_onc": 31,
+        "n_vus": 10,
+        "tp": 22,
+        "fn": 9,
+        "tn": 8,
+        "fp": 2,
+        "sensitivity": {
+          "point": 0.71,
+          "lo": 0.548,
+          "hi": 0.871,
+          "n": 31
+        },
+        "specificity_on_gold_vus": {
+          "point": 0.8,
+          "lo": 0.5,
+          "hi": 1.0,
+          "n": 10
+        },
+        "ppv": 0.917,
+        "ppv_exact_ci": {
+          "wilson": {
+            "point": 0.917,
+            "lo": 0.742,
+            "hi": 0.977,
+            "k": 22,
+            "n": 24,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.917,
+            "lo": 0.73,
+            "hi": 0.99,
+            "k": 22,
+            "n": 24,
+            "method": "clopper_pearson"
+          }
+        },
+        "sensitivity_exact_ci": {
+          "wilson": {
+            "point": 0.71,
+            "lo": 0.534,
+            "hi": 0.839,
+            "k": 22,
+            "n": 31,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.71,
+            "lo": 0.52,
+            "hi": 0.858,
+            "k": 22,
+            "n": 31,
+            "method": "clopper_pearson"
+          }
+        },
+        "specificity_on_gold_vus_exact_ci": {
+          "wilson": {
+            "point": 0.8,
+            "lo": 0.49,
+            "hi": 0.943,
+            "k": 8,
+            "n": 10,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.8,
+            "lo": 0.444,
+            "hi": 0.975,
+            "k": 8,
+            "n": 10,
+            "method": "clopper_pearson"
+          }
+        },
+        "auroc_points": {
+          "point": 0.832,
+          "lo": 0.682,
+          "hi": 0.95,
+          "n_pos": 31,
+          "n_neg": 10
+        },
+        "pred_dist_5class": {
+          "VUS": 17,
+          "Likely Oncogenic": 23,
+          "Oncogenic": 1
+        }
+      },
+      "dms_off": {
+        "n": 41,
+        "n_onc": 31,
+        "n_vus": 10,
+        "tp": 4,
+        "fn": 27,
+        "tn": 10,
+        "fp": 0,
+        "sensitivity": {
+          "point": 0.129,
+          "lo": 0.032,
+          "hi": 0.258,
+          "n": 31
+        },
+        "specificity_on_gold_vus": {
+          "point": 1.0,
+          "lo": 1.0,
+          "hi": 1.0,
+          "n": 10
+        },
+        "ppv": 1.0,
+        "ppv_exact_ci": {
+          "wilson": {
+            "point": 1.0,
+            "lo": 0.51,
+            "hi": 1.0,
+            "k": 4,
+            "n": 4,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 1.0,
+            "lo": 0.398,
+            "hi": 1.0,
+            "k": 4,
+            "n": 4,
+            "method": "clopper_pearson"
+          }
+        },
+        "sensitivity_exact_ci": {
+          "wilson": {
+            "point": 0.129,
+            "lo": 0.051,
+            "hi": 0.289,
+            "k": 4,
+            "n": 31,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 0.129,
+            "lo": 0.036,
+            "hi": 0.298,
+            "k": 4,
+            "n": 31,
+            "method": "clopper_pearson"
+          }
+        },
+        "specificity_on_gold_vus_exact_ci": {
+          "wilson": {
+            "point": 1.0,
+            "lo": 0.722,
+            "hi": 1.0,
+            "k": 10,
+            "n": 10,
+            "method": "wilson"
+          },
+          "clopper_pearson": {
+            "point": 1.0,
+            "lo": 0.692,
+            "hi": 1.0,
+            "k": 10,
+            "n": 10,
+            "method": "clopper_pearson"
+          }
+        },
+        "auroc_points": {
+          "point": 0.765,
+          "lo": 0.616,
+          "hi": 0.903,
+          "n_pos": 31,
+          "n_neg": 10
+        },
+        "pred_dist_5class": {
+          "VUS": 37,
+          "Likely Oncogenic": 4
+        }
+      },
+      "n_os2_dms_fired": 22
+    }
+  },
+  "robustness": {
+    "rigshospitalet_only": {
+      "n": 678,
+      "n_onc": 397,
+      "n_vus": 281,
+      "tp": 198,
+      "fn": 199,
+      "tn": 270,
+      "fp": 11,
+      "sensitivity": {
+        "point": 0.499,
+        "lo": 0.451,
+        "hi": 0.547,
+        "n": 397
+      },
+      "specificity_on_gold_vus": {
+        "point": 0.961,
+        "lo": 0.936,
+        "hi": 0.982,
+        "n": 281
+      },
+      "ppv": 0.947,
+      "ppv_exact_ci": {
+        "wilson": {
+          "point": 0.947,
+          "lo": 0.908,
+          "hi": 0.97,
+          "k": 198,
+          "n": 209,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.947,
+          "lo": 0.908,
+          "hi": 0.973,
+          "k": 198,
+          "n": 209,
+          "method": "clopper_pearson"
+        }
+      },
+      "sensitivity_exact_ci": {
+        "wilson": {
+          "point": 0.499,
+          "lo": 0.45,
+          "hi": 0.548,
+          "k": 198,
+          "n": 397,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.499,
+          "lo": 0.448,
+          "hi": 0.549,
+          "k": 198,
+          "n": 397,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity_on_gold_vus_exact_ci": {
+        "wilson": {
+          "point": 0.961,
+          "lo": 0.931,
+          "hi": 0.978,
+          "k": 270,
+          "n": 281,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.961,
+          "lo": 0.931,
+          "hi": 0.98,
+          "k": 270,
+          "n": 281,
+          "method": "clopper_pearson"
+        }
+      },
+      "auroc_points": {
+        "point": 0.858,
+        "lo": 0.829,
+        "hi": 0.885,
+        "n_pos": 397,
+        "n_neg": 281
+      },
+      "pred_dist_5class": {
+        "VUS": 467,
+        "Likely Oncogenic": 169,
+        "Oncogenic": 40,
+        "Likely Benign": 2
+      }
+    },
+    "other_submitters": {
+      "n": 34,
+      "n_onc": 19,
+      "n_vus": 15,
+      "tp": 6,
+      "fn": 13,
+      "tn": 15,
+      "fp": 0,
+      "sensitivity": {
+        "point": 0.316,
+        "lo": 0.105,
+        "hi": 0.526,
+        "n": 19
+      },
+      "specificity_on_gold_vus": {
+        "point": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "n": 15
+      },
+      "ppv": 1.0,
+      "ppv_exact_ci": {
+        "wilson": {
+          "point": 1.0,
+          "lo": 0.61,
+          "hi": 1.0,
+          "k": 6,
+          "n": 6,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 1.0,
+          "lo": 0.541,
+          "hi": 1.0,
+          "k": 6,
+          "n": 6,
+          "method": "clopper_pearson"
+        }
+      },
+      "sensitivity_exact_ci": {
+        "wilson": {
+          "point": 0.316,
+          "lo": 0.154,
+          "hi": 0.54,
+          "k": 6,
+          "n": 19,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.316,
+          "lo": 0.126,
+          "hi": 0.566,
+          "k": 6,
+          "n": 19,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity_on_gold_vus_exact_ci": {
+        "wilson": {
+          "point": 1.0,
+          "lo": 0.796,
+          "hi": 1.0,
+          "k": 15,
+          "n": 15,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 1.0,
+          "lo": 0.782,
+          "hi": 1.0,
+          "k": 15,
+          "n": 15,
+          "method": "clopper_pearson"
+        }
+      },
+      "auroc_points": {
+        "point": 0.874,
+        "lo": 0.788,
+        "hi": 0.947,
+        "n_pos": 19,
+        "n_neg": 15
+      },
+      "pred_dist_5class": {
+        "Oncogenic": 2,
+        "VUS": 28,
+        "Likely Oncogenic": 4
+      }
+    },
+    "all_excluding_old_holdout_keys": {
+      "n": 641,
+      "n_onc": 349,
+      "n_vus": 292,
+      "tp": 160,
+      "fn": 189,
+      "tn": 283,
+      "fp": 9,
+      "sensitivity": {
+        "point": 0.458,
+        "lo": 0.404,
+        "hi": 0.51,
+        "n": 349
+      },
+      "specificity_on_gold_vus": {
+        "point": 0.969,
+        "lo": 0.949,
+        "hi": 0.986,
+        "n": 292
+      },
+      "ppv": 0.947,
+      "ppv_exact_ci": {
+        "wilson": {
+          "point": 0.947,
+          "lo": 0.902,
+          "hi": 0.972,
+          "k": 160,
+          "n": 169,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.947,
+          "lo": 0.901,
+          "hi": 0.975,
+          "k": 160,
+          "n": 169,
+          "method": "clopper_pearson"
+        }
+      },
+      "sensitivity_exact_ci": {
+        "wilson": {
+          "point": 0.458,
+          "lo": 0.407,
+          "hi": 0.511,
+          "k": 160,
+          "n": 349,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.458,
+          "lo": 0.405,
+          "hi": 0.512,
+          "k": 160,
+          "n": 349,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity_on_gold_vus_exact_ci": {
+        "wilson": {
+          "point": 0.969,
+          "lo": 0.942,
+          "hi": 0.984,
+          "k": 283,
+          "n": 292,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.969,
+          "lo": 0.942,
+          "hi": 0.986,
+          "k": 283,
+          "n": 292,
+          "method": "clopper_pearson"
+        }
+      },
+      "auroc_points": {
+        "point": 0.847,
+        "lo": 0.818,
+        "hi": 0.874,
+        "n_pos": 349,
+        "n_neg": 292
+      },
+      "pred_dist_5class": {
+        "VUS": 470,
+        "Oncogenic": 32,
+        "Likely Oncogenic": 137,
+        "Likely Benign": 2
+      }
+    },
+    "panel9_excluding_old_holdout_keys": {
+      "n": 165,
+      "n_onc": 131,
+      "n_vus": 34,
+      "tp": 125,
+      "fn": 6,
+      "tn": 27,
+      "fp": 7,
+      "sensitivity": {
+        "point": 0.954,
+        "lo": 0.916,
+        "hi": 0.985,
+        "n": 131
+      },
+      "specificity_on_gold_vus": {
+        "point": 0.794,
+        "lo": 0.647,
+        "hi": 0.912,
+        "n": 34
+      },
+      "ppv": 0.947,
+      "ppv_exact_ci": {
+        "wilson": {
+          "point": 0.947,
+          "lo": 0.895,
+          "hi": 0.974,
+          "k": 125,
+          "n": 132,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.947,
+          "lo": 0.894,
+          "hi": 0.978,
+          "k": 125,
+          "n": 132,
+          "method": "clopper_pearson"
+        }
+      },
+      "sensitivity_exact_ci": {
+        "wilson": {
+          "point": 0.954,
+          "lo": 0.904,
+          "hi": 0.979,
+          "k": 125,
+          "n": 131,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.954,
+          "lo": 0.903,
+          "hi": 0.983,
+          "k": 125,
+          "n": 131,
+          "method": "clopper_pearson"
+        }
+      },
+      "specificity_on_gold_vus_exact_ci": {
+        "wilson": {
+          "point": 0.794,
+          "lo": 0.632,
+          "hi": 0.897,
+          "k": 27,
+          "n": 34,
+          "method": "wilson"
+        },
+        "clopper_pearson": {
+          "point": 0.794,
+          "lo": 0.621,
+          "hi": 0.913,
+          "k": 27,
+          "n": 34,
+          "method": "clopper_pearson"
+        }
+      },
+      "auroc_points": {
+        "point": 0.893,
+        "lo": 0.816,
+        "hi": 0.956,
+        "n_pos": 131,
+        "n_neg": 34
+      },
+      "pred_dist_5class": {
+        "VUS": 31,
+        "Oncogenic": 28,
+        "Likely Oncogenic": 104,
+        "Likely Benign": 2
+      }
+    }
+  },
+  "submitter_share_all_keys": {
+    "Center for Genomic Medicine, Rigshospitalet, Copenhagen University Hospital": 687,
+    "Dr. Guy Rouleau's laboratory, McGill University": 21,
+    "Microbiology and Molecular Biology Lab, Lahore College for Women University": 7,
+    "Genome Sciences Centre, British Columbia Cancer Agency": 3,
+    "Department of Urology, Affiliated Hospital of Jining Medical University": 1,
+    "CIViC Knowledgebase, Washington University School of Medicine": 1,
+    "Department of Pathology, Institute of Nuclear Medicine and Oncology": 1
+  },
+  "n_keys_single_submitter_rigshospitalet": 680,
+  "onc_last_evaluated_year": {
+    "2025": 712,
+    "2026": 1,
+    "2024": 1
+  },
+  "overlap_with_retired_holdout_keys": {
+    "all": 72,
+    "panel9": 72
+  },
+  "retired_holdout_for_comparison": {
+    "file": "data/benchmark/clinvar_vicc.json",
+    "n_rows": 458,
+    "unique_keys": 352,
+    "sensitivity": 0.537,
+    "specificity": 0.967,
+    "auroc": 0.902,
+    "status": "retired: BEN/VUS gold labels not oncogenicity classifications"
+  },
+  "provenance": {
+    "generated_utc": "2026-09-24T13:47:35Z",
+    "script": "scripts/run_clinvar_onc_holdout.py",
+    "git_head": "731905edfd0a5838e8c268669ed44fb3e07a6451",
+    "snapshot_tsv": "data/benchmark/clinvar_onc/clinvar_oncogenicity_missense_grch38.tsv",
+    "snapshot_tsv_sha256": "6103a10601d25911c3426c84a215bb251b8c7e6b13edb93ad3a97ea7b47657b5",
+    "clinvar_source_files": {
+      "variant_summary.txt.gz": {
+        "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz",
+        "last_modified": "Mon, 14 Sep 2026 13:55:03 GMT",
+        "content_length": 443063763,
+        "md5_remote": "b9f838ef66726499901fc8d1345a65c1",
+        "md5_local": "b9f838ef66726499901fc8d1345a65c1",
+        "sha256_local": "f25970aa49619fc73cdf8c878a3a20faaa69a0abd56cc8e14954f1d143e7e44e",
+        "size_bytes": 443063763
+      },
+      "submission_summary.txt.gz": {
+        "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/submission_summary.txt.gz",
+        "last_modified": "Sun, 13 Sep 2026 15:57:57 GMT",
+        "content_length": 389000708,
+        "md5_remote": "6e3933e0b88ec0b2cc1d3c1e879da45c",
+        "md5_local": "6e3933e0b88ec0b2cc1d3c1e879da45c",
+        "sha256_local": "cd0c127b746e6fe1c2d9e6cea8da4e6dac39605724b9a626c59e163e7ff76b7c",
+        "size_bytes": 389000708
+      }
+    },
+    "snapshot_fetched_utc": "2026-09-24T00:06:42Z",
+    "vep": {
+      "skipped": false,
+      "endpoint": "https://rest.ensembl.org/vep/human/region?AlphaMissense=1&af_gnomade=1&af_gnomadg=1",
+      "ensembl_release": [
+        116
+      ],
+      "n_with_alphamissense": 724,
+      "n_with_gnomad_af_gt0": 213,
+      "gnomad_rule": "max(gnomADe AF, gnomADg AF) for the alt allele; 0.0 when no gnomAD record is co-located"
+    },
+    "resource_sha256": {
+      "data/knowledge/hotspots/cancerhotspots.json": "2b9732f0dd922df2dfff35931e5d927a3848e575fb78d456b0f023312170d8c0",
+      "data/knowledge/domains/uniprot_domains.json": "745625f2cf9d9f9f38113829c84714ff174d713da88fc2754d0a79e6a523c0b0",
+      "data/knowledge/functional/dms_lof.json": "e0b05bfecfa54c9121f9f137a10dab005fab6643bd058fccb468748b5bf43171",
+      "data/knowledge/functional/dms_neutral.json": "b6359f08149e3655bb710cc7eed31a7d7f4458ced9d40e60593532dedf2547f6",
+      "data/benchmark/horak_benchmark.tsv": "088185f352bff5fad61e7d269c7086f8fc22cb62d8d6bd2e64ee75a2f81c66d8",
+      "data/benchmark/horak_civic.tsv": "9b964a1d7b81294d8e23d1c68efe18885a87a4705682e120118f243fe97d0b31",
+      "data/knowledge/civic/civic_evidence_panel.tsv": "beb7d99d90399b1ad01e2ecafbbebf27cff7e9ca79839d2b907fcaf6dba69876"
+    },
+    "bootstrap": "percentile; proportions via src.eval.stats.bootstrap_ci (5000, seed 0); AUROC class-stratified (2000, seed 0)"
+  }
+}

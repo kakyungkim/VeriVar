@@ -8,19 +8,22 @@ against the simplified-rule (0.557) and LLM+retrieval (0.600) baselines.
 
 Usage:  python -m scripts.run_horak_vicc
 """
+import argparse
 import json
 import os
 from collections import Counter, defaultdict
 
 import pandas as pd
 
-from src.classify.vicc_rules import VICCPointClassifier, parse_protein_change
+from src.classify.vicc_rules import (CONFIGS, PRIMARY_CONFIG, VICCPointClassifier,
+                                     civic_signal_from_rows, domain_feature_at,
+                                     parse_protein_change)
+from src.classify.vicc_inputs import V2InputProvider, load_civic_rows, load_dms_lof
+from src.eval.stats import bootstrap_ci, boundary_ci
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 BENCH = os.path.join(ROOT, "data", "benchmark")
 AM = os.path.join(ROOT, "data", "knowledge", "alphamissense", "vep_cache.json")
-_BEN_SIG = {"unaltered function", "benign", "likely benign", "negative"}
-_RANK = {"A": 3, "B": 2, "C": 1, "D": 0}
 
 
 def collapse(c):
@@ -62,6 +65,14 @@ def roc_curve(y, s):
 
 
 def main():
+    ap = argparse.ArgumentParser(description="VICC point engine on Horak-70")
+    ap.add_argument("--roc-png", default=os.path.join(ROOT, "docs", "manuscript", "figures",
+                                                      "diagnostic", "vicc_roc.png"),
+                    help="where to write the ROC figure (default: committed figures dir)")
+    ap.add_argument("--config", default=PRIMARY_CONFIG, choices=sorted(CONFIGS),
+                    help="engine configuration (default: sop_strict, the primary result)")
+    ap.add_argument("--out", default=os.path.join(BENCH, "horak_vicc.json"))
+    args = ap.parse_args()
     bench = pd.read_csv(os.path.join(BENCH, "horak_benchmark.tsv"), sep="\t")
     civ = pd.read_csv(os.path.join(BENCH, "horak_civic.tsv"), sep="\t")
     am = json.load(open(AM))
@@ -70,67 +81,39 @@ def main():
     gnomad_path = os.path.join(BENCH, "horak_gnomad.json")
     gnomad = json.load(open(gnomad_path)) if os.path.exists(gnomad_path) else {}
     fdir = os.path.join(ROOT, "data", "knowledge", "functional")
-    dms = json.load(open(os.path.join(fdir, "dms_lof.json"))) if os.path.exists(os.path.join(fdir, "dms_lof.json")) else {}
+    cfg = CONFIGS[args.config]
+    # v2-family configurations read the pre-registered inputs (CIViC release, MaveDB additions,
+    # VEP v2 predictors / continental AF); the three published configurations are unchanged.
+    dms = load_dms_lof(cfg.dms_inputs)
     dms_neu = json.load(open(os.path.join(fdir, "dms_neutral.json"))) if os.path.exists(os.path.join(fdir, "dms_neutral.json")) else {}
 
-    _REGION_KEYS = ("dna", "bind", "pocket", "kinase", "catalyt", "phosphatase", "set", "tensin")
-
-    def domain_at(gene, pos):
-        for s, e, t, desc in domains.get(gene, []):
-            if s <= pos <= e:
-                if t in ("Domain", "Active site", "Binding site"):
-                    return desc or t
-                if t == "Region" and any(k in (desc or "").lower() for k in _REGION_KEYS):
-                    return desc
-        return None
-
     civ_by_gene = defaultdict(list)
-    for _, r in civ.iterrows():
+    civ_rows = ([r.to_dict() for _, r in civ.iterrows()] if cfg.civic_inputs == "v1"
+                else load_civic_rows("v2"))
+    for r in civ_rows:
         civ_by_gene[str(r["molecular_profile"]).split()[0]].append(r)
+    v2in = V2InputProvider(cfg)
 
     def civic_signal(gene, ref, pos, alt):
-        # Exact-variant matching (residue-CIViC precision): credit CIViC evidence only
-        # when it is for THIS exact substitution, not merely the same residue. This
-        # removes neighbour-inheritance (e.g. PIK3CA H1047Q wrongly crediting H1047R's
-        # evidence, EZH2 A682V crediting A682T) and makes every citation faithful.
-        onco = ben = 0
-        best = None
-        exact = f"{gene} {ref}{pos}{alt}"
-        for r in civ_by_gene.get(gene, []):
-            mp = str(r["molecular_profile"])
-            # equal to the exact variant, or that variant followed by a separator
-            # (e.g. a co-occurring profile "GENE V600E AND ...") — but NOT a different
-            # substitution at the same residue.
-            if not (mp.startswith(exact) and (len(mp) == len(exact)
-                                              or not mp[len(exact)].isalnum())):
-                continue
-            d = str(r["evidence_direction"]).lower()
-            s = str(r["significance"]).lower()
-            # Count as benign-for-oncogenicity ONLY on an explicit functional-benign
-            # significance — NOT a bare "Does Not Support" (which usually refers to a
-            # drug response, not the variant's oncogenicity).
-            if s in _BEN_SIG:
-                ben += 1
-            elif d == "supports":
-                onco += 1
-                lv = str(r["evidence_level"])
-                if best is None or _RANK.get(lv, -1) > _RANK.get(best, -1):
-                    best = lv
-        return onco, ben, best
+        # Exact-variant matching (never a neighbouring substitution at the residue) and the
+        # SOP mapping: only CIViC FUNCTIONAL evidence can grant OS2/SBS2; predictive,
+        # prognostic, diagnostic and predisposing items are ignored (see vicc_rules).
+        return civic_signal_from_rows(civ_by_gene.get(gene, []), gene, ref, pos, alt)
 
     def am_path(row):
         e = am.get(f"{row['b37_chr']}:{row['b37_pos']}:{row['b37_ref']}>{row['b37_alt']}")
         return e.get("am_pathogenicity") if e else None
 
-    clf = VICCPointClassifier()
+    clf = VICCPointClassifier(config=args.config)
+
+    def domain_at(gene, pos):
+        return domain_feature_at(domains, gene, pos, clf.config.om1_scope)
+
     gold, pred, rows = [], [], []
     for _, row in bench.iterrows():
         gene, aa, g = row["gene"], row["aa"], row["oncogenicity"]
         pp = parse_protein_change(aa)
-        onco = ben = 0
-        best = None
-        if pp:
-            onco, ben, best = civic_signal(gene, pp[0], pp[1], pp[2])
+        civic = civic_signal(gene, pp[0], pp[1], pp[2]) if pp else None
         in_dom = domain_at(gene, pp[1]) if pp else None
         gkey = f"{row['b37_chr']} {row['b37_pos']} . {row['b37_ref']} {row['b37_alt']} . . ."
         gaf = gnomad.get(gkey)
@@ -138,18 +121,22 @@ def main():
         flof = bool(pp and dms.get(gene, {}).get(vkey, False))
         fneu = bool(pp and dms_neu.get(gene, {}).get(vkey, False))
         res = clf.score(gene, aa, am_pathogenicity=am_path(row),
-                        civic_onco=onco, civic_benign=ben, civic_best_level=best,
-                        in_domain=in_dom, gnomad_af=gaf, functional_lof=flof,
-                        functional_neutral=fneu)
+                        civic=civic, in_domain=in_dom, gnomad_af=gaf, functional_lof=flof,
+                        functional_neutral=fneu,
+                        **v2in.kwargs(gene, aa, row["b38_chr"], row["b38_pos"],
+                                      row["b38_ref"], row["b38_alt"]))
         gold.append(g)
         pred.append(res.oncogenicity.value)
         rows.append({"variant": f"{gene} {aa}", "gold": g, "vicc": res.oncogenicity.value,
-                     "points": res.points, "codes": [c.code for c in res.criteria]})
+                     "points": res.points, "codes": [c.code for c in res.criteria],
+                     "civic_functional_eids": (civic.onco_eids + civic.benign_eids) if civic else [],
+                     "civic_ignored": civic.ignored if civic else {}})
 
     n = len(gold)
     acc5 = round(sum(p == g for p, g in zip(pred, gold)) / n, 3)
     acc3 = round(sum(collapse(p) == collapse(g) for p, g in zip(pred, gold)) / n, 3)
-    report = {"n": n, "accuracy_5class": acc5, "accuracy_3class": acc3,
+    report = {"config": args.config, "config_description": CONFIGS[args.config].description,
+              "n": n, "accuracy_5class": acc5, "accuracy_3class": acc3,
               "baselines": {"simplified_rule_3class": 0.557, "llm_retrieval_3class": 0.600,
                             "oncovi_3class": 0.80},
               "pred_dist_3class": dict(Counter(collapse(p) for p in pred)),
@@ -187,14 +174,21 @@ def main():
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
         fig.tight_layout()
-        png = os.path.join(ROOT, "docs", "manuscript", "figures", "vicc_roc.png")
-        fig.savefig(png, dpi=300)
-        report["roc_figure"] = "docs/manuscript/figures/vicc_roc.png"
+        fig.savefig(args.roc_png, dpi=300)
+        report["roc_figure"] = os.path.relpath(os.path.abspath(args.roc_png), ROOT)
     except Exception as e:
         print(f"    (ROC figure skipped: {e})")
+    # 95% percentile-bootstrap CI on 3-class accuracy (seed 0, 5,000 resamples), the
+    # interval the manuscript quotes. Written last to keep the historical key order.
+    report["accuracy_3class_ci"] = bootstrap_ci(
+        [float(collapse(p) == collapse(g)) for p, g in zip(pred, gold)])
+    # Exact-style intervals (Wilson + Clopper-Pearson) for proportions that can sit at 0 or 1,
+    # where the percentile bootstrap collapses to a zero-width interval (peer review P1-3).
+    report["sensitivity_onc_exact_ci"] = boundary_ci(tp, tp + fn)
+    report["specificity_onc_exact_ci"] = boundary_ci(tn, tn + fp)
 
-    json.dump(report, open(os.path.join(BENCH, "horak_vicc.json"), "w"), indent=2)
-    print(f"[+] VICC point engine on Horak (n={n}): acc5={acc5}  acc3={acc3}")
+    json.dump(report, open(args.out, "w"), indent=2)
+    print(f"[+] VICC point engine [{args.config}] on Horak (n={n}): acc5={acc5}  acc3={acc3}")
     print(f"    AUROC(ONC)={report['auroc_onc']}  sensitivity={sens}  specificity={spec}")
     print(f"    baselines: simplified-rule 0.557 | LLM+retrieval 0.600 | OncoVI 0.80")
     print(f"    pred {report['pred_dist_3class']}  gold {report['gold_dist_3class']}")

@@ -1,0 +1,99 @@
+{
+  "tier_changed_by_verifier": 10,
+  "moved_toward_rule": 6,
+  "moved_away_from_rule": 4,
+  "tier_concordance_no_verify": 0.518,
+  "tier_concordance_verified": 0.571,
+  "examples": [
+    {
+      "variant": "EGFR p.E114K",
+      "cancer": "Colorectal Adenocarcinoma",
+      "no_verify": "Tier III",
+      "verified": "Tier IV",
+      "rule": "Tier IV"
+    },
+    {
+      "variant": "KRAS p.G12R",
+      "cancer": "Pancreatic Adenocarcinoma",
+      "no_verify": "Tier II",
+      "verified": "Tier I",
+      "rule": "Tier III"
+    },
+    {
+      "variant": "PIK3CA p.R88Q",
+      "cancer": "Colorectal Adenocarcinoma",
+      "no_verify": "Tier III",
+      "verified": "Tier IV",
+      "rule": "Tier II"
+    },
+    {
+      "variant": "TP53 p.P152L",
+      "cancer": "Cutaneous Melanoma",
+      "no_verify": "Tier III",
+      "verified": "Tier IV",
+      "rule": "Tier IV"
+    },
+    {
+      "variant": "TP53 p.R273H",
+      "cancer": "Colorectal Adenocarcinoma",
+      "no_verify": "Tier II",
+      "verified": "Tier III",
+      "rule": "Tier III"
+    },
+    {
+      "variant": "TP53 p.R273H",
+      "cancer": "Pancreatic Adenocarcinoma",
+      "no_verify": "Tier II",
+      "verified": "Tier III",
+      "rule": "Tier III"
+    },
+    {
+      "variant": "TP53 p.V272G",
+      "cancer": "Lung Adenocarcinoma (NSCLC)",
+      "no_verify": "Tier II",
+      "verified": "Tier III",
+      "rule": "Tier IV"
+    },
+    {
+      "variant": "ESR1 p.E247K",
+      "cancer": "Colorectal Adenocarcinoma",
+      "no_verify": "Tier II",
+      "verified": "Tier III",
+      "rule": "Tier III"
+    },
+    {
+      "variant": "ALK p.R291C",
+      "cancer": "Colorectal Adenocarcinoma",
+      "no_verify": "Tier III",
+      "verified": "Tier IV",
+      "rule": "Tier III"
+    },
+    {
+      "variant": "ALK p.G1494E",
+      "cancer": "Cutaneous Melanoma",
+      "no_verify": "Tier IV",
+      "verified": "Tier III",
+      "rule": "Tier IV"
+    }
+  ],
+  "clean_calibration_no_verify": {
+    "high (>=0.9)": {
+      "n": 51,
+      "discordant": 25,
+      "verifier_downgraded": 0,
+      "discordance_rate": 0.49
+    },
+    "mid (0.7-0.9)": {
+      "n": 2,
+      "discordant": 2,
+      "verifier_downgraded": 0,
+      "discordance_rate": 1.0
+    },
+    "low (<0.7)": {
+      "n": 3,
+      "discordant": 3,
+      "verifier_downgraded": 0,
+      "discordance_rate": 1.0
+    }
+  }
+}

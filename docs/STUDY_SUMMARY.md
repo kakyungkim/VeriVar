@@ -17,8 +17,14 @@ One-line contribution:
 > framed around **clinical decision-support** (framing only — claims unchanged):
 > faithfulness is the *mechanism*, a trustworthy, auditable, expert-verifiable draft is
 > the *purpose*; clinical utility is explicitly **"motivated, not measured"** (no patient
-> outcomes; research-only). Technical headline unchanged: **faithfulness/auditability +
-> NON-inferior accuracy (never superiority).**
+> outcomes; research-only).
+>
+> **(2026-09-27) Current status.** Target venue **medRxiv (Genetic and Genomic Medicine)**;
+> posting and public repository planned for **2026-10-10**; affiliation Independent Researcher,
+> Seoul. Headline = **faithfulness/auditability**, measured as citation existence
+> (`data/outputs/citation_taxonomy.json`), with citation support reported separately as a noisy
+> lower bound. Accuracy: **no arm shows a significant difference at n = 70; no accuracy gain or
+> parity is claimed.** The VICC rule arm is the **SOP-strict** implementation (§3.8).
 
 ---
 
@@ -98,6 +104,13 @@ Per variant, an evidence bundle is assembled from three arms, each item carrying
 ### 2.4 Evaluation harness
 - **Leakage-free faithfulness metrics** (no external truth): hallucinated-citation rate,
   citation grounding, directional faithfulness, abstention recall, inter-mode Cohen's κ.
+- **Citation taxonomy** (`src/eval/citation_taxonomy.py`, `scripts/run_citation_taxonomy.py`):
+  one pre-specified taxonomy applied identically to the retrieval, post-gate and no-retrieval
+  arms — (a) in bundle, (b1) fabricated identifier (placeholder pattern, no numeric scheme, or no
+  NCBI record), (b2) real and related but outside the bundle, (c) real but unrelated
+  (misattributed), (d) non-identifier token (imprecision). Identifiers resolved via NCBI E-utilities.
+- **Type II attribution audit** (`scripts/run_nli_attribution.py`): DeBERTa-v3 NLI, threshold
+  0.5 fixed a priori, no LLM calls; does the cited record entail the claim that cites it?
 - **Ablation**: rule / LLM-no-RAG / LLM+RAG.
 - **External benchmark** (Horak): 5-class + collapsed 3-class accuracy & κ vs gold.
 - **Temporal split**: RAG corpus restricted to pre-cutoff publication year.
@@ -119,17 +132,31 @@ Per variant, an evidence bundle is assembled from three arms, each item carrying
   2 verifier-downgrade, 1 llm-overcall. **26/31 adjacent (1 step), only 5 gross.**
 
 ### 3.2 Faithfulness (leakage-free) — headline
-- **Hallucinated-citation rate 0.0** · citation grounding **1.0** · directional
-  faithfulness **1.0** · abstention recall **1.0**.
+Source: `data/outputs/citation_taxonomy.json`, `data/outputs/nli_attribution_report.json`.
+- **Citation existence, retrieval arm (pre-gate, gpt-4o-mini):** 106 citation tokens on 56
+  variants; **0 of 86 identifier citations outside the bundle** (one-sided 95% Clopper–Pearson
+  upper bound 3.4%); the other **20 are non-identifier tokens** (e.g. bare "AlphaMissense"),
+  counted as imprecision, not fabrication.
+- **Post-gate scorecard (enforced by construction, not measured):** hallucinated-citation rate
+  0.0, citation grounding 1.0, directional faithfulness 1.0, abstention recall 1.0; the primary
+  post-gate run has 90 citations, all in bundle.
+- **Citation support (Type II), primary run:** NLI supported **40/90 = 0.444 [0.344–0.544]**
+  (variant-clustered 0.348–0.543), neutral 0.478, contradicted 0.078. Read as a **noisy lower
+  bound**: hand review found the NLI labels biased against support; 3 genuine mismatches among
+  the inline neutral citations.
 
 ### 3.3 Ablation — what RAG contributes
-- **No-RAG LLM fabricates citations on 26/56 (46%)** vs **RAG 0%.**
+- **No-retrieval arm: 19/56 variants (0.339, Wilson 95% CI 0.229–0.470) carry a fabricated or
+  misattributed identifier** (14/56 fabricated alone, 0.250 [0.155–0.377]); retrieval arm 0/56.
+  Paired exact McNemar p = 3.8×10⁻⁶ (19 vs 0 discordant). Of the no-retrieval arm's 56 tokens,
+  28 are fabricated identifiers, 13 real but unrelated records, 15 non-identifiers
+  (`citation_taxonomy.json`).
 - No-RAG vs RAG tier κ = 0.18 (materially different); no-RAG over-calls **12/56 (21.4%)**
   variants oncogenic/likely-oncogenic that **RAG resolves to VUS** by reading variant-specific
   evidence (e.g. EGFR E114K, PTEN R130*, TP53 P152L). This measures behavioural change, NOT
   correctness — whether each resolution is an appropriate correction or an over-conservative
   downgrade is pending expert adjudication.
-- → RAG **(1) eliminates citation hallucination** and **(2) suppresses parametric over-calling (correctness pending expert adjudication).**
+- → Retrieval **(1) removes out-of-bundle identifier citations** (Type I) and **(2) suppresses parametric over-calling (correctness pending expert adjudication).** It does not guarantee that a cited record supports its claim (§3.2).
 
 ### 3.4 Additional analyses
 - **Cross-cancer consistency**: oncogenicity stable on all 4 multi-cancer variants;
@@ -152,8 +179,9 @@ Per variant, an evidence bundle is assembled from three arms, each item carrying
 - LLM+RAG has the highest point estimate on the 3-class collapse (**oncogenic recall 0.79**), BUT
   **accuracy differences are NOT statistically significant** at n=70: 3-class acc 95% CIs
   overlap heavily (rule 0.557 [0.44–0.67], RAG 0.600 [0.49–0.71], no-RAG 0.586 [0.47–0.70]);
-  McNemar RAG-vs-no-RAG p=1.0, RAG-vs-rule p=0.61. → Do NOT claim accuracy superiority; claim
-  **non-inferiority + faithfulness**. (The faithfulness gap IS significant — see §3.3/§4.)
+  McNemar RAG-vs-no-RAG p=1.0, RAG-vs-rule p=0.61. → Do NOT claim accuracy superiority or
+  equivalence; state **"not significantly different"** (absence of evidence of a difference at
+  n = 70; no non-inferiority margin was pre-specified). The faithfulness gap IS significant — §3.3.
 - Hardest class is VUS (recall 0.37, over-resolved); 7 oncogenic→VUS misses are
   thin-coverage rare PTEN/EZH2 variants (mean 1.0 evidence items). 5-class hard for all.
 
@@ -185,52 +213,92 @@ Per variant, an evidence bundle is assembled from three arms, each item carrying
   — embedder choice is not a sensitive factor (small domain-model edge).
 - Files: `data/benchmark/horak_{gpt4o,lovo}.json`, `embed_ablation.json`.
 
-### 3.8 Rule-arm head-to-head vs published tools (2026-06-14) — VeriVar (rule arm)
-VeriVar's rule arm — the citable VICC point-based implementation (`src/classify/vicc_rules.py`),
-a deterministic engine, **not** the LLM and **not** claimed as a novel classifier — reaches
-**3-class accuracy 0.843** (95% CI 0.757–0.929) on Horak-70 (specificity 0.973, AUROC 0.906).
-It is now compared head-to-head against **two published tools**:
-- **OncoVI** (native VICC-oncogenicity axis; Carta et al. [19]) — on 69 shared variants the
-  rule arm is **statistically indistinguishable in accuracy** (0.841 [0.754–0.928] vs OncoVI
-  0.797 [0.696–0.884]; paired McNemar p = 0.66) at **markedly higher specificity** (0.972 vs
-  0.806). Error profile is asymmetric: rule arm's 9 errors are all honest VUS abstentions on
-  true-oncogenic variants (no over-call); OncoVI's 12 include 9 confident over-calls.
-  `scripts/run_oncovi_headtohead.py`, `oncovi_headtohead.json`.
-- **CancerVar** (AMP/ASCO/CAP **actionability** axis; Li et al. [6]) — **CROSS-AXIS**: CancerVar
-  emits actionability tiers, not VICC oncogenicity, so tiers were mapped (Tier I/II→Oncogenic,
-  III→VUS, IV→Benign) **only** to score it on the oncogenicity gold. Read strictly as an
-  **error-profile contrast, NOT an accuracy benchmark**: on the 70 shared variants CancerVar made
-  **21 over-calls / 0 misses** (oncogenic sensitivity 1.0, specificity **0.432**) vs the rule
-  arm's specificity 0.973 — the expected high-sensitivity/low-specificity profile of an
-  actionability tool re-graded on an oncogenicity key. Any 3-class accuracy from the mapping is a
-  cross-axis artifact, reported for completeness only. Real web-server predictions with archived
-  provenance: `data/benchmark/cancervar/` (`cancervar_predictions.json` + `raw/`),
-  `scripts/run_cancervar_headtohead.py`, `cancervar_headtohead.json`. **The cross-axis caveat must
-  travel with every CancerVar mention.**
-- **CGI (Cancer Genome Interpreter)** — considered as a near-axis comparator but **DEFERRED**:
-  its per-variant API is registration-token-gated (unavailable in scope). Noted in Limitations
-  (§5) + `data/benchmark/cgi/FEASIBILITY_BLOCKED.json`; future work.
+### 3.8 VeriVar's rule arm — SOP-strict VICC engine (primary since 2026-09-24)
+`src/classify/vicc_rules.py`, `CONFIGS["sop_strict"]`: Horak 2022 Tables 2–3, point ranges and
+exclusion rules applied as written where open data allow; OP4 only from observed gnomAD data;
+OM1 only at UniProt active/binding sites; CIViC functional evidence only; no non-SOP guards.
+OS1, OM4, OP2, SBP2 not evaluable from open data (unassigned). Deterministic, **not** the LLM,
+**not** claimed as a novel or accuracy-competitive classifier. Full description:
+`docs/reference/vicc_rule_arm.md`.
 
-The combined message (no oncogenicity-accuracy-superiority claim): the rule arm's conservative,
-high-specificity, over-call-averse error profile now stands against **two** published tools —
-OncoVI on the native VICC axis and CancerVar on the actionability axis (with the cross-axis caveat).
+| Horak-70 (n = 70) | value | source |
+|---|---|---|
+| 3-class accuracy | **0.657 [0.543–0.771]** | `data/benchmark/horak_vicc.json` |
+| 5-class accuracy | 0.500 | same |
+| oncogenic sensitivity | 0.424 (14/33; Wilson 0.272–0.592) | same |
+| specificity | **1.000 (37/37; Wilson 0.906–1.000)** | same |
+| AUROC (points) | 0.885 | same |
+| predicted ONC / VUS / BEN | 14 / 43 / 13 | same |
+| oncogenic over-calls | 0 (six benign-direction errors) | `vicc_config_comparison.json` |
+
+Head-to-heads (exact McNemar, paired on 3-class correctness; `vicc_config_comparison.json`):
+- **OncoVI**, 69 shared: ours 0.652 [0.536–0.754] vs 0.797; p = 0.087 (9 vs 19). Not significant;
+  OncoVI higher in point estimate. Errors run in opposite directions (ours: oncogenic left at VUS;
+  OncoVI: 7 oncogenic over-calls on gold-VUS). `oncovi_headtohead.json`.
+- **HemaGuide molecular mode**, 70: ours 0.657 vs 0.800; p = 0.087 (9 vs 19). `hemaguide_headtohead.json`.
+- **CancerVar** (AMP/ASCO/CAP **actionability** axis — **CROSS-AXIS**; tiers mapped I/II→Oncogenic,
+  III→VUS, IV→Benign only to score it): read strictly as an **error-profile contrast**, not an
+  accuracy benchmark. On 70 shared variants CancerVar made 21 over-calls and 0 misses
+  (sensitivity 1.0, specificity 0.432) vs the rule arm's 0 over-calls and 19 misses (specificity
+  1.000). Mapped 3-class 0.657 vs 0.614, p = 0.771 (completeness only). `cancervar_headtohead.json`.
+  **The cross-axis caveat must travel with every CancerVar mention.**
+- **CGI** — deferred (registration-token-gated API; `data/benchmark/cgi/FEASIBILITY_BLOCKED.json`).
+
+**Sensitivity dial** (non-SOP levers; `vicc_config_comparison.json` `dial_table2`): sensitivity
+0.424 → at most 0.545 (specificity 0.973–0.946, accuracy 0.657–0.700); every setting stays below
+OncoVI and HemaGuide. SOP-strict default remains the headline.
+
+**ClinVar somatic-oncogenicity holdout** (`data/benchmark/clinvar_onc_holdout.json`; rebuilt from
+the ClinVar FTP aggregate Oncogenicity field; Horak-70 overlap removed; 714 keys, 2 benign keys
+excluded from the binary task):
+
+| scope | n (ONC / VUS) | sensitivity | specificity (gold VUS) | AUROC | PPV |
+|---|---|---|---|---|---|
+| all genes | 712 (416 / 296) | 0.466 [0.421–0.517] | 0.970 [0.949–0.986] | 0.852 [0.826–0.880] | 0.956 |
+| CIViC or panel genes | 354 (266 / 88) | 0.658 [0.598–0.714] | 0.898 [0.830–0.955] | 0.863 [0.817–0.903] | 0.951 |
+| nine Horak genes | 236 (198 / 38) | 0.798 [0.742–0.854] | 0.789 [0.658–0.921] | 0.875 [0.820–0.925] | 0.952 |
+
+Validates **oncogenic detection only** (benign labels 2 of 714). 678 of the 712 scored variants
+were classified by a single laboratory (Rigshospitalet; sensitivity 0.474, specificity 0.968 on
+those alone, `robustness.rigshospitalet_only`), so this is a single-laboratory external set.
+
+### 3.9 Pre-registered input-expansion round (robustness; 2026-09-24)
+Sealed pre-registration (`notes/audits/2026-09-24/개선라운드_사전명시_20260924.md`, local) before
+inputs were fetched: (a) OP1/SBP1 only when AlphaMissense, REVEL and CADD all agree at ClinGen
+thresholds, (b) SBVS1/SBS1 on the maximum of five continental gnomAD populations, (c1) CIViC
+monthly release, (c2) pre-registered MaveDB sets. All configurations and per-change ablations
+reported (`vicc_config_comparison.json`, `sop_strict_v2` family).
+- **Horak-70:** accuracy unchanged, 0.657 [0.543–0.771]; sensitivity 0.424 → 0.364; specificity
+  1.000; AUROC 0.885 → 0.900; McNemar vs SOP-strict 2 vs 2, p = 1.0.
+- **ClinVar holdout:** sensitivity fell — nine genes 0.798 → 0.747 (McNemar 0/10, p = 0.002),
+  all genes 0.466 → 0.394 (0/30, p < 0.001); specificity and AUROC essentially unchanged.
+- The whole effect came from change (a); (b), (c1), (c2) changed no Horak call.
+- **Decision: the primary engine stays SOP-strict.** No v2-family configuration differed
+  significantly from SOP-strict on Horak-70.
 
 ## 4. Claim stack (manuscript) — statistically disciplined
-1. **Faithful by construction & empirically (significant)**: 0% citation hallucination,
-   100% grounding/directional-faithfulness/abstention. The gap vs no-RAG is robust:
-   no-RAG fabricates citations **0.464 [0.34–0.59]** vs RAG 0 (CI excludes 0).
+1. **Citation existence: faithful empirically and by construction (significant)**: 0 of 86
+   identifier citations outside the bundle with retrieval (pre-gate) vs **19/56 variants with a
+   fabricated or misattributed identifier without retrieval, 0.339 [0.229–0.470]**, exact McNemar
+   p = 3.8×10⁻⁶. The post-gate 0 / 1.0 / 1.0 / 1.0 scorecard is enforced, not measured.
+   **Citation support** is the open part: NLI 0.444 [0.344–0.544], a noisy lower bound.
 2. **RAG suppresses parametric over-calling**: no-RAG over-calls (EGFR E114K, PTEN R130*,
    TP53 P152L) that RAG resolves to VUS by reading variant-specific evidence.
-3. **Accuracy: non-inferior, NOT superior**: on the balanced expert gold standard, LLM+RAG
-   is comparable to rule and no-RAG — accuracy differences are NOT significant at n=70
-   (McNemar p=1.0 / 0.61; overlapping CIs). Frame as "faithful AND non-inferior", not "more accurate".
+3. **Accuracy: not significantly different, no gain claimed**: on the balanced expert gold
+   standard, LLM+RAG vs rule and no-RAG differences are NOT significant at n=70 (McNemar
+   p=1.0 / 0.61; overlapping CIs). The SOP-strict rule arm (0.657) is lower than OncoVI and
+   HemaGuide in point estimate (p = 0.087 each) and is reported for its error profile (no
+   oncogenic over-call), not its accuracy.
 4. **Leakage-controlled robustness**: accuracy is stable (not significantly changed) under a
    pre-2012 temporal corpus holdout → the (modest) RAG behaviour is not recent-answer retrieval.
 5. **Dual-mode discordance is an analytical signal**: mostly fine-grained tier boundaries
    + a few interpretable beyond-rules corrections, concentrated in TP53.
 
 > Headline = **faithfulness/auditability** (significant), NOT accuracy gains (n too small).
-> Stats: `data/outputs/stats_report.json` (bootstrap 95% CI + exact McNemar).
+> Stats: `data/outputs/stats_report.json` (generative-arm bootstrap 95% CI + exact McNemar),
+> `data/outputs/citation_taxonomy.json` (faithfulness), `data/benchmark/vicc_config_comparison.json`
+> (rule arm). Note: `stats_report.json` still carries an older `norag_citation_fabrication_ci`
+> field; the faithfulness headline is read from `citation_taxonomy.json`.
 
 ## 5. Limitations (state honestly)
 - Absolute 5-class accuracy is modest (~0.36–0.46); VICC 5-class is intrinsically hard.
@@ -239,8 +307,15 @@ OncoVI on the native VICC axis and CancerVar on the actionability axis (with the
 - **LLM parametric leakage** is not controlled by the temporal split (only the RAG channel);
   quantified by the no-RAG floor.
 - Single-sample, gene/protein-change level, n=70 external set, single LLM (gpt-4o-mini).
-- The rule baseline is simplified (though direction-aware, not a strawman).
-- **(2026-06-14) Comparator caveats:** the CancerVar head-to-head (§3.8) is **cross-axis**
+- The Deterministic-mode rule is simplified (though direction-aware, not a strawman). The VICC
+  rule arm follows the SOP text where open data allow, but OS1, OM4, OP2 and SBP2 are unassigned,
+  OP1/SBP1 use a single predictor, and population frequencies are global, not per continent.
+- **Citation support** is measured only approximately (NLI lower bound 0.444).
+- **Input-context ablation:** an HGNC alias symbol or three-letter HGVS removed all curated
+  clinical evidence for the 26 variants that had any, yet 22 kept a driver call on the
+  AlphaMissense prior alone (0 of 228 citations out of bundle). The abstention contract accepts
+  a computational prior as variant-specific evidence (`data/outputs/context_ablation.json`).
+- **Comparator caveats:** the CancerVar head-to-head (§3.8) is **cross-axis**
   (actionability tiers re-graded onto the VICC oncogenicity gold) → read as an error-profile
   contrast (specificity / over-call asymmetry), not an oncogenicity-accuracy benchmark; the
   resulting accuracy gap is largely a mapping artifact. **CGI** (Cancer Genome Interpreter) was
@@ -271,5 +346,9 @@ python -m src.pipeline --vote --dense --out cohort_noverify && python -m scripts
 # external benchmark (needs Horak supplement-3.xlsx in data/benchmark/horak/):
 python -m scripts.build_horak_benchmark && python -m scripts.fetch_horak_evidence
 python -m scripts.run_horak_benchmark && python -m scripts.run_horak_temporal
+# faithfulness endpoints (NCBI lookup cache committed; no LLM calls):
+python -m scripts.run_citation_taxonomy && python -m scripts.run_nli_attribution
+# VICC rule arm (SOP-strict primary + all configurations, offline):
+python -m scripts.run_vicc_config_suite && python -m scripts.build_vicc_config_comparison
 ```
-Artifacts: `data/outputs/{cohort_interpretation,eval_report,ablation_report,analyses_report,verifier_effect,discordance_analysis}.json`, `data/benchmark/{horak_results,horak_temporal}.json`, `data/outputs/cohort_report.{html,pdf}`, dashboard `src/dashboard/app.py`.
+Artifacts: `data/outputs/{cohort_interpretation,eval_report,ablation_report,analyses_report,verifier_effect,discordance_analysis,citation_taxonomy,nli_attribution_report,context_ablation}.json`, `data/benchmark/{horak_results,horak_temporal,horak_vicc,vicc_config_comparison,clinvar_onc_holdout}.json`, `data/outputs/cohort_report.{html,pdf}`, dashboard `src/dashboard/app.py`.

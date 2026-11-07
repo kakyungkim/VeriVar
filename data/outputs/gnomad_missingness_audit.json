@@ -1,0 +1,131 @@
+{
+  "purpose": "Exact handling of missing gnomAD records on the OP4 path, for the Methods (peer review 2026-09-24 P1-4).",
+  "op4_rule": "sop_strict (op4='data_only'): OP4 iff gnomad_af is not None and gnomad_af < 0.0001; None -> no OP4; 0.0 -> OP4 ('Absent from gnomAD'). Site coverage is not checked.",
+  "encoding": {
+    "clinvar": "fetch_clinvar_oncogenicity.parse_vep_record: AF = max gnomADe/gnomADg overall AF for the ALT allele over VEP colocated_variants, default 0.0 when none is found; None only when VEP returned no record.",
+    "horak": "horak_gnomad.json (GRCh37 key -> AF); stated to follow the same convention, but no generating script is in the repository."
+  },
+  "horak70": {
+    "engine_config": "sop_strict",
+    "n": 70,
+    "af_state_counts": {
+      "missing_none": 0,
+      "coded_zero": 40,
+      "observed_below_op4": 20,
+      "observed_at_or_above_op4": 10
+    },
+    "op4_fired": 60,
+    "op4_fired_by_af_state": {
+      "missing_none": 0,
+      "coded_zero": 40,
+      "observed_below_op4": 20,
+      "observed_at_or_above_op4": 0
+    },
+    "coded_zero_v2_crosscheck": {
+      "v2_no_gnomad_key": 37,
+      "v2_gnomad_all_zero": 3
+    },
+    "coded_zero_v2_nonzero_discrepancies": [],
+    "coded_zero_v2_all_zero_variants": [
+      "FLT3 p.N676K",
+      "BRAF p.G469E",
+      "IDH1 p.R132S"
+    ],
+    "op4_vs_curator": {
+      "both": 56,
+      "engine_only": 4,
+      "curator_only": 1,
+      "neither": 9,
+      "curator_op4_total": 57,
+      "engine_only_by_af_state": {
+        "observed_below_op4": 3,
+        "coded_zero": 1
+      }
+    }
+  },
+  "clinvar_snapshot_all_rows": {
+    "n": 737,
+    "af_state_counts": {
+      "missing_none": 0,
+      "coded_zero": 524,
+      "observed_below_op4": 200,
+      "observed_at_or_above_op4": 13
+    }
+  },
+  "clinvar_holdout_scored": {
+    "n": 714,
+    "af_state_counts": {
+      "missing_none": 0,
+      "coded_zero": 509,
+      "observed_below_op4": 193,
+      "observed_at_or_above_op4": 12
+    },
+    "op4_fired": 702,
+    "op4_fired_by_af_state": {
+      "missing_none": 0,
+      "coded_zero": 509,
+      "observed_below_op4": 193,
+      "observed_at_or_above_op4": 0
+    },
+    "coded_zero_v2_crosscheck": {
+      "v2_no_gnomad_key": 464,
+      "v2_gnomad_all_zero": 45
+    },
+    "coded_zero_v2_nonzero_discrepancies": [],
+    "coded_zero_v2_all_zero_variants": [
+      "ALK p.A161V",
+      "BAP1 p.R59W",
+      "CCND1 p.K46E",
+      "CDKN2A p.D84N",
+      "CDKN2A p.H83Y",
+      "DICER1 p.G1809R",
+      "EGR2 p.E356K",
+      "EZH2 p.E745K",
+      "FBXW7 p.R465H",
+      "IDH1 p.R132G",
+      "KRAS p.L19F",
+      "KRAS p.Q22K",
+      "KRAS p.Q61R",
+      "MAP2K1 p.Y130C",
+      "MYC p.S161L",
+      "MYCN p.P44L",
+      "NOTCH1 p.L1593P",
+      "PIK3CA p.E365K",
+      "PIK3R1 p.N564D",
+      "PPP2R1A p.S256Y",
+      "PTEN p.T277I",
+      "RB1 p.G710D",
+      "RB1 p.W195C",
+      "RET p.G810C",
+      "SMARCA4 p.R1009H",
+      "SMO p.T241M",
+      "STK11 p.R304W",
+      "TP53 p.A138V",
+      "TP53 p.C176W",
+      "TP53 p.D281E",
+      "TP53 p.E258K",
+      "TP53 p.E285V",
+      "TP53 p.G244S",
+      "TP53 p.G266E",
+      "TP53 p.H193L",
+      "TP53 p.H214R",
+      "TP53 p.R196P",
+      "TP53 p.R337C",
+      "TP53 p.S215R",
+      "TP53 p.S241Y",
+      "TP53 p.V157F",
+      "TP53 p.V197M",
+      "TP53 p.Y205H",
+      "TP53 p.Y234C",
+      "U2AF1 p.S34F"
+    ]
+  },
+  "provenance": {
+    "data/benchmark/horak_benchmark.tsv": "088185f352bff5fad61e7d269c7086f8fc22cb62d8d6bd2e64ee75a2f81c66d8",
+    "data/benchmark/horak_gnomad.json": "a0ecfe8d91f75d4a947c302a7c92889a786ab6405e5ad2c10283363cbec35936",
+    "data/benchmark/horak_vicc.json": "c0aca6eb3b3768326b03358a3f540551fb4df13b8641097dc17a9414a6a47201",
+    "data/benchmark/clinvar_onc/clinvar_oncogenicity_missense_grch38.tsv": "6103a10601d25911c3426c84a215bb251b8c7e6b13edb93ad3a97ea7b47657b5",
+    "data/benchmark/clinvar_onc_holdout_rows.json": "500abcfb088f0d4b0748b2547d8a8f912d2ef8ee901d763d2f478bb6c317ea10",
+    "data/knowledge/vep_v2/vep_v2_annotations.json": "0a5438d5e07c162076c30507388a8f78b29baf29725b191bf72690951c63333e"
+  }
+}

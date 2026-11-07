@@ -1,0 +1,56 @@
+{
+  "horak_3class_accuracy_ci": {
+    "rule": {
+      "point": 0.557,
+      "lo": 0.443,
+      "hi": 0.671,
+      "n": 70
+    },
+    "llm_rag": {
+      "point": 0.6,
+      "lo": 0.486,
+      "hi": 0.714,
+      "n": 70
+    },
+    "llm_norag": {
+      "point": 0.586,
+      "lo": 0.471,
+      "hi": 0.7,
+      "n": 70
+    }
+  },
+  "horak_mcnemar": {
+    "rag_vs_norag": {
+      "a_better": 15,
+      "b_better": 14,
+      "discordant_pairs": 29,
+      "p_value": 1.0
+    },
+    "rag_vs_rule": {
+      "a_better": 9,
+      "b_better": 6,
+      "discordant_pairs": 15,
+      "p_value": 0.6072
+    }
+  },
+  "cohort_concordance_ci": {
+    "oncogenicity": {
+      "point": 0.786,
+      "lo": 0.679,
+      "hi": 0.893,
+      "n": 56
+    },
+    "tier": {
+      "point": 0.571,
+      "lo": 0.446,
+      "hi": 0.696,
+      "n": 56
+    }
+  },
+  "norag_citation_fabrication_ci": {
+    "point": 0.464,
+    "lo": 0.339,
+    "hi": 0.589,
+    "n": 56
+  }
+}

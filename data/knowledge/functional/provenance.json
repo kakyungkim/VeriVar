@@ -1,0 +1,12 @@
+{
+  "PTEN": {
+    "urns": [
+      "urn:mavedb:00000054-a-1 (lipid phosphatase, Mighell 2018)",
+      "urn:mavedb:00000013-a-1 (VAMP-seq abundance, Matreyek 2018)"
+    ]
+  },
+  "TP53": {
+    "urn": "urn:mavedb:00001236-0-1 (naive-Bayes classifier)"
+  },
+  "note": "LoF = below nonsense-anchored antimode in ANY assay; TP53 classifier 0.5/0.1; thresholds anchored to internal controls / classifier, NOT tuned to any benchmark"
+}

@@ -24,5 +24,15 @@ chromadb>=0.5                # local vector store
 rank-bm25>=0.2               # sparse retrieval for hybrid fusion
 networkx>=3.1                # knowledge-graph (GraphRAG)
 
+# Figures + analysis (make_figures.py, run_horak_vicc ROC, run_oncovi_headtohead .xlsx, stats)
+# matplotlib/pillow/fonttools pinned so the committed PNGs regenerate byte-identically
+# (pillow 12.x re-encodes PNGs with different zlib output; fonttools 4.66 changes the PDF
+# font subsets). Pixels are identical either way; the pins only buy byte identity.
+matplotlib==3.10.0
+pillow==11.1.0
+fonttools==4.55.3
+openpyxl==3.1.5
+scipy>=1.11,<2
+
 # Testing
 pytest>=8

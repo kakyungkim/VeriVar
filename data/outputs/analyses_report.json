@@ -1,0 +1,214 @@
+{
+  "cross_cancer_consistency": {
+    "n_multi_cancer_variants": 4,
+    "stable_oncogenicity": 4,
+    "variable_tier": 1,
+    "detail": [
+      {
+        "variant": "BRAF V600E",
+        "per_cancer": {
+          "Colorectal Adenocarcinoma": "Oncogenic/Tier I",
+          "Cutaneous Melanoma": "Oncogenic/Tier I"
+        }
+      },
+      {
+        "variant": "KRAS G12D",
+        "per_cancer": {
+          "Colorectal Adenocarcinoma": "Oncogenic/Tier I",
+          "Pancreatic Adenocarcinoma": "Oncogenic/Tier I"
+        }
+      },
+      {
+        "variant": "KRAS G12V",
+        "per_cancer": {
+          "Colorectal Adenocarcinoma": "Oncogenic/Tier I",
+          "Pancreatic Adenocarcinoma": "Oncogenic/Tier II"
+        }
+      },
+      {
+        "variant": "TP53 R273H",
+        "per_cancer": {
+          "Colorectal Adenocarcinoma": "Likely Oncogenic/Tier III",
+          "Pancreatic Adenocarcinoma": "Likely Oncogenic/Tier III"
+        }
+      }
+    ]
+  },
+  "sensitivity_vs_resistance": {
+    "sensitivity_only": 2,
+    "resistance_only": 5,
+    "both": 15,
+    "resistance_only_tier_distribution": {
+      "Tier II": 2,
+      "Tier I": 1,
+      "Tier III": 2
+    },
+    "note": "Resistance markers are appropriately Tier I/II (guide therapy away). Not errors."
+  },
+  "alphamissense_llm_agreement": {
+    "checked": 18,
+    "agree": 17,
+    "agreement_rate": 0.944,
+    "disagreements": [
+      {
+        "variant": "ESR1 p.E247K",
+        "am_score": 0.84,
+        "llm": "VUS"
+      }
+    ]
+  },
+  "confidence_calibration": {
+    "high (>=0.9)": {
+      "n": 37,
+      "discordant": 21,
+      "verifier_downgraded": 0,
+      "discordance_rate": 0.568
+    },
+    "low (<0.7)": {
+      "n": 18,
+      "discordant": 10,
+      "verifier_downgraded": 16,
+      "discordance_rate": 0.556
+    },
+    "mid (0.7-0.9)": {
+      "n": 1,
+      "discordant": 0,
+      "verifier_downgraded": 0,
+      "discordance_rate": 0.0
+    }
+  },
+  "discordance_concentration": {
+    "by_gene": {
+      "ERBB2": {
+        "discordant": 1,
+        "total": 1,
+        "rate": 1.0
+      },
+      "NRAS": {
+        "discordant": 2,
+        "total": 2,
+        "rate": 1.0
+      },
+      "PIK3CA": {
+        "discordant": 3,
+        "total": 3,
+        "rate": 1.0
+      },
+      "PTEN": {
+        "discordant": 1,
+        "total": 1,
+        "rate": 1.0
+      },
+      "TP53": {
+        "discordant": 7,
+        "total": 7,
+        "rate": 1.0
+      },
+      "ESR1": {
+        "discordant": 1,
+        "total": 1,
+        "rate": 1.0
+      },
+      "AKT1": {
+        "discordant": 1,
+        "total": 1,
+        "rate": 1.0
+      },
+      "KRAS": {
+        "discordant": 4,
+        "total": 7,
+        "rate": 0.571
+      },
+      "ALK": {
+        "discordant": 7,
+        "total": 13,
+        "rate": 0.538
+      },
+      "EGFR": {
+        "discordant": 1,
+        "total": 2,
+        "rate": 0.5
+      },
+      "BRAF": {
+        "discordant": 2,
+        "total": 7,
+        "rate": 0.286
+      },
+      "APC": {
+        "discordant": 1,
+        "total": 7,
+        "rate": 0.143
+      },
+      "ROS1": {
+        "discordant": 0,
+        "total": 1,
+        "rate": 0.0
+      },
+      "CDKN2A": {
+        "discordant": 0,
+        "total": 2,
+        "rate": 0.0
+      },
+      "BRCA2": {
+        "discordant": 0,
+        "total": 1,
+        "rate": 0.0
+      }
+    },
+    "by_cancer": {
+      "Cutaneous Melanoma": {
+        "discordant": 8,
+        "total": 12,
+        "rate": 0.667
+      },
+      "Colorectal Adenocarcinoma": {
+        "discordant": 8,
+        "total": 12,
+        "rate": 0.667
+      },
+      "Pancreatic Adenocarcinoma": {
+        "discordant": 7,
+        "total": 12,
+        "rate": 0.583
+      },
+      "Breast Carcinoma": {
+        "discordant": 4,
+        "total": 8,
+        "rate": 0.5
+      },
+      "Lung Adenocarcinoma (NSCLC)": {
+        "discordant": 4,
+        "total": 12,
+        "rate": 0.333
+      }
+    }
+  },
+  "hotspot_vs_rare": {
+    "hotspot": {
+      "n": 13,
+      "discordant": 7,
+      "discordance_rate": 0.538
+    },
+    "non_hotspot": {
+      "n": 43,
+      "discordant": 24,
+      "discordance_rate": 0.558
+    }
+  },
+  "dense_recall_lift": {
+    "variants_gaining_evidence": 2,
+    "total_civic_added": 2,
+    "examples": [
+      {
+        "variant": "BRAF p.V600E",
+        "structured": 95,
+        "dense": 96
+      },
+      {
+        "variant": "PIK3CA p.H1047R",
+        "structured": 26,
+        "dense": 27
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "fetched_utc": "2026-09-24T09:12:53Z",
+  "script": "scripts/fetch_vicc_v2_inputs.py --steps civic",
+  "url": "https://civicdb.org/downloads/01-Sep-2026/01-Sep-2026-ClinicalEvidenceSummaries.tsv",
+  "release": "01-Sep-2026",
+  "file": "data/knowledge/civic/civic_evidence_release_01-Sep-2026.tsv",
+  "sha256": "5d119f04bc0e654c7d41a7da139bebb5661dd2d2c3a0f5d4e43a2dd4a6bfd77c",
+  "n_rows": 4906,
+  "n_genes": 557,
+  "evidence_status": [
+    "accepted"
+  ],
+  "licence": "CIViC data are CC0 1.0",
+  "use": "sop_strict_v2 change c1: unioned with horak_civic.tsv and civic_evidence_panel.tsv by evidence_id (existing rows take precedence); SOP mapping civic_signal_from_rows unchanged"
+}

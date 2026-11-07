@@ -1,0 +1,10 @@
+##fileformat=VCFv4.2
+##reference=GRCh38
+##source=Actionable driver hotspots (GRCh37 cohort coords lifted to GRCh38 via Ensembl /map) — public, research/education only
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+12	25245350	.	C	T	.	PASS	GENE=KRAS
+12	25245350	.	C	A	.	PASS	GENE=KRAS
+7	140753336	.	A	T	.	PASS	GENE=BRAF
+3	179199088	.	G	A	.	PASS	GENE=PIK3CA
+12	25245351	.	C	A	.	PASS	GENE=KRAS
+7	55191822	.	T	G	.	PASS	GENE=EGFR

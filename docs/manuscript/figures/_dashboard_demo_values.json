@@ -1,0 +1,88 @@
+[
+ {
+  "variant": "BRAF p.V600E",
+  "cancer_type": "Cutaneous Melanoma",
+  "generative": {
+   "oncogenicity": "Oncogenic",
+   "tier": "Tier I",
+   "tier_level": "Level A",
+   "abstained": false
+  },
+  "deterministic": {
+   "oncogenicity": "Oncogenic",
+   "tier": "Tier I",
+   "tier_level": "Level A",
+   "abstained": false
+  },
+  "vicc_rule_arm": {
+   "config": "sop_strict",
+   "call": "Likely Oncogenic",
+   "points": 6,
+   "criteria": [
+    {
+     "code": "OS3",
+     "points": 4,
+     "statement": "BRAF V600E occurs in 833 samples at a cancerhotspots.org hotspot residue (897 samples at the position).",
+     "source": "cancerhotspots"
+    },
+    {
+     "code": "OP1",
+     "points": 1,
+     "statement": "AlphaMissense predicts pathogenic (0.993).",
+     "source": "AlphaMissense"
+    },
+    {
+     "code": "OP4",
+     "points": 1,
+     "statement": "Extremely rare in gnomAD (AF 1.37e-06).",
+     "source": "gnomAD"
+    }
+   ],
+   "inputs": {
+    "AlphaMissense": "0.993",
+    "CIViC functional": "0 functional item(s); 96 non-functional item(s) grant no code",
+    "gnomAD": "AF 1.37e-06 (cached Ensembl VEP)"
+   },
+   "coords": "GRCh37 7:140453136 A>T"
+  },
+  "fabricated_citations": 0,
+  "chat_abstained": false
+ },
+ {
+  "variant": "APC p.R1450*",
+  "cancer_type": "Colorectal Adenocarcinoma",
+  "generative": {
+   "oncogenicity": "VUS",
+   "tier": "Tier III",
+   "tier_level": null,
+   "abstained": true
+  },
+  "deterministic": {
+   "oncogenicity": "VUS",
+   "tier": "Tier III",
+   "tier_level": null,
+   "abstained": true
+  },
+  "vicc_rule_arm": {
+   "config": "sop_strict",
+   "call": "Likely Oncogenic",
+   "points": 8,
+   "criteria": [
+    {
+     "code": "OVS1",
+     "points": 8,
+     "statement": "APC p.R1450* is a null (LoF) variant in a tumour-suppressor gene.",
+     "source": "VICC/CGC"
+    }
+   ],
+   "inputs": {
+    "AlphaMissense": "none in bundle",
+    "CIViC functional": "0 functional item(s)",
+    "gnomAD": "not assessed (no cached VEP record; OP4 not evaluable)"
+   },
+   "coords": "GRCh37 5:112175639 C>T"
+  },
+  "fabricated_citations": 0,
+  "chat_abstained": true
+ }
+]

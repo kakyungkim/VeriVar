@@ -18,7 +18,7 @@ Large language models read evidence fluently and emit structured prose, but two 
 - **Hallucinated citations** — an LLM readily emits plausible but non-existent PMIDs / database IDs to "support" a call.
 - **Parametric leakage** — famous drivers (e.g. BRAF V600E) may be answered from pretraining memory rather than the supplied evidence, inflating apparent accuracy and producing confident over-calls on benign look-alikes.
 
-This project asks a focused question: **can retrieval grounding make LLM variant interpretation faithful and auditable — and is any accuracy effect genuine or a leakage artifact?** The headline result is that faithfulness and auditability can be guaranteed *by construction*; accuracy is reported with deliberate statistical discipline (non-inferior, not superior, for the generative arm).
+This project asks a focused question: **can retrieval grounding make LLM variant interpretation faithful and auditable — and is any accuracy effect genuine or a leakage artifact?** The headline result concerns faithfulness: with retrieval, the model cited no identifier outside the evidence it was given, while the same model without retrieval fabricated or misattributed identifiers on a third of variants. Citation *existence* can be guaranteed by construction; citation *support* (does a real citation say what the rationale claims?) is measured only approximately. Accuracy is reported with deliberate statistical discipline: at n = 70 no arm shows a significant accuracy difference, and no accuracy gain is claimed.
 
 ---
 
@@ -39,7 +39,7 @@ For each variant, the system — **VeriVar** — assembles a **citable evidence 
 
 - **Generative mode (Mode A)** — the LLM assigns the labels itself, grounded on the evidence bundle, with self-consistency voting (n = 3) and an agentic adversarial verifier. For exploratory interpretation and rare/under-curated variants.
 - **Deterministic mode (Mode B)** — a transparent, direction-aware rule fixes the label; the LLM writes only the human-readable rationale. For reproducibility and review safety (identical output every run).
-- **VeriVar (rule arm) — a citable VICC point-based implementation** — a deterministic, direction-aware engine in the tradition of curated rule engines, used as a strong honest baseline (not claimed as a novel classifier).
+- **VeriVar (rule arm) — a citable, SOP-strict VICC point-based implementation** — a deterministic engine that applies the Horak et al. 2022 criteria, point ranges and exclusion rules as written wherever open data allow, and leaves unevaluable criteria unassigned. Every fired criterion is a citable record. Reported for its auditability and error profile, not as a novel or accuracy-competitive classifier. Details: [`docs/reference/vicc_rule_arm.md`](docs/reference/vicc_rule_arm.md).
 - **No-retrieval baseline** — the generative prompt with the evidence bundle removed, isolating parametric behaviour.
 
 **Discordance between arms is treated as a primary analytical signal**, not a failure — it localises genuine interpretive uncertainty.
@@ -79,14 +79,21 @@ Cohort and knowledge snapshots are committed so the pipeline runs **offline**; n
 
 ## Key results
 
-Evaluated with leakage-free faithfulness metrics, an external gold standard, bootstrap 95% CIs, and exact McNemar tests. Primary model **gpt-4o-mini** (a conservative capability floor); replicated on **gpt-4o**.
+Evaluated with leakage-free faithfulness metrics, an external gold standard, bootstrap 95% CIs, and exact McNemar tests. Primary model **gpt-4o-mini** (a conservative capability floor); robustness re-run on **gpt-4o**. The manuscript (`docs/manuscript/preprint.md`) is the authoritative statement; numbers below are read from the committed JSON files named in each bullet.
 
-- **Faithfulness (the headline, statistically robust):** with retrieval, citation fabrication **0%** vs **46.4%** (95% CI 33.9–58.9) without; citation grounding **1.0**, directional faithfulness **1.0**, abstention recall **1.0**.
-- **Suppressed parametric over-calling:** retrieval reclassified **12 of 56** confidently over-called variants (21.4%) to evidence-grounded VUS (behavioural change; per-variant correctness awaits expert adjudication).
-- **Accuracy — honest and disciplined:** the **generative arm** is *non-inferior* to both baselines on Horak-70 (3-class 0.600 with retrieval vs 0.586 without vs 0.557 rule; McNemar p = 1.0 / 0.61) — so **faithfulness, not accuracy, is its contribution.** **VeriVar's rule arm** (the citable VICC point-based implementation) reaches 3-class accuracy **0.843** (specificity 0.973, AUROC 0.906) and matches the strongest open engine **OncoVI** head-to-head (native VICC-oncogenicity axis; 0.841 vs 0.797, McNemar p = 0.66) at markedly higher specificity, trading confident over-calls for honest abstentions. Against a second tool, **CancerVar**, the comparison is **cross-axis** — CancerVar emits AMP/ASCO/CAP *actionability* tiers, not VICC oncogenicity, so it is read only as an **error-profile contrast** (high specificity / over-call asymmetry: 21 over-calls / 0 misses on the shared variants), **not** an accuracy win.
-- **Leakage controls all pass:** temporal holdout, leave-own-evidence-out (LOVO), second model (gpt-4o), and embedding ablation leave generative-arm accuracy statistically unchanged — the behaviour is not a retrieval-corpus or single-model artifact.
+- **Faithfulness, citation existence (the headline).** With retrieval, gpt-4o-mini emitted 106 citation tokens across the 56-variant cohort; **0 of the 86 identifier citations fell outside the retrieved evidence bundle** (one-sided 95% upper bound 3.4%). The other 20 tokens were not identifiers (for example the bare source name "AlphaMissense") and are counted as imprecision, not fabrication. Without retrieval, **19 of 56 variants (0.339, Wilson 95% CI 0.229–0.470) carried a fabricated or misattributed identifier**; paired exact McNemar p = 3.8×10⁻⁶. Source: `data/outputs/citation_taxonomy.json`.
+- **Faithfulness, citation support (the open part).** An entailment (NLI) audit found the cited record supporting the citing rationale for **0.444 (95% CI 0.344–0.544) of 90 citations** on the primary run. This is a noisy lower bound, not a Type II error rate; hand review found the NLI labels biased against support. Source: `data/outputs/nli_attribution_report.json`.
+- **Contract guarantees.** The post-gate scorecard (hallucination 0, citation grounding 1.0, directional faithfulness 1.0, abstention recall 1.0) reports what the faithfulness gate enforces by construction, not a measured emergent property.
+- **Parametric over-calling.** Retrieval reclassified **12 of 56** variants that the no-retrieval model called (likely) oncogenic to evidence-grounded VUS. This is a behavioural change; whether each reclassification is correct awaits expert adjudication. Source: `data/outputs/ablation_report.json`.
+- **Generative-arm accuracy: not significantly different.** Three-class accuracy on Horak-70 was 0.600 with retrieval, 0.586 without, and 0.557 for the simplified Deterministic rule (McNemar p = 1.0 and 0.61; overlapping CIs). Faithfulness, not accuracy, is the generative arm's contribution. Source: `data/outputs/stats_report.json`.
+- **Leakage controls.** Temporal corpus holdout, leave-own-evidence-out (LOVO), a second model (gpt-4o), and an embedding ablation left generative-arm accuracy statistically unchanged. They control the retrieval-corpus channel only; the model's own parametric memory remains uncontrolled and is quantified by the no-retrieval floor. Sources: `data/benchmark/horak_{temporal,lovo,gpt4o}.json`, `data/benchmark/embed_ablation.json`.
+- **VeriVar's rule arm (SOP-strict VICC engine; deterministic, not the LLM).** On Horak-70: three-class accuracy **0.657 (95% CI 0.543–0.771)**, oncogenic sensitivity 0.424, **specificity 1.000 (37/37)**, AUROC 0.885, and **no oncogenic over-call**; it leaves most oncogenic variants at VUS. OncoVI (0.797 on 69 shared variants, ours 0.652) and HemaGuide's molecular mode (0.800 on 70) are higher in point estimate; neither difference is significant (exact McNemar p = 0.087 for both). At n = 70 the rule arm is not accuracy-competitive with published engines. Sources: `data/benchmark/horak_vicc.json`, `data/benchmark/vicc_config_comparison.json`.
+- **Rule arm on an independent ClinVar oncogenicity holdout** (712 missense variants from the ClinVar FTP aggregate oncogenicity field, Horak-70 overlap removed): specificity **0.970 (0.949–0.986)** at sensitivity **0.466 (0.421–0.517)**, AUROC 0.852; on the nine Horak genes (n = 236), sensitivity 0.798, specificity 0.789, AUROC 0.875. This validates oncogenic detection only (benign labels are almost absent), and most labels come from a single laboratory. Source: `data/benchmark/clinvar_onc_holdout.json`.
+- **Pre-registered input-expansion round (robustness).** A sealed, pre-registered round added more computational predictors, continental population frequencies, a newer CIViC release and extra MaveDB sets. Horak-70 accuracy did not change (0.657), and ClinVar sensitivity fell (nine genes 0.798 to 0.747; all genes 0.466 to 0.394), so the primary engine stays SOP-strict. Source: `data/benchmark/vicc_config_comparison.json` (`sop_strict_v2` family).
+- **CancerVar (cross-axis, error profile only).** CancerVar emits AMP/ASCO/CAP actionability tiers, not VICC oncogenicity, so the comparison is read only as an error-profile contrast: on 70 shared variants it made 21 over-calls and no miss, against the rule arm's 0 over-calls and 19 misses. Source: `data/benchmark/cancervar_headtohead.json`.
+- **Input-context ablation (an open weakness).** Writing a gene under an HGNC alias symbol, or the protein change in three-letter HGVS, removed every curated clinical evidence item, yet 22 of the 26 affected variants were still called (likely) oncogenic on the coordinate-keyed AlphaMissense prior alone. No citation fell outside the bundle (0 of 228), so the contract held as written while not guaranteeing that a driver call rests on curated clinical evidence. Sources: `data/outputs/context_ablation.json`, `data/outputs/context_ablation_grounding.json`.
 
-> Accuracy differences at n = 70 are **not** significant — no accuracy-superiority claim is made for the generative arm. See `data/outputs/stats_report.json`.
+> No accuracy-superiority claim is made for any arm. See `data/outputs/stats_report.json` and `data/benchmark/vicc_config_comparison.json`.
 
 ---
 
@@ -132,7 +139,7 @@ Evaluated with leakage-free faithfulness metrics, an external gold standard, boo
 | `src/dashboard/` | Streamlit app (overview · variant explorer · detail + grounded chat) |
 | `scripts/` | `fetch_*` (cohort/knowledge/evidence), `build_index`, eval/benchmark runners, `verify_manuscript.py` (deterministic anti-hallucination gate) |
 | `data/` | Committed cohort/knowledge snapshots + generated outputs/benchmarks |
-| `docs/` | Study summary, bioRxiv manuscript + figures, blog/talk material |
+| `docs/` | `STUDY_SUMMARY.md`; `manuscript/` (medRxiv preprint + `figures/`, including `figS1_dashboard.png`); `reference/` (faithfulness, VICC rule arm, traceability check, resource manifest); `harness/` (agent-harness map); `blog/`, `talks/` |
 
 ---
 
@@ -163,9 +170,11 @@ pytest                                             # test suite
 
 ## Limitations
 
-- Small scale (56-variant cohort, 70-variant external benchmark) — accuracy differences are not statistically powered.
-- The Deterministic and VICC rule arms are deliberately **simplified** re-implementations, not guideline-compliant clinical engines.
-- LLM parametric leakage is quantified (by the no-RAG floor) but not fully eliminated.
+- Small scale (56-variant cohort, 70-variant external benchmark) — accuracy differences are not statistically powered; single primary model (gpt-4o-mini).
+- Citation support (Type II faithfulness) is measured only approximately (NLI lower bound 0.444); the gate guarantees that citations exist in the bundle, not that they support the claim.
+- The Deterministic mode is a deliberately **simplified** rule. The VICC rule arm follows the SOP text where open data allow, but several criteria (OS1, OM4, OP2, SBP2) cannot be evaluated from open data and are left unassigned, OP1/SBP1 rest on a single predictor, and population frequencies are global rather than per continent. It is not a validated clinical engine.
+- The abstention contract accepts a computational prior as variant-specific evidence, so a driver call can survive the loss of all curated clinical evidence (input-context ablation).
+- LLM parametric leakage is quantified (by the no-retrieval floor) but not controlled.
 - The provisional discordance adjudication still requires sign-off by a board-certified molecular pathologist before any biological correctness claim.
 - The dashboard and report are research/educational demonstrators, not validated clinical tools.
 
@@ -177,7 +186,7 @@ pytest                                             # test suite
 - **LLM over-classification** — Lin et al. (2025, *npj Precis Oncol*) benchmarked GPT-4o/Llama 3.1/Qwen 2.5 and reported systematic over-classification toward higher evidence levels (the same parametric over-calling observed here).
 - **Citation faithfulness & medical RAG** — ALCE (Gao et al.) formalised citation precision/recall evaluation; MedRAG/MIRAGE (Xiong et al.) established retrieval as a partial hallucination mitigation in medical QA.
 - **Established interpretation platforms** — OncoKB, CIViC, COSMIC, PCGR — treated here as prior art the system must remain compatible with, not baselines it claims to beat.
-- **Reported head-to-head comparators (rule arm only, no oncogenicity-accuracy-superiority claim):** **OncoVI** (native VICC-oncogenicity axis — accuracy parity at higher specificity) and **CancerVar** (AMP/ASCO/CAP actionability axis — a **cross-axis** comparison read strictly as an error-profile contrast, not an accuracy benchmark). **Cancer Genome Interpreter (CGI)** was considered as a near-axis comparator but **deferred** — its per-variant predictions require a registration-gated token unavailable in scope; extending the head-to-head to CGI is future work.
+- **Reported head-to-head comparators (rule arm only):** **OncoVI** and **HemaGuide**'s molecular mode (native VICC-oncogenicity axis; both higher than our rule arm in point estimate, McNemar p = 0.087 each) and **CancerVar** (AMP/ASCO/CAP actionability axis — a **cross-axis** comparison read strictly as an error-profile contrast, not an accuracy benchmark). **Cancer Genome Interpreter (CGI)** was considered as a near-axis comparator but **deferred** — its per-variant predictions require a registration-gated token unavailable in scope; extending the head-to-head to CGI is future work.
 
 Full references are in the manuscript (`docs/manuscript/preprint.md`).
 

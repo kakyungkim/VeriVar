@@ -1,0 +1,57 @@
+variant,cancer_type,evidence_tier,modeA_oncogenicity,modeA_tier,modeB_oncogenicity,modeB_tier,discordant
+BRAF p.G469E,Cutaneous Melanoma,civic,Oncogenic,Tier I,Oncogenic,Tier II,True
+BRAF p.V600E,Colorectal Adenocarcinoma,civic,Oncogenic,Tier I,Oncogenic,Tier I,False
+BRAF p.V600E,Cutaneous Melanoma,civic,Oncogenic,Tier I,Oncogenic,Tier I,False
+EGFR p.E114K,Colorectal Adenocarcinoma,civic,VUS,Tier IV,Likely Benign,Tier IV,True
+EGFR p.L858R,Lung Adenocarcinoma (NSCLC),civic,Oncogenic,Tier I,Oncogenic,Tier I,False
+ERBB2 p.V842I,Pancreatic Adenocarcinoma,civic,Likely Oncogenic,Tier II,Oncogenic,Tier II,True
+KRAS p.G12A,Pancreatic Adenocarcinoma,civic,Likely Oncogenic,Tier II,Oncogenic,Tier III,True
+KRAS p.G12C,Lung Adenocarcinoma (NSCLC),civic,Oncogenic,Tier I,Oncogenic,Tier I,False
+KRAS p.G12D,Colorectal Adenocarcinoma,civic,Oncogenic,Tier I,Oncogenic,Tier II,True
+KRAS p.G12D,Pancreatic Adenocarcinoma,civic,Oncogenic,Tier I,Oncogenic,Tier II,True
+KRAS p.G12R,Pancreatic Adenocarcinoma,civic,Oncogenic,Tier I,Oncogenic,Tier III,True
+KRAS p.G12V,Colorectal Adenocarcinoma,civic,Oncogenic,Tier I,Oncogenic,Tier I,False
+KRAS p.G12V,Pancreatic Adenocarcinoma,civic,Oncogenic,Tier II,Oncogenic,Tier II,False
+NRAS p.Q61K,Cutaneous Melanoma,civic,Oncogenic,Tier I,Oncogenic,Tier II,True
+NRAS p.Q61R,Cutaneous Melanoma,civic,Oncogenic,Tier I,Oncogenic,Tier II,True
+PIK3CA p.E545K,Lung Adenocarcinoma (NSCLC),civic,Likely Oncogenic,Tier II,Oncogenic,Tier II,True
+PIK3CA p.H1047R,Breast Carcinoma,civic,Oncogenic,Tier I,Oncogenic,Tier II,True
+PIK3CA p.R88Q,Colorectal Adenocarcinoma,civic,VUS,Tier IV,Oncogenic,Tier II,True
+PTEN p.R130*,Cutaneous Melanoma,civic,VUS,Tier III,Oncogenic,Tier II,True
+TP53 p.D281E,Lung Adenocarcinoma (NSCLC),civic,Oncogenic,Tier I,Likely Oncogenic,Tier III,True
+TP53 p.P152L,Cutaneous Melanoma,civic,VUS,Tier IV,Likely Benign,Tier IV,True
+TP53 p.R175H,Breast Carcinoma,civic,Oncogenic,Tier I,Oncogenic,Tier II,True
+TP53 p.R273H,Colorectal Adenocarcinoma,civic,Likely Oncogenic,Tier III,Oncogenic,Tier III,True
+TP53 p.R273H,Pancreatic Adenocarcinoma,civic,Likely Oncogenic,Tier III,Oncogenic,Tier III,True
+TP53 p.R273L,Lung Adenocarcinoma (NSCLC),civic,Likely Oncogenic,Tier II,Likely Oncogenic,Tier III,True
+TP53 p.V272G,Lung Adenocarcinoma (NSCLC),civic,Likely Oncogenic,Tier III,Likely Benign,Tier IV,True
+ESR1 p.E247K,Colorectal Adenocarcinoma,alphamissense,VUS,Tier III,Likely Oncogenic,Tier III,True
+AKT1 p.V192M,Colorectal Adenocarcinoma,alphamissense,Likely Oncogenic,Tier II,Likely Oncogenic,Tier III,True
+ALK p.F539C,Colorectal Adenocarcinoma,alphamissense,Likely Oncogenic,Tier II,Likely Oncogenic,Tier III,True
+ALK p.R291C,Colorectal Adenocarcinoma,alphamissense,VUS,Tier IV,VUS,Tier III,True
+ALK p.E576Q,Breast Carcinoma,alphamissense,Likely Benign,Tier IV,Likely Benign,Tier IV,False
+ALK p.G1121D,Breast Carcinoma,alphamissense,Likely Oncogenic,Tier II,Likely Oncogenic,Tier III,True
+ALK p.R1209P,Breast Carcinoma,alphamissense,Likely Oncogenic,Tier II,Likely Oncogenic,Tier III,True
+APC p.A1366V,Breast Carcinoma,alphamissense,Likely Benign,Tier IV,Likely Benign,Tier IV,False
+BRAF p.H725Y,Cutaneous Melanoma,alphamissense,Likely Oncogenic,Tier II,Likely Oncogenic,Tier III,True
+ROS1 p.P1539S,Cutaneous Melanoma,alphamissense,Likely Benign,Tier IV,Likely Benign,Tier IV,False
+ALK p.G1494E,Cutaneous Melanoma,alphamissense,Likely Benign,Tier III,Likely Benign,Tier IV,True
+ALK p.G391E,Cutaneous Melanoma,alphamissense,Likely Oncogenic,Tier II,Likely Oncogenic,Tier III,True
+ALK p.G263V,Lung Adenocarcinoma (NSCLC),alphamissense,Likely Benign,Tier IV,Likely Benign,Tier IV,False
+ALK p.V349F,Lung Adenocarcinoma (NSCLC),alphamissense,VUS,Tier III,VUS,Tier III,False
+APC p.D1562N,Lung Adenocarcinoma (NSCLC),alphamissense,Likely Benign,Tier IV,Likely Benign,Tier IV,False
+BRAF p.A762E,Lung Adenocarcinoma (NSCLC),alphamissense,Likely Benign,Tier IV,Likely Benign,Tier IV,False
+ALK p.R1212H,Pancreatic Adenocarcinoma,alphamissense,Likely Oncogenic,Tier II,Likely Oncogenic,Tier III,True
+ALK p.R200K,Pancreatic Adenocarcinoma,alphamissense,Likely Benign,Tier IV,Likely Benign,Tier IV,False
+APC p.P1613H,Pancreatic Adenocarcinoma,alphamissense,Likely Oncogenic,Tier II,Likely Oncogenic,Tier III,True
+APC p.R230C,Pancreatic Adenocarcinoma,alphamissense,Likely Benign,Tier IV,Likely Benign,Tier IV,False
+ALK p.R401*,Colorectal Adenocarcinoma,none,VUS,Tier III,VUS,Tier III,False
+APC p.R1450*,Colorectal Adenocarcinoma,none,VUS,Tier III,VUS,Tier III,False
+ALK p.X263_splice,Lung Adenocarcinoma (NSCLC),none,VUS,Tier III,VUS,Tier III,False
+BRAF p.X565_splice,Lung Adenocarcinoma (NSCLC),none,VUS,Tier III,VUS,Tier III,False
+APC p.E109*,Breast Carcinoma,none,VUS,Tier III,VUS,Tier III,False
+APC p.S2223*,Breast Carcinoma,none,VUS,Tier III,VUS,Tier III,False
+BRAF p.L485*,Cutaneous Melanoma,none,VUS,Tier III,VUS,Tier III,False
+CDKN2A p.R58*,Cutaneous Melanoma,none,VUS,Tier III,VUS,Tier III,False
+BRCA2 p.N1784Kfs*3,Pancreatic Adenocarcinoma,none,VUS,Tier III,VUS,Tier III,False
+CDKN2A p.E69Afs*74,Pancreatic Adenocarcinoma,none,VUS,Tier III,VUS,Tier III,False
