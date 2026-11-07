@@ -47,6 +47,7 @@ MUT = "#5B6470"
 
 plt.rcParams.update({
     "svg.fonttype": "path",          # no font dependency at the print shop
+    "svg.hashsalt": "verivar-poster",  # stable element ids, so rebuilds do not churn git
     "figure.dpi": 100, "savefig.bbox": "tight", "savefig.pad_inches": 0.05,
     "font.family": "sans-serif",
     "font.sans-serif": ["Pretendard", "Helvetica Neue", "Arial", "DejaVu Sans"],
@@ -80,7 +81,7 @@ def xgrid(ax):
 
 def save(fig, name):
     out = os.path.join(FIGS, name + ".svg")
-    fig.savefig(out, format="svg", transparent=True)
+    fig.savefig(out, format="svg", transparent=True, metadata={"Date": None})
     plt.close(fig)
     print("  ", os.path.relpath(out, HERE))
 
