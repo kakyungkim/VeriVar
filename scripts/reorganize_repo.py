@@ -260,7 +260,7 @@ the old paths).
 | --- | --- | --- |
 | `backups/` | `CLAUDE.md.bak_20260924`, `SUBMISSION_STEPS_LOCAL.md.bak_20260924` | Pre-edit snapshots taken on 2026-09-24 before the publication-block wording changed; kept for diffing. |
 | `ppt_2026-05/` | April-May 2026 slide decks, PDF export and tech brief (`ppt/`) | Early presentations of the pipeline; superseded by the manuscript but useful as a record of the original framing. |
-| `company_review_2026-06/` | `company-agent-templates/`, `company_review_packet_ko.md` | Materials prepared for the June 2026 company/IP review. Local by design; never for the public repo. |
+| `company_review_2026-06/` | `company-agent-templates/`, `company_review_packet_ko.md` | Local-only materials from June 2026. Local by design; never for the public repo. |
 | `submission_bioRxiv_2026-09/` | bioRxiv draft PDFs of 2026-08-28 and 2026-09-03 (+ their README) | Superseded by the medRxiv submission after the SOP-strict re-implementation; kept as the record of what an earlier version claimed. |
 | `manuscript_figures_2026-06/` | `F0`-`F5`, `F7` figure PNG/PDFs and `_f*.png` panel crops | The June 2026 figure set, replaced by `fig1`-`fig5` / `figS*` built by `make_figures.py`; no document references them any more. |
 
