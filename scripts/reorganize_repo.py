@@ -104,9 +104,8 @@ from pathlib import Path
 from typing import Iterable, Literal, Optional
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_BACKUP_ROOT = Path(
-    "/private/tmp/claude-501/-Users-USER-projects-VeriVar/"
-    "2b646c31-a969-4614-bae0-f3099766ae41/scratchpad/bak_reorg")
+#: Backups go to the system temp directory unless --backup-root says otherwise.
+DEFAULT_BACKUP_ROOT = Path(tempfile.gettempdir()) / "verivar_bak_reorg"
 DEFAULT_PLAN_OUT = "notes/audits/2026-09-24/reorg_plan.json"
 
 TEXT_EXTS = frozenset({".md", ".py", ".sh", ".html", ".json", ".yml", ".yaml",
