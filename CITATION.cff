@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use VeriVar, please cite it using the metadata below."
+title: "VeriVar: citation-grounded, dual-mode LLM interpretation of somatic cancer variants"
+abstract: >-
+  VeriVar classifies somatic variants on ClinGen/CGC/VICC oncogenicity and the
+  AMP/ASCO/CAP clinical tier under a faithfulness contract: the model may cite only
+  identifiers it retrieved and must abstain when no variant-specific evidence exists.
+  The repository includes the pipeline, a deterministic SOP-strict rule arm, the
+  evaluation suite with leakage controls, every committed result file, and the
+  manuscript. Research and education use only; not for clinical use.
+type: software
+authors:
+  - family-names: Kim
+    given-names: Ka-Kyung
+    affiliation: "Independent Researcher, Seoul, Republic of Korea"
+    email: kakyung.kim@gmail.com
+repository-code: "https://github.com/kakyungkim/VeriVar"
+license: MIT
+keywords:
+  - somatic variant interpretation
+  - large language models
+  - retrieval-augmented generation
+  - citation faithfulness
+  - precision oncology
+  - bioinformatics
+version: 1.0.0
